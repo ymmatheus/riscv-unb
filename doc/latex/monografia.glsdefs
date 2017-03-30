@@ -1,0 +1,180 @@
+\ifglsentryexists{UnB}{}%
+{%
+\gls@defglossaryentry{UnB}%
+{%
+name={UnB},%
+sort={UnB},%
+type={acronym},%
+first={Universidade de Bras\IeC {\'\i }lia\glsspace (UnB)},%
+firstplural={Universidade de Bras\IeC {\'\i }lias\glsspace (UnBs)},%
+text={UnB},%
+plural={UnBs},%
+description={Universidade de Brasília},%
+descriptionplural={Universidade de Brasília\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Universidade de Bras\IeC {\'\i }lia},%
+longplural={Universidade de Bras\IeC {\'\i }lias},%
+short={UnB},%
+shortplural={UnBs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{BCE}{}%
+{%
+\gls@defglossaryentry{BCE}%
+{%
+name={BCE},%
+sort={BCE},%
+type={acronym},%
+first={Biblioteca Central\glsspace (BCE)},%
+firstplural={Biblioteca Centrals\glsspace (BCEs)},%
+text={BCE},%
+plural={BCEs},%
+description={Biblioteca Central},%
+descriptionplural={Biblioteca Central\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Biblioteca Central},%
+longplural={Biblioteca Centrals},%
+short={BCE},%
+shortplural={BCEs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CIC}{}%
+{%
+\gls@defglossaryentry{CIC}%
+{%
+name={CIC},%
+sort={CIC},%
+type={acronym},%
+first={Departamento de Ci\IeC {\^e}ncia da Computa\IeC {\c c}\IeC {\~a}o\glsspace (CIC)},%
+firstplural={Departamento de Ci\IeC {\^e}ncia da Computa\IeC {\c c}\IeC {\~a}os\glsspace (CICs)},%
+text={CIC},%
+plural={CICs},%
+description={Departamento de Ciência da Computação},%
+descriptionplural={Departamento de Ciência da Computação\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Departamento de Ci\IeC {\^e}ncia da Computa\IeC {\c c}\IeC {\~a}o},%
+longplural={Departamento de Ci\IeC {\^e}ncia da Computa\IeC {\c c}\IeC {\~a}os},%
+short={CIC},%
+shortplural={CICs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CTAN}{}%
+{%
+\gls@defglossaryentry{CTAN}%
+{%
+name={CTAN},%
+sort={CTAN},%
+type={acronym},%
+first={Comprehensive T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ Archive Network\glsspace (CTAN)},%
+firstplural={Comprehensive T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ Archive Networks\glsspace (CTANs)},%
+text={CTAN},%
+plural={CTANs},%
+description={Comprehensive \TeX \ Archive Network},%
+descriptionplural={Comprehensive \TeX \ Archive Network\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Comprehensive T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ Archive Network},%
+longplural={Comprehensive T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}\ Archive Networks},%
+short={CTAN},%
+shortplural={CTANs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CEP}{}%
+{%
+\gls@defglossaryentry{CEP}%
+{%
+name={CEP},%
+sort={CEP},%
+type={acronym},%
+first={Comiss\IeC {\~a}o de \IeC {\'E}tica P\IeC {\'u}blica\glsspace (CEP)},%
+firstplural={Comiss\IeC {\~a}o de \IeC {\'E}tica P\IeC {\'u}blicas\glsspace (CEPs)},%
+text={CEP},%
+plural={CEPs},%
+description={Comissão de Ética Pública},%
+descriptionplural={Comissão de Ética Pública\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Comiss\IeC {\~a}o de \IeC {\'E}tica P\IeC {\'u}blica},%
+longplural={Comiss\IeC {\~a}o de \IeC {\'E}tica P\IeC {\'u}blicas},%
+short={CEP},%
+shortplural={CEPs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CAPES}{}%
+{%
+\gls@defglossaryentry{CAPES}%
+{%
+name={CAPES},%
+sort={CAPES},%
+type={acronym},%
+first={Coordena\IeC {\c c}\IeC {\~a}o de Aperfei\IeC {\c c}oamento de Pessoal de N\IeC {\'\i }vel Superior\glsspace (CAPES)},%
+firstplural={Coordena\IeC {\c c}\IeC {\~a}o de Aperfei\IeC {\c c}oamento de Pessoal de N\IeC {\'\i }vel Superiors\glsspace (CAPESs)},%
+text={CAPES},%
+plural={CAPESs},%
+description={Coordenação de Aperfeiçoamento de Pessoal de Nível Superior},%
+descriptionplural={Coordenação de Aperfeiçoamento de Pessoal de Nível Superior\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Coordena\IeC {\c c}\IeC {\~a}o de Aperfei\IeC {\c c}oamento de Pessoal de N\IeC {\'\i }vel Superior},%
+longplural={Coordena\IeC {\c c}\IeC {\~a}o de Aperfei\IeC {\c c}oamento de Pessoal de N\IeC {\'\i }vel Superiors},%
+short={CAPES},%
+shortplural={CAPESs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
