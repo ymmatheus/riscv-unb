@@ -232,22 +232,62 @@ def instr_addi():
 	#print(settings.registers[settings.rd])
 	#print(settings.rd)
 	#print(settings.bin2s(settings.imm_i[-12:]) )
-	settings.registers[settings.rd] = settings.registers[settings.rs1] + utilities.bin2s(settings.imm_i[-12:])  
+	aux = utilities.bin2s(settings.registers[settings.rs1]) + utilities.bin2s(settings.imm_i)
+	settings.registers[settings.rd] = utilities.s2bin(aux,32)
 
 def instr_slti():
-	pass
+	'''
+		SLTI (set less than immediate) places the value 1 in register rd if register rs1 is less than the sign-
+		extended immediate when both are treated as signed numbers, else 0 is written to rd. SLTIU is
+		similar but compares the values as unsigned numbers (i.e., the immediate is first sign-extended to
+		XLEN bits then treated as an unsigned number). Note, SLTIU rd, rs1, 1 sets rd to 1 if rs1 equals
+		zero, otherwise sets rd to 0 (assembler pseudo-op SEQZ rd, rs).
+	'''
+	if utilities.bin2s( settings.registers[settings.rs1] )  < utilities.bin2s( settings.imm_i) :
+		settings.registers[settings.rd] = '1'.zfill(32)
+	else:
+		settings.registers[settings.rd] = '0'.zfill(32)
+
 
 def instr_sltiu():
-	pass
+	if utilities.bin2u( settings.registers[settings.rs1] )  < utilities.bin2u( settings.imm_i) :
+		settings.registers[settings.rd] = '1'.zfill(32)
+	else:
+		settings.registers[settings.rd] = '0'.zfill(32)
 
 def instr_xori():
-	pass
+	'''
+		ANDI, ORI, XORI are logical operations that perform bitwise AND, OR, and XOR on register rs1
+		and the sign-extended 12-bit immediate and place the result in rd. Note, XORI rd, rs1, -1 performs
+		a bitwise logical inversion of register rs1 (assembler pseudo-instruction NOT rd, rs).
+	'''
+	aux = ['0' for i in range(0,32)]
+	for i in range(0,32):
+		if((settings.registers[settings.rs1][i] == '1' and settings.imm_i[i] == '0') or (settings.registers[settings.rs1][i] == '0' and settings.imm_i[i] == '1')):
+			aux[i] = '1'
+		else:
+			aux[i] = '0'
+	settings.registers[settings.rd] = ''.join(aux)	
 
 def instr_ori():
-	pass
+	aux = ['0' for i in range(0,32)]
+	for i in range(0,32):
+		if(settings.registers[settings.rs1][i] == '1' or settings.imm_i[i] == '1'):
+			aux[i] = '1'
+		else:
+			aux[i] = '0'
+
+	settings.registers[settings.rd] = ''.join(aux)	
 
 def instr_andi():
-	pass
+	aux = ['0' for i in range(0,32)]
+	for i in range(0,32):
+		if(settings.registers[settings.rs1][i] == '1' and settings.imm_i[i] == '1'):
+			aux[i] = '1'
+		else:
+			aux[i] = '0'
+
+	settings.registers[settings.rd] = ''.join(aux)	
 
 def instr_slli():
 	pass
@@ -260,7 +300,8 @@ def instr_srai():
 
 def instr_add():
 	
-	settings.registers[settings.rd] = settings.registers[settings.rs1] + settings.registers[settings.rs2]  
+	settings.registers[settings.rd] = utilities.s2bin(utilities.bin2s(settings.registers[settings.rs1]) + utilities.bin2s(settings.registers[settings.rs2]),32)
+
 
 def instr_sub():
 	pass

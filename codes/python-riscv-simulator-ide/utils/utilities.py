@@ -65,16 +65,19 @@ def s2bin(snumb,xlen):
 
 	print(unumb)	
 
-def display_registers(regs=-1):
+def display_registers(regs=-1, mode='dec'):
 	#print(registers[u2bin(regs,5)])
 	print("Registers Display:")
-	print("#################################")
+	print("#################################################################")
 	if(regs==-1):
-		for i in range(0,32):		
-			print("# - Reg"+str(i)+"\t=\t"+str(settings.registers[u2bin(i,5)])+"\t#")
+		for i in range(0,32):
+			if mode == 'dec':
+				print("# - Reg"+str(i)+"\t=\t"+str(bin2s(settings.registers[u2bin(i,5)]))+"\t")
+			elif mode == 'bin':
+				print("# - Reg"+str(i)+"\t=\t"+str(settings.registers[u2bin(i,5)])+"\t#")
 	else:
-		print("# - Reg"+str(regs)+"\t=\t"+str(settings.registers[u2bin(regs,5)])+"\t#")
-	print("#################################")
+		print("# - Reg"+str(regs)+"\t=\t"+str(bin2s(settings.registers[u2bin(regs,5)]))+"\t")
+	print("#################################################################")
 
 def display_memory(intval_strt=0, intval_end=settings.DATA_MEMORY_SIZE):
 
