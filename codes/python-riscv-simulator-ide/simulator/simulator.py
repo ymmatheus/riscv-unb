@@ -36,19 +36,30 @@ def decode(instruction):
 	settings.shamnt = settings.rs2
 
 	if (instructions.instruction_table[settings.opcode]["type"] == "r"):
+	
 		instruction_name = instructions.instruction_table[settings.opcode][settings.funct3][settings.funct7]
+	
 	elif (instructions.instruction_table[settings.opcode]["type"] == "i"):
+	
 		if (instructions.instruction_table[settings.opcode][settings.funct3] != "000"):
 			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
 		else:
 			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3][imm12]
+	
 	elif (instructions.instruction_table[settings.opcode]["type"] == "u"):
+	
 		instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
+	
 	elif (instructions.instruction_table[settings.opcode]["type"] == "uj"):
+	
 		instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
+	
 	elif (instructions.instruction_table[settings.opcode]["type"] == "s"):
+	
 		instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+	
 	elif (instructions.instruction_table[settings.opcode]["type"] == "sb"):
+	
 		instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
 
 	#print(instruction_name)

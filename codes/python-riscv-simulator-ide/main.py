@@ -3,11 +3,7 @@ from simulator import simulator
 
 '''
 	TODOs: 
-		configs.py
-			terminar a tabela de instrucoes alguns tipo I
-
-		simulator.py
-			terminar decode:
+		instructions.py
 			terminar execute: todas as instruções
 
 '''

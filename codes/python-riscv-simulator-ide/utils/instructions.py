@@ -304,36 +304,75 @@ def instr_add():
 
 
 def instr_sub():
-	pass
+	settings.registers[settings.rd] = utilities.s2bin(utilities.bin2s(settings.registers[settings.rs1]) - utilities.bin2s(settings.registers[settings.rs2]),32)
 
 def instr_sll():
-	pass
-
+	'''
+	SLL, SRL, and SRA perform logical left, logical right, and arithmetic right shifts on the value in
+	register rs1 by the shift amount held in the lower 5 bits of register rs2.
+	'''
+	shmnt = utilities.bin2u( settings.registers[settings.rs2][-5:] )
+	print( settings.registers[settings.rs1] )
+	settings.registers[settings.rd] = settings.registers[settings.rs1][shmnt:32] + ''.zfill(  shmnt  )
+		
 def instr_slt():
-	pass
+	if utilities.bin2s( settings.registers[settings.rs1] )  < utilities.bin2s( settings.registers[settings.rs2] ) :
+		settings.registers[settings.rd] = '1'.zfill(32)
+	else:
+		settings.registers[settings.rd] = '0'.zfill(32)
 
 def instr_sltu():
-	pass
+	if utilities.bin2u( settings.registers[settings.rs1] )  < utilities.bin2u( settings.registers[settings.rs2] ) :
+		settings.registers[settings.rd] = '1'.zfill(32)
+	else:
+		settings.registers[settings.rd] = '0'.zfill(32)
 
 def instr_xor():
-	pass
+	aux = ['0' for i in range(0,32)]
+	for i in range(0,32):
+		if((settings.registers[settings.rs1][i] == '1' and settings.registers[settings.rs2][i] == '0') or (settings.registers[settings.rs1][i] == '0' and settings.registers[settings.rs2][i] == '1')):
+			aux[i] = '1'
+		else:
+			aux[i] = '0'
+	settings.registers[settings.rd] = ''.join(aux)
 
 def instr_srl():
-	pass
+	shmnt = utilities.bin2u( settings.registers[settings.rs2][-5:] )
+	settings.registers[settings.rd] = ''.zfill( shmnt ) + settings.registers[settings.rs1][0:32-shmnt]
 
 def instr_sra():
-	pass
+	shmnt = utilities.bin2u( settings.registers[settings.rs2][-5:] )
+	if settings.registers[settings.rs1][0] == '0' :
+		settings.registers[settings.rd] = ''.zfill( shmnt ) + settings.registers[settings.rs1][0:32-shmnt]
+	else:
+		shval = ''.join(['1' for i in range(0,shmnt)])
+		settings.registers[settings.rd] = shval + settings.registers[settings.rs1][0:32-shmnt]
+
 
 def instr_or():
-	pass
+	aux = ['0' for i in range(0,32)]
+	for i in range(0,32):
+		if(settings.registers[settings.rs1][i] == '1' or settings.registers[settings.rs2][i] == '1'):
+			aux[i] = '1'
+		else:
+			aux[i] = '0'
+
+	settings.registers[settings.rd] = ''.join(aux)	
 
 def instr_and():
-	pass
+	aux = ['0' for i in range(0,32)]
+	for i in range(0,32):
+		if(settings.registers[settings.rs1][i] == '1' and settings.registers[settings.rs2][i] == '1'):
+			aux[i] = '1'
+		else:
+			aux[i] = '0'
+
+	settings.registers[settings.rd] = ''.join(aux)
 
 def instr_fence():
 	pass
 
-def instr_fence():
+def instr_fencei():
 	pass
 
 def instr_ecall():
@@ -400,7 +439,7 @@ instruction_execution_table = {
 	"or" : instr_or,
 	"and" : instr_and,
 	"fence" : instr_fence,
-	"fence" : instr_fence,
+	"fencei" : instr_fencei,
 	"ecall" : instr_ecall,
 	"ebreak" : instr_ebreak,
 	"csrrw" : instr_csrrw,
