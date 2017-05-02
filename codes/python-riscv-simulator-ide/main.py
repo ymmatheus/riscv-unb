@@ -4,7 +4,8 @@ from simulator import simulator
 '''
 	TODOs: 
 		instructions.py
-			terminar execute: todas as instruções
+			- terminar execute: todas as instruções
+			- alinhamento instrucoes
 
 '''
 
@@ -28,8 +29,8 @@ def main():
 
 	simulator.run(program_code)
 
-	utilities.display_registers(-1,'bin')
-	#settings.display_memory(0,100)
+	utilities.display_registers(-1, 'hex')
+	#settings.display_memory(0, 100, 'hex')
 
 
 if __name__ == "__main__":

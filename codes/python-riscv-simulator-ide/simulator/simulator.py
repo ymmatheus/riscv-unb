@@ -40,11 +40,8 @@ def decode(instruction):
 		instruction_name = instructions.instruction_table[settings.opcode][settings.funct3][settings.funct7]
 	
 	elif (instructions.instruction_table[settings.opcode]["type"] == "i"):
-	
-		if (instructions.instruction_table[settings.opcode][settings.funct3] != "000"):
-			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
-		else:
-			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3][imm12]
+
+		instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
 	
 	elif (instructions.instruction_table[settings.opcode]["type"] == "u"):
 	

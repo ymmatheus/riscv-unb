@@ -62,15 +62,8 @@ instruction_table = {
 		"100": "xori",
 		"110": "ori",
 		"111": "andi",
-		"001": 
-		{
-			"0000000": "slli"
-		},
-		"101": 
-		{
-			"0000000": "srli",
-			"0100000": "srai"
-		}
+		"001": "slli",
+		"101": "sri"
 	},
 
 	# FENCE, FENCE.I
@@ -86,21 +79,7 @@ instruction_table = {
 	{
 		"type": "i",
 		#funct3
-		"000": 
-		{
-			#"rd": "00000",
-			#"rs1": "00000",
-			#imm12
-			"000000000000" : "ecall"
-		},
-		#funct3
-		"000":
-		{
-			#"rd": "00000",
-			#"rs1": "00000",
-			#imm12
-			"000000000001" : "ebreak"
-		},
+		"000": "env",
 		"001": "csrrw",
 		"010": "csrrs",
 		"011": "csrrc",
@@ -171,10 +150,10 @@ instruction_table = {
 
 
 def instr_lui():
-	pass
+	settings.registers[settings.rd] = settings.imm_u
 
 def instr_auipc():
-	pass
+	settings.registers[settings.rd] = utilities.bin_soma( settings.pc , settings.imm_u )
 
 def instr_jal():
 	pass
@@ -201,28 +180,48 @@ def instr_bgeu():
 	pass
 
 def instr_lb():
-	pass
+	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_i, settings.registers[settings.rs1]))
+	if settings.data_memory[addrs][0] == "0":
+		settings.registers[settings.rd] = ''.zfill(24) + settings.data_memory[addrs]
+	else:
+		settings.registers[settings.rd] = ''.join(['1' for i in range(0,24)]) + settings.data_memory[addrs]
 
 def instr_lh():
-	pass
+	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_i, settings.registers[settings.rs1]))
+	if settings.data_memory[addrs+1][0] == "0":
+		settings.registers[settings.rd] = ''.zfill(16) + settings.data_memory[addrs+1] + settings.data_memory[addrs]
+	else:
+		settings.registers[settings.rd] = ''.join(['1' for i in range(0,16)]) + settings.data_memory[addrs+1] + settings.data_memory[addrs]
 
 def instr_lw():
-	pass
+	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_i, settings.registers[settings.rs1]))
+	settings.registers[settings.rd] = settings.data_memory[addrs+3] + settings.data_memory[addrs+2] + settings.data_memory[addrs+1] + settings.data_memory[addrs]
 
 def instr_lbu():
-	pass
+	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_i, settings.registers[settings.rs1]))
+	settings.registers[settings.rd] = ''.zfill(24) + settings.data_memory[addrs]
 
 def instr_lhu():
-	pass
+	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_i, settings.registers[settings.rs1]))
+	settings.registers[settings.rd] = ''.zfill(16) + settings.data_memory[addrs+1] + settings.data_memory[addrs]
+
 
 def instr_sb():
-	pass
+	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_s, settings.registers[settings.rs1]))
+	settings.data_memory[addrs] = settings.registers[settings.rs2][24:32]
 
 def instr_sh():
-	pass
+	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_s, settings.registers[settings.rs1]))
+	settings.data_memory[addrs] = settings.registers[settings.rs2][24:32]
+	settings.data_memory[addrs+1] = settings.registers[settings.rs2][16:25]
+
 
 def instr_sw():
-	pass
+	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_s, settings.registers[settings.rs1]))
+	settings.data_memory[addrs] = settings.registers[settings.rs2][24:32]
+	settings.data_memory[addrs+1] = settings.registers[settings.rs2][16:24]
+	settings.data_memory[addrs+2] = settings.registers[settings.rs2][8:16]
+	settings.data_memory[addrs+3] = settings.registers[settings.rs2][0:8]
 
 def instr_addi():
 	'''ADDI adds the sign-extended 12-bit immediate to register rs1. Arithmetic overflow is ignored and
@@ -290,18 +289,22 @@ def instr_andi():
 	settings.registers[settings.rd] = ''.join(aux)	
 
 def instr_slli():
-	pass
+	shmnt = utilities.bin2u( settings.imm_i[-5:] )
+	settings.registers[settings.rd] = settings.registers[settings.rs1][shmnt:32] + ''.zfill(  shmnt  )
 
-def instr_srli():
-	pass
-
-def instr_srai():
-	pass
+def instr_sri():
+	shmnt = utilities.bin2u( settings.imm_i[-5:] )
+	if settings.imm_i[-12:-5]=="0000000" : #SRLI
+		settings.registers[settings.rd] = ''.zfill( shmnt ) + settings.registers[settings.rs1][0:32-shmnt]
+	elif settings.imm_i[-12:-5]=="0100000" : #SRAI
+		if settings.registers[settings.rs1][0] == '0' :
+			settings.registers[settings.rd] = ''.zfill( shmnt ) + settings.registers[settings.rs1][0:32-shmnt]
+		else:
+			shval = ''.join(['1' for i in range(0,shmnt)])
+			settings.registers[settings.rd] = shval + settings.registers[settings.rs1][0:32-shmnt]
 
 def instr_add():
-	
 	settings.registers[settings.rd] = utilities.s2bin(utilities.bin2s(settings.registers[settings.rs1]) + utilities.bin2s(settings.registers[settings.rs2]),32)
-
 
 def instr_sub():
 	settings.registers[settings.rd] = utilities.s2bin(utilities.bin2s(settings.registers[settings.rs1]) - utilities.bin2s(settings.registers[settings.rs2]),32)
@@ -312,8 +315,8 @@ def instr_sll():
 	register rs1 by the shift amount held in the lower 5 bits of register rs2.
 	'''
 	shmnt = utilities.bin2u( settings.registers[settings.rs2][-5:] )
-	print( settings.registers[settings.rs1] )
 	settings.registers[settings.rd] = settings.registers[settings.rs1][shmnt:32] + ''.zfill(  shmnt  )
+	#print( settings.registers[settings.rs1] )
 		
 def instr_slt():
 	if utilities.bin2s( settings.registers[settings.rs1] )  < utilities.bin2s( settings.registers[settings.rs2] ) :
@@ -375,11 +378,11 @@ def instr_fence():
 def instr_fencei():
 	pass
 
-def instr_ecall():
-	pass
-
-def instr_ebreak():
-	pass
+def instr_env():
+	if imm_i == "000000000000": # ecall
+		pass
+	elif imm_i == "000000000001": # ebreak
+		pass
 
 def instr_csrrw():
 	pass
@@ -426,8 +429,7 @@ instruction_execution_table = {
 	"ori" : instr_ori,
 	"andi" : instr_andi,
 	"slli" : instr_slli,
-	"srli" : instr_srli,
-	"srai" : instr_srai,
+	"sri" : instr_sri,
 	"add" : instr_add,
 	"sub" : instr_sub,
 	"sll" : instr_sll,
@@ -440,8 +442,7 @@ instruction_execution_table = {
 	"and" : instr_and,
 	"fence" : instr_fence,
 	"fencei" : instr_fencei,
-	"ecall" : instr_ecall,
-	"ebreak" : instr_ebreak,
+	"env" : instr_env,
 	"csrrw" : instr_csrrw,
 	"csrrs" : instr_csrrs,
 	"csrrc" : instr_csrrc,

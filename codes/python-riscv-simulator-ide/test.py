@@ -14,15 +14,15 @@ settings.imm_u = ''
 settings.imm_j = ''
 settings.shamnt = ''
 
-settings.registers[settings.rs1] = '00000000000000000001000000011100'
-settings.registers[settings.rs2] = '00000000000000000000000000000011'
-#settings.registers[settings.rd] = '00000000000000000000000000000011'
+settings.registers[settings.rs1] = '00000000000000000000000000000000'
+settings.registers[settings.rs2] = '00000000000000000000000000000111'
+settings.imm_i = '00000000000000000000000000000101'
+settings.data_memory[0] = "00110100"
+settings.data_memory[1] = "00000110"
+settings.data_memory[2] = "11101100"
+settings.data_memory[3] = "00110101"
+settings.data_memory[4] = "10001100"
+settings.data_memory[5] = "10110000"
 
-instructions.instr_sll()
-print(settings.registers[settings.rd])
-
-instructions.instr_srl()
-print(settings.registers[settings.rd])
-
-instructions.instr_sra()
+instructions.instr_lw()
 print(settings.registers[settings.rd])
