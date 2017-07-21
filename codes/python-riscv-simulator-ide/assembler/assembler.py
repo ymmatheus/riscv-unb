@@ -4,12 +4,74 @@ DIRECTIVES_TABLE = [ ".data" , ".text" , ".space" , ".word" , ".ascii" , ".ascii
 SYMBOL_TABLE = {}
 
 
-REGISTER_NAMES = [
-    "x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15", "x16",
-    "x17", "x18", "x19", "x20", "x21", "x22", "x23", "x24", "x25", "x26", "x27", "x28", "x29", "x30", "x31", "zero",
-    "ra", "sp", "gp", "tp", "t0", "t1", "t2", "fp", "s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7",
-    "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6",
-]
+REGISTER_NAMES = {
+    "x0":"00000",
+    "x1":"00001",
+    "x2":"00010",
+    "x3":"00011",
+    "x4":"00100",
+    "x5":"00101",
+    "x6":"00110",
+    "x7":"00111",
+    "x8":"01000",
+    "x9":"01001",
+    "x10":"01010",
+    "x11":"01011",
+    "x12":"01100",
+    "x13":"01101",
+    "x14":"01110",
+    "x15":"01111",
+    "x16":"10000",
+    "x17":"10001",
+    "x18":"10010",
+    "x19":"10011",
+    "x20":"10100",
+    "x21":"10101",
+    "x22":"10110",
+    "x23":"10111",
+    "x24":"11000",
+    "x25":"11001",
+    "x26":"11010",
+    "x27":"11011",
+    "x28":"11100",
+    "x29":"11101",
+    "x30":"11110",
+    "x31":"11111",
+    "zero":"00000",
+    "ra":"00001",
+    "sp":"00010",
+    "gp":"00011",
+    "tp":"00100",
+    "t0":"00101",
+    "t1":"00110",
+    "t2":"00111",
+    "fp":"01000",
+    "s0":"01000",
+    "s1":"01001",
+    "a0":"01010",
+    "a1":"01011",
+    "a2":"01100",
+    "a3":"01101",
+    "a4":"01110",
+    "a5":"01111",
+    "a6":"10000",
+    "a7":"10001",
+    "s2":"10010",
+    "s3":"10011",
+    "s4":"10100",
+    "s5":"10101",
+    "s6":"10110",
+    "s7":"10111",
+    "s8":"11000",
+    "s9":"11001",
+    "s10":"11010",
+    "s11":"11011",
+    "t3":"11100",
+    "t4":"11101",
+    "t5":"11110",
+    "t6":"11111" 
+}
+
 
 INSTRUCTION_TABLE = {
     "lui" : {
@@ -336,21 +398,24 @@ def first_pass(code_text):
     for line in code_text:
 
         all_tokens = split_tokens(line, contador_linha)
-        print(line)
-        print(all_tokens)
-        print("")
-        if all_tokens['label'] != '':
-            # procura label na tabela de simbolos
-            if all_tokens['label'] in SYMBOL_TABLE:
-                # simbolo redefinido
-                print("Error: Duplicated Symbol")
-                return 1
-            else:
-                # insere rotulo e contador_posicao na tablea de simbolos
-                SYMBOL_TABLE[ all_tokens['label'] ] = contador_pos;
+        if all_tokens["operation"] != "" or all_tokens["operands"] != "" :
+            print( str(contador_linha) + "   "+str(line))
+            print(all_tokens)
+            print(contador_pos)
+            print("")
+            if all_tokens['label'] != '':
+                # procura label na tabela de simbolos
+                if all_tokens['label'] in SYMBOL_TABLE:
+                    # simbolo redefinido
+                    print("Error: Duplicated Symbol")
+                    return 1
+                else:
+                    # insere rotulo e contador_posicao na tablea de simbolos
+                    SYMBOL_TABLE[ all_tokens['label'] ] = contador_pos;
 
             # procura operacao na taela de instrucoes
             if all_tokens['operation'] in INSTRUCTION_TABLE:
+                print("incrementa pos "+ str(INSTRUCTION_TABLE[all_tokens['operation']]['size']))
                 contador_pos = contador_pos + INSTRUCTION_TABLE[all_tokens['operation']]['size']
             else:
                 if all_tokens['operation'] in DIRECTIVES_TABLE:
@@ -380,30 +445,19 @@ def second_pass(code_text):
     for line in code_text:
 
         all_tokens = split_tokens(line, contador_linha)
-        print(line)
-        print(all_tokens)
-        print("")
-        if all_tokens['label'] != '':
-            # procura label na tabela de simbolos
-            if all_tokens['label'] in SYMBOL_TABLE:
-                # simbolo redefinido
-                print("Error: Duplicated Symbol")
-                return 1
-            else:
-                # insere rotulo e contador_posicao na tablea de simbolos
-                SYMBOL_TABLE[ all_tokens['label'] ] = contador_pos;
 
-            # procura operacao na taela de instrucoes
-            if all_tokens['operation'] in INSTRUCTION_TABLE:
-                contador_pos = contador_pos + INSTRUCTION_TABLE[ all_tokens['operation'] ]
+
+        # procura operacao na taela de instrucoes
+        if all_tokens['operation'] in INSTRUCTION_TABLE:
+            contador_pos = contador_pos + INSTRUCTION_TABLE[ all_tokens['operation'] ]
+        else:
+            if all_tokens['operation'] in DIRECTIVES_TABLE:
+                pass
+                #DIRECTIVES_TABLE[all_tokens['operation']]
+                #contador_pos = x
             else:
-                if all_tokens['operation'] in DIRECTIVES_TABLE:
-                    pass
-                    #DIRECTIVES_TABLE[all_tokens['operation']]
-                    #contador_pos = x
-                else:
-                    print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
-                    return 2
+                print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
+                return 2
         contador_linha = contador_linha + 1
 
 
@@ -436,5 +490,7 @@ fp_ret = first_pass(code)
 
 if fp_ret == 0 :
     print(SYMBOL_TABLE)
+    sp_ret = second_pass(code)
+
 
 #print(scanner(processed_code))
