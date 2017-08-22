@@ -1,5 +1,5 @@
 
-DIRECTIVES_TABLE = [ ".data" , ".text" , ".space" , ".word" , ".ascii" , ".asciiz", ".byte" ]
+DIRECTIVES_TABLE = [ ".data" , ".tet" , ".space" , ".word" , ".ascii" , ".asciiz", ".byte" ]
 
 SYMBOL_TABLE = {}
 
@@ -381,84 +381,145 @@ def split_tokens(line, line_number):
     return {"label":label, "operation":operation, "operands":operands }
 
 
-
-
-def first_pass(code_text):
+def first_pass(code_tet):
 
     contador_pos = 0
     contador_linha = 1
 
     # To lower case
-    code_text = code_text.lower()
+    code_tet = code_tet.lower()
     # Separa por linhas
-    code_text = code_text.split("\n")
+    code_tet = code_tet.split("\n")
 
 
-    code_text_aux = list()
-    for line in code_text:
+    code_tet_aux = list()
+    for line in code_tet: # para cada linha de codigo
+        
+        # remoe os espacos do inicio e final
+        line = line.strip()
 
-        all_tokens = split_tokens(line, contador_linha)
-        if all_tokens["operation"] != "" or all_tokens["operands"] != "" :
-            print( str(contador_linha) + "   "+str(line))
-            print(all_tokens)
-            print(contador_pos)
-            print("")
-            if all_tokens['label'] != '':
-                # procura label na tabela de simbolos
-                if all_tokens['label'] in SYMBOL_TABLE:
-                    # simbolo redefinido
-                    print("Error: Duplicated Symbol")
-                    return 1
+        # ignora se for comentario ou linha vazia
+        if(  line == ""  or  line[0]==";"):
+            pass
+        else:
+
+            all_tokens = split_tokens(line, contador_linha)
+            # se operacao e operandos nao for vazio
+            if all_tokens["operation"] != "" or all_tokens["operands"] != "" :
+                #print( "Contador linha:  "+str(contador_linha) + "   "+str(line))
+                #print(all_tokens)
+                #print("contador pos: "+str(contador_pos))
+                #print("--")
+
+                # se tiver label
+                if all_tokens['label'] != '':
+                    # procura label na tabela de simbolos
+                    if all_tokens['label'] in SYMBOL_TABLE:
+                        # simbolo redefinido
+                        print("Error: Duplicated Symbol")
+                        return 1
+                    else:
+                        # insere rotulo e contador_posicao na tablea de simbolos
+                        SYMBOL_TABLE[ all_tokens['label'] ] = contador_pos;
+
+                # procura operacao na tabela de instrucoes
+                if all_tokens['operation'] in INSTRUCTION_TABLE:
+                    #print("incrementa pos "+ str(INSTRUCTION_TABLE[all_tokens['operation']]['size']))
+                    contador_pos = contador_pos + INSTRUCTION_TABLE[all_tokens['operation']]['size']
                 else:
-                    # insere rotulo e contador_posicao na tablea de simbolos
-                    SYMBOL_TABLE[ all_tokens['label'] ] = contador_pos;
-
-            # procura operacao na taela de instrucoes
-            if all_tokens['operation'] in INSTRUCTION_TABLE:
-                print("incrementa pos "+ str(INSTRUCTION_TABLE[all_tokens['operation']]['size']))
-                contador_pos = contador_pos + INSTRUCTION_TABLE[all_tokens['operation']]['size']
-            else:
-                if all_tokens['operation'] in DIRECTIVES_TABLE:
-                    pass
-                    #DIRECTIVES_TABLE[all_tokens['operation']]
-                    #contador_pos = x
-                else:
-                    print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
-                    return 2
-        contador_linha = contador_linha + 1
-
+                    if all_tokens['operation'] in DIRECTIVES_TABLE:
+                        pass
+                        #DIRECTIVES_TABLE[all_tokens['operation']]
+                        #contador_pos = x
+                    else:
+                        print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
+                        return 2
+            contador_linha = contador_linha + 1
+        
 
     return 0;
 
-def second_pass(code_text):
-
+def second_pass(code_tet):
+    #1
     contador_pos = 0
     contador_linha = 1
 
     # To lower case
-    code_text = code_text.lower()
+    code_tet = code_tet.lower()
     # Separa por linhas
-    code_text = code_text.split("\n")
+    code_tet = code_tet.split("\n")
 
 
-    code_text_aux = list()
-    for line in code_text:
+    code_tet_aux = list()
+    for line in code_tet: # para cada linha de codigo
+        # remoe os espacos do inicio e final
+        line = line.strip()
 
-        all_tokens = split_tokens(line, contador_linha)
-
-
-        # procura operacao na taela de instrucoes
-        if all_tokens['operation'] in INSTRUCTION_TABLE:
-            contador_pos = contador_pos + INSTRUCTION_TABLE[ all_tokens['operation'] ]
+        # ignora se for comentario ou linha vazia
+        if(line == "" or line[0]==";" ):
+            pass
         else:
-            if all_tokens['operation'] in DIRECTIVES_TABLE:
-                pass
-                #DIRECTIVES_TABLE[all_tokens['operation']]
-                #contador_pos = x
-            else:
-                print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
-                return 2
-        contador_linha = contador_linha + 1
+
+            all_tokens = split_tokens(line, contador_linha)
+
+#    2   -   Para cada operando que e simbolo
+#            Procura operando na TS
+#            Se nao achou: 
+#                Erro, simbolo indefinido
+
+            print(line)
+            for operand in all_tokens['operands']:
+                print(operand)
+                if( operand in REGISTER_NAMES):
+                    print("Registrador!")
+                else:
+                    #print("Simbolo")
+                    if operand in SYMBOL_TABLE:
+                        print("Simbolo existente")
+                    else:
+                        #if symbol is number or address label:
+
+                        #else simbolo indefinido
+
+
+                        print("Simbolo inexistente")    
+            print("\n")
+    
+#    3   -   Procura operacao na tabela de instrucoes
+#            Se achou:
+#                contador_posicao = contador_posicao + tamanho da instrucao
+#                Se numero e tipo dos operandos esta correto entao
+#                    gera codigo objeto conforme formato da instrucao
+#                Senao: 
+#                    Erro, operando invalido
+
+
+
+    
+#    4   -   Senao:
+#                Procura operacao na tabela de diretivas
+#                Se achou:
+#                    Chama subrotina que executa a diretiva
+#                    Contador_posicao = valor retornado pela subrotina
+#                Senao: 
+#                    Erro, operacao nao identificada
+#            Contador_linha = contador_linha + 1
+
+
+
+            # procura operacao na taela de instrucoes
+            if all_tokens['operation'] in INSTRUCTION_TABLE:
+                #print(INSTRUCTION_TABLE[ all_tokens['operation'] ])
+                contador_pos = contador_pos + INSTRUCTION_TABLE[ all_tokens['operation'] ]['size']
+            else: # se nao tiver intrucao, procura em diretivas
+                if all_tokens['operation'] in DIRECTIVES_TABLE: 
+                    pass
+                    #DIRECTIVES_TABLE[all_tokens['operation']]
+                    #contador_pos = x
+                else: # senao existe instrucao nem diretiva lanca erro
+                    print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
+                    return 2
+            contador_linha = contador_linha + 1
 
 
     return 0;
@@ -469,28 +530,55 @@ def second_pass(code_text):
 
 
 code = '''ADDI x1, zero, 56
-ADDI $t1, $t0, 44
-label1:ADDI $t1, $t0, 441
-ADDI  $t1 , $t0, 442
+ADDI t1, t0, 44
+label1:ADDI t1, t0, 441
+ADDI  t1 , t0, 442
 ;comentaario
-label2:ADDI $t1, $t0,  443
+label2:ADDI t1, t0,  443
 
-label3:ADD $t2, $t1, $t0
+label3:ADD t2, t1, t0
 
-ADDI $t1, $t0, 44 ; comments
-ADDI  $t1 , $t0, 444  
+ADDI t1, t0, 44 ; comments
+ADDI  t1 , t0, 444  
 
-ADDI $t1, $t0, 445
-ADDI $t1, $t0, 446 
-ADDI $t1, $t0, 44'''
+ADDI t1, t0, 445
+ADDI t1, t0, 446 
+ADDI t1, t0, 44'''
+
+code2 = '''ADDI x1, zero, 56
+ADDI t1, t0, 44
+label1:ADDI t1, t0, 441
+ADDI  t1 , t0, 442
+;comentaario
+label2:ADDI t1, t0,  443
+
+label3:ADD t2, t1, t0
+
+ADDI t1, t0, 44 ; comments
+ADDI  t1 , t0, 444  
+
+ADDI t1, t0, 445
+ADDI t1, t0, 446 
+ADDI t1, t0, 44'''
+
+code3 = '''ADDI x1, zero, 56
+ADD t1, t0, zero
+label1:ADDI t1, t0, 441
+ADDI  t1 , t0, 442
+
+label2:ADDI t1, t0,  443'''
 
 
+#print(code)
+#print("\n")
 
-fp_ret = first_pass(code)
-
+print("Primeira Passsagem\n")
+fp_ret = first_pass(code3)
+print("\n")
 if fp_ret == 0 :
-    print(SYMBOL_TABLE)
-    sp_ret = second_pass(code)
-
+    pass
+    #print(SYMBOL_TABLE)
+    print("Segunda Passsagem\n")
+    sp_ret = second_pass(code3)
 
 #print(scanner(processed_code))
