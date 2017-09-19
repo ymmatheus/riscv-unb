@@ -1,9 +1,6 @@
-import re
-
 DIRECTIVES_TABLE = [ ".data" , ".tet" , ".space" , ".word" , ".ascii" , ".asciiz", ".byte" ]
 
 SYMBOL_TABLE = {}
-
 
 REGISTER_NAMES = {
     "x0":"00000",
@@ -73,19 +70,21 @@ REGISTER_NAMES = {
     "t6":"11111" 
 }
 
-
 INSTRUCTION_TABLE = {
     "lui" : {
+        "type":"u",
         "size":4,
         "opcode":"0110111",
         "operands":[]
         },
     "auipc" : {
+        "type":"u",
         "size":4,
         "opcode":"0010111",
         "operands":[]
         },
     "jal" : {
+        "type":"uj",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -93,6 +92,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "jalr" : {
+        "type":"i",
         "size":4,
         "opcode":"1100111",
         "funct3":0,
@@ -100,6 +100,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "beq" : {
+        "type":"sb",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -107,6 +108,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "bne" : {
+        "type":"sb",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -114,6 +116,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "blt" : {
+        "type":"sb",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -121,6 +124,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "bge" : {
+        "type":"sb",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -128,6 +132,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "bltu" : {
+        "type":"sb",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -135,6 +140,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "bgeu" : {
+        "type":"sb",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -142,6 +148,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "lb" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -149,6 +156,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "lh" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -156,6 +164,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "lw" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -163,6 +172,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "lbu" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -170,6 +180,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "lhu" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -177,6 +188,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "sb" : {
+        "type":"s",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -184,6 +196,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "sh" : {
+        "type":"s",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -191,6 +204,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "sw" : {
+        "type":"s",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -198,54 +212,63 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "addi" : {
+        "type":"i",
         "size":4,
         "opcode":"0010011",
         "funct3":"000",
         "operands":["register", "register", "number"]
         },
     "slti" : {
+        "type":"i",
         "size":4,
         "opcode":"0010011",
         "funct3":"010",
         "operands":[]
         },
     "sltiu" : {
+        "type":"i",
         "size":4,
         "opcode":"0010011",
         "funct3":"011",
         "operands":[]
         },
     "xori" : {
+        "type":"i",
         "size":4,
         "opcode":"0010011",
         "funct3":"100",
         "operands":[]
         },
     "ori" : {
+        "type":"i",
         "size":4,
         "opcode":"0010011",
         "funct3":"110",
         "operands":[]
         },
     "andi" : {
+        "type":"i",
         "size":4,
         "opcode":"0010011",
         "funct3":"111",
         "operands":[]
         },
     "slli" : {
+        "type":"i",
         "size":4,
         "opcode":"0010011",
         "funct3":"001",
         "operands":[]
         },
     "sri" : {
+        "type":"i",
         "size":4,
         "opcode":"0010011",
         "funct3":"101",
         "operands":[]
         },
     "add" : {
+        "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "000",
@@ -253,27 +276,31 @@ INSTRUCTION_TABLE = {
         "operands":["register","register","register"]
         },
     "sub" : {
+        "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "000",
         "funct7": "0100000",
-        "operands":[]
+        "operands":["register","register","register"]
         },
     "sll" : {
+        "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "001",
         "funct7": "0000000",
-        "operands":[]
+        "operands":["register","register","register"]
         },
     "slt" : {
+        "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "010",
         "funct7": "0000000",
-        "operands":[]
+        "operands":["register","register","register"]
         },
     "sltu" : {
+        "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "011",
@@ -281,6 +308,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "xor" : {
+        "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "100",
@@ -288,6 +316,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "srl" : {
+        "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "101",
@@ -295,6 +324,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "sra" : {
+        "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "101",
@@ -302,6 +332,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "or" : {
+        "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "110",
@@ -309,6 +340,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "and" : {
+        "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "111",
@@ -316,6 +348,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "fence" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -323,6 +356,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "fencei" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -330,6 +364,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "env" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -337,6 +372,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "csrrw" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -344,6 +380,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "csrrs" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -351,6 +388,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "csrrc" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -358,6 +396,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "csrrwi" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -365,6 +404,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "csrrsi" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -372,6 +412,7 @@ INSTRUCTION_TABLE = {
         "operands":[]
         },
     "csrrci" : {
+        "type":"i",
         "size":4,
         "opcode":0,
         "funct3":0,
@@ -584,8 +625,49 @@ def second_pass(code_text):
 
                 #checar numero e tipo dos operandos
                 if ( check_operands(all_tokens) ):
+                    print("Gerando codigo objeto....")
+                    print(INSTRUCTION_TABLE[ all_tokens['operation'] ]['opcode'])
+                    '''for i in range(0,len(INSTRUCTION_TABLE[ all_tokens['operation'] ]['operands'])):
+                        if (all_tokens['operands'][i] in REGISTER_NAMES):
+                            print(REGISTER_NAMES[all_tokens['operands'][i]])
+                        elif (all_tokens['operands'][i] in SYMBOL_TABLE):
+                            print(REGISTER_NAMES[all_tokens['operands'][i]])
+                        elif ( is_number( all_tokens['operands'][i]) ):
+                            print(  all_tokens['operands'][i] )
+                        else:
+                            print("op unknown")'''                    
+
                     # gera codigo objeto
-                    pass
+                    '''                       
+                        funct7 rs2 rs1 funct3 rd opcode R-type
+                        imm[11:0] rs1 funct3 rd opcode I-type
+                        imm[11:5] rs2 rs1 funct3 imm[4:0] opcode S-type
+                        imm[31:12] rd opcode U-type
+                    '''
+
+                    # checa tipo
+                    if (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "r" ):
+                        print("___instrucao tipo r______")
+                        instr = INSTRUCTION_TABLE[ all_tokens['operation'] ]['funct7'] + REGISTER_NAMES[ all_tokens['operands'][1] ]+REGISTER_NAMES[ all_tokens['operands'][2] ] + INSTRUCTION_TABLE[ all_tokens['operation'] ]['funct3'] + REGISTER_NAMES[ all_tokens['operands'][0] ] + INSTRUCTION_TABLE[ all_tokens['operation'] ]['opcode']                        
+                        print( instr + "  tam:"+ str(len(instr))  )
+                    elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "i" ):
+                        print("____instrucao tipo i____")
+                        # checar se imediato eh positivo ou negativo e se ultrapassa o 12 bits
+                        val_sign = "1"                        
+                        instr = ("{:"+val_sign+">12b}").format(int(all_tokens['operands'][2])) + REGISTER_NAMES[ all_tokens['operands'][1] ]+ INSTRUCTION_TABLE[ all_tokens['operation'] ]['funct3'] + REGISTER_NAMES[ all_tokens['operands'][0] ]+ INSTRUCTION_TABLE[ all_tokens['operation'] ]['opcode']
+                        print( instr + "  tam:"+ str(len(instr))  )
+
+                    elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "s" ):
+                        print("instrucao tipo s")
+                    elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "u" ):
+                        print("instrucao tipo u")
+                    elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "sb" ):
+                        print("instrucao tipo sb")
+                    elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "uj" ):
+                        print("instrucao tipo uj")
+                    else:
+                        print("instrucao tipo errado")
+
                 else:
                     # erro, operando invalido
                     print("Erro: Operando inválido. linha "+str(contador_linha))

@@ -148,7 +148,6 @@ instruction_table = {
 }
 
 
-
 def instr_lui():
 	settings.registers[settings.rd] = settings.imm_u
 
