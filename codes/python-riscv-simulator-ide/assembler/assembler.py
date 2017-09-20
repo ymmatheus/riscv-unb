@@ -653,9 +653,15 @@ def second_pass(code_text):
                     elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "i" ):
                         print("____instrucao tipo i____")
                         # checar se imediato eh positivo ou negativo e se ultrapassa o 12 bits
-                        val_sign = "1"                        
-                        instr = ("{:"+val_sign+">12b}").format(int(all_tokens['operands'][2])) + REGISTER_NAMES[ all_tokens['operands'][1] ]+ INSTRUCTION_TABLE[ all_tokens['operation'] ]['funct3'] + REGISTER_NAMES[ all_tokens['operands'][0] ]+ INSTRUCTION_TABLE[ all_tokens['operation'] ]['opcode']
-                        print( instr + "  tam:"+ str(len(instr))  )
+                        if( int(all_tokens['operands'][2][0])>0  ):
+                            val_sign = "0"
+                        else:
+                            val_sign = "1"
+                        immediate = ("{:"+val_sign+">12b}").format(int(all_tokens['operands'][2]))
+                        instr = immediate + REGISTER_NAMES[ all_tokens['operands'][1] ]+ INSTRUCTION_TABLE[ all_tokens['operation'] ]['funct3'] + REGISTER_NAMES[ all_tokens['operands'][0] ]+ INSTRUCTION_TABLE[ all_tokens['operation'] ]['opcode']
+                        if(  len(immediate) > 12 ):
+                            print("Erro: Immediate value ")
+                        print( instr[0:32] + "  tam:"+ str(len(instr[0:32]))  )
 
                     elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "s" ):
                         print("instrucao tipo s")
@@ -736,7 +742,7 @@ ADDI t1, t0, 44'''
 
 code3 = '''ADDI x1, zero, 56
 ADD t1, t0, zero
-label1:ADDI t1, t0, 441
+label1:ADDI t1, t0, 7657557676
 ADDI  t1 , t0, 2
 ADDI  t1 , t0, 442
 
