@@ -207,19 +207,14 @@ def second_pass(code_text):
                     print(instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['opcode'])
 
                     # gera codigo objeto
-                    '''                       
-                        funct7 rs2 rs1 funct3 rd opcode R-type
-                        imm[11:0] rs1 funct3 rd opcode I-type
-                        imm[11:5] rs2 rs1 funct3 imm[4:0] opcode S-type
-                        imm[31:12] rd opcode U-type
-                    '''
-
                     # checa tipo
                     if (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "r" ):
+                        #    funct7 rs2 rs1 funct3 rd opcode R-type
                         print("___instrucao tipo r______")
                         instr = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct7'] + settings.REGISTER_NAMES[ all_tokens['operands'][1] ]+settings.REGISTER_NAMES[ all_tokens['operands'][2] ] + instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct3'] + settings.REGISTER_NAMES[ all_tokens['operands'][0] ] + instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['opcode']                        
                         print( instr + "  tam:"+ str(len(instr))  )
                     elif (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "i" ):
+                        #    imm[11:0] rs1 funct3 rd opcode I-type
                         print("____instrucao tipo i____")
                         # checar se imediato ultrapassa o 12 bits
                         immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)
@@ -231,8 +226,10 @@ def second_pass(code_text):
                             print( instr[0:32] + "  tam:"+ str(len(instr[0:32]))  )
 
                     elif (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "s" ):
+                        #    imm[11:5] rs2 rs1 funct3 imm[4:0] opcode S-type
                         print("____instrucao tipo s____")
                     elif (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "u" ):
+                        #    imm[31:12] rd opcode U-type
                         print("____instrucao tipo u____")
                     elif (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "sb" ):
                         print("____instrucao tipo sb____")
@@ -254,10 +251,7 @@ def second_pass(code_text):
 #                    Erro, operacao nao identificada
 #            Contador_linha = contador_linha + 1
 
-
-
-
-            else: # se nao tiver intrucao, procura em diretivas
+            else: # se nao tiver instrucao, procura em diretivas
                 if all_tokens['operation'] in DIRECTIVES_TABLE: 
                     pass
                     #DIRECTIVES_TABLE[all_tokens['operation']]
