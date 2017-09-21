@@ -19,6 +19,14 @@ hex_table = {
 	"1111":"f"
 }
 
+'''Checa se string e um numero inteiro'''
+def is_number(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+
 # Negate Binary
 def neg_bin(bin_code):
 	bin_code_len = len(bin_code)

@@ -148,6 +148,360 @@ instruction_table = {
 }
 
 
+
+INSTRUCTION_TABLE_REVERSE = {
+    "lui" : {
+        "type":"u",
+        "size":4,
+        "opcode":"0110111",
+        "operands":[]
+        },
+    "auipc" : {
+        "type":"u",
+        "size":4,
+        "opcode":"0010111",
+        "operands":[]
+        },
+    "jal" : {
+        "type":"uj",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "jalr" : {
+        "type":"i",
+        "size":4,
+        "opcode":"1100111",
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "beq" : {
+        "type":"sb",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "bne" : {
+        "type":"sb",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "blt" : {
+        "type":"sb",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "bge" : {
+        "type":"sb",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "bltu" : {
+        "type":"sb",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "bgeu" : {
+        "type":"sb",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "lb" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "lh" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "lw" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "lbu" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "lhu" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "sb" : {
+        "type":"s",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "sh" : {
+        "type":"s",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "sw" : {
+        "type":"s",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "addi" : {
+        "type":"i",
+        "size":4,
+        "opcode":"0010011",
+        "funct3":"000",
+        "operands":["register", "register", "number"]
+        },
+    "slti" : {
+        "type":"i",
+        "size":4,
+        "opcode":"0010011",
+        "funct3":"010",
+        "operands":[]
+        },
+    "sltiu" : {
+        "type":"i",
+        "size":4,
+        "opcode":"0010011",
+        "funct3":"011",
+        "operands":[]
+        },
+    "xori" : {
+        "type":"i",
+        "size":4,
+        "opcode":"0010011",
+        "funct3":"100",
+        "operands":[]
+        },
+    "ori" : {
+        "type":"i",
+        "size":4,
+        "opcode":"0010011",
+        "funct3":"110",
+        "operands":[]
+        },
+    "andi" : {
+        "type":"i",
+        "size":4,
+        "opcode":"0010011",
+        "funct3":"111",
+        "operands":[]
+        },
+    "slli" : {
+        "type":"i",
+        "size":4,
+        "opcode":"0010011",
+        "funct3":"001",
+        "operands":[]
+        },
+    "sri" : {
+        "type":"i",
+        "size":4,
+        "opcode":"0010011",
+        "funct3":"101",
+        "operands":[]
+        },
+    "add" : {
+        "type":"r",
+        "size":4,
+        "opcode": "0110011",
+        "funct3": "000",
+        "funct7": "0000000",
+        "operands":["register","register","register"]
+        },
+    "sub" : {
+        "type":"r",
+        "size":4,
+        "opcode": "0110011",
+        "funct3": "000",
+        "funct7": "0100000",
+        "operands":["register","register","register"]
+        },
+    "sll" : {
+        "type":"r",
+        "size":4,
+        "opcode": "0110011",
+        "funct3": "001",
+        "funct7": "0000000",
+        "operands":["register","register","register"]
+        },
+    "slt" : {
+        "type":"r",
+        "size":4,
+        "opcode": "0110011",
+        "funct3": "010",
+        "funct7": "0000000",
+        "operands":["register","register","register"]
+        },
+    "sltu" : {
+        "type":"r",
+        "size":4,
+        "opcode": "0110011",
+        "funct3": "011",
+        "funct7": "0000000",
+        "operands":[]
+        },
+    "xor" : {
+        "type":"r",
+        "size":4,
+        "opcode": "0110011",
+        "funct3": "100",
+        "funct7": "0000000",
+        "operands":[]
+        },
+    "srl" : {
+        "type":"r",
+        "size":4,
+        "opcode": "0110011",
+        "funct3": "101",
+        "funct7": "0000000",
+        "operands":[]
+        },
+    "sra" : {
+        "type":"r",
+        "size":4,
+        "opcode": "0110011",
+        "funct3": "101",
+        "funct7": "0100000",
+        "operands":[]
+        },
+    "or" : {
+        "type":"r",
+        "size":4,
+        "opcode": "0110011",
+        "funct3": "110",
+        "funct7": "0000000",
+        "operands":[]
+        },
+    "and" : {
+        "type":"r",
+        "size":4,
+        "opcode": "0110011",
+        "funct3": "111",
+        "funct7": "0000000",
+        "operands":[]
+        },
+    "fence" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "fencei" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "env" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "csrrw" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "csrrs" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "csrrc" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "csrrwi" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "csrrsi" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+    "csrrci" : {
+        "type":"i",
+        "size":4,
+        "opcode":0,
+        "funct3":0,
+        "funct7":0,
+        "operands":[]
+        },
+}
+
+
+
 def instr_lui():
 	settings.registers[settings.rd] = settings.imm_u
 

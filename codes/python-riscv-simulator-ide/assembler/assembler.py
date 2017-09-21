@@ -1,433 +1,8 @@
-DIRECTIVES_TABLE = [ ".data" , ".tet" , ".space" , ".word" , ".ascii" , ".asciiz", ".byte" ]
+from utils import settings, instructions, utilities
+
+DIRECTIVES_TABLE = [ ".section" , ".data" , ".text" , ".space" , ".word" , ".ascii" , ".asciiz", ".byte" ]
 
 SYMBOL_TABLE = {}
-
-REGISTER_NAMES = {
-    "x0":"00000",
-    "x1":"00001",
-    "x2":"00010",
-    "x3":"00011",
-    "x4":"00100",
-    "x5":"00101",
-    "x6":"00110",
-    "x7":"00111",
-    "x8":"01000",
-    "x9":"01001",
-    "x10":"01010",
-    "x11":"01011",
-    "x12":"01100",
-    "x13":"01101",
-    "x14":"01110",
-    "x15":"01111",
-    "x16":"10000",
-    "x17":"10001",
-    "x18":"10010",
-    "x19":"10011",
-    "x20":"10100",
-    "x21":"10101",
-    "x22":"10110",
-    "x23":"10111",
-    "x24":"11000",
-    "x25":"11001",
-    "x26":"11010",
-    "x27":"11011",
-    "x28":"11100",
-    "x29":"11101",
-    "x30":"11110",
-    "x31":"11111",
-    "zero":"00000",
-    "ra":"00001",
-    "sp":"00010",
-    "gp":"00011",
-    "tp":"00100",
-    "t0":"00101",
-    "t1":"00110",
-    "t2":"00111",
-    "fp":"01000",
-    "s0":"01000",
-    "s1":"01001",
-    "a0":"01010",
-    "a1":"01011",
-    "a2":"01100",
-    "a3":"01101",
-    "a4":"01110",
-    "a5":"01111",
-    "a6":"10000",
-    "a7":"10001",
-    "s2":"10010",
-    "s3":"10011",
-    "s4":"10100",
-    "s5":"10101",
-    "s6":"10110",
-    "s7":"10111",
-    "s8":"11000",
-    "s9":"11001",
-    "s10":"11010",
-    "s11":"11011",
-    "t3":"11100",
-    "t4":"11101",
-    "t5":"11110",
-    "t6":"11111" 
-}
-
-INSTRUCTION_TABLE = {
-    "lui" : {
-        "type":"u",
-        "size":4,
-        "opcode":"0110111",
-        "operands":[]
-        },
-    "auipc" : {
-        "type":"u",
-        "size":4,
-        "opcode":"0010111",
-        "operands":[]
-        },
-    "jal" : {
-        "type":"uj",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "jalr" : {
-        "type":"i",
-        "size":4,
-        "opcode":"1100111",
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "beq" : {
-        "type":"sb",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "bne" : {
-        "type":"sb",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "blt" : {
-        "type":"sb",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "bge" : {
-        "type":"sb",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "bltu" : {
-        "type":"sb",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "bgeu" : {
-        "type":"sb",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "lb" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "lh" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "lw" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "lbu" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "lhu" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "sb" : {
-        "type":"s",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "sh" : {
-        "type":"s",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "sw" : {
-        "type":"s",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "addi" : {
-        "type":"i",
-        "size":4,
-        "opcode":"0010011",
-        "funct3":"000",
-        "operands":["register", "register", "number"]
-        },
-    "slti" : {
-        "type":"i",
-        "size":4,
-        "opcode":"0010011",
-        "funct3":"010",
-        "operands":[]
-        },
-    "sltiu" : {
-        "type":"i",
-        "size":4,
-        "opcode":"0010011",
-        "funct3":"011",
-        "operands":[]
-        },
-    "xori" : {
-        "type":"i",
-        "size":4,
-        "opcode":"0010011",
-        "funct3":"100",
-        "operands":[]
-        },
-    "ori" : {
-        "type":"i",
-        "size":4,
-        "opcode":"0010011",
-        "funct3":"110",
-        "operands":[]
-        },
-    "andi" : {
-        "type":"i",
-        "size":4,
-        "opcode":"0010011",
-        "funct3":"111",
-        "operands":[]
-        },
-    "slli" : {
-        "type":"i",
-        "size":4,
-        "opcode":"0010011",
-        "funct3":"001",
-        "operands":[]
-        },
-    "sri" : {
-        "type":"i",
-        "size":4,
-        "opcode":"0010011",
-        "funct3":"101",
-        "operands":[]
-        },
-    "add" : {
-        "type":"r",
-        "size":4,
-        "opcode": "0110011",
-        "funct3": "000",
-        "funct7": "0000000",
-        "operands":["register","register","register"]
-        },
-    "sub" : {
-        "type":"r",
-        "size":4,
-        "opcode": "0110011",
-        "funct3": "000",
-        "funct7": "0100000",
-        "operands":["register","register","register"]
-        },
-    "sll" : {
-        "type":"r",
-        "size":4,
-        "opcode": "0110011",
-        "funct3": "001",
-        "funct7": "0000000",
-        "operands":["register","register","register"]
-        },
-    "slt" : {
-        "type":"r",
-        "size":4,
-        "opcode": "0110011",
-        "funct3": "010",
-        "funct7": "0000000",
-        "operands":["register","register","register"]
-        },
-    "sltu" : {
-        "type":"r",
-        "size":4,
-        "opcode": "0110011",
-        "funct3": "011",
-        "funct7": "0000000",
-        "operands":[]
-        },
-    "xor" : {
-        "type":"r",
-        "size":4,
-        "opcode": "0110011",
-        "funct3": "100",
-        "funct7": "0000000",
-        "operands":[]
-        },
-    "srl" : {
-        "type":"r",
-        "size":4,
-        "opcode": "0110011",
-        "funct3": "101",
-        "funct7": "0000000",
-        "operands":[]
-        },
-    "sra" : {
-        "type":"r",
-        "size":4,
-        "opcode": "0110011",
-        "funct3": "101",
-        "funct7": "0100000",
-        "operands":[]
-        },
-    "or" : {
-        "type":"r",
-        "size":4,
-        "opcode": "0110011",
-        "funct3": "110",
-        "funct7": "0000000",
-        "operands":[]
-        },
-    "and" : {
-        "type":"r",
-        "size":4,
-        "opcode": "0110011",
-        "funct3": "111",
-        "funct7": "0000000",
-        "operands":[]
-        },
-    "fence" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "fencei" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "env" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "csrrw" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "csrrs" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "csrrc" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "csrrwi" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "csrrsi" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-    "csrrci" : {
-        "type":"i",
-        "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
-        },
-}
-
-'''Checa se string e um numero inteiro'''
-def is_number(s):
-    try:
-        int(s)
-        return True
-    except ValueError:
-        return False
 
 ''' Funcao pega uma linha e checa erros de sintaxe, e retorna um dicionario com label, operacao e operandos '''
 def split_tokens(line, line_number):
@@ -494,7 +69,7 @@ def first_pass(code_text):
         line = line.strip()
 
         # ignora se for comentario ou linha vazia
-        if(  line == ""  or  line[0]==";"):
+        if(  line == ""  or  line[0]=="#"):
             pass
         else:
 
@@ -518,9 +93,9 @@ def first_pass(code_text):
                         SYMBOL_TABLE[ all_tokens['label'] ] = contador_pos;
 
                 # procura operacao na tabela de instrucoes
-                if all_tokens['operation'] in INSTRUCTION_TABLE:
-                    #print("incrementa pos "+ str(INSTRUCTION_TABLE[all_tokens['operation']]['size']))
-                    contador_pos = contador_pos + INSTRUCTION_TABLE[all_tokens['operation']]['size']
+                if all_tokens['operation'] in instructions.INSTRUCTION_TABLE_REVERSE:
+                    #print("incrementa pos "+ str(instructions.INSTRUCTION_TABLE_REVERSE[all_tokens['operation']]['size']))
+                    contador_pos = contador_pos + instructions.INSTRUCTION_TABLE_REVERSE[all_tokens['operation']]['size']
                 else:
                     if all_tokens['operation'] in DIRECTIVES_TABLE:
                         pass
@@ -539,24 +114,24 @@ def check_operands(all_tokens):
     operand_match = 0
     operand_type = ""
 
-    if ( len(all_tokens['operands']) == len(INSTRUCTION_TABLE[ all_tokens['operation'] ]['operands']) ):
-        for i in range(0,len(INSTRUCTION_TABLE[ all_tokens['operation'] ]['operands'])):
-            if (all_tokens['operands'][i] in REGISTER_NAMES):
+    if ( len(all_tokens['operands']) == len(instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['operands']) ):
+        for i in range(0,len(instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['operands'])):
+            if (all_tokens['operands'][i] in settings.REGISTER_NAMES):
                 operand_type = "register"
             elif (all_tokens['operands'][i] in SYMBOL_TABLE):
                 operand_type = "symbol"
-            elif ( is_number( all_tokens['operands'][i]) ):
+            elif ( utilities.is_number( all_tokens['operands'][i]) ):
                 operand_type = "number"
             else:
                 operand_type = "unknown"
 
-            if (INSTRUCTION_TABLE[ all_tokens['operation'] ]['operands'][i] == operand_type):
+            if (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['operands'][i] == operand_type):
                 operand_match = 1
             else:
                 return 0
 
-            print (INSTRUCTION_TABLE[ all_tokens['operation'] ]['operands'][i])
-            print( all_tokens['operands'][i] )
+            #print (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['operands'][i])
+            #print( all_tokens['operands'][i] )
 
 
     return operand_match
@@ -579,7 +154,7 @@ def second_pass(code_text):
         line = line.strip()
 
         # ignora se for comentario ou linha vazia
-        if(line == "" or line[0]==";" ):
+        if(line == "" or line[0]=="#" ):
             pass
         else:
 
@@ -590,20 +165,23 @@ def second_pass(code_text):
 #            Se nao achou: 
 #                Erro, simbolo indefinido
 
-            print("\n ---"+line+"\n")
+            print("\n\n\n\t---"+line+"\n")
             for operand in all_tokens['operands']:
-                print(operand)
-                if( operand in REGISTER_NAMES):
-                    print("Registrador!")
+                #print(operand)
+                if( operand in settings.REGISTER_NAMES):
+                    pass
+                    #print("Registrador!")
                 else:
                     #print("Simbolo")
                     if operand in SYMBOL_TABLE:
-                        print("Simbolo existente")
+                        pass
+                        #print("Simbolo existente")
                     else:
                         # if symbol is number or address label:
                         # re.match('(\s{0,})\d{0,}\(\w{1,}\)' ,  operand )  
-                        if is_number(operand):
-                            print("operando e numero")
+                        if utilities.is_number(operand):
+                            pass
+                            #print("operando e numero")
                         else:
                             # s[s.find("(")+1:s.find(")")]
                             print("Erro. Simbolo inexistente. linha "+ str(contador_linha))
@@ -619,23 +197,14 @@ def second_pass(code_text):
 #                    Erro, operando invalido
 
             # procura operacao na taela de instrucoes
-            if all_tokens['operation'] in INSTRUCTION_TABLE:
-                #print(INSTRUCTION_TABLE[ all_tokens['operation'] ])
-                contador_pos = contador_pos + INSTRUCTION_TABLE[ all_tokens['operation'] ]['size']
+            if all_tokens['operation'] in instructions.INSTRUCTION_TABLE_REVERSE:
+                #print(instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ])
+                contador_pos = contador_pos + instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['size']
 
                 #checar numero e tipo dos operandos
                 if ( check_operands(all_tokens) ):
                     print("Gerando codigo objeto....")
-                    print(INSTRUCTION_TABLE[ all_tokens['operation'] ]['opcode'])
-                    '''for i in range(0,len(INSTRUCTION_TABLE[ all_tokens['operation'] ]['operands'])):
-                        if (all_tokens['operands'][i] in REGISTER_NAMES):
-                            print(REGISTER_NAMES[all_tokens['operands'][i]])
-                        elif (all_tokens['operands'][i] in SYMBOL_TABLE):
-                            print(REGISTER_NAMES[all_tokens['operands'][i]])
-                        elif ( is_number( all_tokens['operands'][i]) ):
-                            print(  all_tokens['operands'][i] )
-                        else:
-                            print("op unknown")'''                    
+                    print(instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['opcode'])
 
                     # gera codigo objeto
                     '''                       
@@ -646,31 +215,29 @@ def second_pass(code_text):
                     '''
 
                     # checa tipo
-                    if (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "r" ):
+                    if (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "r" ):
                         print("___instrucao tipo r______")
-                        instr = INSTRUCTION_TABLE[ all_tokens['operation'] ]['funct7'] + REGISTER_NAMES[ all_tokens['operands'][1] ]+REGISTER_NAMES[ all_tokens['operands'][2] ] + INSTRUCTION_TABLE[ all_tokens['operation'] ]['funct3'] + REGISTER_NAMES[ all_tokens['operands'][0] ] + INSTRUCTION_TABLE[ all_tokens['operation'] ]['opcode']                        
+                        instr = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct7'] + settings.REGISTER_NAMES[ all_tokens['operands'][1] ]+settings.REGISTER_NAMES[ all_tokens['operands'][2] ] + instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct3'] + settings.REGISTER_NAMES[ all_tokens['operands'][0] ] + instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['opcode']                        
                         print( instr + "  tam:"+ str(len(instr))  )
-                    elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "i" ):
+                    elif (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "i" ):
                         print("____instrucao tipo i____")
-                        # checar se imediato eh positivo ou negativo e se ultrapassa o 12 bits
-                        if( int(all_tokens['operands'][2][0])>0  ):
-                            val_sign = "0"
+                        # checar se imediato ultrapassa o 12 bits
+                        immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)
+                        if( len(immediate) >12  ):
+                            print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
+                            exit(1)
                         else:
-                            val_sign = "1"
-                        immediate = ("{:"+val_sign+">12b}").format(int(all_tokens['operands'][2]))
-                        instr = immediate + REGISTER_NAMES[ all_tokens['operands'][1] ]+ INSTRUCTION_TABLE[ all_tokens['operation'] ]['funct3'] + REGISTER_NAMES[ all_tokens['operands'][0] ]+ INSTRUCTION_TABLE[ all_tokens['operation'] ]['opcode']
-                        if(  len(immediate) > 12 ):
-                            print("Erro: Immediate value ")
-                        print( instr[0:32] + "  tam:"+ str(len(instr[0:32]))  )
+                            instr = immediate + settings.REGISTER_NAMES[ all_tokens['operands'][1] ]+ instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct3'] + settings.REGISTER_NAMES[ all_tokens['operands'][0] ]+ instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['opcode']
+                            print( instr[0:32] + "  tam:"+ str(len(instr[0:32]))  )
 
-                    elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "s" ):
-                        print("instrucao tipo s")
-                    elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "u" ):
-                        print("instrucao tipo u")
-                    elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "sb" ):
-                        print("instrucao tipo sb")
-                    elif (INSTRUCTION_TABLE[ all_tokens['operation'] ]['type'] == "uj" ):
-                        print("instrucao tipo uj")
+                    elif (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "s" ):
+                        print("____instrucao tipo s____")
+                    elif (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "u" ):
+                        print("____instrucao tipo u____")
+                    elif (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "sb" ):
+                        print("____instrucao tipo sb____")
+                    elif (instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] == "uj" ):
+                        print("____instrucao tipo uj____")
                     else:
                         print("instrucao tipo errado")
 
@@ -704,65 +271,20 @@ def second_pass(code_text):
     return 0;
 
 
-
-
-
-
-code = '''ADDI x1, zero, 56
-ADDI t1, t0, 44
-label1:ADDI t1, t0, 441
-ADDI  t1 , t0, 442
-#comentaario
-label2:ADDI t1, t0,  443
-
-label3:ADD t2, t1, t0
-
-ADDI t1, t0, 44 # comments
-ADDI  t1 , t0, 444  
-
-ADDI t1, t0, 445
-ADDI t1, t0, 446 
-ADDI t1, t0, 44'''
-
-code2 = '''ADDI x1, zero, 56
-ADDI t1, t0, 44
-label1:ADDI t1, t0, 441
-ADDI  t1 , t0, 442
-#comentaario
-label2:ADDI t1, t0,  443
-
-label3:ADD t2, t1, t0
-
-ADDI t1, t0, 44 # comments
-ADDI  t1 , t0, 444  
-
-ADDI t1, t0, 445
-ADDI t1, t0, 446 
-ADDI t1, t0, 44'''
-
-code3 = '''ADDI x1, zero, 56
-ADD t1, t0, zero
-label1:ADDI t1, t0, 7657557676
-ADDI  t1 , t0, 2
-ADDI  t1 , t0, 442
-
-label2:ADDI t1, t0,  443'''
-
-
 #print(code)
 #print("\n")
+def assemble(code):
+    print("Primeira Passsagem\n")
+    fp_ret = first_pass(code)
+    print("\n")
 
-print("Primeira Passsagem\n")
-fp_ret = first_pass(code3)
-print("\n")
+    if fp_ret == 0 :
 
-if fp_ret == 0 :
+        #print(SYMBOL_TABLE)
+        print("------  Segunda Passsagem\n")
+        sp_ret = second_pass(code)
 
-    #print(SYMBOL_TABLE)
-    print("------  Segunda Passsagem\n")
-    sp_ret = second_pass(code3)
+        #print( "!!!!! ----- print teste " )
+        #print(  instructions.INSTRUCTION_TABLE_REVERSE['addi']['operands']  )
 
-    #print( "!!!!! ----- print teste " )
-    #print(  INSTRUCTION_TABLE['addi']['operands']  )
-
-#print(scanner(processed_code))
+    #print(scanner(processed_code))
