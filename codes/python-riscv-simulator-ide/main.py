@@ -2,22 +2,13 @@ from utils import settings, instructions, utilities
 from simulator import simulator
 from assembler import assembler
 '''
-	TODOs: 
+	TODOs:
 		instructions.py
 			- terminar execute: todas as instruções
 			- alinhamento instrucoes
-
+        - Gerar código objeto em HEX e MIF
 '''
 
-'''
-ADDI $3, $0, 8		000000001000 00000 000 00011 0010011   
-ADDI $4, $0, -2		111111111110 00000 000 00100 0010011   
-ADD $5, $3, $4		0000000 00011 00100 000 00101 0110011  
-ADDI $6, $0, 11 	000000001011 00000 000 00110 0010011   
-XORI $7, $6, 25		000000010101 00110 100 00111 0010011
-ORI $8, $6, 9		000000001001 00110 110 01000 0010011  
-ANDI $9, $6, 19		000000010011 00110 111 01001 0010011
-'''
 def main():
     code = '''ADDI x1, zero, 56
     ADDI t1, t0, 44
@@ -56,12 +47,16 @@ def main():
     label1:ADDI t1, t0, 16
     ADDI  t1 , t0, -3  # comentando
     # comentando
-    ADDI  t1 , t0, 32
+    ADDI  t1 , x6, 32
+
+    LuI  t1,-999
 
     label2:ADDI t1, t0, -766'''
 
-    assembler.assemble(code3)
+    cod_obj = assembler.assemble(code3)
 
+    utilities.display_codeobj(cod_obj,"hex")
+    utilities.save_to_file(cod_obj,"mif")
 
 # 	program_code='''00000000100000000000000110010011
 # 11111111111000000000001000010011
@@ -76,7 +71,6 @@ def main():
 
 	#utilities.display_registers(-1, 'hex')
 	#settings.display_memory(0, 100, 'hex')
-
 
 if __name__ == "__main__":
     main()

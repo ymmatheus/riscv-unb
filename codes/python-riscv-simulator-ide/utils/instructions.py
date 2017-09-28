@@ -1,4 +1,16 @@
+'''
+
+    TODO:
+        
+        - na tabela de instrucoes inversa olhar os Shifts faltando
+        - Completar tabelas de instruções com os opcodes e functs
+        - Implementar pseudo instruções
+
+'''
+
+
 from utils import settings, utilities
+
 # All instructions from RV32G ISA
 instruction_table = {
 
@@ -153,350 +165,292 @@ INSTRUCTION_TABLE_REVERSE = {
     "lui" : {
         "type":"u",
         "size":4,
-        "opcode":"0110111",
-        "operands":[]
+        "opcode":"0110111"
         },
     "auipc" : {
         "type":"u",
         "size":4,
-        "opcode":"0010111",
-        "operands":[]
+        "opcode":"0010111"
         },
     "jal" : {
         "type":"uj",
         "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "opcode":"1101111"
         },
     "jalr" : {
         "type":"i",
         "size":4,
         "opcode":"1100111",
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "beq" : {
         "type":"sb",
         "size":4,
         "opcode":0,
         "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct7":0
         },
     "bne" : {
         "type":"sb",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "blt" : {
         "type":"sb",
         "size":4,
         "opcode":0,
         "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct7":0
         },
     "bge" : {
         "type":"sb",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "bltu" : {
         "type":"sb",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "bgeu" : {
         "type":"sb",
         "size":4,
         "opcode":0,
         "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct7":0
         },
     "lb" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "opcode":"0000011",
+        "funct3":"000"
         },
     "lh" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "opcode":"0000011",
+        "funct3":"001"
         },
     "lw" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "opcode":"0000011",
+        "funct3":"010"
         },
     "lbu" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "opcode":"0000011",
+        "funct3":"100"
         },
     "lhu" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "opcode":"0000011",
+        "funct3":"101"
         },
     "sb" : {
         "type":"s",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "sh" : {
         "type":"s",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "sw" : {
         "type":"s",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "addi" : {
         "type":"i",
         "size":4,
         "opcode":"0010011",
-        "funct3":"000",
-        "operands":["register", "register", "number"]
+        "funct3":"000"
         },
     "slti" : {
         "type":"i",
         "size":4,
         "opcode":"0010011",
-        "funct3":"010",
-        "operands":[]
+        "funct3":"010"
         },
     "sltiu" : {
         "type":"i",
         "size":4,
         "opcode":"0010011",
-        "funct3":"011",
-        "operands":[]
+        "funct3":"011"
         },
     "xori" : {
         "type":"i",
         "size":4,
         "opcode":"0010011",
-        "funct3":"100",
-        "operands":[]
+        "funct3":"100"
         },
     "ori" : {
         "type":"i",
         "size":4,
         "opcode":"0010011",
-        "funct3":"110",
-        "operands":[]
+        "funct3":"110"
         },
     "andi" : {
         "type":"i",
         "size":4,
         "opcode":"0010011",
-        "funct3":"111",
-        "operands":[]
+        "funct3":"111"
         },
     "slli" : {
         "type":"i",
         "size":4,
         "opcode":"0010011",
-        "funct3":"001",
-        "operands":[]
+        "funct3":"001"
         },
-    "sri" : {
+    "srli" : {
         "type":"i",
         "size":4,
         "opcode":"0010011",
-        "funct3":"101",
-        "operands":[]
+        "funct3":"101"
         },
+    #srai
+
+    "srai" : {
+        "type":"i",
+        "size":4,
+        "opcode":"0010011",
+        "funct3": "101"
+
+    },
+
     "add" : {
         "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "000",
-        "funct7": "0000000",
-        "operands":["register","register","register"]
+        "funct7": "0000000"
         },
     "sub" : {
         "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "000",
-        "funct7": "0100000",
-        "operands":["register","register","register"]
+        "funct7": "0100000"
         },
     "sll" : {
         "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "001",
-        "funct7": "0000000",
-        "operands":["register","register","register"]
+        "funct7": "0000000"
         },
     "slt" : {
         "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "010",
-        "funct7": "0000000",
-        "operands":["register","register","register"]
+        "funct7": "0000000"
         },
     "sltu" : {
         "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "011",
-        "funct7": "0000000",
-        "operands":[]
+        "funct7": "0000000"
         },
     "xor" : {
         "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "100",
-        "funct7": "0000000",
-        "operands":[]
+        "funct7": "0000000"
         },
     "srl" : {
         "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "101",
-        "funct7": "0000000",
-        "operands":[]
+        "funct7": "0000000"
         },
     "sra" : {
         "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "101",
-        "funct7": "0100000",
-        "operands":[]
+        "funct7": "0100000"
         },
     "or" : {
         "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "110",
-        "funct7": "0000000",
-        "operands":[]
+        "funct7": "0000000"
         },
     "and" : {
         "type":"r",
         "size":4,
         "opcode": "0110011",
         "funct3": "111",
-        "funct7": "0000000",
-        "operands":[]
+        "funct7": "0000000"
         },
     "fence" : {
         "type":"i",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
-    "fencei" : {
+    "fencei" : { 
         "type":"i",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
-    "env" : {
+    "env" : { #ecall ebreak
         "type":"i",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "csrrw" : {
         "type":"i",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "csrrs" : {
         "type":"i",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "csrrc" : {
         "type":"i",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "csrrwi" : {
         "type":"i",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "csrrsi" : {
         "type":"i",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
     "csrrci" : {
         "type":"i",
         "size":4,
         "opcode":0,
-        "funct3":0,
-        "funct7":0,
-        "operands":[]
+        "funct3":0
         },
 }
 

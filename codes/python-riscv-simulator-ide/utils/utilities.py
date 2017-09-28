@@ -1,3 +1,12 @@
+'''
+
+	TODO:
+		- limitar conversões para 64 bits
+
+
+'''
+
+
 from utils import settings
 
 hex_table = {
@@ -19,13 +28,23 @@ hex_table = {
 	"1111":"f"
 }
 
+class bcolors:
+	HEADER = '\033[95m'
+	OKBLUE = '\033[94m'
+	OKGREEN = '\033[92m'
+	WARNING = '\033[93m'
+	FAIL = '\x1b[0;31;40m'
+	ENDC = '\x1b[0m'
+	BOLD = '\033[1m'
+	UNDERLINE = '\033[4m'
+
 '''Checa se string e um numero inteiro'''
 def is_number(s):
-    try:
-        int(s)
-        return True
-    except ValueError:
-        return False
+	try:
+		int(s)
+		return True
+	except ValueError:
+		return False
 
 # Negate Binary
 def neg_bin(bin_code):
@@ -161,3 +180,84 @@ def display_memory(intval_strt=0, intval_end=settings.DATA_MEMORY_SIZE, mode='he
 		else:
 			print("# - Addr"+str(i)+"\t=\t0x"+str( bin2hex( settings.data_memory[i] ) )+"\t")
 	print("#################################################################")
+
+
+def display_codeobj(objcode, display_format="hex"):
+
+	print("Codigo objeto:(bin ou hex)")
+	if(display_format == "bin"):
+		print("BIN")
+		print("#################################################################")
+		print(objcode)
+		print("#################################################################")
+	elif(display_format == "hex"):
+		print("HEX")
+		print("#################################################################")
+		for i in objcode.split('\n'):
+			print("0x{:08X}".format(bin2u(i)))
+		print("#################################################################")
+
+def save_to_file(codeobj, file_format="hex", filename="file_out"):
+	
+	try:
+		write_file = open(filename+"."+file_format,'w')
+	except:
+		print("Nao foi possivel criar este arquivo!")
+		sys.exit(12)
+	if(file_format == "mif"):
+		numbr_of_addrs = 256
+
+		data_radix = "HEX"
+		mif_header = "WIDTH=32;\nDEPTH="+str(numbr_of_addrs)+";\n\nADDRESS_RADIX=UNS;\nDATA_RADIX=HEX;\n\nCONTENT BEGIN\n"
+
+		#print mif_header
+		n_rep=0
+		first_rep=0
+		
+		instructions = codeobj.split("\n")
+		last_line = bin2hex(instructions.pop(0))
+		current_line=''
+		zeros_pattern = "00000000"
+		write_file.write(mif_header)
+
+		cont = 1
+		for i in range(1,int(numbr_of_addrs)):
+			
+			if instructions:
+				current_line = bin2hex(instructions.pop(0))
+
+			if current_line == '':
+				current_line = zeros_pattern
+			#write_file.write("\t["+str(i-1)+".."+str(i)+"]	:   "+last_line+";\n")
+			#write_file.write("\t"+str(i-1)+"	:   "+last_line+";\n")
+			
+			if current_line != last_line :
+				if n_rep == 0 :
+					write_file.write("\t"+str(i-1)+"	:   "+last_line+";\n")
+				else:
+					write_file.write("\t["+str(first_rep)+".."+str(i)+"]	:   "+last_line+";\n")
+				n_rep = 0
+				first_rep = i
+
+			else:
+				n_rep = n_rep + 1
+			
+			
+
+			if i == int(numbr_of_addrs)-1:
+				if n_rep == 0 :
+					write_file.write("\t"+str(i-1)+"	:   "+last_line+";\n")
+					write_file.write("\t"+str(i)+"	:   "+current_line+";\n")
+				else:
+					write_file.write("\t["+str(first_rep)+".."+str(i)+"]	:   "+last_line+";\n")
+				
+
+			last_line = current_line
+		write_file.write("END;")
+
+	else:
+
+		instructions = codeobj.split("\n")
+
+		for instruction in instructions:
+			write_file.write("{}\n".format( bin2hex(instruction) ))
