@@ -131,7 +131,7 @@ instruction_table = {
 	# JAL
 	"1101111" : 
 	{
-		"type": "uj",	
+		"type": "j",	
 		"inst_name" : "jal"
 	},
 
@@ -173,7 +173,7 @@ INSTRUCTION_TABLE_REVERSE = {
         "opcode":"0010111"
         },
     "jal" : {
-        "type":"uj",
+        "type":"j",
         "size":4,
         "opcode":"1101111"
         },
@@ -181,46 +181,43 @@ INSTRUCTION_TABLE_REVERSE = {
         "type":"i",
         "size":4,
         "opcode":"1100111",
-        "funct3":0
+        "funct3":"000"
         },
     "beq" : {
-        "type":"sb",
+        "type":"b",
         "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0
+        "opcode":"1100011",
+        "funct3":"000"
         },
     "bne" : {
-        "type":"sb",
+        "type":"b",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"1100011",
+        "funct3":"001"
         },
     "blt" : {
-        "type":"sb",
+        "type":"b",
         "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0
+        "opcode":"1100011",
+        "funct3":"100"
         },
     "bge" : {
-        "type":"sb",
+        "type":"b",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"1100011",
+        "funct3":"101"
         },
     "bltu" : {
-        "type":"sb",
+        "type":"b",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"1100011",
+        "funct3":"110"
         },
     "bgeu" : {
         "type":"sb",
         "size":4,
-        "opcode":0,
-        "funct3":0,
-        "funct7":0
+        "opcode":"1100011",
+        "funct3":"111"
         },
     "lb" : {
         "type":"i",
@@ -255,19 +252,19 @@ INSTRUCTION_TABLE_REVERSE = {
     "sb" : {
         "type":"s",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"0100011",
+        "funct3":"000"
         },
     "sh" : {
         "type":"s",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"0100011",
+        "funct3":"001"
         },
     "sw" : {
         "type":"s",
         "size":4,
-        "opcode":0,
+        "opcode":"0100011",
         "funct3":0
         },
     "addi" : {

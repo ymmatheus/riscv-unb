@@ -6,7 +6,30 @@ from assembler import assembler
 		instructions.py
 			- terminar execute: todas as instruções
 			- alinhamento instrucoes
-        - Gerar código objeto em HEX e MIF
+
+        GUI:
+            - Layout geral
+                - Menu
+                    - Funcoes arquivos
+                        - Abrir
+                        - Salvar
+                        - Novo ( Gerar já um boilerplate com section data section text)
+
+                - Botoes simulacao
+                    - Run
+                    - Step
+                    - Speed
+
+                - Editor de texto
+                    - Highlight
+                    - Alterar tamanho da fonte
+                    - Funcionamento dos Tabs
+
+                - Register Map
+
+                - Memory Map
+
+
 '''
 
 def main():
@@ -49,14 +72,17 @@ def main():
     # comentando
     ADDI  t1 , x6, 32
 
-    LuI  t1,-999
-
+    LuI  a1,0
+    addi    a1,a1,8 # 8
+    auipc   a1,0
+    jalr x9,x11,label1
+    jal x8, label2
     label2:ADDI t1, t0, -766'''
 
     cod_obj = assembler.assemble(code3)
 
     utilities.display_codeobj(cod_obj,"hex")
-    utilities.save_to_file(cod_obj,"mif")
+    utilities.save_to_file(cod_obj,"mif", r"fileout") 
 
 # 	program_code='''00000000100000000000000110010011
 # 11111111111000000000001000010011

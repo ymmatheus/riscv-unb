@@ -2,13 +2,13 @@
 
     TODO:
 
-        - Implementar montagem das instruções S,SB, U, UJ
-        - Implementar montagem das instruções com syntaxe label(registrador), num(registrador)
         - Implementar diretivas
-        - Implementar Sections
+        - Implementar imediato em hex e bin        
+        - Implementar montagem das instruções com syntaxe label(registrador), num(registrador)
+        - Implementar pseudo instrucoes
+        - Verificar se ta certo a montagem das instrucoes tipo S e SB
         - Melhorar mensagens de erro/warnings
             - Estabelecer códigos para os erros
-        - Verificar se ta certo a montagem das instrucoes tipo S e SB
 
 
 '''
@@ -16,9 +16,10 @@
 from utils import settings, instructions, utilities
 from utils.utilities import bcolors as clrs
 
-DIRECTIVES_TABLE = [ ".section" , ".data" , ".text" , ".space" , ".word" , ".ascii" , ".asciiz", ".byte" ]
+DIRECTIVES_TABLE = [ ".section" , ".data" , ".text" , ".rodata" , ".bss" , ".equ", ".string" , ".asciz" , ".zero" , ".byte" ]
 
 SYMBOL_TABLE = {}
+VALUE_TABLE = {}
 
 ''' Funcao pega uma linha e checa erros de sintaxe, e retorna um dicionario com label, operacao e operandos '''
 def split_tokens(line, line_number):
@@ -125,7 +126,7 @@ def first_pass(code_text):
     print(SYMBOL_TABLE)
     return 0;
 
-def check_operands(all_tokens):
+def check_operands(all_tokens, SYMBOL_TABLE):
     
     instruction_type = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] 
 
@@ -139,7 +140,7 @@ def check_operands(all_tokens):
     elif ( (instruction_type == "i" or instruction_type == "s" or instruction_type == "b" ) and len(all_tokens['operands']) == 3 ):
         if (all_tokens['operands'][0] not in settings.REGISTER_NAMES or all_tokens['operands'][1] not in settings.REGISTER_NAMES ):
             return 0
-        if (  utilities.is_number(all_tokens['operands'][2]) == False ):
+        if (  utilities.is_number(all_tokens['operands'][2]) == False and all_tokens['operands'][2] not in SYMBOL_TABLE ):
             return 0
 
     # tipo U, J: 2 argumentos, 1 registrador e 1 imediato
@@ -147,7 +148,7 @@ def check_operands(all_tokens):
 
         if (all_tokens['operands'][0] not in settings.REGISTER_NAMES ):
             return 0
-        if (  utilities.is_number(all_tokens['operands'][1]) == False ):
+        if (  utilities.is_number(all_tokens['operands'][1]) == False and all_tokens['operands'][1] not in SYMBOL_TABLE ):
             return 0
 
     #exit()
@@ -182,7 +183,7 @@ def second_pass(code_text):
 #            Se nao achou: 
 #                Erro, simbolo indefinido
 
-            print("\n\n\n\t---"+line+"\n")
+            print("\n\n\n\t-"+str(contador_linha)+"--"+line+"\n")
             for operand in all_tokens['operands']:
                 #print(operand)
                 if( operand in settings.REGISTER_NAMES):
@@ -219,7 +220,7 @@ def second_pass(code_text):
                 contador_pos = contador_pos + instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['size']
 
                 #checar numero e tipo dos operandos
-                if ( check_operands(all_tokens) ):
+                if ( check_operands(all_tokens, SYMBOL_TABLE) ):
                     print("Gerando codigo objeto....")
                     # gera codigo objeto
                     # checa tipo
@@ -227,7 +228,7 @@ def second_pass(code_text):
                     instruction_type = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type']
                     
                     opcode = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['opcode']
-
+                    print( all_tokens['operands'] )
                     if ( instruction_type == "r" ):
                         #    funct7 rs2 rs1 funct3 rd opcode R-type
                         print("___instrucao tipo r______")
@@ -237,20 +238,29 @@ def second_pass(code_text):
                         operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
                         operand1 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
                         operand2 = settings.REGISTER_NAMES[ all_tokens['operands'][2] ]                        
+                                            
                         instr = funct7 + operand1 + operand2 + funct3 + operand0 + opcode
 
                     elif ( instruction_type == "i" ):
                         #    imm[11:0] rs1 funct3 rd opcode I-type
                         print("____instrucao tipo i____")
-                        immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)
+                        print(all_tokens['operands'])
+                        if( utilities.is_number(all_tokens['operands'][2]) ):
+                            immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)
+                        elif( all_tokens['operands'][2] in SYMBOL_TABLE ):
+                            #print("es label")
+                            #print(SYMBOL_TABLE[all_tokens['operands'][2]])
+                            immediate = utilities.s2bin(  int(SYMBOL_TABLE[all_tokens['operands'][2]])  , 12)
+
                         funct3 = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct3']
-                        operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
+                        operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]                
                         operand1 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
+
                         # checar se imediato ultrapassa o 12 bits                        
-                        if( len(immediate) >12  ):
+                        if( len(immediate) > 12  ):
                             print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
                             exit(1)
-                        else:
+                        else: # Se esta ok checa se nao eh shift e dps monta a instrucao
                             if( all_tokens['operation']  == "srli" ):
                                 immediate[0:7] = "0000000"
                                 immediate[7:13] = utilities.s2bin(  int(all_tokens['operands'][2])  , 5)
@@ -268,29 +278,33 @@ def second_pass(code_text):
                         operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
                         operand1 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
                         # checar se imediato ultrapassa o 12 bits                        
-                        if( len(immediate) >12  ):
+                        if( len(immediate) > 12  ):
                             print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
                             exit(1)
                         else:
                             # TODO: verificar se ta certo
                             instr = immediate[0:7] + operand2 + operand1 + funct3 + immediate[7:13] + opcode
-                                                    
-                        
-                        pass
+
+                            if( instruction_type == "sb" ): # embaralha alguns bits
+                                instr = immediate[0]+immediate[2:7] + operand2 + operand1 + funct3 + immediate[7:12] + immediate[1]+ opcode
+                                
                     elif ( instruction_type == "u" or instruction_type == "uj" ):
                         #    imm[31:12] rd opcode U-type
                         immediate = utilities.s2bin(  int(all_tokens['operands'][1])  , 20)
                         operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
                         # checar se imediato ultrapassa o 12 bits                        
-                        if( len(immediate) >20  ):
+                        if( len(immediate) > 20 ):
                             print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
                             exit(1)
                         else:
                             instr = immediate + operand0 + opcode
-                                                    
-                           
+                            if( instruction_type == "uj" ): # embaralha alguns bits
+                                im = immediate # apenas apra facilitar leitura
+                                instr = im[0] + im[10:20] + im[9] + im[1:9] + operand0 + opcode
+                                
+
                     else:
-                        print("instrucao tipo errado")
+                        print("Erro: Tipo da instrucao invalido. linha "+str(contador_linha))
 
                     print( instr[0:32] + "  tam:"+ str(len(instr[0:32]))  )
                     codigo_obj = codigo_obj + instr + "\n"
@@ -339,4 +353,4 @@ def assemble(code):
         #print(  instructions.INSTRUCTION_TABLE_REVERSE['addi']['operands']  )
     #print(clrs.FAIL+"Faaail"+clrs.ENDC)
     #print(scanner(processed_code))
-
+    print(  utilities.is_number("12e2")  )
