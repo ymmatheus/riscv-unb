@@ -1,0 +1,74 @@
+<!doctype html>
+
+<head>
+
+	<title>RISC-V: Montador & Simulador</title>
+	<meta charset="utf-8"/>
+
+	<script src="codemirror/lib/codemirror.js"></script>
+	<link rel="stylesheet" href="codemirror/lib/codemirror.css">
+	<script src="codemirror/mode/riscv/riscv.js"></script>
+
+	<link rel="stylesheet" href="codemirror/addon/fold/foldgutter.css">
+	<link rel="stylesheet" href="codemirror/addon/dialog/dialog.css">
+	<link rel="stylesheet" href="codemirror/theme/monokai.css">
+	<script src="codemirror/addon/search/searchcursor.js"></script>
+	<script src="codemirror/addon/search/search.js"></script>
+	<script src="codemirror/addon/dialog/dialog.js"></script>
+	<script src="codemirror/addon/edit/matchbrackets.js"></script>
+	<script src="codemirror/addon/edit/closebrackets.js"></script>
+	<script src="codemirror/addon/comment/comment.js"></script>
+	<script src="codemirror/addon/wrap/hardwrap.js"></script>
+	<script src="codemirror/addon/fold/foldcode.js"></script>
+	<script src="codemirror/addon/fold/brace-fold.js"></script>
+	<script src="codemirror/mode/javascript/javascript.js"></script>
+	<script src="codemirror/keymap/sublime.js"></script>
+
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	
+
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-red.min.css">
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<style type="text/css">
+	  .CodeMirror {border: 0px solid #eee; line-height: 1.3; height: 350px; width: 600px;}
+	  .CodeMirror-linenumbers { padding: 0 8px; }
+	</style>
+</head>
+<body>
+	
+	<h3>RISC-V: MONTADOR E SIMULADOR ONLINE</h3>
+
+	<div id="code-editor"></div>
+
+	<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+	  <i class="fa fa-gears fa-1g"></i> 
+	</button>
+
+	<script>
+
+	  var value = "# RISC-V Assembly Code\n\n.data\n    .asciiz \"texto\"\n\n.text\n    sub x9, zero, 10\n    add x10, ra, a0\n\n    ABCDFEabcdef";
+	  var editor = CodeMirror(document.getElementById("code-editor"), {
+	    value: value,
+	    lineNumbers: true,
+	    mode: "riscv",
+	    keyMap: "sublime",
+	    autoCloseBrackets: true,
+	    matchBrackets: true,
+	    showCursorWhenSelecting: true,
+	    theme: "monokai",
+	    tabSize: 4,
+	    autofocus: true
+	  });
+
+	  $("button").click(function(){
+	    $.get("localhost/teste", function(data, status){
+	        alert("Data: " + data + "\nStatus: " + status);
+	    });
+	});
+
+	</script>
+
+</body>
