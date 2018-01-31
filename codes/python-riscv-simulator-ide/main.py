@@ -1,6 +1,11 @@
 from utils import settings, instructions, utilities
 from simulator import simulator
 from assembler import assembler
+
+import os
+from flask import Flask, request, render_template
+from flask_cors import CORS, cross_origin
+
 '''
 	TODOs:
 		instructions.py
@@ -31,6 +36,31 @@ from assembler import assembler
 
 
 '''
+
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route("/")
+def index():
+    return render_template("riscv.html")
+    #return "aaa"
+
+
+@app.route("/teste", methods=['GET', 'POST'])
+def teste():
+    #$.get("http://localhost:8080/teste", function(data,status){alert(data+status)})
+    #$.post("http://localhost:8080/teste",{code:1123}, function(data,status){alert(data+status)})
+    print("testando")
+    if request.method == 'POST':
+
+        print(request.form['code'])
+
+        treta = int(request.form['code'])+10
+        return "POST:"+str(treta)
+    else:
+        return "GET"
+
 
 def main():
     code = '''ADDI x1, zero, 56
@@ -100,3 +130,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+    port = int(os.environ.get("PORT",8080))
+    app.run(host='0.0.0.0', port=port)
+    
+
