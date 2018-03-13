@@ -1,0 +1,17 @@
+body {
+	background-color: #20314c;
+	color: #c2d2ea;
+	font-family: 'Raleway', sans-serif;
+}
+
+#code{
+	font-family: monospace;
+}
+
+#memory{
+	font-family: monospace;
+}
+
+#errors{
+	font-family: monospace;
+}

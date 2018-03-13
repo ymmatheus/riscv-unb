@@ -1,55 +1,84 @@
 <!doctype html>
+<html>
+	<head>
 
-<head>
+		<title>RISC-V: Montador & Simulador</title>
+		<meta charset="utf-8"/>
 
-	<title>RISC-V: Montador & Simulador</title>
-	<meta charset="utf-8"/>
+		<link rel="stylesheet" href="{{url_for('static',filename='codemirror/lib/codemirror.css')}}">
+		<script src="{{url_for('static',filename='codemirror/lib/codemirror.js')}}"></script>
 
-	<link rel="stylesheet" href="{{url_for('static',filename='codemirror/lib/codemirror.css')}}">
-	<script src="{{url_for('static',filename='codemirror/lib/codemirror.js')}}"></script>
+		<link rel="stylesheet" href="{{url_for('static',filename='codemirror/addon/fold/foldgutter.css')}}">
+		<link rel="stylesheet" href="{{url_for('static',filename='codemirror/addon/dialog/dialog.css')}}">
+		<link rel="stylesheet" href="{{url_for('static',filename='codemirror/theme/monokai.css')}}">
+		<script src="{{url_for('static',filename='codemirror/mode/riscv/riscv.js')}}"></script>
+		<script src="{{url_for('static',filename='codemirror/addon/search/searchcursor.js')}}"></script>
+		<script src="{{url_for('static',filename='codemirror/addon/search/search.js')}}"></script>
+		<script src="{{url_for('static',filename='codemirror/addon/dialog/dialog.js')}}"></script>
+		<script src="{{url_for('static',filename='codemirror/addon/edit/matchbrackets.js')}}"></script>
+		<script src="{{url_for('static',filename='codemirror/addon/edit/closebrackets.js')}}"></script>
+		<script src="{{url_for('static',filename='codemirror/addon/comment/comment.js')}}"></script>
+		<script src="{{url_for('static',filename='codemirror/addon/wrap/hardwrap.js')}}"></script>
+		<script src="{{url_for('static',filename='codemirror/addon/fold/foldcode.js')}}"></script>
+		<script src="{{url_for('static',filename='codemirror/addon/fold/brace-fold.js')}}"></script>
+		<script src="{{url_for('static',filename='codemirror/keymap/sublime.js')}}"></script>
 
-	<link rel="stylesheet" href="{{url_for('static',filename='codemirror/addon/fold/foldgutter.css')}}">
-	<link rel="stylesheet" href="{{url_for('static',filename='codemirror/addon/dialog/dialog.css')}}">
-	<link rel="stylesheet" href="{{url_for('static',filename='codemirror/theme/monokai.css')}}">
-	<script src="{{url_for('static',filename='codemirror/mode/riscv/riscv.js')}}"></script>
-	<script src="{{url_for('static',filename='codemirror/addon/search/searchcursor.js')}}"></script>
-	<script src="{{url_for('static',filename='codemirror/addon/search/search.js')}}"></script>
-	<script src="{{url_for('static',filename='codemirror/addon/dialog/dialog.js')}}"></script>
-	<script src="{{url_for('static',filename='codemirror/addon/edit/matchbrackets.js')}}"></script>
-	<script src="{{url_for('static',filename='codemirror/addon/edit/closebrackets.js')}}"></script>
-	<script src="{{url_for('static',filename='codemirror/addon/comment/comment.js')}}"></script>
-	<script src="{{url_for('static',filename='codemirror/addon/wrap/hardwrap.js')}}"></script>
-	<script src="{{url_for('static',filename='codemirror/addon/fold/foldcode.js')}}"></script>
-	<script src="{{url_for('static',filename='codemirror/addon/fold/brace-fold.js')}}"></script>
-	<script src="{{url_for('static',filename='codemirror/keymap/sublime.js')}}"></script>
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-	
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-red.min.css">
-	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-red.min.css">
+		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+		<style type="text/css">
+		  .CodeMirror {border: 0px solid #eee; line-height: 1.3; height: 350px; width: 600px;}
+		  .CodeMirror-linenumbers { padding: 0 8px; }
+		</style>
 
 
-	<style type="text/css">
-	  .CodeMirror {border: 0px solid #eee; line-height: 1.3; height: 350px; width: 600px;}
-	  .CodeMirror-linenumbers { padding: 0 8px; }
-	</style>
-</head>
-<body>
-	
-	<h3>RISC-V: MONTADOR E SIMULADOR ONLINE</h3>
+		<link rel="stylesheet" href="{{url_for('static',filename='css/riscv.css')}}">
 
-	<div id="code-editor"></div>
+	</head>
+	<body>
+		<div class="container">	
+			<h1>RISC-V: MONTADOR E SIMULADOR ONLINE</h1>
 
-	<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-	  <i class="fa fa-gears fa-1g"></i> 
-	</button>
+			<div id="entrada">
+				<div id="code-editor"></div>	
+
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+				  <i class="fa fa-gears fa-1g"></i> 
+				</button>
+			</div>
+
+			<div id="saida">
+
+				
+				<div style="background-color:black;width:280px; height:300px; overflow: auto; padding:10px; margin:10px; display: inline-block;"  class="col s2" id="code" >codigo</div>
+				
+				
+				<div style="background-color:black;width:280px; height:300px; overflow: auto; padding:10px; margin:10px; display: inline-block;"  class="col s2" id="memory" >dados</div>
+				
+				
+				<div style="background-color:black;width:280px; height:300px; overflow: auto; padding:10px; margin:10px; display: inline-block;"  class="col s2" id="errors" >dados</div>
+			</div>
+
+		</div>
+	</body>
 
 	<script>
 
-	  var value = "# RISC-V Assembly Code\n\n.data\n    .asciiz \"texto\"\n\n.text\n    sub x9, zero, 10\n    add x10, ra, a0\n\n    ABCDFEabcdef";
+	  //var value = "# RISC-V Assembly Code\n\n.data\n    .asciiz \"texto\"\n\n.text\n    sub x9, zero, 10\n    add x10, ra, a0\n\n    ABCDFEabcdef";
+	  var value = "# RISC-V Assembly Code\n\n  addi x9, zero, 10\n addi x9, zero, -3\n    add x10, ra, a0\n\n ";
+	  
 	  var editor = CodeMirror(document.getElementById("code-editor"), {
 	    value: value,
 	    lineNumbers: true,
@@ -64,11 +93,42 @@
 	  });
 
 	  $("button").click(function(){
-	    $.post("localhost/teste", function(data, status){
-	        alert("Data: " + data + "\nStatus: " + status);
+	  	
+	  	$("#code").html("")
+	  	$("#errors").html("")
+	  	$("#memory").html("")
+
+	  	console.log(editor.getValue())
+
+	    $.post("/assemble",{code:editor.getValue()}, function(data, status){
+	        if (status == "success"){
+	        	
+	        	assmblr_response = JSON.parse(data);
+
+	        	console.log(assmblr_response);
+
+	        	var code = assmblr_response['code'];
+	        	var memory = assmblr_response['memory'];
+	        	var errors = assmblr_response['errors'];
+	        		        	
+	        	
+	        	for(i=0; i<code.length; i++){
+	        		$("#code").html($("#code").html()+code[i]+"<br>" );	
+	        	}
+	        	
+	        	for(i=0; i<memory.length; i++){
+	        		$("#memory").html($("#memory").html()+memory[i]+"<br>" );	
+	        	}
+
+	        	
+	        	for(i=0; i<errors.length; i++){
+	        		$("#errors").html($("#errors").html()+errors[i]+"<br>" );	
+	        	}
+	        }	        
 	    });
 	});
 
 	</script>
 
-</body>
+
+</html>

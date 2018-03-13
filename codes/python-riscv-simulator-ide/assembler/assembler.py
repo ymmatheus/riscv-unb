@@ -16,10 +16,11 @@
 from utils import settings, instructions, utilities
 from utils.utilities import bcolors as clrs
 
-DIRECTIVES_TABLE = [ ".section" , ".data" , ".text" , ".rodata" , ".bss" , ".equ", ".string" , ".asciz" , ".zero" , ".byte" ]
-
 SYMBOL_TABLE = {}
 VALUE_TABLE = {}
+
+# Lista de erros e warning do montador
+WARNINGS_ERRORS = list()
 
 ''' Funcao pega uma linha e checa erros de sintaxe, e retorna um dicionario com label, operacao e operandos '''
 def split_tokens(line, line_number):
@@ -41,7 +42,8 @@ def split_tokens(line, line_number):
             # check more than one label
             # print(tokens_size)
             if tokens_size > 2 :
-                print("Syntax Error: More than one label in the same line. Line: " + str(line_number))
+                # print("Syntax Error: More than one label in the same line. Line: " + str(line_number))
+                WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Syntax Error: More than one label in the same line. Line: " + str(line_number))
                 return -1
 
             label = tokens[0]
@@ -54,7 +56,9 @@ def split_tokens(line, line_number):
 
         # check if label is one word 
         if len(label.split(" ")) > 1 :
-            print("Syntax Error: More than one word for label before symbol ':'. Line: " + str(line_number))
+            # print("Syntax Error: More than one word for label before symbol ':'. Line: " + str(line_number))
+            WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Syntax Error: More than one word for label before symbol ':'. Line: " + str(line_number))
+
             return -1
 
         # remove empty spaces on operation
@@ -82,13 +86,14 @@ def first_pass(code_text):
     code_text_aux = list()
     for line in code_text: # para cada linha de codigo
         
-        # remoe os espacos do inicio e final
+        # remove os espacos do inicio e final
         line = line.strip()
 
         # ignora se for comentario ou linha vazia
         if(  line == ""  or  line[0]=="#"):
             pass
         else:
+
 
             all_tokens = split_tokens(line, contador_linha)
             # se operacao e operandos nao for vazio
@@ -103,8 +108,10 @@ def first_pass(code_text):
                     # procura label na tabela de simbolos
                     if all_tokens['label'] in SYMBOL_TABLE:
                         # simbolo redefinido
-                        print("Error: Duplicated Symbol")
-                        return 1
+                        # print("Error: Duplicated Symbol. Line "+str(contador_linha))
+                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Duplicated Symbol. Line "+str(contador_linha))
+                        
+                        return -1
                     else:
                         # insere rotulo e contador_posicao na tablea de simbolos
                         SYMBOL_TABLE[ all_tokens['label'] ] = contador_pos;
@@ -119,11 +126,11 @@ def first_pass(code_text):
                         #DIRECTIVES_TABLE[all_tokens['operation']]
                         #contador_pos = x
                     else:
-                        print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
-                        return 2
+                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha))
+                        # print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
+                        return -1
             contador_linha = contador_linha + 1
-        
-    print(SYMBOL_TABLE)
+
     return 0;
 
 def check_operands(all_tokens, SYMBOL_TABLE):
@@ -134,29 +141,31 @@ def check_operands(all_tokens, SYMBOL_TABLE):
     if ( instruction_type == "r" and len(all_tokens['operands']) == 3 ):
         for i in range(0,len(all_tokens['operands'])): 
             if ( all_tokens['operands'][i] not in settings.REGISTER_NAMES ):
-                return 0
+                return -1
 
     # tipo I, S, B: 3 argumentos, 2 registradores e 1 imediato    
     elif ( (instruction_type == "i" or instruction_type == "s" or instruction_type == "b" ) and len(all_tokens['operands']) == 3 ):
         if (all_tokens['operands'][0] not in settings.REGISTER_NAMES or all_tokens['operands'][1] not in settings.REGISTER_NAMES ):
-            return 0
+            return -1
         if (  utilities.is_number(all_tokens['operands'][2]) == False and all_tokens['operands'][2] not in SYMBOL_TABLE ):
-            return 0
+            return -1
 
     # tipo U, J: 2 argumentos, 1 registrador e 1 imediato
     elif ( (instruction_type == "u" or instruction_type == "j" ) and len(all_tokens['operands']) == 2 ):
 
         if (all_tokens['operands'][0] not in settings.REGISTER_NAMES ):
-            return 0
+            return -1
         if (  utilities.is_number(all_tokens['operands'][1]) == False and all_tokens['operands'][1] not in SYMBOL_TABLE ):
-            return 0
+            return -1
 
-    #exit()
-    return 1
+    return 0
 
 
 def second_pass(code_text):
-    #1
+    #   1   -   Inicializa variaveis
+    #
+    #
+
     contador_pos = 0
     contador_linha = 1
 
@@ -164,7 +173,7 @@ def second_pass(code_text):
     code_text = code_text.lower()
     # Separa por linhas
     code_text = code_text.split("\n")
-    codigo_obj = ""
+    code_memory_counter = 0
 
     code_text_aux = list()
     for line in code_text: # para cada linha de codigo
@@ -173,7 +182,7 @@ def second_pass(code_text):
 
         # ignora se for comentario ou linha vazia
         if(line == "" or line[0]=="#" ):
-            pass
+            contador_linha=contador_linha+1
         else:
 
             all_tokens = split_tokens(line, contador_linha)
@@ -183,7 +192,7 @@ def second_pass(code_text):
 #            Se nao achou: 
 #                Erro, simbolo indefinido
 
-            print("\n\n\n\t-"+str(contador_linha)+"--"+line+"\n")
+            # print("\n\n\n\t-"+str(contador_linha)+"--"+line+"\n")
             for operand in all_tokens['operands']:
                 #print(operand)
                 if( operand in settings.REGISTER_NAMES):
@@ -202,8 +211,8 @@ def second_pass(code_text):
                             #print("operando e numero")
                         else:
                             # s[s.find("(")+1:s.find(")")]
-                            print("Erro. Simbolo inexistente. linha "+ str(contador_linha))
-                            exit(1)
+                            # print("Erro. Simbolo inexistente. linha "+ str(contador_linha))
+                            return 1
 #print("\n")
     
 #    3   -   Procura operacao na tabela de instrucoes
@@ -220,18 +229,18 @@ def second_pass(code_text):
                 contador_pos = contador_pos + instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['size']
 
                 #checar numero e tipo dos operandos
-                if ( check_operands(all_tokens, SYMBOL_TABLE) ):
-                    print("Gerando codigo objeto....")
+                if ( check_operands(all_tokens, SYMBOL_TABLE) == 0):
+                    #print("Gerando codigo objeto....")
                     # gera codigo objeto
                     # checa tipo
                     
                     instruction_type = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type']
                     
                     opcode = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['opcode']
-                    print( all_tokens['operands'] )
+                    #print( all_tokens['operands'] )
                     if ( instruction_type == "r" ):
                         #    funct7 rs2 rs1 funct3 rd opcode R-type
-                        print("___instrucao tipo r______")
+                        # print("___instrucao tipo r______")
 
                         funct3 = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct3']
                         funct7 = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct7']
@@ -243,8 +252,8 @@ def second_pass(code_text):
 
                     elif ( instruction_type == "i" ):
                         #    imm[11:0] rs1 funct3 rd opcode I-type
-                        print("____instrucao tipo i____")
-                        print(all_tokens['operands'])
+                        # print("____instrucao tipo i____")
+                        # print(all_tokens['operands'])
                         if( utilities.is_number(all_tokens['operands'][2]) ):
                             immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)
                         elif( all_tokens['operands'][2] in SYMBOL_TABLE ):
@@ -258,8 +267,9 @@ def second_pass(code_text):
 
                         # checar se imediato ultrapassa o 12 bits                        
                         if( len(immediate) > 12  ):
-                            print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
-                            exit(1)
+                            # print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
+                            WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Error: Imediato não pode ser representado .linha "+str(contador_linha) )
+                            return -1
                         else: # Se esta ok checa se nao eh shift e dps monta a instrucao
                             if( all_tokens['operation']  == "srli" ):
                                 immediate[0:7] = "0000000"
@@ -279,7 +289,8 @@ def second_pass(code_text):
                         operand1 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
                         # checar se imediato ultrapassa o 12 bits                        
                         if( len(immediate) > 12  ):
-                            print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
+                            WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Imediato não pode ser representado .linha "+str(contador_linha))
+                            # print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
                             exit(1)
                         else:
                             # TODO: verificar se ta certo
@@ -294,8 +305,9 @@ def second_pass(code_text):
                         operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
                         # checar se imediato ultrapassa o 12 bits                        
                         if( len(immediate) > 20 ):
-                            print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
-                            exit(1)
+                            WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Error: Imediato não pode ser representado .linha "+str(contador_linha) )
+                            #print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
+                            return -1
                         else:
                             instr = immediate + operand0 + opcode
                             if( instruction_type == "uj" ): # embaralha alguns bits
@@ -304,15 +316,19 @@ def second_pass(code_text):
                                 
 
                     else:
+                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Erro: Tipo da instrucao invalido. linha "+str(contador_linha) )
                         print("Erro: Tipo da instrucao invalido. linha "+str(contador_linha))
 
-                    print( instr[0:32] + "  tam:"+ str(len(instr[0:32]))  )
-                    codigo_obj = codigo_obj + instr + "\n"
-
+                    # print( instr[0:32] + "  tam:"+ str(len(instr[0:32]))  )
+                    settings.code_memory[code_memory_counter] = instr 
+                    code_memory_counter = code_memory_counter + 1
                 else:
                     # erro, operando invalido
+                    #print(all_tokens)
+                    WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Erro: Operando inválido. linha "+str(contador_linha) )
+                    WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), str(all_tokens) )
                     print("Erro: Operando inválido. linha "+str(contador_linha))
-                    exit()
+                    return -1
 #    4   -   Senao:
 #                Procura operacao na tabela de diretivas
 #                Se achou:
@@ -328,29 +344,29 @@ def second_pass(code_text):
                     #DIRECTIVES_TABLE[all_tokens['operation']]
                     #contador_pos = x
                 else: # senao existe instrucao nem diretiva lanca erro
-                    print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
-                    exit(2)
+                    WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha) )
+                    # print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
+                    return -1
             contador_linha = contador_linha + 1
 
-    return codigo_obj
+    return 0
 
 
 #print(code)
 #print("\n")
 def assemble(code):
     
-    print("Primeira Passsagem\n")
+    global WARNINGS_ERRORS
+
+    # Entrada: Recebe o programa completo
+    # Saida: Dicionario com dados de codigo, memoria e mensagens de erros
+
+    # Algoritmo de duas passagens
+    
     fp_ret = first_pass(code)
-    print("\n")
+    sp_ret = second_pass(code)
 
-    if fp_ret == 0 :
-
-        #print(SYMBOL_TABLE)
-        print("------  Segunda Passsagem\n")
-        return second_pass(code)
-
-        #print( "!!!!! ----- print teste " )
-        #print(  instructions.INSTRUCTION_TABLE_REVERSE['addi']['operands']  )
-    #print(clrs.FAIL+"Faaail"+clrs.ENDC)
-    #print(scanner(processed_code))
-    print(  utilities.is_number("12e2")  )
+    errors_ret = WARNINGS_ERRORS 
+    WARNINGS_ERRORS = list()
+    
+    return {"code":settings.code_memory, "memory":settings.data_memory, "errors":errors_ret}

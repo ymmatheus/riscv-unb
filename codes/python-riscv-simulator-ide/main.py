@@ -3,9 +3,9 @@ from simulator import simulator
 from assembler import assembler
 
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
 from flask_cors import CORS, cross_origin
-
+import json
 '''
 	TODOs:
 		instructions.py
@@ -61,58 +61,24 @@ def teste():
     else:
         return "GET"
 
+@app.route("/assemble", methods=['POST'])
+def assemble():
+    # o montador retorna um dicionario python com 3 tipos diferentes de dados:
+    #   - dados
+    #   - codigo
+    #   - mensagens de erro
 
-def main():
-    code = '''ADDI x1, zero, 56
-    ADDI t1, t0, 44
-    label1:ADDI t1, t0, 441
-    ADDI  t1 , t0, 442
-    #comentaario
-    label2:ADDI t1, t0,  443
+    assmblr_response = assembler.assemble(request.form['code'])
 
-    label3:ADD t2, t1, t0
-
-    ADDI t1, t0, 44 # comments
-    ADDI  t1 , t0, 444  
-
-    ADDI t1, t0, 445
-    ADDI t1, t0, 446 
-    ADDI t1, t0, 44'''
-
-    code2 = '''ADDI x1, zero, 56
-    ADDI t1, t0, 44
-    label1:ADDI t1, t0, 441
-    ADDI  t1 , t0, 442
-    #comentaario
-    label2:ADDI t1, t0,  443
-
-    label3:ADD t2, t1, t0
-
-    ADDI t1, t0, 44 # comments
-    ADDI  t1 , t0, 444  
-
-    ADDI t1, t0, 445
-    ADDI t1, t0, 446 
-    ADDI t1, t0, 44'''
-
-    code3 = '''ADDI x1, zero, 56
-    ADD t1, t0, zero
-    label1:ADDI t1, t0, 16
-    ADDI  t1 , t0, -3  # comentando
-    # comentando
-    ADDI  t1 , x6, 32
-
-    LuI  a1,0
-    addi    a1,a1,8 # 8
-    auipc   a1,0
-    jalr x9,x11,label1
-    jal x8, label2
-    label2:ADDI t1, t0, -766'''
-
-    cod_obj = assembler.assemble(code3)
-
-    utilities.display_codeobj(cod_obj,"hex")
-    utilities.save_to_file(cod_obj,"mif", r"fileout") 
+    # retorna o json.dumps do dicionario para ser interpretado no frontend 
+    '''assmblr_response = {
+        "code":"CODIGOSCODIGOSCODIGOSCODIGOS\nCODIGOSCODIGOSCODIGOSCODIGOS\nCODIGOSCODIGOSCODIGOSCODIGOS\nCODIGOSCODIGOSCODIGOSCODIGOS\nCODIGOSCODIGOSCODIGOSCODIGOS\n",
+        "memory":"MEMORIASMEMORIASMEMORIASMEMORIAS\nMEMORIASMEMORIASMEMORIASMEMORIAS\nMEMORIASMEMORIASMEMORIASMEMORIAS\nMEMORIASMEMORIASMEMORIASMEMORIAS\nMEMORIASMEMORIASMEMORIASMEMORIAS\n",
+        "errors":"ERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\n"
+    }'''
+    return json.dumps(assmblr_response)
+    #utilities.display_codeobj(cod_obj,"hex")
+    #utilities.save_to_file(cod_obj,"mif", r"fileout") 
 
 # 	program_code='''00000000100000000000000110010011
 # 11111111111000000000001000010011
@@ -129,8 +95,8 @@ def main():
 	#settings.display_memory(0, 100, 'hex')
 
 if __name__ == "__main__":
-    main()
+    
     port = int(os.environ.get("PORT",8080))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='localhost', port=port, debug=True)
     
 
