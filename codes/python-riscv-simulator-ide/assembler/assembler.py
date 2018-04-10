@@ -174,23 +174,16 @@ def check_operands(all_tokens, SYMBOL_TABLE):
 
     elif (instruction_type == "s") and len(all_tokens['operands']) == 2 :
         
-        print("@@@@@")
         if (all_tokens['operands'][0] not in settings.REGISTER_NAMES ):
             return -1
-
 
         # capture register
         register_capture = re.search( "\((.*)\)"  , all_tokens['operands'][1], re.M|re.I)
         register_capture = register_capture.group(1)
         
-
         # immediate register
         immediate_capture = re.search( "(.*?)\(\w+"  , all_tokens['operands'][1], re.M|re.I)
         immediate_capture = immediate_capture.group(1)
-        
-
-        print(immediate_capture)
-        print(register_capture)
 
         if( utilities.is_number( immediate_capture ) == False and immediate_capture not in SYMBOL_TABLE ):
             return -1
@@ -365,10 +358,6 @@ def second_pass(code_text):
                             immediate_capture = re.search( "(.*?)\(\w+"  , all_tokens['operands'][1], re.M|re.I)
                             immediate = utilities.s2bin(  int( immediate_capture.group(1) )  , 12)                         
 
-                            print(type(funct3))
-                            print(immediate)
-                            print(operand1)
-                            print(operand2)
                         else:
                             immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)                        
                             operand2 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]

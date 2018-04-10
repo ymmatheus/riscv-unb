@@ -265,7 +265,7 @@ INSTRUCTION_TABLE_REVERSE = {
         "type":"s",
         "size":4,
         "opcode":"0100011",
-        "funct3":0
+        "funct3":"000"
         },
     "addi" : {
         "type":"i",
