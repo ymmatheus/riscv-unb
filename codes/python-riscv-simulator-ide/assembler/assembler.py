@@ -16,8 +16,12 @@
 from utils import settings, instructions, utilities
 from utils.utilities import bcolors as clrs
 
+import re
+
 SYMBOL_TABLE = {}
 VALUE_TABLE = {}
+
+DIRECTIVES_TABLE = [ ".section" , ".data" , ".text" , ".rodata" , ".bss" , ".equ", ".string" , ".asciz" , ".zero" , ".byte" ]
 
 # Lista de erros e warning do montador
 WARNINGS_ERRORS = list()
@@ -51,7 +55,12 @@ def split_tokens(line, line_number):
         else:
             tokens_op = line
 
-        operation, operands_raw = tokens_op.split(" ", 1)
+        tokens = tokens_op.split(" ", 1)
+        if len(tokens) > 1:
+            operation, operands_raw = tokens
+        else:
+             WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Error: Invalid code. Line: " + str(line_number))
+             return -1
         operands = operands_raw.split(",")
 
         # check if label is one word 
@@ -96,6 +105,9 @@ def first_pass(code_text):
 
 
             all_tokens = split_tokens(line, contador_linha)
+            # Se split_tokens retornar erro, retorna erro para a main
+            if all_tokens == -1:
+                return -1
             # se operacao e operandos nao for vazio
             if all_tokens["operation"] != "" or all_tokens["operands"] != "" :
                 #print( "Contador linha:  "+str(contador_linha) + "   "+str(line))
@@ -138,6 +150,8 @@ def check_operands(all_tokens, SYMBOL_TABLE):
     instruction_type = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] 
 
     # tipo R: 3 argumentos, 3 registradores
+    print(all_tokens)
+    print(len(all_tokens['operands']))
     if ( instruction_type == "r" and len(all_tokens['operands']) == 3 ):
         for i in range(0,len(all_tokens['operands'])): 
             if ( all_tokens['operands'][i] not in settings.REGISTER_NAMES ):
@@ -157,6 +171,35 @@ def check_operands(all_tokens, SYMBOL_TABLE):
             return -1
         if (  utilities.is_number(all_tokens['operands'][1]) == False and all_tokens['operands'][1] not in SYMBOL_TABLE ):
             return -1
+
+    elif (instruction_type == "s") and len(all_tokens['operands']) == 2 :
+        
+        print("@@@@@")
+        if (all_tokens['operands'][0] not in settings.REGISTER_NAMES ):
+            return -1
+
+
+        # capture register
+        register_capture = re.search( "\((.*)\)"  , all_tokens['operands'][1], re.M|re.I)
+        register_capture = register_capture.group(1)
+        
+
+        # immediate register
+        immediate_capture = re.search( "(.*?)\(\w+"  , all_tokens['operands'][1], re.M|re.I)
+        immediate_capture = immediate_capture.group(1)
+        
+
+        print(immediate_capture)
+        print(register_capture)
+
+        if( utilities.is_number( immediate_capture ) == False and immediate_capture not in SYMBOL_TABLE ):
+            return -1
+
+        if register_capture not in settings.REGISTER_NAMES:
+            return -1
+
+    else: 
+        return -1
 
     return 0
 
@@ -186,7 +229,6 @@ def second_pass(code_text):
         else:
 
             all_tokens = split_tokens(line, contador_linha)
-
 #    2   -   Para cada operando que e simbolo
 #            Procura operando na TS
 #            Se nao achou: 
@@ -195,9 +237,33 @@ def second_pass(code_text):
             # print("\n\n\n\t-"+str(contador_linha)+"--"+line+"\n")
             for operand in all_tokens['operands']:
                 #print(operand)
+                # se for registrador
                 if( operand in settings.REGISTER_NAMES):
                     pass
                     #print("Registrador!")
+                #se for simbolo e registrador
+                elif re.match("[a-zA-Z0-9]+\(([^)]+)\)", operand, re.M|re.I) :
+                    
+
+                    # capture register
+                    register_capture = re.search( "\((.*)\)"  , operand, re.M|re.I)
+                    register_capture = register_capture.group(1)
+                    
+
+                    # immediate register
+                    immediate_capture = re.search( "(.*?)\(\w+"  , operand, re.M|re.I)
+                    immediate_capture = immediate_capture.group(1)
+                    
+                    # se a captura de registrador for registrador e a captura de imediato for um numero ou um simbolo da tabela ok senao erro
+                    if register_capture in settings.REGISTER_NAMES and  (immediate_capture in SYMBOL_TABLE or utilities.is_number(immediate_capture)) :
+                        pass
+
+                    else:
+                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Erro. Operando inválido. linha "+ str(contador_linha) )
+                        return 1
+
+
+                # se for simbolo
                 else:
                     #print("Simbolo")
                     if operand in SYMBOL_TABLE:
@@ -212,6 +278,7 @@ def second_pass(code_text):
                         else:
                             # s[s.find("(")+1:s.find(")")]
                             # print("Erro. Simbolo inexistente. linha "+ str(contador_linha))
+                            WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Erro. Simbolo inexistente. linha "+ str(contador_linha) )
                             return 1
 #print("\n")
     
@@ -224,6 +291,7 @@ def second_pass(code_text):
 #                    Erro, operando invalido
 
             # procura operacao na taela de instrucoes
+
             if all_tokens['operation'] in instructions.INSTRUCTION_TABLE_REVERSE:
                 #print(instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ])
                 contador_pos = contador_pos + instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['size']
@@ -247,7 +315,7 @@ def second_pass(code_text):
                         operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
                         operand1 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
                         operand2 = settings.REGISTER_NAMES[ all_tokens['operands'][2] ]                        
-                                            
+                                        
                         instr = funct7 + operand1 + operand2 + funct3 + operand0 + opcode
 
                     elif ( instruction_type == "i" ):
@@ -283,10 +351,28 @@ def second_pass(code_text):
                     elif ( instruction_type == "s" or instruction_type == "sb" ):
                         
                         #    imm[11:5] rs2 rs1 funct3 imm[4:0] opcode S-type
-                        immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)
+
                         funct3 = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct3']
-                        operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
-                        operand1 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
+                        operand1 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
+
+                        if ( instruction_type == "s"):
+                            
+                            # capture register
+                            register_capture = re.search( "\((.*)\)"  , all_tokens['operands'][1], re.M|re.I)
+                            operand2 = settings.REGISTER_NAMES[ register_capture.group(1) ]
+                            
+                            # immediate register
+                            immediate_capture = re.search( "(.*?)\(\w+"  , all_tokens['operands'][1], re.M|re.I)
+                            immediate = utilities.s2bin(  int( immediate_capture.group(1) )  , 12)                         
+
+                            print(type(funct3))
+                            print(immediate)
+                            print(operand1)
+                            print(operand2)
+                        else:
+                            immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)                        
+                            operand2 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
+                        
                         # checar se imediato ultrapassa o 12 bits                        
                         if( len(immediate) > 12  ):
                             WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Imediato não pode ser representado .linha "+str(contador_linha))
@@ -294,7 +380,7 @@ def second_pass(code_text):
                             exit(1)
                         else:
                             # TODO: verificar se ta certo
-                            instr = immediate[0:7] + operand2 + operand1 + funct3 + immediate[7:13] + opcode
+                            instr = immediate[0:7] + operand2 + operand1 + str(funct3) + immediate[7:13] + opcode
 
                             if( instruction_type == "sb" ): # embaralha alguns bits
                                 instr = immediate[0]+immediate[2:7] + operand2 + operand1 + funct3 + immediate[7:12] + immediate[1]+ opcode
@@ -364,7 +450,8 @@ def assemble(code):
     # Algoritmo de duas passagens
     
     fp_ret = first_pass(code)
-    sp_ret = second_pass(code)
+    if fp_ret != -1:
+        sp_ret = second_pass(code)
 
     errors_ret = WARNINGS_ERRORS 
     WARNINGS_ERRORS = list()
