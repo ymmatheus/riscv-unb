@@ -104,44 +104,59 @@ def first_pass(code_text):
         else:
 
 
-            all_tokens = split_tokens(line, contador_linha)
-            # Se split_tokens retornar erro, retorna erro para a main
-            if all_tokens == -1:
-                return -1
-            # se operacao e operandos nao for vazio
-            if all_tokens["operation"] != "" or all_tokens["operands"] != "" :
-                #print( "Contador linha:  "+str(contador_linha) + "   "+str(line))
-                #print(all_tokens)
-                #print("contador pos: "+str(contador_pos))
-                #print("--")
+        	# se for diretiva
+        	if "." in line:
 
-                # se tiver label
-                if all_tokens['label'] != '':
-                    # procura label na tabela de simbolos
-                    if all_tokens['label'] in SYMBOL_TABLE:
-                        # simbolo redefinido
-                        # print("Error: Duplicated Symbol. Line "+str(contador_linha))
-                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Duplicated Symbol. Line "+str(contador_linha))
-                        
-                        return -1
-                    else:
-                        # insere rotulo e contador_posicao na tablea de simbolos
-                        SYMBOL_TABLE[ all_tokens['label'] ] = contador_pos;
+        		# sanitize line
 
-                # procura operacao na tabela de instrucoes
-                if all_tokens['operation'] in instructions.INSTRUCTION_TABLE_REVERSE:
-                    #print("incrementa pos "+ str(instructions.INSTRUCTION_TABLE_REVERSE[all_tokens['operation']]['size']))
-                    contador_pos = contador_pos + instructions.INSTRUCTION_TABLE_REVERSE[all_tokens['operation']]['size']
-                else:
-                    if all_tokens['operation'] in DIRECTIVES_TABLE:
-                        pass
-                        #DIRECTIVES_TABLE[all_tokens['operation']]
-                        #contador_pos = x
-                    else:
-                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha))
-                        # print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
-                        return -1
-            contador_linha = contador_linha + 1
+        		# directive process
+        	
+
+        		pass
+
+            
+            # se nao for diretiva
+        	else:
+	            all_tokens = split_tokens(line, contador_linha)
+	            
+
+	            # Se split_tokens retornar erro, retorna erro para a main
+	            if all_tokens == -1:
+	                return -1
+	            # se operacao e operandos nao for vazio
+	            if all_tokens["operation"] != "" or all_tokens["operands"] != "" :
+	                #print( "Contador linha:  "+str(contador_linha) + "   "+str(line))
+	                #print(all_tokens)
+	                #print("contador pos: "+str(contador_pos))
+	                #print("--")
+
+	                # se tiver label
+	                if all_tokens['label'] != '':
+	                    # procura label na tabela de simbolos
+	                    if all_tokens['label'] in SYMBOL_TABLE:
+	                        # simbolo redefinido
+	                        # print("Error: Duplicated Symbol. Line "+str(contador_linha))
+	                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Duplicated Symbol. Line "+str(contador_linha))
+	                        
+	                        return -1
+	                    else:
+	                        # insere rotulo e contador_posicao na tablea de simbolos
+	                        SYMBOL_TABLE[ all_tokens['label'] ] = contador_pos;
+
+	                # procura operacao na tabela de instrucoes
+	                if all_tokens['operation'] in instructions.INSTRUCTION_TABLE_REVERSE:
+	                    #print("incrementa pos "+ str(instructions.INSTRUCTION_TABLE_REVERSE[all_tokens['operation']]['size']))
+	                    contador_pos = contador_pos + instructions.INSTRUCTION_TABLE_REVERSE[all_tokens['operation']]['size']
+	                else:
+	                    if all_tokens['operation'] in DIRECTIVES_TABLE:
+	                        pass
+	                        #DIRECTIVES_TABLE[all_tokens['operation']]
+	                        #contador_pos = x
+	                    else:
+	                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha))
+	                        # print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
+	                        return -1
+	            contador_linha = contador_linha + 1
 
     return 0;
 
