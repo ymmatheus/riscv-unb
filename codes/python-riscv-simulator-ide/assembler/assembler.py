@@ -98,25 +98,88 @@ def first_pass(code_text):
         # remove os espacos do inicio e final
         line = line.strip()
 
-        # ignora se for comentario ou linha vazia
+        # ignora se for comentario ou linha vazia   
         if(  line == ""  or  line[0]=="#"):
             pass
         else:
 
 
-        	# se for diretiva
-        	if "." in line:
+            # se tiver diretiva
+            if "." in line:
 
-        		# sanitize line
+                # count number of directives in line
+                n_directives = 0
+                for c in line:
+                    if "." == c:
+                        n_directives=n_directives+1
 
+                # if there is more than 1 directive in the line, break into multiple, if not do nothing
+                ################################################
+                # TODO
+                ################################################
+
+                # sanitize line
+                #     remove comments
+                sanitized_directive = line.split("#")[0]
+
+                # separate directives and arguments
+                directives_separated = sanitized_directive.split(" ")
+
+                # join list items if they are part of a string
+                ### check if there are strings
+                quote_indexes = [c[0] for c in enumerate(directives_separated) if "\"" in c[1]]
+                if len(quote_indexes):
+
+                    if len(quote_indexes) == 1:
+                        n_of_quotes = directives_separated[quote_indexes[0]].count("\"")
+                    if len(quote_indexes) == 2:
+                        n_of_quotes = 0
+                        print("qwqweqwe"+str(quote_indexes))
+                        for i in range(quote_indexes[0], quote_indexes[1]+1):
+                            n_of_quotes = n_of_quotes + directives_separated[i].count("\"")
+                   
+
+                    # if there are quote marks in more than 2 elements of list its an error
+                    if len(quote_indexes) > 2:
+                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Syntax unexpected number of \". Line "+str(contador_linha))
+                        return -1
+                    ### count number of strings, error if more than one
+                    if n_of_quotes > 2 :
+                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: More than one string. Line "+str(contador_linha))
+                        return -1
+                    if n_of_quotes == 1:
+                        WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Syntax unexpected number of \". Line "+str(contador_linha))
+                        return -1
+                    
+                    if len(quote_indexes) == 2:
+                        aux_list =[]
+                        # copy strings to an aux list
+                        for i in range(quote_indexes[0], quote_indexes[1]+1):
+                            aux_list.append(directives_separated[i])
+                        # delete from original list
+                        #print("aux list:  "+str(aux_list))
+                        for i in range(quote_indexes[0], quote_indexes[1]+1):
+                            directives_separated.pop(quote_indexes[0])
+                        # join aux list to the original list with whole string in one item
+                        directives_separated.insert(quote_indexes[0], ' '.join(aux_list))
+
+
+
+                # check directive table
+                #    check which directive part is the command itself
+                for directive_candidate in directives_separated:
+                    #print(directive_candidate)
+                    if "." in directive_candidate:
+                        directive = directive_candidate
+
+                #print("----"+directive+"\n\n")
         		# directive process
-        	
 
-        		pass
+                pass
 
             
             # se nao for diretiva
-        	else:
+            else:
 	            all_tokens = split_tokens(line, contador_linha)
 	            
 
@@ -231,8 +294,8 @@ def second_pass(code_text):
         # remoe os espacos do inicio e final
         line = line.strip()
 
-        # ignora se for comentario ou linha vazia
-        if(line == "" or line[0]=="#" ):
+        # ignora se for comentario ou linha vazia ou conter diretiva
+        if(line == "" or line[0]=="#" or "." in line):
             contador_linha=contador_linha+1
         else:
 
@@ -454,10 +517,12 @@ def assemble(code):
     # Algoritmo de duas passagens
     
     fp_ret = first_pass(code)
-    if fp_ret != -1:
+    if fp_ret == 0:
         sp_ret = second_pass(code)
 
     errors_ret = WARNINGS_ERRORS 
     WARNINGS_ERRORS = list()
     
+
+
     return {"code":settings.code_memory, "memory":settings.data_memory, "errors":errors_ret}
