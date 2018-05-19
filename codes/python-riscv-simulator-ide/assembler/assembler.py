@@ -167,6 +167,9 @@ def first_pass(code_text):
                         #print("incrementa pos "+ str(instructions.INSTRUCTION_TABLE_REVERSE[all_tokens['operation']]['size']))
                         contador_pos = contador_pos + instructions.INSTRUCTION_TABLE_REVERSE[all_tokens['operation']]['size']
                     else:
+
+                    ######################      DIRECTIVE PROCESSING        ###########################
+                        
                         if all_tokens['operation'] in DIRECTIVES_TABLE:
                             
                             directive = all_tokens['operation']
@@ -175,8 +178,8 @@ def first_pass(code_text):
                                 # check type and number of arguments
                                 diretive_arguments = all_tokens['operands'][0]
                                 if utilities.is_number( diretive_arguments  ) :                                    
-                                        SYMBOL_TABLE[ all_tokens['label'] ] = ["DATA", contador_pos_mem ]
-                                        VALUE_TABLE[contador_pos_mem] = int(diretive_arguments)
+                                        SYMBOL_TABLE[ all_tokens['label'] ] = ["DATA", utilities.u2bin(contador_pos_mem,32) ]
+                                        VALUE_TABLE[utilities.u2bin(contador_pos_mem,32)] = int(diretive_arguments)
                                         contador_pos_mem=contador_pos_mem+4
                                 else:
                                     WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Syntax Error: Wrong number or type of argument. Line "+str(contador_linha))
@@ -194,6 +197,11 @@ def first_pass(code_text):
                             return -1
             contador_linha = contador_linha + 1
 
+    # Building DATA memory 
+    print("######")
+    for addr in VALUE_TABLE:
+        print(  str(addr)+ " --- " +  str(VALUE_TABLE[addr]) )
+    print("######")
     return 0;
 
 def check_operands(all_tokens, SYMBOL_TABLE):
@@ -370,13 +378,9 @@ def second_pass(code_text):
                             # print(all_tokens['operands'])
                             if( utilities.is_number(all_tokens['operands'][2]) ):
                                 immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)
-                            elif( all_tokens['operands'][2] in SYMBOL_TABLE ):
-                                #print("es label")
-                                print(SYMBOL_TABLE[all_tokens['operands'][2]])
-                                if SYMBOL_TABLE[all_tokens['operands'][2]][0]=="DATA":
-                                    print("123")
-                                    print(VALUE_TABLE[ SYMBOL_TABLE[all_tokens['operands'][2]][1]] )
-                                    immediate = utilities.s2bin(  int(VALUE_TABLE[SYMBOL_TABLE[all_tokens['operands'][2]][1]])  , 12)
+                            elif( all_tokens['operands'][2] in SYMBOL_TABLE ):                                                            
+                                if SYMBOL_TABLE[all_tokens['operands'][2]][0]=="DATA":                                    
+                                    immediate = SYMBOL_TABLE[all_tokens['operands'][2]][1][-12:]
 
                             funct3 = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct3']
                             operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]                
