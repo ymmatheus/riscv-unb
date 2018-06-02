@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from utils import settings, instructions, utilities
 from simulator import simulator
 from assembler import assembler
@@ -9,7 +11,7 @@ import json
 '''
 	TODOs:
 		instructions.py
-			- terminar execute: todas as instruções
+			- terminar execute: todas as instrucoes
 			- alinhamento instrucoes
 
         GUI:
@@ -18,7 +20,7 @@ import json
                     - Funcoes arquivos
                         - Abrir
                         - Salvar
-                        - Novo ( Gerar já um boilerplate com section data section text)
+                        - Novo ( Gerar ja um boilerplate com section data section text)
 
                 - Botoes simulacao
                     - Run

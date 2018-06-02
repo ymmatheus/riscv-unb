@@ -4,14 +4,37 @@ body {
 	font-family: 'Raleway', sans-serif;
 }
 
+#saida{
+	background-color:white;
+	padding:20px;
+}
+
 #code{
 	font-family: monospace;
+	background-color:black;
+	width:100%; 
+	height:220px; 
+	overflow: auto; 
+	padding:10px; 
+	display: inline-block;
 }
 
 #memory{
 	font-family: monospace;
+	 background-color:black;
+	 width:100%; 
+	 height:220px; 
+	 overflow: auto; 
+	 padding:10px; 	  
+	 display: inline-block;
 }
 
 #errors{
 	font-family: monospace;
+	background-color:black;
+	width:100%; 
+	height:220px; 
+	overflow: auto; 
+	padding:10px; 
+	display: inline-block;
 }

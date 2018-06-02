@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 	
 	Variáveis
@@ -22,7 +23,7 @@ shamnt = ''
 #CODE_MEMORY_SIZE = 8192
 CODE_MEMORY_SIZE = 10
 #DATA_MEMORY_SIZE = 8192
-DATA_MEMORY_SIZE = 10
+DATA_MEMORY_SIZE = 60
 XLEN = 32
 
 registers	= {	
@@ -132,5 +133,5 @@ REGISTER_NAMES = {
 # Program Counter
 pc = 0				
 ri = 0
-data_memory		= [XLEN*'0' for i in range(DATA_MEMORY_SIZE)] # each address is a byte
+data_memory		= ['00000000' for i in range(DATA_MEMORY_SIZE)] # each address is a byte
 code_memory		= [XLEN*'0' for i in range(CODE_MEMORY_SIZE)]

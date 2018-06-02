@@ -21,7 +21,7 @@ import re
 SYMBOL_TABLE = {}
 VALUE_TABLE = {}
 
-DIRECTIVES_TABLE = [ ".section" , ".data" , ".text" , ".rodata" , ".bss" , ".equ", ".string" , ".asciz" , ".zero" , ".byte" , ".word"]
+DIRECTIVES_TABLE = [ ".section" , ".data" , ".text" , ".rodata" , ".bss" , ".equ", ".string" , ".asciiz" , ".zero" , ".byte" , ".word"]
 
 # Lista de erros e warning do montador
 WARNINGS_ERRORS = list()
@@ -109,7 +109,8 @@ def first_pass(code_text):
     concat_next_line = 0
     prev_line = ""
     # To lower case
-    code_text = code_text.lower()
+    if "\"" not in code_text:
+        code_text = code_text.lower()
     # Separa por linhas
     code_text = code_text.split("\n")
 
@@ -173,13 +174,23 @@ def first_pass(code_text):
                         if all_tokens['operation'] in DIRECTIVES_TABLE:
                             
                             directive = all_tokens['operation']
-                            if directive == ".word":
+
+                            if directive == ".data":
+                                pass # TODO
+                            elif directive == ".text":
+                                pass # TODO
+                            elif directive == ".word":
                                 
                                 # check type and number of arguments
-                                diretive_arguments = all_tokens['operands'][0]
-                                if utilities.is_number( diretive_arguments  ) :                                    
+                                directive_arguments = all_tokens['operands'][0]
+                                if utilities.is_number( directive_arguments  ) :                                    
                                         SYMBOL_TABLE[ all_tokens['label'] ] = ["DATA", utilities.u2bin(contador_pos_mem,32) ]
-                                        VALUE_TABLE[utilities.u2bin(contador_pos_mem,32)] = int(diretive_arguments)
+                                        VALUE_TABLE[utilities.u2bin(contador_pos_mem,32)] = int(directive_arguments)
+                                        mem_data = utilities.s2bin(int(directive_arguments),32)
+                                        settings.data_memory[contador_pos_mem] = mem_data[-8:]
+                                        settings.data_memory[contador_pos_mem+1] = mem_data[-16:-8]
+                                        settings.data_memory[contador_pos_mem+2] = mem_data[-24:-16]
+                                        settings.data_memory[contador_pos_mem+3] = mem_data[-32:-24]
                                         contador_pos_mem=contador_pos_mem+4
                                 else:
                                     WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Syntax Error: Wrong number or type of argument. Line "+str(contador_linha))
@@ -187,7 +198,70 @@ def first_pass(code_text):
                             #DIRECTIVES_TABLE[all_tokens['operation']]
                             #contador_pos = x
 
-                            pass
+                            elif directive == ".string" or directive == ".asciiz" or directive == ".ascii" :
+                                
+                                s = re.findall('"([^"]*)"', line)
+                                #print(list(s))
+                                if len(s) == 1:
+                                    s = s[0]
+                                    # generate list of ascii codes
+                                    ascii_list = []
+                                    for ascii_code in bytearray(s, 'ascii'):                                        
+                                        ascii_list.append(utilities.u2bin(  ascii_code   , 8  ))
+
+                                    # process list escaping e.g. \n, \t
+                                        # '00101111' = '/'
+                                        # https://en.wikipedia.org/wiki/Escape_sequences_in_C
+
+                                    escape_dict = {'01100001':'00000111', '01100010':'00001000', '01100110':'00001100', '01101110':'00001010', '01110010': '00001101', '01110100' : '00001001', '01110110':'00001011', '01011100':'01011100', '00100111':'0100111', '00100010':'00100010'}
+                                    #print(ascii_list)
+
+                                    ascii_list_len = len(ascii_list)                                    
+                                    escaped_ascii_list = []
+                                    escape_flag = False
+                                    ascii_list_index = 0
+                                    for ch in ascii_list:
+                                        
+                                        if ch == '01011100': # If the character is a backslash                                            
+                                            if (ascii_list_index+1 < ascii_list_len) and ascii_list[ascii_list_index+1] in escape_dict:                                                
+                                                escaped_ascii_list.append(escape_dict[ch])
+                                                escape_flag = True
+                                            else:
+                                                escaped_ascii_list.append('01011100')
+                                        else:
+                                            if escape_flag == False:
+                                                escaped_ascii_list.append(ch)
+                                            else:
+                                                escape_flag = False
+                                        ascii_list_index = ascii_list_index + 1
+                                    #print(escaped_ascii_list)
+                                    #print(len(escaped_ascii_list))
+                                    data_mem_index = 0
+                                    for ch in range(len(escaped_ascii_list)) :
+                                        if (contador_pos_mem+data_mem_index < settings.DATA_MEMORY_SIZE):
+                                            settings.data_memory[contador_pos_mem+data_mem_index] = escaped_ascii_list[ch]
+
+                                            data_mem_index = data_mem_index + 1
+                                        else:
+                                            WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Insufficient memory. Line:"+str(contador_linha))
+                                            return -1
+                                    #settings.data_memory[contador_pos_mem+data_mem_index] = "00000000"
+
+                                    current_mem_pos = contador_pos_mem+data_mem_index+1
+                                    #contador_pos_mem = current_mem_pos
+                                    contador_pos_mem = (int(current_mem_pos/4) + current_mem_pos%4)*4 # update the memory index to next aligned word ?(should it be like this?)
+                                    #print(current_mem_pos)
+                                    #print(contador_pos_mem)
+
+                                else:
+                                    WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Incorrect number of string. Line:"+str(contador_linha))
+                                    return -1    
+                                
+
+                            else:
+                                WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha))
+                                # print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
+                                return -1    
 
 
 
@@ -196,12 +270,6 @@ def first_pass(code_text):
                             # print("Error: Operation "+ str(all_tokens['operation']) + " not recognized. Line:"+str(contador_linha)  )
                             return -1
             contador_linha = contador_linha + 1
-
-    # Building DATA memory 
-    print("######")
-    for addr in VALUE_TABLE:
-        print(  str(addr)+ " --- " +  str(VALUE_TABLE[addr]) )
-    print("######")
     return 0;
 
 def check_operands(all_tokens, SYMBOL_TABLE):
@@ -265,7 +333,8 @@ def second_pass(code_text):
     contador_linha = 1
 
     # To lower case
-    code_text = code_text.lower()
+    if '"' not in code_text:
+        code_text = code_text.lower()
     # Separa por linhas
     code_text = code_text.split("\n")
     code_memory_counter = 0
@@ -492,7 +561,8 @@ def second_pass(code_text):
 def assemble(code):
     
     global WARNINGS_ERRORS
-
+    global SYMBOL_TABLE
+    global VALUE_TABLE
     # Entrada: Recebe o programa completo
     # Saida: Dicionario com dados de codigo, memoria e mensagens de erros
 
@@ -503,14 +573,12 @@ def assemble(code):
         sp_ret = second_pass(code)
 
     errors_ret = WARNINGS_ERRORS 
-    WARNINGS_ERRORS = list()
-    
+    WARNINGS_ERRORS = list()  
 
-    global SYMBOL_TABLE
-    #print(SYMBOL_TABLE)
+    print("######")
+
+    # Reset global variables for next assemble
     SYMBOL_TABLE = {}
-    global VALUE_TABLE
-    print(VALUE_TABLE)
     VALUE_TABLE = {}
-
+    print(settings.data_memory)
     return {"code":settings.code_memory, "memory":settings.data_memory, "errors":errors_ret}
