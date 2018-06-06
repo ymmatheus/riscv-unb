@@ -184,14 +184,14 @@ def first_pass(code_text):
                                 # check type and number of arguments
                                 directive_arguments = all_tokens['operands'][0]
                                 if utilities.is_number( directive_arguments  ) :                                    
-                                        SYMBOL_TABLE[ all_tokens['label'] ] = ["DATA", utilities.u2bin(contador_pos_mem,32) ]
-                                        VALUE_TABLE[utilities.u2bin(contador_pos_mem,32)] = int(directive_arguments)
-                                        mem_data = utilities.s2bin(int(directive_arguments),32)
-                                        settings.data_memory[contador_pos_mem] = mem_data[-8:]
-                                        settings.data_memory[contador_pos_mem+1] = mem_data[-16:-8]
-                                        settings.data_memory[contador_pos_mem+2] = mem_data[-24:-16]
-                                        settings.data_memory[contador_pos_mem+3] = mem_data[-32:-24]
-                                        contador_pos_mem=contador_pos_mem+4
+                                    SYMBOL_TABLE[ all_tokens['label'] ] = ["DATA", utilities.u2bin(contador_pos_mem,32) ]
+                                    VALUE_TABLE[utilities.u2bin(contador_pos_mem,32)] = int(directive_arguments)
+                                    mem_data = utilities.s2bin(int(directive_arguments),32)                                    
+                                    settings.data_memory[contador_pos_mem] = mem_data[-8:]
+                                    settings.data_memory[contador_pos_mem+1] = mem_data[-16:-8]
+                                    settings.data_memory[contador_pos_mem+2] = mem_data[-24:-16]
+                                    settings.data_memory[contador_pos_mem+3] = mem_data[-32:-24]
+                                    contador_pos_mem=contador_pos_mem+4
                                 else:
                                     WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS),"Syntax Error: Wrong number or type of argument. Line "+str(contador_linha))
                             #print(all_tokens)
@@ -575,10 +575,10 @@ def assemble(code):
     errors_ret = WARNINGS_ERRORS 
     WARNINGS_ERRORS = list()  
 
-    print("######")
 
     # Reset global variables for next assemble
     SYMBOL_TABLE = {}
     VALUE_TABLE = {}
-    print(settings.data_memory)
+
+
     return {"code":settings.code_memory, "memory":settings.data_memory, "errors":errors_ret}

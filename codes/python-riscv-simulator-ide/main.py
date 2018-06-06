@@ -27,11 +27,6 @@ import json
                     - Step
                     - Speed
 
-                - Editor de texto
-                    - Highlight
-                    - Alterar tamanho da fonte
-                    - Funcionamento dos Tabs
-
                 - Register Map
 
                 - Memory Map
@@ -65,36 +60,47 @@ def teste():
 
 @app.route("/assemble", methods=['POST'])
 def assemble():
-    # o montador retorna um dicionario python com 3 tipos diferentes de dados:
-    #   - dados
-    #   - codigo
-    #   - mensagens de erro
+    
+    # Assembler will return MEMORY, CODE, and ERRORS data.
+    assmblr_response = assembler.assemble(request.form['code'])    
 
-    assmblr_response = assembler.assemble(request.form['code'])
+    data_dump = {
+
+        "code":{
+            "bin":assmblr_response['code'],
+            "hex":utilities.dump_convert(assmblr_response['code'],"hex"),
+            "mif":utilities.dump_convert(assmblr_response['code'],"mif")        
+        },
+
+
+        "memory":{
+            "bin":assmblr_response['memory'],
+            "hex":utilities.dump_convert(assmblr_response['memory'],"hex"),            
+            "mif":utilities.dump_convert(assmblr_response['memory'],"mif")
+        },
+
+        "errors": assmblr_response['errors']
+        
+    }
 
     # retorna o json.dumps do dicionario para ser interpretado no frontend 
-    '''assmblr_response = {
-        "code":"CODIGOSCODIGOSCODIGOSCODIGOS\nCODIGOSCODIGOSCODIGOSCODIGOS\nCODIGOSCODIGOSCODIGOSCODIGOS\nCODIGOSCODIGOSCODIGOSCODIGOS\nCODIGOSCODIGOSCODIGOSCODIGOS\n",
-        "memory":"MEMORIASMEMORIASMEMORIASMEMORIAS\nMEMORIASMEMORIASMEMORIASMEMORIAS\nMEMORIASMEMORIASMEMORIASMEMORIAS\nMEMORIASMEMORIASMEMORIASMEMORIAS\nMEMORIASMEMORIASMEMORIASMEMORIAS\n",
-        "errors":"ERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\n"
-    }'''
-    return json.dumps(assmblr_response)
-    #utilities.display_codeobj(cod_obj,"hex")
-    #utilities.save_to_file(cod_obj,"mif", r"fileout") 
+    '''
+    assmblr_response = {
+        "code":{"bin":["010100101","1010101"], "hex":["12e2e","abcd871"]},
+        "memory":{"bin":["02020202","02020202","02020202","02020202","02020202",], "hex":["d8f7ba"]},
+        "errors":["ERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\nERROERROERROERROERROERRO\n"]
+    }
+    '''
+    #print(assmblr_response['code'])
+    #print(utilities.dump_convert(assmblr_response['code'],"hex") )
 
-# 	program_code='''00000000100000000000000110010011
-# 11111111111000000000001000010011
-# 00000000010000011000001010110011
-# 00000000101100000000001100010011   
-# 00000001010100110100001110010011
-# 00000000100100110110010000010011  
-# 00000001001100110111010010010011'''
+    #utilities.save_to_file(data_dump['memory']['bin'],"mem")
+    #utilities.save_to_file(data_dump['code']['bin'],"cod")
 
 
-	#simulator.run(program_code)
 
-	#utilities.display_registers(-1, 'hex')
-	#settings.display_memory(0, 100, 'hex')
+    return json.dumps(data_dump)
+
 
 if __name__ == "__main__":
     

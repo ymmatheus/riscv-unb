@@ -1,15 +1,21 @@
 body {
-	background-color: #20314c;
-	color: #c2d2ea;
+
 	font-family: 'Raleway', sans-serif;
 }
 
 #saida{
-	background-color:white;
+
 	padding:20px;
 }
 
+.format_input{
+	margin:5px;
+	color:black;
+}
+
 #code{
+
+	color: #c2d2ea;
 	font-family: monospace;
 	background-color:black;
 	width:100%; 
@@ -20,6 +26,7 @@ body {
 }
 
 #memory{
+	color: #c2d2ea;
 	font-family: monospace;
 	 background-color:black;
 	 width:100%; 
@@ -30,6 +37,7 @@ body {
 }
 
 #errors{
+	color: #c2d2ea;
 	font-family: monospace;
 	background-color:black;
 	width:100%; 

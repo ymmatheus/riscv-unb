@@ -212,28 +212,41 @@ def display_codeobj(objcode, display_format="hex"):
 			print("0x{:08X}".format(bin2u(i)))
 		print("#################################################################")
 
-def save_to_file(codeobj, file_format="hex", filename="file_out"):
-	
-	try:
-		write_file = open(filename+"."+file_format,'w')
-	except:
-		print("Nao foi possivel criar este arquivo!")
-		sys.exit(12)
-	if(file_format == "mif"):
-		numbr_of_addrs = 256
+# Receives a list of binary data and convert to specified format
+def dump_convert(data, dump_format="hex"):
+	data_dump_list = []
 
-		data_radix = "HEX"
-		mif_header = "WIDTH=32;\nDEPTH="+str(numbr_of_addrs)+";\n\nADDRESS_RADIX=UNS;\nDATA_RADIX=HEX;\n\nCONTENT BEGIN\n"
+	if dump_format == "hex":
+		for i in data:
+			data_dump_list.append(bin2hex(i))
+	
+	elif dump_format == "mif":
+		numbr_of_addrs = 256
+		data_dump_list.append("DEPTH="+str(numbr_of_addrs)+";")
+		data_dump_list.append("")
+		data_dump_list.append("ADDRESS_RADIX=UNS;")
+		data_dump_list.append("DATA_RADIX=HEX;")
+		data_dump_list.append("CONTENT BEGIN")
+		data_dump_list.append("")
 
 		#print mif_header
 		n_rep=0
 		first_rep=0
-		
-		instructions = codeobj.split("\n")
-		last_line = bin2hex(instructions.pop(0))
+
+		# instructions = data
+		instructions = []
+		for inst in data:
+			instructions.append(inst)
+
+		#print(instructions)
+		#return
+		if instructions:
+			last_line = bin2hex(instructions.pop(0))
+		else:
+			return []
+
 		current_line=''
-		zeros_pattern = "00000000"
-		write_file.write(mif_header)
+		zeros_pattern = "00000000"		
 
 		cont = 1
 		for i in range(1,int(numbr_of_addrs)):
@@ -248,9 +261,12 @@ def save_to_file(codeobj, file_format="hex", filename="file_out"):
 			
 			if current_line != last_line :
 				if n_rep == 0 :
-					write_file.write("\t"+str(i-1)+"	:   "+last_line+";\n")
+					#write_file.write("\t"+str(i-1)+"	:   "+last_line+";\n")
+					data_dump_list.append("\t"+str(i-1)+"	:   "+last_line+";")
 				else:
-					write_file.write("\t["+str(first_rep)+".."+str(i)+"]	:   "+last_line+";\n")
+
+					#write_file.write("\t["+str(first_rep)+".."+str(i)+"]	:   "+last_line+";\n")
+					data_dump_list.append("\t["+str(first_rep)+".."+str(i)+"]	:   "+last_line+";")
 				n_rep = 0
 				first_rep = i
 
@@ -259,20 +275,39 @@ def save_to_file(codeobj, file_format="hex", filename="file_out"):
 			
 			
 
-			if i == int(numbr_of_addrs)-1:
+			if i == numbr_of_addrs-1:
 				if n_rep == 0 :
-					write_file.write("\t"+str(i-1)+"	:   "+last_line+";\n")
-					write_file.write("\t"+str(i)+"	:   "+current_line+";\n")
+					data_dump_list.append("\t"+str(i-1)+"	:   "+last_line+";")
+					data_dump_list.append("\t"+str(i)+"	:   "+current_line+";")
+
+					#write_file.write("\t"+str(i-1)+"	:   "+last_line+";\n")
+					#write_file.write("\t"+str(i)+"	:   "+current_line+";\n")
 				else:
-					write_file.write("\t["+str(first_rep)+".."+str(i)+"]	:   "+last_line+";\n")
-				
+					#write_file.write("\t["+str(first_rep)+".."+str(i)+"]	:   "+last_line+";\n")
+					data_dump_list.append("\t["+str(first_rep)+".."+str(i)+"]	:   "+last_line+";")
 
 			last_line = current_line
-		write_file.write("END;")
+		data_dump_list.append("END;")
+		#write_file.write("END;")
 
+	#print(data_dump_list)
+		pass
+	return data_dump_list
+
+
+def save_to_file(codeobj, filename="file_out",  file_format="mif"):
+	
+	try:
+		write_file = open(filename+"."+file_format,'w')
+	except:
+		print("Nao foi possivel criar este arquivo!")
+		sys.exit(12)
+	if(file_format == "mif"):
+		pass
 	else:
 
 		instructions = codeobj.split("\n")
 
 		for instruction in instructions:
 			write_file.write("{}\n".format( bin2hex(instruction) ))
+
