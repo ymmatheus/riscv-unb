@@ -1,11 +1,38 @@
 body {
+	/*font-family: 'Raleway', sans-serif;*/
+	font-family: monospace;
+}
 
-	font-family: 'Raleway', sans-serif;
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+header ul li{
+	text-align: center;
+	margin: 4px;
+}   
+
+h2.section_title{
+	margin: 0px;
+	padding: 2px;
+}
+
+#entrada{
+	padding:14px;
 }
 
 #saida{
+	padding:14px;
+}
 
-	padding:20px;
+#simulator{
+	padding:14px;
 }
 
 .format_input{
@@ -45,4 +72,44 @@ body {
 	overflow: auto; 
 	padding:10px; 
 	display: inline-block;
+}
+#simulator{
+
+}
+
+#simulation_menu{
+	width: 100%;
+	background-color: rgba(242,242,242,0.5);
+	padding: 6px;
+
+}
+
+#simulation_code{
+	float:left;
+	font-family: monospace;
+	line-height: 0px;
+}
+
+#simulation_registers{
+	font-family: monospace;
+	float:right;
+	line-height: 0px;
+	margin-right: 6px;
+}
+
+
+#register_table{
+
+	display:block;
+	font-size: 12px;
+	line-height: 0px;
+}
+
+#register_table tbody{
+
+}
+
+#simulation_memory_map{
+	clear:left;
+	float:left;
 }

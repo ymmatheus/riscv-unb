@@ -580,5 +580,4 @@ def assemble(code):
     SYMBOL_TABLE = {}
     VALUE_TABLE = {}
 
-
     return {"code":settings.code_memory, "memory":settings.data_memory, "errors":errors_ret}

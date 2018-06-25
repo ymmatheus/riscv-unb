@@ -1,0 +1,136 @@
+Estrutura do texto
+
+1. Introdução														15 pags
+	- RISCV
+		historia
+			Introduced	2010
+			onde
+			por quem
+			objetivos
+				risc
+	
+		risc-v foundation
+
+		opensource
+			vantagens
+				vulnerabilidades
+				the spectre and meltdown vulnerabilities
+			licensa
+
+		- objetivos
+			- eficiente energetica
+			- compatibilidade
+			- simples
+			- escalavel
+			- modular
+
+		- Motivação: importancia do riscv
+			- academica
+			- industrial
+
+		refs
+			"Instruction Sets Should Be Free: The Case For RISC-V" 							https://people.eecs.berkeley.edu/~krste/papers/EECS-2014-146.pdf
+			"Improving Energy Efficiency and Reducing Code Size with RISC-V Compressed"		https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-63.pdf
+
+			Google, HP, Oracle Join RISC-V Open source processor core gains traction
+			Rick Merritt
+			12/28/2015 08:00 AM EST
+			https://www.eetimes.com/document.asp?doc_id=1328561&page_number=1
+
+	- PROCESSADORES MIPS, ARM e RISCV
+		- historia
+		- comparacoes
+
+	- ambiente de desenvolvimento
+
+2. Fundamentação teórica											15 pags
+	- arquitetura do riscv: ISA
+		- diferenças
+			- comparações com ARM
+			- comparações com MIPS
+		- caracteristicass
+		- como funciona
+		- tipos de instruções
+		- formatos de instruções
+	- montador
+		- conceito
+		- algoritmo duas passagens
+	- aplicações web
+		- arquitetura
+			- API
+			- FrontEnd
+			- BackEnd 
+		- vantagens e desvantagens
+	- escalabilidade ( novos modulos )
+
+3. Ambiente proposto												5 pags											
+	- Arquitetura de software
+	- interface web
+		- codemirror
+		-
+	- Simulador
+		- 
+	- características (entradas e saidas, artefatos)
+	- montador
+	- novos modulos ? systemC 
+		- precisão de ciclo
+		- avaliação de energia
+
+
+4. Resultado Avaliação do sistema									8 pag
+	- exemplos ( fibonacci, primos, etc.. )
+	- 
+
+5. Conclusoes														7 pags
+	
+	- objetivos atingidos
+	- pontos positivos e negativos
+	- dificuldades
+	- melhorias
+		- arquitetura 64 bits
+		- sistema de login/logout
+		- capacidade de salvar, importar códigos
+		- contador de instruçoes
+		- bitmap mapping
+	- trabalhos futuros
+	- 
+
+6. Bibliografia														2 pags
+
+
+[TODO Implementação]
+-- separação da memoria de dados heap, stack
+-- visualização dos dados
+	-- voltar resultado de simulação nos lugares certos de visualizacao
+	-- mostrar registradores com valores hex,dec,bin
+	-- mostrar memory map com valores hex,dec,bin
+	-- mostrar memory map da heap e da stack separados
+-- implementação da simulação step by step
+
+
+19/6 (ter) -> [Introdução] 2 páginas 
+20/6 (qua) -> [Conclusoes] 4 página
+21/6 (qui) -> **4pags	*12 páginas*
+22/6 (sex) -> ?
+23/6 (sab) -> ?
+24/6 (dom) -> ?
+25/6 (seg) -> **4 pags
+26/6 (ter) -> **4 pags
+27/6 (qua) -> **4 pags
+28/6 (qui) -> **4 pags
+29/6 (sex) -> ! *30 paginas*
+30/6 (sab) -> !	**2
+01/7 (dom) -> !	**2
+02/7 (seg) -> 	**2
+03/7 (ter) -> 	**2
+04/7 (qua) -> 	**2
+05/7 (qui) -> 	*20 páginas*
+06/7 (sex) -> Entrega Final
+07/7 (sab) -> Ajustes
+08/7 (dom) -> Ajustes
+09/7 (seg) -> Ajustes
+10/7 (ter) -> Ajustes
+11/7 (qua) -> Ajustes
+12/7 (qui) -> Ajustes
+13/7 (sex) -> Provavel data de apresentação
+

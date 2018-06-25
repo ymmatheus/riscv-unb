@@ -13,74 +13,34 @@
   \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
 
 \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
-\bibitem {newton1833philosophiae}
-\btxnamefont {\btxlastnamefont {Newton}, Isaac}, \btxnamefont {Daniel
-  \btxlastnamefont {Bernoulli}}, \btxnamefont {Colin \btxlastnamefont
-  {MacLaurin}}\btxandcomma {} \btxandlong {}\ \btxnamefont {Leonhard
-  \btxlastnamefont {Euler}}\btxauthorcolon\ \btxtitlefont {Philosophiae
-  naturalis principia mathematica}, \btxvolumelong {}~\btxvolumefont {1}.
-\newblock \btxpublisherfont {excudit G. Brookman; impensis TT et J. Tegg,
-  Londini}, 1833.
+\bibitem {riscv_spec}
+\btxnamefont {\btxlastnamefont {Waterman}, Editors\btxfnamespacelong Andrew}
+  \btxandlong {}\ \btxnamefont {RISC\btxfnamespacelong V\btxfnamespacelong
+  Foundation \btxlastnamefont {Krste~Asanovic}}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {The risc-v instruction set manual, volume i: User-level
+  isa, document version 2.2}{The RISC-V Instruction Set Manual, Volume I:
+  User-Level ISA, Document Version 2.2}}.
+\newblock https://riscv.org/specifications/,
+  \btxprintmonthyear{.}{May}{2017}{long}.
 
-\bibitem {Biolchini_2005_Systematicreviewin}
-\btxnamefont {\btxlastnamefont {Biolchini}, Jorge}, \btxnamefont
-  {P\btxfnamespacelong Gomes \btxlastnamefont {Mian}}, \btxnamefont
-  {A\btxfnamespacelong Candida\btxfnamespacelong Cruz \btxlastnamefont
-  {Natali}}\btxandcomma {} \btxandlong {}\ \btxnamefont {G\btxfnamespacelong
-  Horta \btxlastnamefont {Travassos}}\btxauthorcolon\ \btxjtitlefont
-  {\btxifchangecase {Systematic review in software engineering}{Systematic
-  review in software engineering}}.
-\newblock \btxjournalfont {System Engineering and Computer Science Department
-  COPPE/UFRJ, Technical Report ES}, 679(05), 2005.
+\bibitem {riscv_foundation}
+\btxnamefont {\btxlastnamefont {Foundation}, RISC\btxfnamespacelong
+  V}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Sobre a risc-v
+  foundation}{Sobre a RISC-V Foundation}}.
+\newblock https://riscv.org/risc-v-foundation/, 2018.
+\newblock Accessed: 2018-06-20.
 
-\bibitem {Knuth_1986_texbook}
-\btxnamefont {\btxlastnamefont {Knuth}, Donald\btxfnamespacelong Ervin}
-  \btxandlong {}\ \btxnamefont {Duane \btxlastnamefont {Bibby}}\btxauthorcolon\
-  \btxtitlefont {The texbook}, \btxvolumelong {}\ \btxvolumefont {1993}.
-\newblock \btxpublisherfont {Addison-Wesley Reading, MA, USA}, 1986.
+\bibitem {riscv_fboardmembers}
+\btxnamefont {\btxlastnamefont {Foundation}, RISC\btxfnamespacelong
+  V}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Membros do conselho
+  risc-v foundation}{Membros do conselho RISC-V Foundation}}.
+\newblock https://riscv.org/leadership/, 2018.
+\newblock Accessed: 2018-06-20.
 
-\bibitem {lamport_latex:_1994}
-\btxnamefont {\btxlastnamefont {Lamport}, Leslie}\btxauthorcolon\ \btxtitlefont
-  {{LATEX}: a document preparation system : user's guide and reference manual}.
-\newblock \btxpublisherfont {Addison-Wesley Pub. Co.}, Reading, Mass.,
-  1994\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont {0201529831
-  9780201529838}}}.
-
-\bibitem {greenwade93}
-\btxnamefont {\btxlastnamefont {Greenwade}, George\btxfnamespacelong
-  D.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {The {C}omprehensive
-  {T}ex {A}rchive {N}etwork ({CTAN})}{The {C}omprehensive {T}ex {A}rchive
-  {N}etwork ({CTAN})}}.
-\newblock \btxjournalfont {TUGBoat}, 14(3):342--351, 1993.
-
-\bibitem {Oetiker_1995_notsoshort}
-\btxnamefont {\btxlastnamefont {Oetiker}, Tobias}, \btxnamefont {Hubert
-  \btxlastnamefont {Partl}}, \btxnamefont {Irene \btxlastnamefont
-  {Hyna}}\btxandcomma {} \btxandlong {}\ \btxnamefont {Elisabeth
-  \btxlastnamefont {Schlegl}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase
-  {The not so short introduction to latex2$\varepsilon$}{The not so short
-  introduction to LATEX2$\varepsilon$}}, 1995.
-
-\bibitem {pinteric_latex_2004}
-\btxnamefont {\btxlastnamefont {Pinteric}, Marko}\btxauthorcolon\ \btxtitlefont
-  {\btxifchangecase {{LaTeX} on {Windows}}{{LaTeX} on {Windows}}}.
-\newblock {\latintext \btxurlfont{http://www.pinteric.com/miktex.html}}\empty
-  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{2015-06-11}}}.
-
-\bibitem {ppginf}
-\btxnamefont {\btxlastnamefont {PPGI/UnB}}\btxauthorcolon\ \btxtitlefont
-  {\btxifchangecase {Regimento do programa de p\'{o}s-gradua\c{c}\~{a}o em
-  inform\'{a}tica da universidade de bras\'{i}lia}{Regimento do Programa de
-  P\'{o}s-gradua\c{c}\~{a}o em Inform\'{a}tica da Universidade de
-  Bras\'{i}lia}}.
-\newblock http://ppgi.unb.br/normatives, 2013.
-
-\bibitem {covey_first_1995}
-\btxnamefont {\btxlastnamefont {Covey}, Stephen\btxfnamespacelong R},
-  \btxnamefont {A\btxfnamespacelong Roger \btxlastnamefont
-  {Merrill}}\btxandcomma {} \btxandlong {}\ \btxnamefont
-  {Rebecca\btxfnamespacelong R \btxlastnamefont {Merrill}}\btxauthorcolon\
-  \btxtitlefont {First things first}.
-\newblock \btxpublisherfont {Simon and Schuster}, 1995.
+\bibitem {cython_home}
+\btxtitlefont {\btxifchangecase {Cython c-extensions for python}{Cython
+  C-Extensions for Python}}.
+\newblock http://cython.org/.
+\newblock Accessed: 2018-06-20.
 
 \end{thebibliography}

@@ -62,6 +62,8 @@ def teste():
 def assemble():
     
     # Assembler will return MEMORY, CODE, and ERRORS data.
+    print(request.form['code'])
+    print(request.form)
     assmblr_response = assembler.assemble(request.form['code'])    
 
     data_dump = {
@@ -98,9 +100,27 @@ def assemble():
     #utilities.save_to_file(data_dump['code']['bin'],"cod")
 
 
+    settings.data_memory        = ['00000000' for i in range(settings.DATA_MEMORY_SIZE)] # each address is a byte
+    settings.code_memory        = [settings.XLEN*'0' for i in range(settings.CODE_MEMORY_SIZE)]
+
 
     return json.dumps(data_dump)
 
+
+@app.route("/run", methods=['POST'])
+def run():
+    
+
+
+    if request.method == "POST":
+        run_results = simulator.run(json.loads(request.form['code']), json.loads(request.form['memory']))
+
+
+
+    settings.data_memory        = ['00000000' for i in range(settings.DATA_MEMORY_SIZE)] # each address is a byte
+    settings.code_memory        = [settings.XLEN*'0' for i in range(settings.CODE_MEMORY_SIZE)]
+
+    return  json.dumps(run_results)
 
 if __name__ == "__main__":
     

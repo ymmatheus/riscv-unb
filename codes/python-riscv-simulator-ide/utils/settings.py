@@ -21,9 +21,9 @@ shamnt = ''
 
 # Architectural values
 #CODE_MEMORY_SIZE = 8192
-CODE_MEMORY_SIZE = 10
+CODE_MEMORY_SIZE = 100
 #DATA_MEMORY_SIZE = 8192
-DATA_MEMORY_SIZE = 60
+DATA_MEMORY_SIZE = 100
 XLEN = 32
 
 registers	= {	

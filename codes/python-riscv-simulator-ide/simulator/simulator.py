@@ -34,30 +34,43 @@ def decode(instruction):
 
 	#shift ammount
 	settings.shamnt = settings.rs2
+	if settings.opcode in instructions.instruction_table.keys():
+		if (instructions.instruction_table[settings.opcode]["type"] == "r"):
+		
+			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3][settings.funct7]
+		
+		elif (instructions.instruction_table[settings.opcode]["type"] == "i"):
 
-	if (instructions.instruction_table[settings.opcode]["type"] == "r"):
-	
-		instruction_name = instructions.instruction_table[settings.opcode][settings.funct3][settings.funct7]
-	
-	elif (instructions.instruction_table[settings.opcode]["type"] == "i"):
+			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+		
+		elif (instructions.instruction_table[settings.opcode]["type"] == "u"):
+		
+			instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
+		
+		elif (instructions.instruction_table[settings.opcode]["type"] == "uj"):
+		
+			instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
+		
+		elif (instructions.instruction_table[settings.opcode]["type"] == "s"):
+		
+			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+		
+		elif (instructions.instruction_table[settings.opcode]["type"] == "sb"):
+		
+			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
 
-		instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
-	
-	elif (instructions.instruction_table[settings.opcode]["type"] == "u"):
-	
-		instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
-	
-	elif (instructions.instruction_table[settings.opcode]["type"] == "uj"):
-	
-		instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
-	
-	elif (instructions.instruction_table[settings.opcode]["type"] == "s"):
-	
-		instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
-	
-	elif (instructions.instruction_table[settings.opcode]["type"] == "sb"):
-	
-		instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+		elif settings.opcode == '0000000':
+
+			instruction_name = "nop"
+
+		else:
+
+			instruction_name = "unknown"
+
+
+	else:
+
+		instruction_name = "unknown"
 
 	#print(instruction_name)
 	return instruction_name
@@ -70,18 +83,31 @@ def step(step_n=1):
 	pass
 	
 
-def run(code):
+def run(code,memory):
 
 	# Load text program to code memory
 	i=0
-	for inst in code.split("\n"):
+	
+	for inst in code:
+		
 		settings.code_memory[i] = inst
 		#print(i)
 		i=i+1
-	settings.code_memory[i] = 'exit'
+	settings.code_memory[i-1] = 'exit'
 	#print(settings.code_memory)
+
+	# Load program data to data memory
+	i=0
+	for data in memory:
+		
+		settings.data_memory[i] = data
+		i=i+1
+		
+
 
 	while(settings.code_memory[settings.pc//4] != 'exit'):
 		execute(decode(fetch(settings.pc)))
+
+	return {"registers": settings.registers, "memory_map":settings.data_memory}
 
 		

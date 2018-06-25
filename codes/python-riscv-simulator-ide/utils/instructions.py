@@ -156,7 +156,15 @@ instruction_table = {
 		"101" : "bge"  ,
 		"110" : "bltu" ,
 		"111" : "bgeu"
-	} 
+	},
+
+    # NOP
+    "0000000" :
+    {
+        "type": "nop"
+    }
+
+
 }
 
 
@@ -509,7 +517,6 @@ def instr_lhu():
 	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_i, settings.registers[settings.rs1]))
 	settings.registers[settings.rd] = ''.zfill(16) + settings.data_memory[addrs+1] + settings.data_memory[addrs]
 
-
 def instr_sb():
 	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_s, settings.registers[settings.rs1]))
 	settings.data_memory[addrs] = settings.registers[settings.rs2][24:32]
@@ -706,6 +713,9 @@ def instr_csrrsi():
 def instr_csrrci():
 	pass
 
+def instr_nop():
+    pass
+
 
 instruction_execution_table = {
 	"lui" : instr_lui,
@@ -752,5 +762,6 @@ instruction_execution_table = {
 	"csrrc" : instr_csrrc,
 	"csrrwi" : instr_csrrwi,
 	"csrrsi" : instr_csrrsi,
-	"csrrci" : instr_csrrci
+	"csrrci" : instr_csrrci,
+    "nop": instr_nop
 }

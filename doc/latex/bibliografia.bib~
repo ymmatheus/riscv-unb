@@ -2,31 +2,8 @@
  author={RISC-V Foundation},
  title={Sobre a RISC-V Foundation},
  howpublished={https://riscv.org/risc-v-foundation/},
- year={2018},
+ year={2018}
  note = {Accessed: 2018-06-20}
-}
-
-@misc{riscv_spec,
-  author={Editors Andrew Waterman and Krste Asanovic, RISC-V Foundation},
-  title={The RISC-V Instruction Set Manual, Volume I: User-Level ISA, Document Version
-2.2},
-  howpublished={https://riscv.org/specifications/},
-  month={May},
-  year={2017}
-}
-
-@misc{riscv_fboardmembers,
- author={RISC-V Foundation},
- title={Membros do conselho RISC-V Foundation},
- howpublished={https://riscv.org/leadership/},
- year={2018},
- note = {Accessed: 2018-06-20} 
-}
-
-@misc{cython_home,
-  title={Cython C-Extensions for Python},
-  howpublished={http://cython.org/},
-  note = {Accessed: 2018-06-20} 
 }
 
 @article{Biolchini_2005_Systematicreviewin,

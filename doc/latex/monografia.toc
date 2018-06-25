@@ -1,18 +1,48 @@
-\select@language {american}
-\select@language {american}
-\select@language {brazil}
+\babel@toc {american}{}
+\babel@toc {american}{}
+\babel@toc {brazil}{}
 \contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}RISC-V}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Metodologia Cient\IeC {\'\i }fica}{1}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Veja Tamb\IeC {\'e}m}{3}{subsection.1.2.1}
-\contentsline {section}{\numberline {1.3}\LaTeX }{3}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Veja Tamb\IeC {\'e}m}{5}{subsection.1.3.1}
-\contentsline {section}{\numberline {1.4}Pl\IeC {\'a}gio}{5}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}Veja Tamb\IeC {\'e}m}{6}{subsection.1.4.1}
-\contentsline {chapter}{Refer\^encias}{7}{section*.7}
-\select@language {american}
-\select@language {american}
-\select@language {brazil}
-\select@language {brazil}
-\select@language {american}
-\select@language {brazil}
+\contentsline {subsection}{\numberline {1.1.1}Objetivos}{1}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Hist\IeC {\'o}ria}{2}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}RISC-V Foundation}{2}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}Open Source}{3}{subsection.1.1.4}
+\contentsline {section}{\numberline {1.2}Objetivos e motiva\IeC {\c c}\IeC {\~a}o deste projeto}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Processadores MIPS, ARM e RISC-V}{4}{section.1.3}
+\contentsline {chapter}{\numberline {2}Fundamenta\IeC {\c c}\IeC {\~a}o te\IeC {\'o}rica}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Arquitetura RISC-V: ISA}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Diferen\IeC {\c c}as}{5}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Caracter\IeC {\'\i }sticas}{5}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Como funciona}{5}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Instru\IeC {\c c}\IeC {\~o}es}{5}{subsection.2.1.4}
+\contentsline {subsubsection}{Tipos de instru\IeC {\c c}\IeC {\~o}es}{5}{section*.6}
+\contentsline {section}{\numberline {2.2}Montador}{6}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Conceito}{6}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Algoritmo de duas passagens}{6}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Aplica\IeC {\c c}\IeC {\~o}es web}{6}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Arquitetura}{6}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Vantagens e desvantagens}{6}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}Escalabilidade ( novos modulos )}{6}{section.2.4}
+\contentsline {chapter}{\numberline {3}Ambiente Proposto}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}Ambiente proposto}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}Arquitetura de software}{7}{section.3.2}
+\contentsline {section}{\numberline {3.3}Interface web}{7}{section.3.3}
+\contentsline {section}{\numberline {3.4}Simulador}{7}{section.3.4}
+\contentsline {section}{\numberline {3.5}Caracter\IeC {\'\i }sticas}{7}{section.3.5}
+\contentsline {section}{\numberline {3.6}Montador}{7}{section.3.6}
+\contentsline {section}{\numberline {3.7}Novos modulos}{7}{section.3.7}
+\contentsline {chapter}{\numberline {4}Resultados e Avalia\IeC {\c c}\IeC {\~a}o do Sistema}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}entradas do sistema}{9}{section.4.1}
+\contentsline {section}{\numberline {4.2}saidas do sistema}{9}{section.4.2}
+\contentsline {section}{\numberline {4.3}simula\IeC {\c c}\IeC {\~a}o}{9}{section.4.3}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es}{10}{chapter.5}
+\contentsline {section}{\numberline {5.1}objetivos atingidos}{10}{section.5.1}
+\contentsline {section}{\numberline {5.2}pontos positivos e negativos}{10}{section.5.2}
+\contentsline {section}{\numberline {5.3}dificuldades}{10}{section.5.3}
+\contentsline {section}{\numberline {5.4}melhorias}{10}{section.5.4}
+\contentsline {section}{\numberline {5.5}trabalhos futuros}{10}{section.5.5}
+\contentsline {chapter}{Refer\^encias}{11}{section*.7}
+\babel@toc {american}{}
+\babel@toc {american}{}
+\babel@toc {american}{}
+\babel@toc {brazil}{}

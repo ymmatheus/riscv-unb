@@ -2,7 +2,7 @@
 <html>
 	<head>
 
-		<title>RISC-V: Montador & Simulador</title>
+		<title>UnB | RISC-V: Montador & Simulador</title>
 		<meta charset="utf-8"/>
 		<link rel="shortcut icon" type="image/icon" href="{{url_for('static',filename='img/favicon.ico')}}"/>
 
@@ -40,7 +40,7 @@
 
 
 		<style type="text/css">
-		  .CodeMirror {border: 0px solid #eee; line-height: 1.3; height: 350px; width: 600px;}
+		  .CodeMirror {border: 0px solid #eee; line-height: 1.3; height: 360px; width: auto;}
 		  .CodeMirror-linenumbers { padding: 0 8px; }
 		</style>
 
@@ -49,77 +49,461 @@
 
 	</head>
 	<body>
-		<div class="container">	
-			<h1>UnB | RISC-V</h1>
+		<header>
 
-			<div id="entrada">
-				<div id="code-editor"></div>	
+		    <ul id="slide-out" class="sidenav sidenav-fixed">
+		      <li>
 
-				<button id="assemble_button" class="btn waves-effect waves-light" type="submit" name="action">Assemble
-					<i class="fa fa-gears fa-1g"></i> 
-				</button>	
-			</div>
+				<img class="responsive-img" height="150" width="150" src="{{url_for('static',filename='img/unb-logo.png')}}">
+				<img class="responsive-img" height="150" width="150" src="{{url_for('static',filename='img/riscv-logo.png')}}">
 
-			<div id="saida">
-				<form action="">
-					<div class="col s2" id="errors" >Console Output</div>					
-					<b>Format:</b><br>
-				
-					    <label class="format_input">
-					      <input class="with-gap" value="bin" name="format_input_radio" type="radio" checked />
-					      <span>BIN</span>
-					    </label>
-				
-  				
-					    <label class="format_input">
-					      <input class="with-gap" value="hex" name="format_input_radio" type="radio"  />
-					      <span>HEX</span>
-					    </label>
-					
-  				
-					    <label class="format_input"> 
-					      <input class="with-gap" value="mif" name="format_input_radio" type="radio"  />
-					      <span>MIF</span>
-					    </label>
-				
+		      </li>
+		      <li><a id="menu_entrada" href="#entrada">Code Editor</a></li>
+		      <li><a id="menu_saida" href="#saida">Assemble Results</a></li>
+		      <li><a id="menu_simulator" href="#simulator">Simulator</a></li>
+		      <hr>
+		      <li><a id="menu_instructions" href="#instructions">Instructions</a></li>
+		      <li><a id="menu_about" href="#aboutus">About Us</a></li>
+		    </ul>
+		    
+	    </header>      	
+	    <main>
+			<div>	
 
-					<div class="col s2" id="code" >codigo</div>
-					<div class="col s2" id="memory" >dados</div>		
+				<section id="entrada">
+					<h2 class="section_title" >Code Editor</h2>
+					<div id="code-editor"></div>	
 
-
-					
-					<button class="btn waves-effect waves-light" type="submit" name="action">Download
-						<i class="material-icons right">send</i>
+					<button id="assemble_button" class="btn waves-effect waves-light" type="submit" name="action">Assemble
+						<i class="fa fa-gears fa-1g"></i> 
 					</button>
-				</form>
+					<div class="col s2" id="errors" >Console Output</div>	
+				
+					<button id="run_button" class="btn waves-effect waves-light" type="submit" name="action">Run
+						<i class="fa fa-gears fa-1g"></i> 
+					</button>
+
+				</section>
+
+				<section id="saida">
+					<h2 class="section_title" >Assemble Results</h2>
+					<form action="">
+											
+						<b>Format:</b><br>
+					
+						    <label class="format_input">
+						      <input class="with-gap" value="bin" name="format_input_radio" type="radio" checked />
+						      <span>BIN</span>
+						    </label>
+					
+	  				
+						    <label class="format_input">
+						      <input class="with-gap" value="hex" name="format_input_radio" type="radio"  />
+						      <span>HEX</span>
+						    </label>
+						
+	  				
+						    <label class="format_input"> 
+						      <input class="with-gap" value="mif" name="format_input_radio" type="radio"  />
+						      <span>MIF</span>
+						    </label>
+					
+
+						<div class="col s2" id="code" >codigo</div>
+						<div class="col s2" id="memory" >dados</div>		
+
+
+						
+						<button class="btn waves-effect waves-light" type="submit" name="action">Download
+							<i class="material-icons right">send</i>
+						</button>
+					</form>
+				</section>
+
+				<section id="simulator">
+					<h2 class="section_title">Simulator</h2>
+
+					<div id="simulation_menu" >
+						<button id="run_simulation" class="btn waves-effect waves-light" type="submit" name="action">run</button>
+						<button id="step_simulation" class="btn waves-effect waves-light" type="submit" name="action">step</button>
+					</div>
+
+					
+					<div id="simulation_code">
+						<h4>code</h4>
+						<table id="code_table" class="striped" >
+					        <thead>
+					            <tr>
+					            	<th>Line</th>
+					             	<th>Code HEX</th>
+					              	<th>Instruction</th>
+					          	</tr>
+					        </thead>
+
+					        <tbody>
+					        	<tr>
+					        		<td>1</td>
+					            	<td>0x00000000</td>
+					            	<td>nop x0, x0, x0</td>
+					        	</tr>
+					        	<tr>
+					           		<td>2</td>
+					           		<td>0x00000000</td>
+					           		<td>nop x0, x0, x0</td>
+					        	</tr>
+					        	<tr>
+					           		<td>3</td>
+					           		<td>0x00000000</td>
+					           		<td>nop x0, x0, x0</td>
+					        	</tr>					        	
+					        </tbody>
+					    </table>
+						
+					</div>
+
+					
+					<div id="simulation_registers">
+				    	<h4>registers</h4>
+				     	<table id="register_table" class="centered striped" >
+				        <thead>
+				            <tr>
+				             	<th>Register</th>
+				              	<th>Value</th>
+				             	<th>Register</th>
+				              	<th>Value</th>				              	
+				          	</tr>
+				        </thead>
+
+				        <tbody>
+				        	<tr>
+				            	<td id="reg_x0">x0</td>
+				            	<td id="reg_x0_val" contenteditable>0000000000000000</td>
+								<td id="reg_x16">x16</td>
+								<td id="reg_x16_val" contenteditable>1010100000000000</td>            
+				        	</tr>
+				        	<tr>
+				            	<td id="reg_x1">x1</td>
+				            	<td id="reg_x1_val" contenteditable>0000000111000010</td>
+				            					        		<td id="reg_x17">x17</td>
+								<td id="reg_x17_val" contenteditable>1010100000000000</td>
+           
+				        	</tr>
+			        		<tr>
+				        		<td id="reg_x2">x2</td>
+								<td id="reg_x2_val" contenteditable>1010100000000000</td>
+
+				        		<td id="reg_x18">x18</td>
+								<td id="reg_x18_val" contenteditable>1010100000000000</td>
+
+							</tr>
+			        		<tr>
+				        		<td id="reg_x3">x3</td>
+								<td id="reg_x3_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x19">x19</td>
+								<td id="reg_x19_val" contenteditable>1010100000000000</td>
+							
+							</tr>
+			        		<tr>
+				        		<td id="reg_x4">x4</td>
+								<td id="reg_x4_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x20">x20</td>
+								<td id="reg_x20_val" contenteditable>1010100000000000</td>
+							</tr>
+			        		<tr>
+				        		<td id="reg_x5">x5</td>
+								<td id="reg_x5_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x21">x21</td>
+								<td id="reg_x21_val" contenteditable>1010100000000000</td>
+
+							</tr>
+			        		<tr>
+				        		<td id="reg_x6">x6</td>
+								<td id="reg_x6_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x22">x22</td>
+								<td id="reg_x22_val" contenteditable>1010100000000000</td>
+
+							</tr>
+			        		<tr>
+				        		<td id="reg_x7">x7</td>
+								<td id="reg_x7_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x23">x23</td>
+								<td id="reg_x23_val" contenteditable>1010100000000000</td>
+
+							</tr>
+			        		<tr>
+				        		<td id="reg_x8">x8</td>
+								<td id="reg_x8_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x24">x24</td>
+								<td id="reg_x24_val" contenteditable>1010100000000000</td>
+
+							</tr>
+			        		<tr>
+				        		<td id="reg_x9">x9</td>
+								<td id="reg_x9_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x25">x25</td>
+								<td id="reg_x25_val" contenteditable>1010100000000000</td>
+
+							</tr>
+			        		<tr>
+				        		<td id="reg_x10">x10</td>
+								<td id="reg_x10_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x26">x26</td>
+								<td id="reg_x26_val" contenteditable>1010100000000000</td>
+
+							</tr>
+			        		<tr>
+				        		<td id="reg_x11">x11</td>
+								<td id="reg_x11_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x27">x27</td>
+								<td id="reg_x27_val" contenteditable>1010100000000000</td>
+
+							</tr>
+			        		<tr>
+				        		<td id="reg_x12">x12</td>
+								<td id="reg_x12_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x28">x28</td>
+								<td id="reg_x28_val" contenteditable>1010100000000000</td>
+							
+							</tr>
+			        		<tr>
+				        		<td id="reg_x13">x13</td>
+								<td id="reg_x13_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x29">x29</td>
+								<td id="reg_x29_val" contenteditable>1010100000000000</td>
+
+
+							</tr>
+			        		<tr>
+				        		<td id="reg_x14">x14</td>
+								<td id="reg_x14_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x30">x30</td>
+								<td id="reg_x30_val" contenteditable>1010100000000000</td>
+							
+							</tr>
+			        		<tr>
+				        		<td id="reg_x15">x15</td>
+								<td id="reg_x15_val" contenteditable>1010100000000000</td>
+				        		<td id="reg_x31">x31</td>
+								<td id="reg_x31_val" contenteditable>1010100000000000</td>
+
+							</tr>
+
+				        </tbody>
+				      </table>
+					</div>
+
+
+					<div id="simulation_memory_map">
+						<h4>memory map</h4>
+						<table id="register_table" class="centered striped" >
+					        <thead>
+					            <tr>
+					             	<th></th>
+					              	<th>0x03</th>
+					              	<th>0x02</th>
+					              	<th>0x01</th>
+					              	<th>0x00</th>
+					          	</tr>
+					        </thead>
+
+					        <tbody>
+
+				        		<tr>
+					        		<td id="reg_x31"><b>0x00000000</b></td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+								</tr>
+
+				        		<tr>
+					        		<td id="reg_x31"><b>0x00000004</b></td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+								</tr>
+				        		<tr>
+					        		<td id="reg_x31"><b>0x00000008</b></td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+								</tr>
+				        		<tr>
+					        		<td id="reg_x31"><b>0x0000000c</b></td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+								</tr>
+
+				        		<tr>
+					        		<td id="reg_x31"><b>0x00000010</b></td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+									<td id="reg_x31_val" contenteditable>0x00000000</td>
+								</tr>
+
+
+					        </tbody>
+					    </table>						
+					</div>
+
+				</section>
+
 			</div>
-
-		</div>
-
+		</main>
+		<footer>
+			
+		</footer>
 
 	</body>
 	<script src="{{url_for('static',filename='js/materialize.min.js')}}"></script>
 	<script>
 
-	  //var value = "# RISC-V Assembly Code\n\n.data\n    .asciiz \"texto\"\n\n.text\n    sub x9, zero, 10\n    add x10, ra, a0\n\n    ABCDFEabcdef";
-	  var value = "# RISC-V Assembly Code\n.data\n\tword_teste: .word 26\n\tstr_teste: .asciiz \"\\Hello, World!\\nTesting\\tEscaping!\"\n\n.text\n\tlw x4, x5, word_teste\n\taddi x9, zero, 10\n\taddi x9, zero, -3\n\tadd x10, x9, x4\n\tsw x10,8(x8)";
-	  
-	  var editor = CodeMirror(document.getElementById("code-editor"), {
-	    value: value,
-	    lineNumbers: true,
-	    mode: "riscv",
-	    keyMap: "sublime",
-	    autoCloseBrackets: true,
-	    matchBrackets: true,
-	    showCursorWhenSelecting: true,
-	    theme: "monokai",
-	    tabSize: 4,
-	    autofocus: true
-	  });
+		$(".dropdown-trigger").dropdown();
 
-	  var code;
-	  var memory;
-	  var errors;
+		document.addEventListener('DOMContentLoaded', function() {
+	    	var elems = document.querySelectorAll('.sidenav');
+	    	var instances = M.Sidenav.init(elems, options);
+	  	});
+
+		// Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+		// var collapsibleElem = document.querySelector('.collapsible');
+		// var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+		// Or with jQuery
+
+		var program_data;
+
+		var run_simulation = function(){
+			console.log(JSON.stringify(program_data['code']))
+			console.log(JSON.stringify(program_data['memory']))
+			$.post("/run", {code:JSON.stringify(program_data['code']),memory:JSON.stringify(program_data['memory'])}, function(data, status){
+		        if (status == "success"){
+		        	
+		        	simulator_response = JSON.parse(data);
+		        	//$("#simulation_registers").html(simulator_response['registers'])
+		        	
+		        	$("#simulation_registers").html(
+		        		simulator_response['registers']['00000'] + "<br>" +
+		        		simulator_response['registers']['00001'] + "<br>" +
+		        		simulator_response['registers']['00010'] + "<br>" +
+		        		simulator_response['registers']['00011'] + "<br>" +
+		        		simulator_response['registers']['00100'] + "<br>" +
+		        		simulator_response['registers']['00101'] + "<br>" +
+		        		simulator_response['registers']['00110'] + "<br>" +
+		        		simulator_response['registers']['00111'] + "<br>" +
+		        		simulator_response['registers']['01000'] + "<br>" +
+		        		simulator_response['registers']['01001'] + "<br>" +
+		        		simulator_response['registers']['01010'] + "<br>" +
+		        		simulator_response['registers']['01011'] + "<br>" +
+		        		simulator_response['registers']['01100'] + "<br>" +
+		        		simulator_response['registers']['01101'] + "<br>" +
+		        		simulator_response['registers']['01110'] + "<br>" +
+		        		simulator_response['registers']['01111'] + "<br>" +
+		        		simulator_response['registers']['10000'] + "<br>" +
+		        		simulator_response['registers']['10001'] + "<br>" +
+		        		simulator_response['registers']['10010'] + "<br>" +
+		        		simulator_response['registers']['10011'] + "<br>" +
+		        		simulator_response['registers']['10100'] + "<br>" +
+		        		simulator_response['registers']['10101'] + "<br>" +
+		        		simulator_response['registers']['10110'] + "<br>" +
+		        		simulator_response['registers']['10111'] + "<br>" +
+		        		simulator_response['registers']['10000'] + "<br>" +
+		        		simulator_response['registers']['10001'] + "<br>" +
+		        		simulator_response['registers']['10010'] + "<br>" +
+		        		simulator_response['registers']['10011'] + "<br>" +
+		        		simulator_response['registers']['10100'] + "<br>" +
+		        		simulator_response['registers']['10101'] + "<br>" +
+		        		simulator_response['registers']['10110'] + "<br>" +
+		        		simulator_response['registers']['10111'] + "<br>"
+
+
+
+		        		);
+		        	
+
+		        	//$("#simulation_memory_map").html(simulator_response['memory_map'])
+					for(i=0; i<simulator_response['memory_map'].length; i=i+1 ){
+		        		$("#simulation_memory_map").html($("#simulation_memory_map").html() + simulator_response['memory_map'][i] + "<br>");
+		        	}
+
+		        	//console.log(assmblr_response)
+		        	console.log(simulator_response)
+		        }
+		    });
+
+		} 
+			
+		$(document).ready(function(){
+			$('.sidenav').sidenav();
+			
+			$("#entrada").css("display","none");
+			$("#saida").css("display","none");
+			$("#simulator").css("display","block");
+
+			$("#menu_entrada").click(function(){
+				$("#entrada").css("display","block");
+				$("#saida").css("display","none");
+				$("#simulator").css("display","none");
+			});
+
+			$("#run_button").addClass("disabled")
+
+			$("#menu_saida").click(function(){
+				$("#entrada").css("display","none");
+				$("#saida").css("display","block");
+				$("#simulator").css("display","none");
+			});
+
+			$("#menu_simulator").click(function(){
+				$("#saida").css("display","none");
+				$("#entrada").css("display","none");
+				$("#simulator").css("display","block");
+
+			});
+
+			$("#run_button").click(function(){
+				$("#saida").css("display","none");
+				$("#entrada").css("display","none");
+				$("#simulator").css("display","block");
+
+				run_simulation()
+
+			});
+
+
+			$("#run_simulation").click(function(){
+				run_simulation()
+			});
+
+		});
+
+
+
+
+		//var value = "# RISC-V Assembly Code\n\n.data\n    .asciiz \"texto\"\n\n.text\n    sub x9, zero, 10\n    add x10, ra, a0\n\n    ABCDFEabcdef";
+		var value = "# RISC-V Assembly Code\n.data\n\tword_teste: .word 26\n\tstr_teste: .asciiz \"\\Hello, World!\\nTesting\\tEscaping!\"\n\n.text\n\tlw x4, x5, word_teste\n\taddi x9, zero, 10\n\taddi x9, zero, -3\n\tadd x10, x9, x4\n\tsw x10,8(x8)";
+
+		var editor = CodeMirror(document.getElementById("code-editor"), {
+			value: value,
+			lineNumbers: true,
+			mode: "riscv",
+			keyMap: "sublime",
+			autoCloseBrackets: true,
+			matchBrackets: true,
+			showCursorWhenSelecting: true,
+			theme: "monokai",
+			tabSize: 4,
+			autofocus: true
+		});
+
+		var code;
+		var memory;
+		var errors;
 
 
 		display_data = function(field,data,data_format){
@@ -165,15 +549,22 @@
 	        	code = assmblr_response['code'];
 	        	memory = assmblr_response['memory'];
 	        	errors = assmblr_response['errors'];
-	        		        	
-
 	        	
+	        	if( errors == "" ){
+	        		$("#run_button").removeClass("disabled")
+	        	}else{
+	        		$("#run_button").addClass("disabled")
+	        	}
 	        	data_format = $("input[name=format_input_radio]:checked")[0].value
 	        	
-	        	display_data("code", code[data_format]);
-	        	display_data("memory", memory[data_format]);
-	        	display_data("errors", errors);
+	        	display_data("code", code[data_format], data_format);
+	        	display_data("memory", memory[data_format], data_format);
+	        	display_data("errors", errors,data_format);
 
+	        	program_data = {
+	        		"code" : code["bin"],
+	        		"memory" : memory["bin"]
+	        	}
 	        }	        
 	    });
 
