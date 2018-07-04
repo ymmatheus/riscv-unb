@@ -1,10 +1,58 @@
-\section{objetivos atingidos}
-\section{pontos positivos e negativos}
-\section{dificuldades}
-\section{melhorias}
-	- arquitetura 64 bits\\
-	- sistema de login/logout\\
-	- capacidade de salvar, importar códigos\\
-	- contador de instruçoes\\
-	- bitmap mapping\\
-\section{trabalhos futuros}
+\section{Objetivos atingidos}
+
+	Neste projeto conseguimos realizar um primeiro estudo da arquitetura RISC-V, e implementar uma interface de fácil utilização, multiplataforma, onde um usuário pode escrever códigos na linguagem assembly RISC-V, realizar a montagem do código, e rodar uma simulação deste código.
+
+	O sistema permite exportar as saídas do montador para que o usuário possa simular seu código em outras ferramentas de simulação por exemplo \textit{Spike}, ou uma implementação própria em uma \textit{FPGA}.
+
+	Os módulos de montagem e simulação foram implementados como biblitoecas separadas, por isso podem ser utilizadas em outros contextos. Por exemplo, em linha de comando.
+
+\section{Pontos positivos e negativos}
+
+	Alguns pontos positivos da ferramenta são aqueles já citados quando descrevemos as vantagens de se utilizar uma plataforma web, e alguns outros,
+	\begin{itemize}
+		\item Não necessidade de instalação e configurações para começar a utilzar a ferramenta
+		\item Multiplataforma
+		\item Extensibilidade
+	\end{itemize}
+
+	Desvantagens dessa solução hospedada são,
+
+	\begin{itemize}
+		\item Custo de hospedagem
+		\item Possível indisponibilidade	
+	\end{itemize}
+
+	Porém, apesar dessas desvantagens citadas acima, o fato da solução ser aberta diminui o peso dessas desvantagens, pois o código pode ser baixado e rodado localmente. 
+
+	Assim, mesmo que haja algum problema de hospedagem, pode-se obter facilmente o código fonte, e tendo um interpretador instalado em seu computador, se pode fazer sua própria hospedagem local, pois o interpretador já fornece um servidor web imbutido nativamente para desenvolvimento.
+
+
+\section{Dificuldades}
+
+	No começo do projeto tentou-se implementar um editor de texto em javascript sem utilização de bibliotecas terceiras, porém a tarefa se mostrou muito difícil de ser realizada, então optou-se por utilizar a biblioteca CodeMirror, muito utilizada por vários sites populares de desenvolvimento.
+
+	Na parte do montador foi onde houve o maior esforço. A parte documentada que diz respeito a linguagem de programação ainda é escassa, porém para a solução limitada que foi feita neste projeto foi o suficiente.
+
+	O simulador foi bem simplificado, por isso não houveram grandes dificuldades. O desenvolvimento do simulador tinham algumas dificuldades de saber como as instruções por exemplo de "branch" e "jump" funcionavam à nível de hardware, pois algumas informações sobre estas não ficam explicitas nas documentações.
+
+	Grande parte do esforço também foi direcionado à integração do frontend com o backend, pois pode-se considerar dois sistemas diferentes. O que era um dos objetivos, para que a ferramenta seja flexível, e possa ser extendida e evoluida mais a frente.
+
+\section{Melhorias e trabalhos futuros}
+
+	Existem muitas funcionalidades a serem feitas, citando alguns temos:
+
+	\begin{itemize}
+		\item Expandir arquitetura para 64-bits
+		\item Sistema de login/logout, com um sistema de usuários, poderiamos montar um sistema para salvar e compartilhar códigos com outros usuários. Também inserir módulos personalizados.
+		\item Contador de instruções.
+		\item Bitmap mapping, para termos uma representação visual da memória do sistema.
+		\item Adição de instruções e pseudo-instruções customizadas.
+		\item Utilização de bibliotecas ou frameworks mais modernos para frontend como ReactJS, AngularJS, VueJS.
+		\item Melhorar interface para dispositivos móveis.
+		\item Step run.
+	\end{itemize}
+
+	A parte de extensões da solução não foi realizada, porém teria muitas aplicações e diferenciaria bastante de outras ferramentas. Para isso precisaríamos ter uma documentação bem especificada, para que haja compatibilidade da interface entre os módulos de extensão.
+
+	Uma das funcionalidades que seria muito interessante ter realizado no projeto seria a possível extensão de códigos em C, para podermos utilizar modelos descritos em mais baixo nível feitos por exemplo com a biblioteca \textit{SystemC}. Com isso poderíamos testar com maior facilidade implementações baseados em performace.
+

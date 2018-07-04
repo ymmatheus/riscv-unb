@@ -112,4 +112,10 @@ h2.section_title{
 #simulation_memory_map{
 	clear:left;
 	float:left;
+	
+}
+
+#memory_map_table_rows{
+	height: 600px;
+	overflow-y: scroll;
 }

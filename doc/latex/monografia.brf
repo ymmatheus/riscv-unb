@@ -1,4 +1,13 @@
-\backcite {riscv_spec}{{1}{1.1}{section.1.1}}
-\backcite {riscv_foundation}{{2}{1.1.3}{subsection.1.1.3}}
-\backcite {riscv_fboardmembers}{{3}{1.1.3}{subsection.1.1.3}}
-\backcite {cython_home}{{3}{1.2}{section.1.2}}
+\backcite {riscv_spec}{{1}{1}{chapter.1}}
+\backcite {Waterman:EECS-2016-1}{{2}{1.1}{section.1.1}}
+\backcite {riscv_commercial}{{4}{1.2}{section.1.2}}
+\backcite {riscv_nvidia}{{4}{1.2}{section.1.2}}
+\backcite {riscv_spec}{{6}{2.1}{section.2.1}}
+\backcite {Waterman:EECS-2016-1}{{8}{2.1.1}{subsection.2.1.1}}
+\backcite {riscv_foundation}{{8}{2.1.3}{subsection.2.1.3}}
+\backcite {riscv_fboardmembers}{{9}{2.1.3}{subsection.2.1.3}}
+\backcite {riscv_faq}{{9}{2.1.4}{subsection.2.1.4}}
+\backcite {meltdown_spectre_exploits}{{9}{2.1.4}{subsection.2.1.4}}
+\backcite {meltdown_spectre_media}{{9}{2.1.4}{subsection.2.1.4}}
+\backcite {riscv_security}{{9}{2.1.4}{subsection.2.1.4}}
+\backcite {cython_home}{{11}{2.4}{section.2.4}}

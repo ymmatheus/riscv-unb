@@ -1,17 +1,20 @@
 Estrutura do texto
 
-1. Introdução														15 pags
-	- RISCV
-		historia
-			Introduced	2010
-			onde
-			por quem
-			objetivos
-				risc
-	
-		risc-v foundation
+1. Introdução														3 pags
+	- processadores: MIPS, ARM e RISCV
+	- motivação: importância do RISCV, acadêmica e industrial
+ 	- ambiente de desenvolvimento
 
-		opensource
+2. Fundamentação teórica											15 pags
+	- arquitetura do riscv: ISA
+		- diferenças
+			- comparações com ARM
+			- comparações com MIPS
+		- caracteristicass
+		- como funciona
+		- tipos de instruções
+		- formatos de instruções
+		- opensource
 			vantagens
 				vulnerabilidades
 				the spectre and meltdown vulnerabilities
@@ -28,30 +31,6 @@ Estrutura do texto
 			- academica
 			- industrial
 
-		refs
-			"Instruction Sets Should Be Free: The Case For RISC-V" 							https://people.eecs.berkeley.edu/~krste/papers/EECS-2014-146.pdf
-			"Improving Energy Efficiency and Reducing Code Size with RISC-V Compressed"		https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-63.pdf
-
-			Google, HP, Oracle Join RISC-V Open source processor core gains traction
-			Rick Merritt
-			12/28/2015 08:00 AM EST
-			https://www.eetimes.com/document.asp?doc_id=1328561&page_number=1
-
-	- PROCESSADORES MIPS, ARM e RISCV
-		- historia
-		- comparacoes
-
-	- ambiente de desenvolvimento
-
-2. Fundamentação teórica											15 pags
-	- arquitetura do riscv: ISA
-		- diferenças
-			- comparações com ARM
-			- comparações com MIPS
-		- caracteristicass
-		- como funciona
-		- tipos de instruções
-		- formatos de instruções
 	- montador
 		- conceito
 		- algoritmo duas passagens
@@ -63,7 +42,7 @@ Estrutura do texto
 		- vantagens e desvantagens
 	- escalabilidade ( novos modulos )
 
-3. Ambiente proposto												5 pags											
+3. Ambiente proposto												15 pags											
 	- Arquitetura de software
 	- interface web
 		- codemirror
@@ -108,18 +87,12 @@ Estrutura do texto
 -- implementação da simulação step by step
 
 
-19/6 (ter) -> [Introdução] 2 páginas 
-20/6 (qua) -> [Conclusoes] 4 página
-21/6 (qui) -> **4pags	*12 páginas*
-22/6 (sex) -> ?
-23/6 (sab) -> ?
-24/6 (dom) -> ?
-25/6 (seg) -> **4 pags
-26/6 (ter) -> **4 pags
-27/6 (qua) -> **4 pags
-28/6 (qui) -> **4 pags
-29/6 (sex) -> ! *30 paginas*
-30/6 (sab) -> !	**2
+[INTRODUCAO]
+[FUNDAMENTACAO]
+[AMBIENTE]
+[RESULTADOS]
+%%%% [CONCLUSOES]
+
 01/7 (dom) -> !	**2
 02/7 (seg) -> 	**2
 03/7 (ter) -> 	**2
@@ -134,3 +107,23 @@ Estrutura do texto
 12/7 (qui) -> Ajustes
 13/7 (sex) -> Provavel data de apresentação
 
+incrementar ambiente{
+	interface web{
+		3. screenshots
+	}
+
+	montador{
+		4. breve explicacao
+		5. screenshots
+	}
+	
+	Simulador{
+		6. breve explicacao
+		7. screenshots
+	}
+}
+
+Implementação simulador
+
+resultado codigo simples de soma
+	

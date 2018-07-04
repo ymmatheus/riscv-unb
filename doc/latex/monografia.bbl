@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
   \providebibliographyfont{name}{}%
   \providebibliographyfont{lastname}{}%
   \providebibliographyfont{title}{\emph}%
@@ -20,27 +20,79 @@
   {\btxifchangecase {The risc-v instruction set manual, volume i: User-level
   isa, document version 2.2}{The RISC-V Instruction Set Manual, Volume I:
   User-Level ISA, Document Version 2.2}}.
-\newblock https://riscv.org/specifications/,
+\newblock \url{https://riscv.org/specifications/},
   \btxprintmonthyear{.}{May}{2017}{long}.
+
+\bibitem {Waterman:EECS-2016-1}
+\btxnamefont {\btxlastnamefont {Waterman}, Andrew}\btxauthorcolon\
+  \btxtitlefont {Design of the RISC-V Instruction Set Architecture}.
+\newblock \btxphdthesis {}, EECS Department, University of California,
+  Berkeley, \btxprintmonthyear{.}{Jan}{2016}{long}.
+\newblock {\latintext
+  \btxurlfont{http://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-1.html}}.
+
+\bibitem {riscv_commercial}
+\btxnamefont {\btxlastnamefont {Armasu}, Lucian}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {Big tech players start to adopt the risc-v chip
+  architecture}{Big Tech Players Start To Adopt The RISC-V Chip Architecture}}.
+\newblock
+  \url{https://www.tomshardware.com/news/big-tech-players-risc-v-architecture,36011.html},
+  \btxprintmonthyear{.}{November}{2017}{long}.
+
+\bibitem {riscv_nvidia}
+\btxnamefont {\btxlastnamefont {NVIDIA}}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {Nvidia risc-v story}{NVIDIA RISC-V Story}}.
+\newblock
+  \url{https://riscv.org/wp-content/uploads/2016/07/Tue1100_Nvidia_RISCV_Story_V2.pdf},
+  \btxprintmonthyear{.}{July}{2016}{long}.
 
 \bibitem {riscv_foundation}
 \btxnamefont {\btxlastnamefont {Foundation}, RISC\btxfnamespacelong
   V}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Sobre a risc-v
   foundation}{Sobre a RISC-V Foundation}}.
-\newblock https://riscv.org/risc-v-foundation/, 2018.
+\newblock \url{https://riscv.org/risc-v-foundation/}, 2018.
 \newblock Accessed: 2018-06-20.
 
 \bibitem {riscv_fboardmembers}
 \btxnamefont {\btxlastnamefont {Foundation}, RISC\btxfnamespacelong
   V}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Membros do conselho
   risc-v foundation}{Membros do conselho RISC-V Foundation}}.
-\newblock https://riscv.org/leadership/, 2018.
+\newblock \url{https://riscv.org/leadership/}, 2018.
+\newblock Accessed: 2018-06-20.
+
+\bibitem {riscv_faq}
+\btxnamefont {\btxlastnamefont {Foundation}, RISC\btxfnamespacelong
+  V}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Frequentyl asked
+  questions}{Frequentyl Asked Questions}}.
+\newblock \url{https://riscv.org/faq/}, 2018.
+
+\bibitem {meltdown_spectre_exploits}
+\btxnamefont {\btxlastnamefont {Technology}, Graz\btxfnamespacelong
+  University~of}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Meltdown and
+  spectre exploits}{Meltdown and Spectre exploits}}.
+\newblock \url{https://meltdownattack.com/}, 2018.
+\newblock Accessed: 2018-06-30.
+
+\bibitem {meltdown_spectre_media}
+\btxtitlefont {\btxifchangecase {Two security flaws in modern chips cause big
+  headaches for the tech business}{Two security flaws in modern chips cause big
+  headaches for the tech business}}.
+\newblock
+  \url{https://www.economist.com/science-and-technology/2018/01/04/two-security-flaws-in-modern-chips-cause-big-headaches-for-the-tech-business}.
+\newblock Accessed: 2018-06-20.
+
+\bibitem {riscv_security}
+\btxnamefont {\btxlastnamefont {Krste~Asanović}, Rick\btxfnamespacelong
+  O’Connor}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Building a more
+  secure world with the risc-v isa}{Building a More Secure World with the
+  RISC-V ISA}}.
+\newblock \url{https://riscv.org/2018/01/more-secure-world-risc-v-isa/}, 2018.
 \newblock Accessed: 2018-06-20.
 
 \bibitem {cython_home}
 \btxtitlefont {\btxifchangecase {Cython c-extensions for python}{Cython
   C-Extensions for Python}}.
-\newblock http://cython.org/.
+\newblock \url{http://cython.org/}.
 \newblock Accessed: 2018-06-20.
 
 \end{thebibliography}

@@ -518,6 +518,9 @@ def second_pass(code_text):
                                     im = immediate # apenas apra facilitar leitura
                                     instr = im[0] + im[10:20] + im[9] + im[1:9] + operand0 + opcode
                                     
+                        elif ( instruction_type == "b" ):
+                            pass
+
 
                         else:
                             WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Erro: Tipo da instrucao invalido. linha "+str(contador_linha) )

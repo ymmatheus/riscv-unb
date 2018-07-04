@@ -2,46 +2,44 @@
 \babel@toc {american}{}
 \babel@toc {brazil}{}
 \contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}RISC-V}{1}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}Objetivos}{1}{subsection.1.1.1}
-\contentsline {subsection}{\numberline {1.1.2}Hist\IeC {\'o}ria}{2}{subsection.1.1.2}
-\contentsline {subsection}{\numberline {1.1.3}RISC-V Foundation}{2}{subsection.1.1.3}
-\contentsline {subsection}{\numberline {1.1.4}Open Source}{3}{subsection.1.1.4}
-\contentsline {section}{\numberline {1.2}Objetivos e motiva\IeC {\c c}\IeC {\~a}o deste projeto}{3}{section.1.2}
-\contentsline {section}{\numberline {1.3}Processadores MIPS, ARM e RISC-V}{4}{section.1.3}
-\contentsline {chapter}{\numberline {2}Fundamenta\IeC {\c c}\IeC {\~a}o te\IeC {\'o}rica}{5}{chapter.2}
-\contentsline {section}{\numberline {2.1}Arquitetura RISC-V: ISA}{5}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Diferen\IeC {\c c}as}{5}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Caracter\IeC {\'\i }sticas}{5}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Como funciona}{5}{subsection.2.1.3}
-\contentsline {subsection}{\numberline {2.1.4}Instru\IeC {\c c}\IeC {\~o}es}{5}{subsection.2.1.4}
-\contentsline {subsubsection}{Tipos de instru\IeC {\c c}\IeC {\~o}es}{5}{section*.6}
-\contentsline {section}{\numberline {2.2}Montador}{6}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Conceito}{6}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Algoritmo de duas passagens}{6}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}Aplica\IeC {\c c}\IeC {\~o}es web}{6}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Arquitetura}{6}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Vantagens e desvantagens}{6}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Escalabilidade ( novos modulos )}{6}{section.2.4}
-\contentsline {chapter}{\numberline {3}Ambiente Proposto}{7}{chapter.3}
-\contentsline {section}{\numberline {3.1}Ambiente proposto}{7}{section.3.1}
-\contentsline {section}{\numberline {3.2}Arquitetura de software}{7}{section.3.2}
-\contentsline {section}{\numberline {3.3}Interface web}{7}{section.3.3}
-\contentsline {section}{\numberline {3.4}Simulador}{7}{section.3.4}
-\contentsline {section}{\numberline {3.5}Caracter\IeC {\'\i }sticas}{7}{section.3.5}
-\contentsline {section}{\numberline {3.6}Montador}{7}{section.3.6}
-\contentsline {section}{\numberline {3.7}Novos modulos}{7}{section.3.7}
-\contentsline {chapter}{\numberline {4}Resultados e Avalia\IeC {\c c}\IeC {\~a}o do Sistema}{9}{chapter.4}
-\contentsline {section}{\numberline {4.1}entradas do sistema}{9}{section.4.1}
-\contentsline {section}{\numberline {4.2}saidas do sistema}{9}{section.4.2}
-\contentsline {section}{\numberline {4.3}simula\IeC {\c c}\IeC {\~a}o}{9}{section.4.3}
-\contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es}{10}{chapter.5}
-\contentsline {section}{\numberline {5.1}objetivos atingidos}{10}{section.5.1}
-\contentsline {section}{\numberline {5.2}pontos positivos e negativos}{10}{section.5.2}
-\contentsline {section}{\numberline {5.3}dificuldades}{10}{section.5.3}
-\contentsline {section}{\numberline {5.4}melhorias}{10}{section.5.4}
-\contentsline {section}{\numberline {5.5}trabalhos futuros}{10}{section.5.5}
-\contentsline {chapter}{Refer\^encias}{11}{section*.7}
+\contentsline {section}{\numberline {1.1}Os Processadores: MIPS, ARM e outros antes do RISC-V}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Import\IeC {\^a}ncia acad\IeC {\^e}mica e industrial do RISC-V}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Ambiente de desenvolvimento}{4}{section.1.3}
+\contentsline {section}{\numberline {1.4}Explica\IeC {\c c}\IeC {\~a}o dos cap\IeC {\'\i }tulos}{4}{section.1.4}
+\contentsline {chapter}{\numberline {2}Fundamenta\IeC {\c c}\IeC {\~a}o te\IeC {\'o}rica}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Arquitetura RISC-V: ISA}{6}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Objetivos}{7}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Hist\IeC {\'o}ria}{8}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}RISC-V Foundation}{8}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Open Source}{9}{subsection.2.1.4}
+\contentsline {subsection}{\numberline {2.1.5}Caracter\IeC {\'\i }sticas}{10}{subsection.2.1.5}
+\contentsline {subsection}{\numberline {2.1.6}Como funciona}{10}{subsection.2.1.6}
+\contentsline {subsection}{\numberline {2.1.7}Instru\IeC {\c c}\IeC {\~o}es}{10}{subsection.2.1.7}
+\contentsline {subsubsection}{Tipos de instru\IeC {\c c}\IeC {\~o}es}{10}{section*.7}
+\contentsline {section}{\numberline {2.2}Montador}{10}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Conceito}{10}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Algoritmo de duas passagens}{10}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Aplica\IeC {\c c}\IeC {\~o}es web}{10}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Arquitetura}{10}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Vantagens e desvantagens}{10}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}Extensiblidade}{11}{section.2.4}
+\contentsline {chapter}{\numberline {3}Ambiente Proposto}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Ambiente proposto}{12}{section.3.1}
+\contentsline {section}{\numberline {3.2}Arquitetura de software}{12}{section.3.2}
+\contentsline {section}{\numberline {3.3}Interface web}{13}{section.3.3}
+\contentsline {section}{\numberline {3.4}Montador}{14}{section.3.4}
+\contentsline {section}{\numberline {3.5}Simulador}{14}{section.3.5}
+\contentsline {section}{\numberline {3.6}Novos m\IeC {\'o}dulos}{14}{section.3.6}
+\contentsline {chapter}{\numberline {4}Resultados e Avalia\IeC {\c c}\IeC {\~a}o do Sistema}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}entradas do sistema}{15}{section.4.1}
+\contentsline {section}{\numberline {4.2}saidas do sistema}{15}{section.4.2}
+\contentsline {section}{\numberline {4.3}simula\IeC {\c c}\IeC {\~a}o}{15}{section.4.3}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es}{16}{chapter.5}
+\contentsline {section}{\numberline {5.1}Objetivos atingidos}{16}{section.5.1}
+\contentsline {section}{\numberline {5.2}Pontos positivos e negativos}{16}{section.5.2}
+\contentsline {section}{\numberline {5.3}Dificuldades}{17}{section.5.3}
+\contentsline {section}{\numberline {5.4}Melhorias e trabalhos futuros}{17}{section.5.4}
+\contentsline {chapter}{Refer\^encias}{19}{section*.8}
 \babel@toc {american}{}
 \babel@toc {american}{}
 \babel@toc {american}{}

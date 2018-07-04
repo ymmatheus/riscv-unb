@@ -2,101 +2,90 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{RISC-V}%
 
-	RISC-V é uma arquitetura de conjunto de instruções aberta, criada na Universidade da Califórnia, em Berkeley. Originalmente foi pensada para ser utilizada na pesquisa e ensino da área de arquitetura de computadores, mas está se tornando um padrão de arquitetura aberta para a indústria.~\cite{riscv_spec}
+Este projeto é um estudo da arquitetura RISC-V, e implementações de seus conceitos em ferramentas auxiliares. Estas ferramentas serão utilizadas para pesquisa, ensino, e aplicações de conceito estudados na área de arquitetura de computadoers utilizando a arquitetura mencionada.
 
-	Sua arquitetura obedece aos padrões RISC (Reduced Instruction Set Computing), tendo instruções simples e completas. Foi projetada para ser rápida, ocupar pouco espaço físico, ter baixo consumo de energia, ser extensível, e compatível com entre suas versões.
+RISC-V é uma arquitetura de conjunto de instruções aberta, criada na Universidade da Califórnia, em Berkeley. Originalmente foi pensada para ser utilizada na pesquisa e ensino da área de arquitetura de computadores, mas está se tornando um padrão de arquitetura aberta para a indústria.~\cite{riscv_spec}
 
-	Seu nome é pronunciado na língua inglesa como \textit{"risc five"}. O motivo de ser \textit{"five"} é devido ao fato de que é o quinto maior projeto de uma ISA RISC desenvolvida na UC Berkeley. As primeiras foram RISC-I, RISC-II, SOAR, e SPUR. O numeral romano "V" de RISC-V também funciona com significado de \textit{"variations"} e \textit{"vectors"}.
+Seu nome é pronunciado na língua inglesa como \textit{"risc five"}. O motivo de ser \textit{"five"} é devido ao fato de que é o quinto maior projeto de uma ISA RISC desenvolvida na UC Berkeley. As primeiras foram RISC-I, RISC-II, SOAR, e SPUR. O numeral romano "V" de RISC-V também funciona com significado de \textit{"variations"} e \textit{"vectors"}.
 
-	\subsection{Objetivos}
+Ao iniciar o projeto haviam poucas ferramentas relacionada a arquitetura RISC-V, e as ferramentas que haviam eram de difícil instalação, e configuração. Para este projeto foi implementado um montador, e um simulador para a ISA base RV32I. Este módulo base da arquitetura cobre os pontos principais de uma arquitetura funcional. 
 
-		Seus projetistas sempre são perguntados o motivo ao qual eles quiseram desenvolver uma nova ISA. Alguns dos motivos para o qual usar uma ISA comercial são a existência de suporte de um ecossistema de software, tanto ferramentas de desenvolvimento, portabilidade e ferramentas educacionais, outros benefícios seriam a grande quantidade de documentação, tutoriais e exemplos para o desenvolvimento.\\
+O sistema foi desenvolvido com intuito de ser multiplataforma, extensível, fácil utilização, e também para que outros possam facilmente continuar a evolução do projeto. Utilizar a plataforma Web para a disponibilização facilita a utilização imediata em qualquer dispositivo com um Browser e acesso a internet, sem a necessidade de instalações e configurações iniciais que podem trazer dificuldades e desviar a atenção principal que é o estudo da arquitetura RISC-V. 
 
-		Porém estas vantagens são pequenas na prática, e listam várias disvantagens ao utilizar ISAs comerciais,
+Estudar arquitetura de computadores é uma tarefa difícil, quanto mais fáceis e didáticas forem as ferramentas utilizadas, melhor para o aprendizado. Um grande ecossistema de uma solução pode fazer uma tecnologia evoluir muito mais rápido, por isso é muito importante desenvolver ferramentas que auxiliam a aprendizagem e utilização dessa nova arquitetura.
 
+
+	\section{Os Processadores: MIPS, ARM e outros antes do RISC-V}
+
+		As ISAs MIPS e ARM tiveram grande influência na arquitetura RISC-V, porém existem alguns detalhes técnicos que desfavorecem o uso destas arquiteturas ao invés de criar a nova RISC-V, no ponto de vista dos autores do RISC-V ~\cite{Waterman:EECS-2016-1},
+
+		O MIPS é uma ISA criada no começo dos anos 80, em Stanford, seu design utiliza a filosofia RISC, e facilita implementação de pipelines. MIPS foi implementado comercialmente pela primeira vez no processador R2000, em 1986.
+
+		Algumas desvantagens que desencorajam o uso do MIPS principalmente para implementações de alta performace:
 		\begin{itemize}
-			\item ISAs comerciais são proprietárias
-			\item ISAs comerciais são populares somente em alguns nichos do mercado
-			\item ISAs comerciais vem e vão
-			\item ISAs populares são complexas
-			\item ISAs comerciais dependem de outros fatores para trazer aplicações
-			\item ISAs comerciais populares não são projetadas para extensibilidade
-			\item Uma ISA comercial modificada é uma nova ISA
+			\item A ISA é exageradamente otimizada para o padrão de pipeline de cinco estágios em ordem, como jumps e branches são atrasados, isso complica implementações super-escalares e super-pipelines. Sendo que o recurso de branch delay slot, não pode ser retirada por questões de compatibilidade.
+
+			\item A ISA provê um pobre suporte para código de posições independentes. A revisão de 2014 melhorou endereçamento relativo ao contador de programa, porém as chamadas ainda necessitam geralmente de mais de uma instrução.
+
+			\item Imediatos de 16 bits consomem muito espaço de codificação de instruções, deixando pouco espaço para futuras extensões da ISA, ou trabalhar com instruções comprimidas.
+
+			\item Multiplicações e divisões utilizam recursos especiais de arquitetura.
 		\end{itemize}
 
-		A posição dos projetistas é que, em um sistema computacional, a ISA talvez seja a interface mais importante, e não existe razão pra que esta seja proprietária.
+		Além dessas e algumas outras questões técnicas, MIPS não pode ser utilizado em várias situações pelo fato de ser proprietária. Históricamente, a patente da MIPS Technologies sobre instruções de \textit{load} e \textit{store} desalinhados, preveniu terceiros de implementar totalmente sua ISA.
 
-		
+		Outra arquitetura popular que teve influência no MIPS é a arquitetura ARM, mais especificamente as arquiteturas ARMv7 e ARMv8. Estas arquitetura são baseadas na filosofia RISC, e são de longe as mais utilizadas no mundo. A arquitetura é desenvolvida hoje pela empresa britânica ARM Holdings. Inicialmente criada pela Acorn Computers Limited de Cambridge, Inglaterra, entre 1983 e 1985, baseado no processador RISC-I da Berkeley.
 
-			- eficiente energetica\\
-			- compatibilidade\\
-			- simples\\
-			- escalavel\\
-			- modular\\
+		A utilização do ARM foi desconsiderada principalmente pelos seguintes motivos,
+		\begin{itemize}
+			\item Quando o projeto foi iniciado, a arquitetura estava na versão quatro. Nesta versão ainda não havia suporte para 64 bits.
 
+			\item A ISA possui embutida uma ISA para instruções comprimidas e uma ISA de tamanho variável, porém são codificadas de forma diferente da ISA comum 32 bits, portanto os decodificadores são ineficientes, energeticamente, temporalmente e em relação a custo.
 
+			\item A ISA tem muitos recursos que complicam implementações. Por exemplo o contador de programa é um dos registradores endereçáveis, e o bit menos significativo do contador seleciona qual ISA está executando (ARM tradicional ou de instruções comprimidas) e assim a instrução ADD, por exemplo, consegue modificar o valor do contador de programa. 
 
+			\item Mesmo que fosse possível implementar a arquitetura ARM legalmente, a quantidade de instruções é gigantesca e seria técnicamente bem desafiador.   
 
-	\subsection{História}%
-		A ISA RISC-V foi originalmente desenvolvida na Universidade da Califórnia, Berkeley, na Divisão de Ciência da computação, no departamento de Engenharia Elétrica e Ciência da Computação. Baseada na experiência com projetos passados de seus projetistas, a definição da ISA foi iniciada no verão de 2010.\\
-
-		Os primeiros processadores RISC-V fabricados foram escritos em Verilog e manufaturados em tecnologia de pré-produção de 28 nm FD-SOI (\textit{Fully Depleted Silicon On Insulator}) da companhia STMicroeletronics com o nome \textit{Raven-1}
-
-		%Andrew Waterman and Yunsup Lee developed the C++ ISA simulator “Spike”, used as a golden model in development and named after the golden spike used to celebrate completion of the US transcontinental railway. Spike has been made available as a BSD open-source project.
-
-	
-
-	\subsection{RISC-V Foundation}
-		
-		A \textit{RISC-V Foundation} é uma organização sem fins lucrativos, criada para direcionar futuro desenvolvimento e incentivar a utilização da ISA RISC-V.\ ~\cite{riscv_foundation} 
-
-		O presidente do conselho atualmente é Krste Asanovic, professor do departamento de Engenharia elétrica e ciência da computação na Univerisdade da Califórnia em Berkeley. Também co-fundado da empresa SiFive Inc., a qual incentiva do uso comercial de processadores RISC-V.\
-
-		E o vice-presidente é o professor David Patterson, muito conhecido pelo livro \textit{Computer Architecture: A Quantitative Approach}, que escreveu juntamente com John Hennessy, e suas pesquisas relacionadas a RISC, RAID, e Redes de estações de trabalho.\
-
-		Outros membros incluem:\
-		\begin{itemize}  
-			\item Zvonimir Bandic, pesquisador e diretor da Western Digital Corporation. 
-			\item Charlie Hauck, CEO da Bluespec Inc.
-			\item Frans Sijstermans, vice presidente de engenharia da NVIDIA.
-			\item Ted Speers, chefe de arquitetura de produtos e planejamento do grupo SoC da Microsemi.
-			\item Rob Oshana, gerente de desenvolvimento de software e negócios em segurança na NXP Semiconductors. 
 		\end{itemize}
+		Entre outros motivos, estes são alguns dos principais que levaram os autores do RISC-V desenvolverem sua própria ISA e não utilizar algumas já consolidadas para seus projetos.
 
-		e também, Sue Leininger, gerente de comunidade e Rick O’Connor, director executivo.~\cite{riscv_fboardmembers}
+		Além dessas, existem outras que foram consideradas, como \textit{SPARC}, arquitetura open-source desenvolvida pela Sun Microsystems, \textit{Alpha}, desenvolvida pela Digital Equipment Corporation, \textit{OpenRISC}, evolução da arquitetura educacional open-source \textit{DLX} desenvolvida pelo Patterson e Henessy.
 
-	\subsection{Open Source}
-		
-		O fato da arquitetura ser Open Source traz inúmeras vantagens, principalmente na parte de distribuição e compartilhamento.
-		vantagens\\
-			vulnerabilidades\\
-			the spectre and meltdown vulnerabilities\\
-		licensa\\
+	\section{Importância acadêmica e industrial do RISC-V}
 
+		RISC-V foi desenvolvido por Krste Asanoviü, Andrew Waterman, e Yunsup Lee na Universidade da Califórnia, Berkeley, com colaboração de David Patterson. Eles precisavam de uma ISA que pudessem estudar, implementar com liberdade para fins acadêmicos, porém como visto na seção anterior, nenhuma se encaixava perfeitamente no que eles precisavam. Na maioria das vezes, muito complexas, ou muito específicas, ou simplesmente fechadas.
 
+		Com essa necessidade surgiu o RISC-V, uma arquitetura de conjunto de instruções de propósito geral, open-source, modular, com a ambição de ser um conjunto universal, livre e grátis para utilização em um amplo espectro de problemas, desde soluções embarcadas, até soluções de alta performance, e aprendizagem de máquina por exemplo.
 
+		Com grandes empresas colaboradoras como Google, Nvidia, Western Digital, Oracle, e também as companhias de chip IBM, AMD, e Qualcomm, a ISA tem ganhado espaço nas áreas comerciais também.
 
-\section{Objetivos e motivação deste projeto}
+		A Western Digital, por exemplo, anunciou em um Workshop que irá liderar a industria na troca por mais ISAs RISC-V utilizando um bilhão de núcleos RISC-V em seus dispositivos~\cite{riscv_commercial}. Em outro workshop, NVIDIA apresentou por que e como irá implementar novos núcleos para seus micro-controladores utilizando o RISC-V.~\cite{riscv_nvidia}
 
-	RISC-V tem ganhado muito espaço tanto na academia quanto na industria, começar um estudo desta arquitetura na universidade de brasilia e prover ferramentas para facilitar o inicio destes estudos.
+		Os criadores do RISC-V fundaram uma empresa chamada SiFive, na qual eles vendem kits de desenvolvimento estilo arduino com processadores RISC-V, ou então kits mais avançados capazes de rodar linux, como rasperry pi, entre outras coisas.
 
-	ao iniciar o projeto havia poucas ferramentas e as ferramentas que haviam eram de dificil instalação configuração.
-
-	este projeto é um primeiro estudo da arquitetura em questao, tem o intuito de ser de facil utilização por isso foi feito para ser utilizada na web, e ser extensivel e facil legibildiade, por isso a escolha da linguagem python, por ser mais acessível,
-
-	para casos onde se deseja performance, podem conectados modulos através de extensões para python como cython~\cite{cython_home}
+		Os ataques Spectre e Meltdown que exploram vulnerabilidades na arquitetura de processadores modernos, mostram uma grande importância tanto acadêmica e industrial. Pois a mitigação desses ataques não podem ser estudados e resolvidos com facilidade em arquiteturas fechadas como as da Intel ou ARM. Porém utilizando ISAs open-source podemos estudar melhores alternativas de como resolver esse tipo de problemas arquiteturais com muito mais facilidade e rapidez.
 
 
 
-importancia do riscv\\
-			- academica\\
-			- industrial\\
+	\section{Ambiente de desenvolvimento}
+
+		Neste projeto foi desenvolvido um ambiente de desenvolvimento para a arquitetura RISC-V. O ambiente inclui um editor de texto para a linguagem assembly, um montador e um simulador. A implementação foi realizada na plataforma web, maiores detalhes serão apresentados no capítulo 3. 
+
+		Este conjunto de ferramentas auxiliam o processo de aprendizagem da arquitetura. O fato da plataforma ser acessível por qualquer navegador torna a imersão inicial mais eficaz, pois a pessoa interessada não precisará gastar tempo e esforço com problemas que podem ocorrer na instalação ou configuração da ferramenta.
+
+	\section{Explicação dos capítulos}
+
+		Este primeiro capítulo apresenta o contexto, motivação, objetivo do projeto que foi realizado. 
+
+		No capítulo 2, apresentaremos a fundamentação teórica para o desenvolvimento do projeto, incluindo maiores detalhes técnicos da arquitetura e conhecimentos necessários para entender o desenvolvimento do ambiente proposto. 
+
+		No capítulo 3 mostraremos a implementação, arquitetura de software, decisões de projeto, e as aplicações da fundamentação teórica no projeto. 
+
+		No quarto capítulo apresentaremos o resultados que obtivemos, exemplos de utilização com uma sequência lógica. 
+
+		Quinto e último capítulo descreve objetivos atingidos, pontos positivos e negativos, dificuldades e possíveis melhorias junto com idéias de implementações futuras para melhorar o projeto. 
 
 
 
-\section{Processadores MIPS, ARM e RISC-V}%
 
-		- historia entre eles
-		- comparacoes

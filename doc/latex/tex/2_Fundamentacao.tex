@@ -1,7 +1,115 @@
+Este capítulo aborda a base teórica necessária para o desenvolvimento do projeto.
+
 \section{Arquitetura RISC-V: ISA}
-	\subsection{Diferenças}
-		- comparações com ARM\\
-		- comparações com MIPS\\
+
+	Sua arquitetura obedece aos padrões RISC (Reduced Instruction Set Computing), tendo instruções simples e completas. Foi projetada para ser rápida, ocupar pouco espaço físico, ter baixo consumo de energia, ser extensível, e compatível com entre suas versões. Por ser reduzida, se encaixa perfeitamente para fins acadêmicos, e pesquisas. 
+
+	Outra característica importante é a sua extensibilidade. Por padrão sua base é inteira, para arquiteturas de 32, 64 e 128 bits, porém existem módulos de extensão. Para descrever quais implementações são utilizadas utilizam-se as nomenclaturas RV32I, RV64I e RV128I, para as implementações padrões RISC-V 32 bits, 64, e 128.
+
+	Existem módulos padrões e não-padrões de extensões~\cite{riscv_spec}:
+
+		\begin{itemize}
+			\item Os módulos padrões são aqueles que não possuem conflitos entre si e é utizado para propósitos gerais.
+			\item Os módulos não-padrões são módulos especializados, podendo conflitar com outros módulos. A previsão é de que no futuro hajam muitos módulos desse tipo.
+		\end{itemize}
+
+	As padrões desenvolvidas atualmente adicionam as letras "MAFDQLCBJTPVN", sendo que cada letra representa uma extensão
+
+		\begin{itemize}
+			\item M: Multiply/Divide
+			\item A: Atomic
+			\item F: Single-Precision Floating-Point
+			\item D: Double-Precision Floating-Point
+			\item Q: Quad-Precision Floating-Point
+			\item L: Decimal Floating-Point
+			\item C: 16-bit Compressed Instructions
+			\item B: Bit Manipulation
+			\item J: Dynamic Languages
+			\item T: Transactional Memory
+			\item P: Packed-SIMD Extensions
+			\item V: Vector Extensions 
+			\item N: User-Level Interrupts 
+		\end{itemize}
+
+	As extensões IMAFD são chamadas de extensões de propósito geral e são abreviadas por G, por exemplo, uma arquitetura de 32 bits que utilizam todas as extensões de propósito geral é chamada de RV32G.
+
+	Ainda existe uma outra variação que é a extensão "E", que se difere das outras pois é projetada para sistemas embarcados. Este módulo diminui a quantidade de registradores para 16 e o tamanho também é reduzido para 16 bits.
+
+	\subsection{Objetivos}
+
+		Seus projetistas sempre são perguntados o motivo ao qual eles quiseram desenvolver uma nova ISA. Alguns dos motivos para o qual usar uma ISA comercial são a existência de suporte de um ecossistema de software, tanto ferramentas de desenvolvimento, portabilidade e ferramentas educacionais, outros benefícios seriam a grande quantidade de documentação, tutoriais e exemplos para o desenvolvimento.
+
+		Porém estas vantagens são pequenas na prática, e listam várias disvantagens ao utilizar ISAs comerciais,
+
+		\begin{itemize}
+			\item ISAs comerciais são proprietárias
+			\item ISAs comerciais são populares somente em alguns nichos do mercado
+			\item ISAs comerciais vem e vão
+			\item ISAs populares são complexas
+			\item ISAs comerciais dependem de outros fatores para trazer aplicações
+			\item ISAs comerciais populares não são projetadas para extensibilidade
+			\item Uma ISA comercial modificada é uma nova ISA
+		\end{itemize}
+
+		A posição dos projetistas é que, em um sistema computacional, a ISA talvez seja a interface mais importante, e não existe razão pra que esta seja proprietária.~\cite{Waterman:EECS-2016-1}
+
+
+
+			- eficiente energetica\\
+			- compatibilidade\\
+			- simples\\
+			- escalavel\\
+			- modular\\
+
+
+
+
+	\subsection{História}%
+		A ISA RISC-V foi originalmente desenvolvida na Universidade da Califórnia, Berkeley, na Divisão de Ciência da computação, no departamento de Engenharia Elétrica e Ciência da Computação. Baseada na experiência com projetos passados de seus projetistas, a definição da ISA foi iniciada no verão de 2010.\\
+
+		Sua ISA e conjunto de instruções são contruções que usam como tijolos vários projetos  
+
+		Os primeiros processadores RISC-V fabricados foram escritos em Verilog e manufaturados em tecnologia de pré-produção de 28 nm FD-SOI (\textit{Fully Depleted Silicon On Insulator}) da companhia STMicroeletronics com o nome \textit{Raven-1}
+
+		%%%%%    ecossistema
+
+		%Andrew Waterman and Yunsup Lee developed the C++ ISA simulator “Spike”, used as a golden model in development and named after the golden spike used to celebrate completion of the US transcontinental railway. Spike has been made available as a BSD open-source project.
+
+	
+
+	\subsection{RISC-V Foundation}
+		
+		A \textit{RISC-V Foundation} é uma organização sem fins lucrativos, criada para direcionar futuro desenvolvimento e incentivar a utilização da ISA RISC-V.\ ~\cite{riscv_foundation} 
+
+		O presidente do conselho atualmente é Krste Asanovic, professor do departamento de Engenharia elétrica e ciência da computação na Univerisdade da Califórnia em Berkeley. Também co-fundado da empresa SiFive Inc., a qual incentiva do uso comercial de processadores RISC-V.\
+
+		E o vice-presidente é o professor David Patterson, muito conhecido pelo livro \textit{Computer Architecture: A Quantitative Approach}, que escreveu juntamente com John Hennessy, e suas pesquisas relacionadas a RISC, RAID, e Redes de estações de trabalho.\
+
+		Outros membros incluem:\
+		\begin{itemize}  
+			\item Zvonimir Bandic, pesquisador e diretor da Western Digital Corporation. 
+			\item Charlie Hauck, CEO da Bluespec Inc.
+			\item Frans Sijstermans, vice presidente de engenharia da NVIDIA.
+			\item Ted Speers, chefe de arquitetura de produtos e planejamento do grupo SoC da Microsemi.
+			\item Rob Oshana, gerente de desenvolvimento de software e negócios em segurança na NXP Semiconductors. 
+		\end{itemize}
+
+		e também, Sue Leininger, gerente de comunidade e Rick O’Connor, director executivo.~\cite{riscv_fboardmembers}
+
+	\subsection{Open Source}
+		
+		O modelo de licenciamento que RISC-V utiliza é a \textit{BSD Open Source License}. Ou seja, em caso de utilização, apenas dar créditos aos autores, no caso a UC Berkeley.~\cite{riscv_faq}
+
+		O fato da ISA ser Open Source traz grandes vantagens, principalmente na parte de distribuição e compartilhamento.
+		
+		Na parte comercial por exemplo, qualquer pessoa pode criar suas implementações para seus objetivos específicos e comercializar, com seu código fonte sendo aberto ou fechado, apenas é requisitado pela licença que os autores sejam reconhecidos. Diminuindo custos de uso de patentes ou implementações do zero.
+
+		Outra vantagem, defendida pelos autores, também defendida no mundo do software livre é a questão de vulnerabilidades na solução. Apesar de parecer contra intuitivo, o fato do código ser aberto, as vulnerabilidades podem ser encontradas e consertadas com maior rapidez, sendo dispensável um auditor para lidar com vulnerabilidades implantadas por desenvolvedores maliciosos de dentro da própria empresa.
+
+		Ou mesmo que as vulnerabilidades não tenham sido feitas de forma maliciosa, bugs acontecem e o fato do código ser fechado pode deixar que esta fique escondida por algum tempo antes de poder ser descoberta e explorada, como foi o caso das vulnerabilidades \textit{Spectre} e \textit{Meltdown}~\cite{meltdown_spectre_exploits} que ganharam atenção na mídia recentemente e estão diretamente ligados ao mundo dos processadores por explorarem vulnerabilidades arquiteturais~\cite{meltdown_spectre_media}.
+
+		A RISC-V Foundation escreveu em seu site oficial que não foram encontrados impactos em nenhuma implementação até janeiro de 2018. Apesar dos ataques não serem específicos de uma ISA ou outra, mostra uma vantagem de se ter uma ISA aberta, a velocidade de se corrigir os erros pela comunidade é muito maior. E a possibilidade de poder experimentar e testar novas formas eficientes para resolver estes problemas é histórica. ~\cite{riscv_security}.
+
 	\subsection{Características}
 	\subsection{Como funciona}
 	\subsection{Instruções}
@@ -18,12 +126,28 @@
 
 \section{Aplicações web}
 
+	As aplicações web, são aquelas projetadas para que sua utilização seja feita através de um navegador com acesso à Internet.
+
 	\subsection{Arquitetura}
-		- API\\
+		
+		Como a maioria das aplicações web, utilizamos o modelo Cliente - Servidor.
+
 		- FrontEnd\\
 		- BackEnd \\
+			- API\\
 
 	\subsection{Vantagens e desvantagens}
 
+		A grande vantagem e motivo principal pela escolha dessa plataforma é poder ser utilizado de qualquer dispositivo com um browser moderno e acesso à internet. Qualquer pessoa pode acessar a solução acessando um link e começar a desenvolver e estudar códigos escritos para a arquitetura RISC-V. 
+		Outra vantagem é a correção de bugs e atualizações para novas versões. Para que os usuários tenham seus softwares atualizados basta atualizar o software em um ponto apenas.
 
-\section{Escalabilidade ( novos modulos )}
+		Uma desvantagem é ter o custo de um servidor rodando a aplicação para que seja acessível por vários usuários. Outro fator crítico é ter um único ponto de falha, diferente de uma rede peer-to-peer distribuída.
+		Em relação as desvantagens elas não representam uma significância alta pois se trata de uma ferramenta livre, ou seja, caso haja algum tipo de indisponibilidade do servidor, o usuário poderá baixar o software e rodar em sua própria máquina. 
+
+
+
+\section{Extensiblidade}
+
+	Este projeto tem como objetivo poder ser extendido por outros interessados no estudo da arquitetura.
+
+	para casos onde se deseja performance, podem conectados modulos através de extensões para python como cython~\cite{cython_home}

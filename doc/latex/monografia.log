@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.8)  22 JUN 2018 12:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.8)  3 JUL 2018 22:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1118,7 +1118,7 @@ LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <20> not available
 LaTeX Font Warning: Font shape `T1/ua1/bx/n' in size <20> not available
 (Font)              size <20.74> substituted on input line 38.
 
-<img/positivo_cor.pdf, id=180, 119.44624pt x 60.225pt>
+<img/positivo_cor.pdf, id=172, 119.44624pt x 60.225pt>
 File: img/positivo_cor.pdf Graphic file (type pdf)
 <use img/positivo_cor.pdf>
 Package pdftex.def Info: img/positivo_cor.pdf  used on input line 38.
@@ -1186,26 +1186,11 @@ text indent by \l@... (toc, 1):  27.02464pt
 number indent by parent (toc, 1):  13.5pt
 text indent calculated (toc, 1): 20.88887pt
 number indent calculated (toc, 1): 13.5pt
-number indent by \l@... (toc, 2):  44.64938pt
-text indent by \l@... (toc, 2):  37.59943pt
-number indent by parent (toc, 2):  34.38887pt
-text indent calculated (toc, 2): 30.02785pt
-number indent calculated (toc, 2): 34.38887pt
-number indent by \l@... (toc, 2):  44.64938pt
-text indent by \l@... (toc, 2):  37.59943pt
-number indent by parent (toc, 2):  34.38887pt
-text indent calculated (toc, 2): 30.02785pt
-number indent calculated (toc, 2): 34.38887pt
-number indent by \l@... (toc, 2):  44.64938pt
-text indent by \l@... (toc, 2):  37.59943pt
-number indent by parent (toc, 2):  34.38887pt
-text indent calculated (toc, 2): 30.02785pt
-number indent calculated (toc, 2): 34.38887pt
-number indent by \l@... (toc, 2):  44.64938pt
-text indent by \l@... (toc, 2):  37.59943pt
-number indent by parent (toc, 2):  34.38887pt
-text indent calculated (toc, 2): 30.02785pt
-number indent calculated (toc, 2): 34.38887pt
+number indent by \l@... (toc, 1):  17.62474pt
+text indent by \l@... (toc, 1):  27.02464pt
+number indent by parent (toc, 1):  13.5pt
+text indent calculated (toc, 1): 20.88887pt
+number indent calculated (toc, 1): 13.5pt
 number indent by \l@... (toc, 1):  17.62474pt
 text indent by \l@... (toc, 1):  27.02464pt
 number indent by parent (toc, 1):  13.5pt
@@ -1226,6 +1211,21 @@ text indent by \l@... (toc, 1):  27.02464pt
 number indent by parent (toc, 1):  13.5pt
 text indent calculated (toc, 1): 20.88887pt
 number indent calculated (toc, 1): 13.5pt
+number indent by \l@... (toc, 2):  44.64938pt
+text indent by \l@... (toc, 2):  37.59943pt
+number indent by parent (toc, 2):  34.38887pt
+text indent calculated (toc, 2): 30.02785pt
+number indent calculated (toc, 2): 34.38887pt
+number indent by \l@... (toc, 2):  44.64938pt
+text indent by \l@... (toc, 2):  37.59943pt
+number indent by parent (toc, 2):  34.38887pt
+text indent calculated (toc, 2): 30.02785pt
+number indent calculated (toc, 2): 34.38887pt
+number indent by \l@... (toc, 2):  44.64938pt
+text indent by \l@... (toc, 2):  37.59943pt
+number indent by parent (toc, 2):  34.38887pt
+text indent calculated (toc, 2): 30.02785pt
+number indent calculated (toc, 2): 34.38887pt
 number indent by \l@... (toc, 2):  44.64938pt
 text indent by \l@... (toc, 2):  37.59943pt
 number indent by parent (toc, 2):  34.38887pt
@@ -1323,11 +1323,6 @@ Package babel Info: Redefining portuges shorthand "|
 [7
 
 ]
-number indent by \l@... (toc, 1):  17.62474pt
-text indent by \l@... (toc, 1):  27.02464pt
-number indent by parent (toc, 1):  13.5pt
-text indent calculated (toc, 1): 20.88887pt
-number indent calculated (toc, 1): 13.5pt
 number indent by \l@... (toc, 0):  0.0pt
 text indent by \l@... (toc, 0):  17.62474pt
 number indent by parent (toc, 0):  0.0pt
@@ -1353,11 +1348,6 @@ text indent by \l@... (toc, 0):  17.62474pt
 number indent by parent (toc, 0):  0.0pt
 text indent calculated (toc, 0): 13.5pt
 number indent calculated (toc, 0): 0.0pt
-number indent by \l@... (toc, 1):  17.62474pt
-text indent by \l@... (toc, 1):  27.02464pt
-number indent by parent (toc, 1):  13.5pt
-text indent calculated (toc, 1): 20.88887pt
-number indent calculated (toc, 1): 13.5pt
 number indent by \l@... (toc, 1):  17.62474pt
 text indent by \l@... (toc, 1):  27.02464pt
 number indent by parent (toc, 1):  13.5pt
@@ -1387,9 +1377,23 @@ number indent calculated (toc, 0): 0.0pt
 \tf@toc=\write7
 \openout7 = `monografia.toc'.
 
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 38.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 38.
+ [8] (./monografia.lof
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+)
+\tf@lof=\write8
+\openout8 = `monografia.lof'.
+
  (./tex/siglas.tex
-\@gls@deffile=\write8
-\openout8 = `monografia.glsdefs'.
+\@gls@deffile=\write9
+\openout9 = `monografia.glsdefs'.
 
 )
 No file monografia.acr.
@@ -1397,7 +1401,9 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 38.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 38.
-[8] (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+[9
+
+] (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
@@ -1410,195 +1416,220 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 39.
 (./tex/1_Introducao.tex
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 5.
+(babel)             in language  on input line 19.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 13.
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--16
-
- []
-
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 20.
-(/usr/share/texmf/tex/latex/lm/omslmr.fd
-File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 20.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 23.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 23.
+(babel)             in language  on input line 19.
  [1
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 33--38
-
- []
-
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 19.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 27.
+ (/usr/share/texmf/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 27.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 42.
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
-
- []
-
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 51.
+(babel)             in language  on input line 42.
+ [2]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 59.
+(babel)             in language  on input line 55.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 59.
-[2]
+(babel)             in language  on input line 64.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 70.
+(babel)             in language  on input line 64.
 
-Underfull \hbox (badness 10000) in paragraph at lines 72--77
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 81.
-
-Underfull \hbox (badness 10000) in paragraph at lines 93--96
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 96.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 96.
 [3]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 99.
-)
+(babel)             in language  on input line 71.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 77.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 88.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 88.
+ [4])
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 40.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 40.
- [4]
+ [5]
 Cap\'{\i }tulo 2.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 40.
 (./tex/2_Fundamentacao.tex
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 2.
+(babel)             in language  on input line 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--5
+Overfull \hbox (4.1224pt too wide) in paragraph at lines 16--17
+[]\T1/lmr/m/n/12 As pa-drões de-sen-vol-vi-das atu-al-mente adi-ci-o-nam as le-
+tras "MAFDQLCBJTPVN", sendo
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 24.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 24.
+[6
+
+]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 38.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 58.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 58.
+ [7]
+Underfull \hbox (badness 10000) in paragraph at lines 58--63
 
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 5.
+(babel)             in language  on input line 67.
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 80.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 94.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 94.
+[8]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 99.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 113.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 114.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 115.
+
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 117.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 117.
+[9]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 120.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 123.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 125.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 127.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 131.
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--138
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 139.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 146.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 146.
+[10]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 149.
+)
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+ [11]
+Cap\'{\i }tulo 3.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+(./tex/3_Ambiente.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 6.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 7.
+(babel)             in language  on input line 21.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 27.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 27.
+ [12
 
-Underfull \hbox (badness 10000) in paragraph at lines 8--9
+]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 34.
+<img/code_editor.png, id=347, 1371.1225pt x 770.88pt>
+File: img/code_editor.png Graphic file (type png)
+<use img/code_editor.png>
+Package pdftex.def Info: img/code_editor.png  used on input line 44.
+(pdftex.def)             Requested size: 455.24411pt x 255.94386pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--53
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 54.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 54.
+[13 <./img/code_editor.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 54.
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--61
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 65.
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--70
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 73.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 74--42
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+[14]
+Cap\'{\i }tulo 4.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+(./tex/4_Resultados.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 8.
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--11
 
  []
 
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 12.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 15.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 17.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 19.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 21.
+(babel)             in language  on input line 16.
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--25
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 25.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 25.
-[5
-
-]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 26.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 29.
-)
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 41.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 41.
- [6]
-Cap\'{\i }tulo 3.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 41.
-(./tex/3_Ambiente.tex
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 4.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 5.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 6.
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--8
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 9.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 11.
-
-Underfull \hbox (badness 10000) in paragraph at lines 12--14
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 14.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 15.
-)
-Underfull \hbox (badness 10000) in paragraph at lines 16--42
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
-[7
-
-]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
- [8]
-Cap\'{\i }tulo 4.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
-(./tex/4_Resultados.tex
-Underfull \hbox (badness 10000) in paragraph at lines 1--4
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 5.
-
-Underfull \hbox (badness 10000) in paragraph at lines 6--8
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 9.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 13.
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--18
+Underfull \hbox (badness 10000) in paragraph at lines 17--21
 
  []
 
@@ -1607,7 +1638,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 43.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 43.
- [9
+ [15
 
 ]
 Cap\'{\i }tulo 5.
@@ -1617,31 +1648,33 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 2.
+(babel)             in language  on input line 9.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 3.
+(babel)             in language  on input line 27.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--10
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 10.
-)
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
- [10
+(babel)             in language  on input line 27.
+ [16
 
 ]
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 30.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 40.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 51.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 51.
+ [17])
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 50.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 50.
+ [18]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
  (./monografia.bbl (./monografia.brf)
-\tf@brf=\write9
-\openout9 = `monografia.brf'.
+\tf@brf=\write10
+\openout10 = `monografia.brf'.
 
 
 babelbib: Using the BibTeX style's default font for `name'.
@@ -1656,15 +1689,39 @@ babelbib: Using the BibTeX style's default font for `ISSN'.
 babelbib: Using the BibTeX style's default font for `url'.
 babelbib: Using the BibTeX style's default font for `numeral'.
 
-Underfull \hbox (badness 2781) in paragraph at lines 25--25
-\T1/lmr/m/it/12 v in-struc-tion set man-ual, vol-ume i: User-level isa, doc-u-m
-ent ver-sion 2.2\T1/lmr/m/n/12 .
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+\T1/lmtt/m/n/12 / / www . tomshardware . com / news / big-[]tech-[]players-[]ri
+sc-[]v-[]architecture ,[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--39
-[]\T1/lmr/m/n/12 Foundation, RISC V: \T1/lmr/m/it/12 Mem-bros do con-selho risc
--v foun-da-tion\T1/lmr/m/n/12 .
+Underfull \hbox (badness 6001) in paragraph at lines 55--55
+[]\T1/lmr/m/n/12 Foundation, RISC V: \T1/lmr/m/it/12 So-bre a risc-v foun-da-ti
+on\T1/lmr/m/n/12 .  []$\T1/lmtt/m/n/12 https : / / riscv . org /
+ []
+
+
+Underfull \hbox (badness 2065) in paragraph at lines 75--75
+[]\T1/lmr/m/n/12 Technology, Graz Uni-ver-sity of: \T1/lmr/m/it/12 Melt-down an
+d spec-tre ex-ploits\T1/lmr/m/n/12 .  []$\T1/lmtt/m/n/12 https : / /
+ []
+
+
+Underfull \hbox (badness 1496) in paragraph at lines 83--83
+[]\T1/lmr/m/it/12 Two se-cu-rity flaws in mod-ern chips cause big headaches for
+ the tech busi-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--83
+\T1/lmr/m/it/12 ness\T1/lmr/m/n/12 .  []$\T1/lmtt/m/n/12 https : / / www . econ
+omist . com / science-[]and-[]technology / 2018 / 01 / 04 /
+ []
+
+
+Overfull \hbox (47.473pt too wide) in paragraph at lines 83--83
+\T1/lmtt/m/n/12 two-[]security-[]flaws-[]in-[]modern-[]chips-[]cause-[]big-[]he
+adaches-[]for-[]the-[]tech-[]business$[]\T1/lmr/m/n/12 .
  []
 
 )
@@ -1673,7 +1730,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
- [11
+ [19
 
 
 ]
@@ -1682,9 +1739,9 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 50.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 50.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 50.
 Package rerunfilecheck Info: File `monografia.out' has not changed.
-(rerunfilecheck)             Checksum: 7053CD8CF4CA0EF424439CCDA13359C9;2796.
+(rerunfilecheck)             Checksum: 3A35021051F2CAE58A46078AEAC2CC3C;2733.
 Package rerunfilecheck Info: File `monografia.brf' has not changed.
-(rerunfilecheck)             Checksum: 3D965DC9746EE3028B483B71D6EF9C17;214.
+(rerunfilecheck)             Checksum: D4C75CE65F8C2DC637FF15C3DBEEEA38;718.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1697,10 +1754,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 50.
  )
 (\end occurred when \iffalse on line 120 was incomplete) 
 Here is how much of TeX's memory you used:
- 15979 strings out of 494903
- 257215 string characters out of 6179962
- 416143 words of memory out of 5000000
- 18856 multiletter control sequences out of 15000+600000
+ 16067 strings out of 494903
+ 259096 string characters out of 6179962
+ 416543 words of memory out of 5000000
+ 18923 multiletter control sequences out of 15000+600000
  50445 words of font info for 40 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  52i,7n,69p,1992b,607s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1713,10 +1770,10 @@ pe1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf/fonts/type1/pub
 lic/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/shar
 e/texmf/fonts/type1/public/lm/lmtti10.pfb>
-Output written on monografia.pdf (19 pages, 164186 bytes).
+Output written on monografia.pdf (28 pages, 243675 bytes).
 PDF statistics:
- 420 PDF objects out of 1000 (max. 8388607)
- 354 compressed objects within 4 object streams
- 75 named destinations out of 1000 (max. 500000)
- 358 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 501 PDF objects out of 1000 (max. 8388607)
+ 423 compressed objects within 5 object streams
+ 91 named destinations out of 1000 (max. 500000)
+ 347 words of extra memory for PDF output out of 10000 (max. 10000000)
 
