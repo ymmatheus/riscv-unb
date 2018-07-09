@@ -80,50 +80,37 @@ Estrutura do texto
 [TODO Implementação]
 -- separação da memoria de dados heap, stack
 -- visualização dos dados
-	-- voltar resultado de simulação nos lugares certos de visualizacao
-	-- mostrar registradores com valores hex,dec,bin
 	-- mostrar memory map com valores hex,dec,bin
 	-- mostrar memory map da heap e da stack separados
 -- implementação da simulação step by step
 
 
-[INTRODUCAO]
-[FUNDAMENTACAO]
-[AMBIENTE]
-[RESULTADOS]
-%%%% [CONCLUSOES]
 
-01/7 (dom) -> !	**2
-02/7 (seg) -> 	**2
-03/7 (ter) -> 	**2
-04/7 (qua) -> 	**2
-05/7 (qui) -> 	*20 páginas*
-06/7 (sex) -> Entrega Final
-07/7 (sab) -> Ajustes
-08/7 (dom) -> Ajustes
+08/7 (dom) -> Ajustes 36 paginas
 09/7 (seg) -> Ajustes
 10/7 (ter) -> Ajustes
 11/7 (qua) -> Ajustes
 12/7 (qui) -> Ajustes
 13/7 (sex) -> Provavel data de apresentação
 
-incrementar ambiente{
-	interface web{
-		3. screenshots
-	}
 
-	montador{
-		4. breve explicacao
-		5. screenshots
-	}
-	
-	Simulador{
-		6. breve explicacao
-		7. screenshots
-	}
-}
+[FUNDAMENTACAO]_______________________________________________________________________180 mins
+	Arquitetura->objetivos_________________________________________________________________20 mins
+	Arquitetura->historia__________________________________________________________________20 mins
+	Arquitetura->caracteristicas___________________________________________________________20 mins
+	Arquitetura->como funciona_____________________________________________________________20 mins
+	Arquitetura->instrucoes________________________________________________________________30 mins
+	Montador_______________________________________________________________________________50 mins
+	Extensibilidade________________________________________________________________________20 mins
 
-Implementação simulador
 
-resultado codigo simples de soma
-	
+[RESULTADOS]__________________________________________________________________________180 mins
+	Implementação e correção de bugs_______________________________________________________120 mins
+	Código exemplo_________________________________________________________________________30 mins
+	Saidas_________________________________________________________________________________30 mins
+
+
+[AMBIENTE]____________________________________________________________________________120 mins ( extra )
+	eloborar melhor text sobre implementação do montador___________________________________
+	elaborar melhor sobre ambiente-simulação_______________________________________________
+	_______________________________________________________________________________________

@@ -46,6 +46,24 @@
   \url{https://riscv.org/wp-content/uploads/2016/07/Tue1100_Nvidia_RISCV_Story_V2.pdf},
   \btxprintmonthyear{.}{July}{2016}{long}.
 
+\bibitem {riscv_manual_v1}
+\btxnamefont {\btxlastnamefont {{Andrew Waterman}{Yunsup Lee}{David
+  Patterson}{Krste Asanovic}}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase
+  {The risc-v instruction set manual, volume i: Base user-level isa}{The RISC-V
+  Instruction Set Manual, Volume I: Base User-Level ISA}}.
+\newblock
+  \url{https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-62.pdf},
+  \btxprintmonthyear{.}{May}{2011}{long}.
+
+\bibitem {riscv_manual_v2}
+\btxnamefont {\btxlastnamefont {{Andrew Waterman}{Yunsup Lee}{David
+  Patterson}{Krste Asanovic}}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase
+  {The risc-v instruction set manual, volume i: Base user-level isa}{The RISC-V
+  Instruction Set Manual, Volume I: Base User-Level ISA}}.
+\newblock
+  \url{https://www2.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-54.pdf},
+  \btxprintmonthyear{.}{May}{2014}{long}.
+
 \bibitem {riscv_foundation}
 \btxnamefont {\btxlastnamefont {Foundation}, RISC\btxfnamespacelong
   V}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Sobre a risc-v
@@ -88,6 +106,19 @@
   RISC-V ISA}}.
 \newblock \url{https://riscv.org/2018/01/more-secure-world-risc-v-isa/}, 2018.
 \newblock Accessed: 2018-06-20.
+
+\bibitem {mikowski2013single}
+\btxnamefont {\btxlastnamefont {Mikowski}, Michael\btxfnamespacelong S}
+  \btxandlong {}\ \btxnamefont {Josh\btxfnamespacelong C \btxlastnamefont
+  {Powell}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Single page web
+  applications}{Single page web applications}}.
+\newblock \btxjournalfont {B and W}, \btxpagelong {}~43, 2013.
+
+\bibitem {codemirror}
+\btxnamefont {\btxlastnamefont {Haverbeke}, Marijn}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Codemirror}{CodeMirror}}.
+\newblock \url{http://codemirror.net/},
+  \btxprintmonthyear{.}{July}{2018}{long}.
 
 \bibitem {cython_home}
 \btxtitlefont {\btxifchangecase {Cython c-extensions for python}{Cython

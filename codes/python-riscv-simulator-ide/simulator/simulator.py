@@ -77,6 +77,8 @@ def decode(instruction):
 
 def execute(instruction_name):
 	func_driver = instructions.instruction_execution_table[instruction_name]
+	# hard wired zero
+	settings.registers['00000'] = "00000000000000000000000000000000"
 	func_driver()
 
 def step(step_n=1):

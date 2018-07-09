@@ -535,15 +535,16 @@ def instr_sw():
 	settings.data_memory[addrs+3] = settings.registers[settings.rs2][0:8]
 
 def instr_addi():
-	'''ADDI adds the sign-extended 12-bit immediate to register rs1. Arithmetic overflow is ignored and
-		the result is simply the low XLEN bits of the result. ADDI rd, rs1, 0 is used to implement the MV
-		rd, rs1 assembler pseudo-instruction.'''
-	
-	#print(settings.registers[settings.rd])
-	#print(settings.rd)
-	#print(settings.bin2s(settings.imm_i[-12:]) )
-	aux = utilities.bin2s(settings.registers[settings.rs1]) + utilities.bin2s(settings.imm_i)
-	settings.registers[settings.rd] = utilities.s2bin(aux,32)
+    '''ADDI adds the sign-extended 12-bit immediate to register rs1. Arithmetic overflow is ignored and
+    the result is simply the low XLEN bits of the result. ADDI rd, rs1, 0 is used to implement the MV
+    rd, rs1 assembler pseudo-instruction.'''
+
+    #print(settings.registers[settings.rd])
+    #print(settings.rd)
+    #print(settings.bin2s(settings.imm_i[-12:]) )
+    aux = utilities.bin2s(settings.registers[settings.rs1]) + utilities.bin2s(settings.imm_i)
+    print(aux)
+    settings.registers[settings.rd] = utilities.s2bin(aux,32)
 
 def instr_slti():
 	'''

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.8)  3 JUL 2018 22:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.8)  8 JUL 2018 23:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -947,21 +947,21 @@ File: pppdftex.def 2017/10/31 v0.5l Pdfpages driver for pdfTeX (AM)
 (./monografia.aux)
 \openout1 = `monografia.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 38.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 37.
  (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1043,7 +1043,7 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box38
-Package hyperref Info: Link coloring OFF on input line 38.
+Package hyperref Info: Link coloring OFF on input line 37.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1052,50 +1052,50 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count162
 )
-LaTeX Info: Redefining \ref on input line 38.
-LaTeX Info: Redefining \pageref on input line 38.
-LaTeX Info: Redefining \nameref on input line 38.
+LaTeX Info: Redefining \ref on input line 37.
+LaTeX Info: Redefining \pageref on input line 37.
+LaTeX Info: Redefining \nameref on input line 37.
 
 (./monografia.out) (./monografia.out)
 \@outlinefile=\write6
 \openout6 = `monografia.out'.
 
  (./monografia.glsdefs)
-Package tocstyle Info: prepare \l@part for redefinition on input line 38.
-Package tocstyle Info: prepare \l@chapter for redefinition on input line 38.
-Package tocstyle Info: prepare \l@section for redefinition on input line 38.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 38.
+Package tocstyle Info: prepare \l@part for redefinition on input line 37.
+Package tocstyle Info: prepare \l@chapter for redefinition on input line 37.
+Package tocstyle Info: prepare \l@section for redefinition on input line 37.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 37.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 38.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 37.
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 38.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 37.
 
 
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 38.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 37.
 
 
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 38.
+(Font)              <12> on input line 37.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 38.
+(Font)              <8> on input line 37.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 38.
-Package tocstyle Info: prepare \l@subsection for redefinition on input line 38.
+(Font)              <6> on input line 37.
+Package tocstyle Info: prepare \l@subsection for redefinition on input line 37.
 
-Package tocstyle Info: prepare \l@table for redefinition on input line 38.
-Package tocstyle Info: prepare \l@figure for redefinition on input line 38.
+Package tocstyle Info: prepare \l@table for redefinition on input line 37.
+Package tocstyle Info: prepare \l@figure for redefinition on input line 37.
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
@@ -1103,25 +1103,25 @@ Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
 \len@brasiliaw=\skip63
 \len@uadesch=\skip64
 \len@uacaph=\skip65
-LaTeX Font Info:    Try loading font information for T1+ua1 on input line 38.
-LaTeX Font Info:    No file T1ua1.fd. on input line 38.
+LaTeX Font Info:    Try loading font information for T1+ua1 on input line 37.
+LaTeX Font Info:    No file T1ua1.fd. on input line 37.
 
 
 LaTeX Font Warning: Font shape `T1/ua1/bx/n' undefined
-(Font)              using `T1/cmr/m/n' instead on input line 38.
+(Font)              using `T1/cmr/m/n' instead on input line 37.
 
 
 LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <20> not available
-(Font)              size <20.74> substituted on input line 38.
+(Font)              size <20.74> substituted on input line 37.
 
 
 LaTeX Font Warning: Font shape `T1/ua1/bx/n' in size <20> not available
-(Font)              size <20.74> substituted on input line 38.
+(Font)              size <20.74> substituted on input line 37.
 
-<img/positivo_cor.pdf, id=172, 119.44624pt x 60.225pt>
+<img/positivo_cor.pdf, id=156, 119.44624pt x 60.225pt>
 File: img/positivo_cor.pdf Graphic file (type pdf)
 <use img/positivo_cor.pdf>
-Package pdftex.def Info: img/positivo_cor.pdf  used on input line 38.
+Package pdftex.def Info: img/positivo_cor.pdf  used on input line 37.
 (pdftex.def)             Requested size: 61.76747pt x 31.14256pt.
 \len@lskipoffset=\skip66
 \len@lskipoffset=\skip67
@@ -1137,7 +1137,7 @@ Package pdftex.def Info: img/positivo_cor.pdf  used on input line 38.
 \len@uacaph=\skip70
 File: img/positivo_cor.pdf Graphic file (type pdf)
 <use img/positivo_cor.pdf>
-Package pdftex.def Info: img/positivo_cor.pdf  used on input line 38.
+Package pdftex.def Info: img/positivo_cor.pdf  used on input line 37.
 (pdftex.def)             Requested size: 61.76747pt x 31.14256pt.
 \len@lskipoffset=\skip71
 \len@lskipoffset=\skip72
@@ -1164,14 +1164,14 @@ Package babel Warning: Unknown language `english'. Either you have
 (babel)                or you requested it in a previous run. Fix its name,
 (babel)                install it or just rerun the file, respectively.
 (babel)                I'll proceed, but expect wrong results.
-(babel)                Reported on input line 38.
+(babel)                Reported on input line 37.
 
 (./tex/abstract.tex)
 babelbib: Set language for keywords in the bibliography fixed to brazil
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 38.
+(babel)             in language  on input line 37.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 38.
+(babel)             in language  on input line 37.
 [6
 
 
@@ -1241,6 +1241,11 @@ text indent by \l@... (toc, 2):  37.59943pt
 number indent by parent (toc, 2):  34.38887pt
 text indent calculated (toc, 2): 30.02785pt
 number indent calculated (toc, 2): 34.38887pt
+number indent by \l@... (toc, 1):  17.62474pt
+text indent by \l@... (toc, 1):  27.02464pt
+number indent by parent (toc, 1):  13.5pt
+text indent calculated (toc, 1): 20.88887pt
+number indent calculated (toc, 1): 13.5pt
 number indent by \l@... (toc, 2):  44.64938pt
 text indent by \l@... (toc, 2):  37.59943pt
 number indent by parent (toc, 2):  34.38887pt
@@ -1256,31 +1261,6 @@ text indent by \l@... (toc, 2):  37.59943pt
 number indent by parent (toc, 2):  34.38887pt
 text indent calculated (toc, 2): 30.02785pt
 number indent calculated (toc, 2): 34.38887pt
-number indent by \l@... (toc, 2):  44.64938pt
-text indent by \l@... (toc, 2):  37.59943pt
-number indent by parent (toc, 2):  34.38887pt
-text indent calculated (toc, 2): 30.02785pt
-number indent calculated (toc, 2): 34.38887pt
-number indent by \l@... (toc, 1):  17.62474pt
-text indent by \l@... (toc, 1):  27.02464pt
-number indent by parent (toc, 1):  13.5pt
-text indent calculated (toc, 1): 20.88887pt
-number indent calculated (toc, 1): 13.5pt
-number indent by \l@... (toc, 2):  44.64938pt
-text indent by \l@... (toc, 2):  37.59943pt
-number indent by parent (toc, 2):  34.38887pt
-text indent calculated (toc, 2): 30.02785pt
-number indent calculated (toc, 2): 34.38887pt
-number indent by \l@... (toc, 2):  44.64938pt
-text indent by \l@... (toc, 2):  37.59943pt
-number indent by parent (toc, 2):  34.38887pt
-text indent calculated (toc, 2): 30.02785pt
-number indent calculated (toc, 2): 34.38887pt
-number indent by \l@... (toc, 1):  17.62474pt
-text indent by \l@... (toc, 1):  27.02464pt
-number indent by parent (toc, 1):  13.5pt
-text indent calculated (toc, 1): 20.88887pt
-number indent calculated (toc, 1): 13.5pt
 number indent by \l@... (toc, 0):  0.0pt
 text indent by \l@... (toc, 0):  17.62474pt
 number indent by parent (toc, 0):  0.0pt
@@ -1316,33 +1296,33 @@ text indent by \l@... (toc, 1):  27.02464pt
 number indent by parent (toc, 1):  13.5pt
 text indent calculated (toc, 1): 20.88887pt
 number indent calculated (toc, 1): 13.5pt
+number indent by \l@... (toc, 0):  0.0pt
+text indent by \l@... (toc, 0):  17.62474pt
+number indent by parent (toc, 0):  0.0pt
+text indent calculated (toc, 0): 13.5pt
+number indent calculated (toc, 0): 0.0pt
+number indent by \l@... (toc, 1):  17.62474pt
+text indent by \l@... (toc, 1):  27.02464pt
+number indent by parent (toc, 1):  13.5pt
+text indent calculated (toc, 1): 20.88887pt
+number indent calculated (toc, 1): 13.5pt
+number indent by \l@... (toc, 1):  17.62474pt
+text indent by \l@... (toc, 1):  27.02464pt
+number indent by parent (toc, 1):  13.5pt
+text indent calculated (toc, 1): 20.88887pt
+number indent calculated (toc, 1): 13.5pt
+number indent by \l@... (toc, 1):  17.62474pt
+text indent by \l@... (toc, 1):  27.02464pt
+number indent by parent (toc, 1):  13.5pt
+text indent calculated (toc, 1): 20.88887pt
+number indent calculated (toc, 1): 13.5pt
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 33.
+(babel)             in language  on input line 35.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 33.
+(babel)             in language  on input line 35.
 [7
 
 ]
-number indent by \l@... (toc, 0):  0.0pt
-text indent by \l@... (toc, 0):  17.62474pt
-number indent by parent (toc, 0):  0.0pt
-text indent calculated (toc, 0): 13.5pt
-number indent calculated (toc, 0): 0.0pt
-number indent by \l@... (toc, 1):  17.62474pt
-text indent by \l@... (toc, 1):  27.02464pt
-number indent by parent (toc, 1):  13.5pt
-text indent calculated (toc, 1): 20.88887pt
-number indent calculated (toc, 1): 13.5pt
-number indent by \l@... (toc, 1):  17.62474pt
-text indent by \l@... (toc, 1):  27.02464pt
-number indent by parent (toc, 1):  13.5pt
-text indent calculated (toc, 1): 20.88887pt
-number indent calculated (toc, 1): 13.5pt
-number indent by \l@... (toc, 1):  17.62474pt
-text indent by \l@... (toc, 1):  27.02464pt
-number indent by parent (toc, 1):  13.5pt
-text indent calculated (toc, 1): 20.88887pt
-number indent calculated (toc, 1): 13.5pt
 number indent by \l@... (toc, 0):  0.0pt
 text indent by \l@... (toc, 0):  17.62474pt
 number indent by parent (toc, 0):  0.0pt
@@ -1378,10 +1358,85 @@ number indent calculated (toc, 0): 0.0pt
 \openout7 = `monografia.toc'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 38.
+(babel)             in language  on input line 37.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 38.
+(babel)             in language  on input line 37.
  [8] (./monografia.lof
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 20.88887pt
+number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
@@ -1398,9 +1453,9 @@ number indent calculated (lof, 1): 17.62474pt
 )
 No file monografia.acr.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 38.
+(babel)             in language  on input line 37.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 38.
+(babel)             in language  on input line 37.
 [9
 
 ] (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
@@ -1413,7 +1468,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 Cap\'{\i }tulo 1.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 39.
+(babel)             in language  on input line 38.
 (./tex/1_Introducao.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 19.
@@ -1454,13 +1509,13 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 88.
  [4])
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 40.
+(babel)             in language  on input line 39.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 40.
+(babel)             in language  on input line 39.
  [5]
 Cap\'{\i }tulo 2.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 40.
+(babel)             in language  on input line 39.
 (./tex/2_Fundamentacao.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
@@ -1480,79 +1535,86 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 38.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
+(babel)             in language  on input line 55.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
+(babel)             in language  on input line 55.
  [7]
-Underfull \hbox (badness 10000) in paragraph at lines 58--63
-
- []
-
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 67.
-
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
-
- []
-
+(babel)             in language  on input line 58.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 80.
+(babel)             in language  on input line 77.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 94.
+(babel)             in language  on input line 84.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 94.
-[8]
+(babel)             in language  on input line 84.
+ [8]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 99.
+(babel)             in language  on input line 96.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 113.
+(babel)             in language  on input line 109.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 109.
+ [9]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 110.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 114.
+<img/instruction_formats.png, id=346, 1058.95625pt x 368.37625pt>
+File: img/instruction_formats.png Graphic file (type png)
+<use img/instruction_formats.png>
+Package pdftex.def Info: img/instruction_formats.png  used on input line 121.
+(pdftex.def)             Requested size: 455.24411pt x 158.36496pt.
+<img/immediate_encoding.png, id=350, 1025.8325pt x 322.20375pt>
+File: img/immediate_encoding.png Graphic file (type png)
+<use img/immediate_encoding.png>
+Package pdftex.def Info: img/immediate_encoding.png  used on input line 132.
+(pdftex.def)             Requested size: 455.24411pt x 142.98935pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 115.
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
-
- []
-
+(babel)             in language  on input line 136.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 117.
+(babel)             in language  on input line 136.
+ [10 <./img/instruction_formats.png>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 117.
-[9]
+(babel)             in language  on input line 153.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 120.
+(babel)             in language  on input line 153.
+ [11 <./img/immediate_encoding.png>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 123.
+(babel)             in language  on input line 181.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 125.
+(babel)             in language  on input line 181.
+ [12]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 127.
+(babel)             in language  on input line 184.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 131.
-
-Underfull \hbox (badness 10000) in paragraph at lines 135--138
-
- []
-
+(babel)             in language  on input line 188.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 139.
+(babel)             in language  on input line 202.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 146.
+(babel)             in language  on input line 206.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 146.
-[10]
+(babel)             in language  on input line 206.
+ [13]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 149.
-)
+(babel)             in language  on input line 206.
+<img/client-server-model.png, id=373, 1204.5pt x 722.7pt>
+File: img/client-server-model.png Graphic file (type png)
+<use img/client-server-model.png>
+Package pdftex.def Info: img/client-server-model.png  used on input line 211.
+(pdftex.def)             Requested size: 455.24411pt x 273.15117pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 41.
+(babel)             in language  on input line 224.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 41.
- [11]
+(babel)             in language  on input line 224.
+ [14 <./img/client-server-model.png>])
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 40.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 40.
+ [15]
 Cap\'{\i }tulo 3.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 41.
+(babel)             in language  on input line 40.
 (./tex/3_Ambiente.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 6.
@@ -1562,88 +1624,212 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 27.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 27.
- [12
+ [16
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 34.
-<img/code_editor.png, id=347, 1371.1225pt x 770.88pt>
+(babel)             in language  on input line 35.
+<img/code_editor.png, id=394, 1371.1225pt x 770.88pt>
 File: img/code_editor.png Graphic file (type png)
 <use img/code_editor.png>
 Package pdftex.def Info: img/code_editor.png  used on input line 44.
 (pdftex.def)             Requested size: 455.24411pt x 255.94386pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 50--53
 
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 54.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 54.
-[13 <./img/code_editor.png>]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 54.
-
-Underfull \hbox (badness 10000) in paragraph at lines 59--61
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
-
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 65.
+(babel)             in language  on input line 56.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 59.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 59.
+[17]
+<img/assemble_data_bin.png, id=404, 1371.1225pt x 770.88pt>
+File: img/assemble_data_bin.png Graphic file (type png)
+<use img/assemble_data_bin.png>
+Package pdftex.def Info: img/assemble_data_bin.png  used on input line 67.
+(pdftex.def)             Requested size: 455.24411pt x 255.94386pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--70
 
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/assemble_data_hex.png, id=407, 1371.1225pt x 770.88pt>
+File: img/assemble_data_hex.png Graphic file (type png)
+<use img/assemble_data_hex.png>
+Package pdftex.def Info: img/assemble_data_hex.png  used on input line 75.
+(pdftex.def)             Requested size: 455.24411pt x 255.94386pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/assemble_data_mif.png, id=408, 1371.1225pt x 770.88pt>
+File: img/assemble_data_mif.png Graphic file (type png)
+<use img/assemble_data_mif.png>
+Package pdftex.def Info: img/assemble_data_mif.png  used on input line 81.
+(pdftex.def)             Requested size: 455.24411pt x 255.94386pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 73.
+(babel)             in language  on input line 88.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 91.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 91.
+[18 <./img/code_editor.png>]
+<img/simulator_results.png, id=415, 1371.1225pt x 770.88pt>
+File: img/simulator_results.png Graphic file (type png)
+<use img/simulator_results.png>
+Package pdftex.def Info: img/simulator_results.png  used on input line 95.
+(pdftex.def)             Requested size: 455.24411pt x 255.94386pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 101.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 74--42
-
- []
-
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
+(babel)             in language  on input line 41.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
-[14]
+(babel)             in language  on input line 41.
+ [19 <./img/assemble_data_bin.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+ [20 <./img/assemble_data_hex.png> <./img/assemble_data_mif.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+ [21 <./img/simulator_results.png>]
 Cap\'{\i }tulo 4.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
+(babel)             in language  on input line 41.
 (./tex/4_Resultados.tex
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 8.
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--11
-
- []
-
+(babel)             in language  on input line 9.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 12.
+(babel)             in language  on input line 20.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 16.
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--21
-
- []
-
-)
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 43.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 43.
- [15
+(babel)             in language  on input line 20.
+ [22
 
 ]
+<img/assemble_error_duplicated_symbol.png, id=449, 549.05125pt x 661.47125pt>
+File: img/assemble_error_duplicated_symbol.png Graphic file (type png)
+<use img/assemble_error_duplicated_symbol.png>
+Package pdftex.def Info: img/assemble_error_duplicated_symbol.png  used on inpu
+t line 25.
+(pdftex.def)             Requested size: 227.62204pt x 274.22284pt.
+<img/assemble_error_directives_strings.png, id=450, 697.60625pt x 663.47874pt>
+File: img/assemble_error_directives_strings.png Graphic file (type png)
+<use img/assemble_error_directives_strings.png>
+Package pdftex.def Info: img/assemble_error_directives_strings.png  used on inp
+ut line 33.
+(pdftex.def)             Requested size: 227.62204pt x 216.48856pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/assemble_error_imediato.png, id=451, 589.20125pt x 669.50125pt>
+File: img/assemble_error_imediato.png Graphic file (type png)
+<use img/assemble_error_imediato.png>
+Package pdftex.def Info: img/assemble_error_imediato.png  used on input line 41
+.
+(pdftex.def)             Requested size: 227.62204pt x 258.64244pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/assemble_error_operando_invalido.png, id=452, 616.3025pt x 674.52pt>
+File: img/assemble_error_operando_invalido.png Graphic file (type png)
+<use img/assemble_error_operando_invalido.png>
+Package pdftex.def Info: img/assemble_error_operando_invalido.png  used on inpu
+t line 48.
+(pdftex.def)             Requested size: 227.62204pt x 249.11563pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/assemble_error_operation_not_recognized.png, id=453, 596.2275pt x 669.5012
+5pt>
+File: img/assemble_error_operation_not_recognized.png Graphic file (type png)
+<use img/assemble_error_operation_not_recognized.png>
+Package pdftex.def Info: img/assemble_error_operation_not_recognized.png  used 
+on input line 55.
+(pdftex.def)             Requested size: 227.62204pt x 255.59814pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/assemble_error_op_not_recog_directives.png, id=454, 564.1075pt x 669.50125
+pt>
+File: img/assemble_error_op_not_recog_directives.png Graphic file (type png)
+<use img/assemble_error_op_not_recog_directives.png>
+Package pdftex.def Info: img/assemble_error_op_not_recog_directives.png  used o
+n input line 63.
+(pdftex.def)             Requested size: 227.62204pt x 270.14537pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/assemble_error_simbolo_inexistente.png, id=455, 562.1pt x 668.4975pt>
+File: img/assemble_error_simbolo_inexistente.png Graphic file (type png)
+<use img/assemble_error_simbolo_inexistente.png>
+Package pdftex.def Info: img/assemble_error_simbolo_inexistente.png  used on in
+put line 70.
+(pdftex.def)             Requested size: 227.62204pt x 270.7094pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/assemble_error_wrong_arguments.png, id=456, 564.1075pt x 668.4975pt>
+File: img/assemble_error_wrong_arguments.png Graphic file (type png)
+<use img/assemble_error_wrong_arguments.png>
+Package pdftex.def Info: img/assemble_error_wrong_arguments.png  used on input 
+line 77.
+(pdftex.def)             Requested size: 227.62204pt x 269.74036pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 86.
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--89
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 90.
+)
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+ [23 <./img/assemble_error_duplicated_symbol.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+ [24 <./img/assemble_error_directives_strings.png> <./img/assemble_error_imedia
+to.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+ [25 <./img/assemble_error_operando_invalido.png> <./img/assemble_error_operati
+on_not_recognized.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+ [26 <./img/assemble_error_op_not_recog_directives.png> <./img/assemble_error_s
+imbolo_inexistente.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+ [27 <./img/assemble_error_wrong_arguments.png>]
 Cap\'{\i }tulo 5.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 43.
+(babel)             in language  on input line 42.
 (./tex/5_Conclusoes.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
@@ -1653,7 +1839,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 27.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 27.
- [16
+ [28
 
 ]
 Package babel Info: Redefining portuges shorthand "|
@@ -1661,17 +1847,17 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 40.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 51.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 51.
- [17])
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
- [18]
+ [29])
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
+(babel)             in language  on input line 49.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 49.
+ [30]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 49.
  (./monografia.bbl (./monografia.brf)
 \tf@brf=\write10
 \openout10 = `monografia.brf'.
@@ -1695,53 +1881,53 @@ sc-[]v-[]architecture ,[]
  []
 
 
-Underfull \hbox (badness 6001) in paragraph at lines 55--55
+Underfull \hbox (badness 6001) in paragraph at lines 73--73
 []\T1/lmr/m/n/12 Foundation, RISC V: \T1/lmr/m/it/12 So-bre a risc-v foun-da-ti
 on\T1/lmr/m/n/12 .  []$\T1/lmtt/m/n/12 https : / / riscv . org /
  []
 
 
-Underfull \hbox (badness 2065) in paragraph at lines 75--75
+Underfull \hbox (badness 2065) in paragraph at lines 93--93
 []\T1/lmr/m/n/12 Technology, Graz Uni-ver-sity of: \T1/lmr/m/it/12 Melt-down an
 d spec-tre ex-ploits\T1/lmr/m/n/12 .  []$\T1/lmtt/m/n/12 https : / /
  []
 
 
-Underfull \hbox (badness 1496) in paragraph at lines 83--83
+Underfull \hbox (badness 1496) in paragraph at lines 101--101
 []\T1/lmr/m/it/12 Two se-cu-rity flaws in mod-ern chips cause big headaches for
  the tech busi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--83
+Underfull \hbox (badness 10000) in paragraph at lines 101--101
 \T1/lmr/m/it/12 ness\T1/lmr/m/n/12 .  []$\T1/lmtt/m/n/12 https : / / www . econ
 omist . com / science-[]and-[]technology / 2018 / 01 / 04 /
  []
 
 
-Overfull \hbox (47.473pt too wide) in paragraph at lines 83--83
+Overfull \hbox (47.473pt too wide) in paragraph at lines 101--101
 \T1/lmtt/m/n/12 two-[]security-[]flaws-[]in-[]modern-[]chips-[]cause-[]big-[]he
 adaches-[]for-[]the-[]tech-[]business$[]\T1/lmr/m/n/12 .
  []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 50.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
- [19
+[31
 
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 50.
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 49.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 49.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 49.
+ [32]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 49.
  (./monografia.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 50.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 50.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 49.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 49.
 Package rerunfilecheck Info: File `monografia.out' has not changed.
-(rerunfilecheck)             Checksum: 3A35021051F2CAE58A46078AEAC2CC3C;2733.
+(rerunfilecheck)             Checksum: 0C5FAA15127A4417AE5809A022BF2903;2468.
 Package rerunfilecheck Info: File `monografia.brf' has not changed.
-(rerunfilecheck)             Checksum: D4C75CE65F8C2DC637FF15C3DBEEEA38;718.
+(rerunfilecheck)             Checksum: AE5A933343CA008FCC5296B0F6AC1813;1081.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1750,30 +1936,31 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 50.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 49.
  )
 (\end occurred when \iffalse on line 120 was incomplete) 
 Here is how much of TeX's memory you used:
- 16067 strings out of 494903
- 259096 string characters out of 6179962
- 416543 words of memory out of 5000000
- 18923 multiletter control sequences out of 15000+600000
- 50445 words of font info for 40 fonts, out of 8000000 for 9000
+ 16202 strings out of 494903
+ 262866 string characters out of 6179962
+ 418882 words of memory out of 5000000
+ 19012 multiletter control sequences out of 15000+600000
+ 54716 words of font info for 41 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  52i,7n,69p,1992b,607s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts
-/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc} </h
+/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc} </h
 ome/matheus/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> 
 </home/matheus/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600p
 k></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/ty
-pe1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></us
-r/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf/fonts/type1/pub
-lic/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/shar
-e/texmf/fonts/type1/public/lm/lmtti10.pfb>
-Output written on monografia.pdf (28 pages, 243675 bytes).
+pe1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/p
+ublic/lm/lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/sha
+re/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/
+lm/lmtti10.pfb>
+Output written on monografia.pdf (41 pages, 794986 bytes).
 PDF statistics:
- 501 PDF objects out of 1000 (max. 8388607)
- 423 compressed objects within 5 object streams
- 91 named destinations out of 1000 (max. 500000)
- 347 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 651 PDF objects out of 1000 (max. 8388607)
+ 528 compressed objects within 6 object streams
+ 121 named destinations out of 1000 (max. 500000)
+ 390 words of extra memory for PDF output out of 10000 (max. 10000000)
 

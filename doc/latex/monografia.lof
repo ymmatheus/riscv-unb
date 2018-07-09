@@ -3,9 +3,24 @@
 \babel@toc {brazil}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Formatos de instru\IeC {\c c}\IeC {\~o}es da ISA b\IeC {\'a}sica}}{10}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Encoding dos imediatos de cada tipo de instru\IeC {\c c}\IeC {\~a}o}}{11}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Ilustra\IeC {\c c}\IeC {\~a}o da arquitetura Cliente-Servidor}}{14}{figure.2.3}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces P\IeC {\'a}gina inicial, mostra o editor de texto com um c\IeC {\'o}digo exemplo.}}{13}{figure.3.1}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces P\IeC {\'a}gina inicial, mostra o editor de texto com um c\IeC {\'o}digo exemplo.}}{18}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Resultados da montagem em bin\IeC {\'a}rio.}}{19}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Resultados da montagem em hexadecimal.}}{20}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Resultados da montagem em formato MIF para FPGA.}}{20}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Resultados do simulador.}}{21}{figure.3.5}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Erro de declara\IeC {\c c}\IeC {\~a}o m\IeC {\'u}ltipla de s\IeC {\'\i }mbolo.}}{23}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Erro de declara\IeC {\c c}\IeC {\~a}o de diretiva string.}}{24}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Erro de imediato para o tamanho 32 de palavra 32 bits.}}{24}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Erro de operando inv\IeC {\'a}lida, operando de tipo diferente do esperado.}}{25}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Erro de opera\IeC {\c c}\IeC {\~a}o inv\IeC {\'a}lida, instru\IeC {\c c}\IeC {\~a}o n\IeC {\~a}o existente na arquitetura implementada.}}{25}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Erro de opera\IeC {\c c}\IeC {\~a}o inv\IeC {\'a}lida, diretiva n\IeC {\~a}o existente na arquitetura implementada.}}{26}{figure.4.6}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Erro de s\IeC {\'\i }mbolo inv\IeC {\'a}lido, s\IeC {\'\i }mbolo n\IeC {\~a}o foi declarado.}}{26}{figure.4.7}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Erro de argumentos de diretiva inv\IeC {\'a}lido, o tipo ou n\IeC {\'u}mero de argumentos est\IeC {\'a} incorreto.}}{27}{figure.4.8}
 \addvspace {10\p@ }
 \babel@toc {american}{}
 \babel@toc {american}{}
