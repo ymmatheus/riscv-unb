@@ -161,7 +161,7 @@ def first_pass(code_text):
                             return -1
                         else:
                             # insere rotulo e contador_posicao na tablea de simbolos
-                            SYMBOL_TABLE[ all_tokens['label'] ] = ["ADDR",contador_pos];
+                            SYMBOL_TABLE[ all_tokens['label'] ] = ["ADDR",contador_pos+4]; # Adds 4 to get the next instruction
 
                     # procura operacao na tabela de instrucoes
                     if all_tokens['operation'] in instructions.INSTRUCTION_TABLE_REVERSE:
@@ -285,14 +285,14 @@ def check_operands(all_tokens, SYMBOL_TABLE):
                 return -1
 
     # tipo I, S, B: 3 argumentos, 2 registradores e 1 imediato    
-    elif ( (instruction_type == "i" or instruction_type == "s" or instruction_type == "b" ) and len(all_tokens['operands']) == 3 ):
+    elif ( (instruction_type == "i" or instruction_type == "s" or instruction_type == "sb" ) and len(all_tokens['operands']) == 3 ):
         if (all_tokens['operands'][0] not in settings.REGISTER_NAMES or all_tokens['operands'][1] not in settings.REGISTER_NAMES ):
             return -1
         if (  utilities.is_number(all_tokens['operands'][2]) == False and all_tokens['operands'][2] not in SYMBOL_TABLE ):
             return -1
 
     # tipo U, J: 2 argumentos, 1 registrador e 1 imediato
-    elif ( (instruction_type == "u" or instruction_type == "j" ) and len(all_tokens['operands']) == 2 ):
+    elif ( (instruction_type == "u" or instruction_type == "uj" ) and len(all_tokens['operands']) == 2 ):
 
         if (all_tokens['operands'][0] not in settings.REGISTER_NAMES ):
             return -1
@@ -488,7 +488,13 @@ def second_pass(code_text):
                                 immediate = utilities.s2bin(  int( immediate_capture.group(1) )  , 12)                         
 
                             else:
-                                immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)                        
+                                #print(SYMBOL_TABLE)
+                                #print(contador_pos)
+
+                                if all_tokens['operands'][2] in SYMBOL_TABLE:
+                                    #print( SYMBOL_TABLE[all_tokens['operands'][2]][1] )
+                                    label_addr = SYMBOL_TABLE[all_tokens['operands'][2]][1] - contador_pos
+                                immediate = utilities.s2bin(  int(label_addr/4)  , 12) # Divided by 4 = shift right by 2                       
                                 operand2 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
                             
                             # checar se imediato ultrapassa o 12 bits                        
@@ -501,7 +507,7 @@ def second_pass(code_text):
                                 instr = immediate[0:7] + operand2 + operand1 + str(funct3) + immediate[7:13] + opcode
 
                                 if( instruction_type == "sb" ): # embaralha alguns bits
-                                    instr = immediate[0]+immediate[2:7] + operand2 + operand1 + funct3 + immediate[7:12] + immediate[1]+ opcode
+                                    instr = immediate[0]+immediate[2:8] + operand2 + operand1 + funct3 + immediate[8:13] + immediate[1]+ opcode
                                     
                         elif ( instruction_type == "u" or instruction_type == "uj" ):
                             #    imm[31:12] rd opcode U-type
@@ -517,10 +523,6 @@ def second_pass(code_text):
                                 if( instruction_type == "uj" ): # embaralha alguns bits
                                     im = immediate # apenas apra facilitar leitura
                                     instr = im[0] + im[10:20] + im[9] + im[1:9] + operand0 + opcode
-                                    
-                        elif ( instruction_type == "b" ):
-                            pass
-
 
                         else:
                             WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Erro: Tipo da instrucao invalido. linha "+str(contador_linha) )

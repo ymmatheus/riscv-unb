@@ -10,13 +10,14 @@
 from utils import settings, instructions, utilities
 
 def fetch(pc):
-    ri=settings.code_memory[pc//4];
-    settings.pc = pc + 4;
-    #print(ri)
-    return ri
+	#print("FETCHING")
+	ri=settings.code_memory[pc//4];
+	settings.pc = pc + 4;
+	#print(ri)
+	return ri
 
 def decode(instruction):
-
+	#print("DECODING")
 	# decoding type R
 	settings.opcode = instruction[25:32]
 	settings.rd = instruction[20:25]
@@ -29,6 +30,10 @@ def decode(instruction):
 	settings.imm_i = instruction[0]*21 + instruction[1:7] + instruction[7:11] + instruction[11] 
 	settings.imm_s = instruction[0]*21 + instruction[1:7] + instruction[20:24] + instruction[24]
 	settings.imm_b = instruction[0]*20 + instruction[24] + instruction[1:7] + instruction[20:24] + "0"
+	#print("!!!!!!")
+	#print( utilities.bin2s( settings.imm_b  ) )
+	#print( utilities.bin2s( instruction ) )
+	#print("!!!!!!!")
 	settings.imm_u = instruction[0] + instruction[1:12] + instruction[12:20] + "0"*12 
 	settings.imm_j = instruction[0]*12 + instruction[12:20] + instruction[11] + instruction[1:7] + instruction[7:11] + "0"
 
@@ -76,7 +81,10 @@ def decode(instruction):
 	return instruction_name
 
 def execute(instruction_name):
+	#print("EXECUTING")
 	func_driver = instructions.instruction_execution_table[instruction_name]
+	print(instruction_name)
+	print()
 	# hard wired zero
 	settings.registers['00000'] = "00000000000000000000000000000000"
 	func_driver()
@@ -89,6 +97,7 @@ def run(code,memory):
 
 	# Load text program to code memory
 	i=0
+	
 	
 	for inst in code:
 		
@@ -109,7 +118,12 @@ def run(code,memory):
 
 	while(settings.code_memory[settings.pc//4] != 'exit'):
 		execute(decode(fetch(settings.pc)))
+		print(settings.pc)
 
-	return {"registers": settings.registers, "memory_map":settings.data_memory}
+	#print(settings.registers)
+	settings.pc=0
+	reg_aux = settings.registers.copy()
+	data_mem_aux = settings.data_memory.copy()
+	return {"registers": reg_aux, "memory_map":data_mem_aux}
 
 		

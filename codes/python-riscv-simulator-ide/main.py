@@ -110,20 +110,17 @@ def assemble():
 @app.route("/run", methods=['POST'])
 def run():
     
-
+    #print("RUNNING")
 
     if request.method == "POST":
+        #print(json.loads(request.form['code']))
+        
         run_results = simulator.run(json.loads(request.form['code']), json.loads(request.form['memory']))
 
 
-    print(run_results)
+    #print(run_results)
     settings.data_memory        = ['00000000' for i in range(settings.DATA_MEMORY_SIZE)] # each address is a byte
     settings.code_memory        = [settings.XLEN*'0' for i in range(settings.CODE_MEMORY_SIZE)]
-
-
-    for reg in settings.registers:
-        reg = "00000000000000000000000000000000"
-    print(json.dumps(run_results))
 
     return json.dumps(run_results)
 

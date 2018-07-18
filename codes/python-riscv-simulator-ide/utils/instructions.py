@@ -192,31 +192,31 @@ INSTRUCTION_TABLE_REVERSE = {
         "funct3":"000"
         },
     "beq" : {
-        "type":"b",
+        "type":"sb",
         "size":4,
         "opcode":"1100011",
         "funct3":"000"
         },
     "bne" : {
-        "type":"b",
+        "type":"sb",
         "size":4,
         "opcode":"1100011",
         "funct3":"001"
         },
     "blt" : {
-        "type":"b",
+        "type":"sb",
         "size":4,
         "opcode":"1100011",
         "funct3":"100"
         },
     "bge" : {
-        "type":"b",
+        "type":"sb",
         "size":4,
         "opcode":"1100011",
         "funct3":"101"
         },
     "bltu" : {
-        "type":"b",
+        "type":"sb",
         "size":4,
         "opcode":"1100011",
         "funct3":"110"
@@ -474,16 +474,33 @@ def instr_jalr():
 	pass
 
 def instr_beq():
-	pass
+    #print("@@@@")
+    #print(settings.pc)
+    #print(settings.imm_b)
+    #print("@@@@")
+    print(utilities.bin2s(settings.registers[settings.rs1]))
+    print(utilities.bin2s(settings.registers[settings.rs2]))
+
+    if utilities.bin2s(settings.registers[settings.rs1]) == utilities.bin2s(settings.registers[settings.rs2]):
+        #pass
+        #print("@@@@")
+        #print(settings.pc)
+        #print(settings.imm_b)
+        #print("@@@@")
+        settings.pc = settings.pc + utilities.bin2s(settings.imm_b) + 4
+
 
 def instr_bne():
-	pass
+    if utilities.bin2s(settings.registers[settings.rs1]) != utilities.bin2s(settings.registers[settings.rs2]):
+        settings.pc = settings.pc + utilities.bin2s(settings.imm_b) + 4
 
 def instr_blt():
-	pass
+    if settings.registers[settings.rs1] < settings.registers[settings.rs2]:
+        settings.pc = settings.pc + settings.imm_b
 
 def instr_bge():
-	pass
+    if settings.registers[settings.rs1] > settings.registers[settings.rs2]:
+        settings.pc = settings.pc + settings.imm_b
 
 def instr_bltu():
 	pass
@@ -543,7 +560,7 @@ def instr_addi():
     #print(settings.rd)
     #print(settings.bin2s(settings.imm_i[-12:]) )
     aux = utilities.bin2s(settings.registers[settings.rs1]) + utilities.bin2s(settings.imm_i)
-    print(aux)
+    #print(aux)
     settings.registers[settings.rd] = utilities.s2bin(aux,32)
 
 def instr_slti():
