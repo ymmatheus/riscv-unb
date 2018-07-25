@@ -131,7 +131,7 @@ instruction_table = {
 	# JAL
 	"1101111" : 
 	{
-		"type": "j",	
+		"type": "uj",	
 		"inst_name" : "jal"
 	},
 
@@ -181,7 +181,7 @@ INSTRUCTION_TABLE_REVERSE = {
         "opcode":"0010111"
         },
     "jal" : {
-        "type":"j",
+        "type":"uj",
         "size":4,
         "opcode":"1101111"
         },
@@ -468,45 +468,45 @@ def instr_auipc():
 	settings.registers[settings.rd] = utilities.bin_soma( settings.pc , settings.imm_u )
 
 def instr_jal():
-	pass
-
-def instr_jalr():
-	pass
-
-def instr_beq():
-    #print("@@@@")
+    #print("#$:"+str(utilities.s2bin(settings.pc, 32)))
+    settings.registers[settings.rd] = utilities.s2bin(settings.pc+4, 32)
+    settings.pc = settings.pc + utilities.bin2s(settings.imm_j) - 4
     #print(settings.pc)
-    #print(settings.imm_b)
-    #print("@@@@")
-    print(utilities.bin2s(settings.registers[settings.rs1]))
-    print(utilities.bin2s(settings.registers[settings.rs2]))
-
+def instr_jalr():
+    rs1_aux = utilities.s2bin(settings.pc+4, 32)
+    #print("@@3: "+ str(settings.rs1))
+    #print("@@@ :" + str(utilities.bin2s(settings.registers[settings.rs1])))
+    #print("@@@1 :" + str(utilities.bin2s(settings.imm_i)))
+    settings.pc = utilities.bin2s(settings.registers[settings.rs1]) + utilities.bin2s(settings.imm_i) - 4
+    settings.pc = int(settings.pc/2)
+    settings.pc = int(settings.pc*2)
+    #print( "!@#: "+str(settings.pc))
+    settings.registers[settings.rd] = rs1_aux
+def instr_beq():
     if utilities.bin2s(settings.registers[settings.rs1]) == utilities.bin2s(settings.registers[settings.rs2]):
-        #pass
-        #print("@@@@")
-        #print(settings.pc)
-        #print(settings.imm_b)
-        #print("@@@@")
-        settings.pc = settings.pc + utilities.bin2s(settings.imm_b) + 4
+        settings.pc = settings.pc + utilities.bin2s(settings.imm_b) - 4
 
 
 def instr_bne():
     if utilities.bin2s(settings.registers[settings.rs1]) != utilities.bin2s(settings.registers[settings.rs2]):
-        settings.pc = settings.pc + utilities.bin2s(settings.imm_b) + 4
+        settings.pc = settings.pc + utilities.bin2s(settings.imm_b)  - 4
 
 def instr_blt():
-    if settings.registers[settings.rs1] < settings.registers[settings.rs2]:
-        settings.pc = settings.pc + settings.imm_b
+    if utilities.bin2s(settings.registers[settings.rs1]) < utilities.bin2s(settings.registers[settings.rs2]):
+        settings.pc = settings.pc + settings.imm_b  - 4
 
 def instr_bge():
-    if settings.registers[settings.rs1] > settings.registers[settings.rs2]:
-        settings.pc = settings.pc + settings.imm_b
+    if utilities.bin2s(settings.registers[settings.rs1]) > utilities.bin2s(settings.registers[settings.rs2]):
+        settings.pc = settings.pc + settings.imm_b - 4
 
 def instr_bltu():
-	pass
+    if utilities.bin2u(settings.registers[settings.rs1]) < utilities.bin2u(settings.registers[settings.rs2]):
+        settings.pc = settings.pc + settings.imm_b - 4
 
 def instr_bgeu():
-	pass
+    if utilities.bin2u(settings.registers[settings.rs1]) > utilities.bin2u(settings.registers[settings.rs2]):
+        settings.pc = settings.pc + settings.imm_b - 4
+
 
 def instr_lb():
 	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_i, settings.registers[settings.rs1]))

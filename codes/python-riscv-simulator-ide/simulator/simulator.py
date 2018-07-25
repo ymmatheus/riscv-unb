@@ -38,6 +38,7 @@ def decode(instruction):
 	settings.imm_j = instruction[0]*12 + instruction[12:20] + instruction[11] + instruction[1:7] + instruction[7:11] + "0"
 
 	#shift ammount
+	#print(instructions.instruction_table[settings.opcode]["type"])
 	settings.shamnt = settings.rs2
 	if settings.opcode in instructions.instruction_table.keys():
 		if (instructions.instruction_table[settings.opcode]["type"] == "r"):
@@ -82,9 +83,11 @@ def decode(instruction):
 
 def execute(instruction_name):
 	#print("EXECUTING")
+	#print(instruction_name)
+	#print(instructions.instruction_execution_table[instruction_name])
 	func_driver = instructions.instruction_execution_table[instruction_name]
-	print(instruction_name)
-	print()
+	#print(instruction_name)
+	#print()
 	# hard wired zero
 	settings.registers['00000'] = "00000000000000000000000000000000"
 	func_driver()
@@ -104,7 +107,7 @@ def run(code,memory):
 		settings.code_memory[i] = inst
 		#print(i)
 		i=i+1
-	settings.code_memory[i-1] = 'exit'
+	#settings.code_memory[i-1] = 'exit'
 	#print(settings.code_memory)
 
 	# Load program data to data memory
@@ -116,9 +119,11 @@ def run(code,memory):
 		
 
 
-	while(settings.code_memory[settings.pc//4] != 'exit'):
-		execute(decode(fetch(settings.pc)))
+	#while(settings.code_memory[settings.pc//4]):
+	while(settings.pc//4 < 20):
 		print(settings.pc)
+		#print(settings.registers['00101'])
+		execute(decode(fetch(settings.pc)))
 
 	#print(settings.registers)
 	settings.pc=0

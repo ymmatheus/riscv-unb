@@ -338,7 +338,6 @@ def second_pass(code_text):
     # Separa por linhas
     code_text = code_text.split("\n")
     code_memory_counter = 0
-
     code_text_aux = list()
     for line in code_text: # para cada linha de codigo
         # remoe os espacos do inicio e final
@@ -494,7 +493,7 @@ def second_pass(code_text):
                                 if all_tokens['operands'][2] in SYMBOL_TABLE:
                                     #print( SYMBOL_TABLE[all_tokens['operands'][2]][1] )
                                     label_addr = SYMBOL_TABLE[all_tokens['operands'][2]][1] - contador_pos
-                                immediate = utilities.s2bin(  int(label_addr/4)  , 12) # Divided by 4 = shift right by 2                       
+                                immediate = utilities.s2bin(  int(label_addr/2)  , 12) # Divided by 4 = shift arith right by 2                       
                                 operand2 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
                             
                             # checar se imediato ultrapassa o 12 bits                        
@@ -511,7 +510,15 @@ def second_pass(code_text):
                                     
                         elif ( instruction_type == "u" or instruction_type == "uj" ):
                             #    imm[31:12] rd opcode U-type
-                            immediate = utilities.s2bin(  int(all_tokens['operands'][1])  , 20)
+
+                            #print(all_tokens['operands'])
+                            if all_tokens['operands'][1] in SYMBOL_TABLE:
+                            #    print(all_tokens['operands'])
+                                #print( SYMBOL_TABLE[all_tokens['operands'][1]] )
+                                label_addr = SYMBOL_TABLE[all_tokens['operands'][1]][1] - contador_pos
+                                
+                            immediate = utilities.s2bin(  int(label_addr/2)  , 20) # Divided by 2 = shift arith right by 2                       
+                            #immediate = utilities.s2bin(  int(all_tokens['operands'][1])/4  , 20) # Divided by 4 = shift arith right by 2
                             operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
                             # checar se imediato ultrapassa o 12 bits                        
                             if( len(immediate) > 20 ):
@@ -523,6 +530,9 @@ def second_pass(code_text):
                                 if( instruction_type == "uj" ): # embaralha alguns bits
                                     im = immediate # apenas apra facilitar leitura
                                     instr = im[0] + im[10:20] + im[9] + im[1:9] + operand0 + opcode
+
+                                    # 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19
+                                    # 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1
 
                         else:
                             WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Erro: Tipo da instrucao invalido. linha "+str(contador_linha) )
