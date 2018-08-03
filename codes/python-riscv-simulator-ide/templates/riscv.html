@@ -82,6 +82,11 @@
 					<button id="run_button" class="btn waves-effect waves-light" type="submit" name="action">Run
 						<i class="fa fa-gears fa-1g"></i> 
 					</button>
+				
+					<button id="step_button" class="btn waves-effect waves-light" type="submit" name="action">Step
+						<i class="fa fa-gears fa-1g"></i> 
+					</button>
+
 
 				</section>
 
@@ -126,12 +131,13 @@
 					<div id="simulation_menu" >
 						<button id="run_simulation" class="btn waves-effect waves-light" type="submit" name="action">run</button>
 						<button id="step_simulation" class="btn waves-effect waves-light" type="submit" name="action">step</button>
+						<button id="reset_simulation" class="btn waves-effect waves-light" type="submit" name="action">reset</button>
 					</div>
 
 					
-					<div id="simulation_code" style="display:none;">
-						<h4>code</h4>
-						<table id="code_table" class="striped" >
+					<div id="simulation_assembled_code">
+						<h4>assembled code</h4>
+						<table id="code_table" >
 					        <thead>
 					            <tr>
 					            	<th>Line</th>
@@ -293,25 +299,34 @@
 					</div>
 
 
-					<div id="simulation_memory_map">
+					<div id="simulation_memory_map" >
 						<h4>memory map</h4>
-						<table id="memory_map_table" class="centered striped" >
-					        <thead>
-					            <tr>
-					             	<th></th>
-					              	<th>0x03</th>
-					              	<th>0x02</th>
-					              	<th>0x01</th>
-					              	<th>0x00</th>
-					          	</tr>
-					        </thead>
+						<div id="memory_map_table">
+							<table id="" class="centered striped" >
+						        <thead>
+						            <tr>
+						             	<th></th>
+						              	<th>0x03</th>
+						              	<th>0x02</th>
+						              	<th>0x01</th>
+						              	<th>0x00</th>
+						          	</tr>
+						        </thead>
+						        
+						        <tbody id="memory_map_table_rows">
+						        </tbody>
+						    
+					    	</table>
+						</div>
+					</div>
 
-					        <tbody id="memory_map_table_rows">
+					<div id="simulation_console">
+						<h4>console</h4>
+						<div id="simulation_output_screen">
+							>>		
+						</div>
+						<div id="	" contenteditable></div>
 
-
-
-					        </tbody>
-					    </table>						
 					</div>
 
 				</section>
@@ -339,33 +354,149 @@
 
 		// Or with jQuery
 
-		var program_data;
-
+		// Simulation data dictionary
 
 		var convert_data = function(n,base,pad,sign){
 			aux = n.toString(base)
-			if(aux.length<pad){
+			if(aux.length<=pad){
 				pad_n = pad-aux.length;
 			}
 			return(sign.repeat(pad_n)+aux);
 		}
 
-		var run_simulation = function(){
-			console.log(JSON.stringify(program_data['code']))
-			console.log(JSON.stringify(program_data['memory']))
-			$.post("/run", {code:JSON.stringify(program_data['code']),memory:JSON.stringify(program_data['memory'])}, function(data, status){
+
+
+		var register_values_to_json = function(){
+			
+			registers_json = {};
+
+			for(var i=0; i<32; i++){
+				var hex_aux = $("#reg_x"+i+"_val").html();
+				registers_json[convert_data(i,2,5,"0")] = convert_data(parseInt(hex_aux,16),2,32,"0");
+				//console.log($("#reg_x"+i+"_val").html());
+			}
+			//console.log(registers_json);
+			return registers_json;
+
+		};
+
+		//console.log(register_values_to_json());
+
+		// global variable
+		var program_data;
+		var initialize_program_data = function(){
+
+			var registers = {};
+			for(var i=0; i<32; i++){
+				registers[convert_data(i,2,5,"0")] = convert_data(0,16,8,"0");
+				
+			};
+		
+        	for(var i=0; i<32; i++){        		
+        		$("#reg_x"+i+"_val").html("0x"+registers[convert_data(i,2,5,"0")]);
+        	};
+
+			var memory_map_table_rows_current = $("#memory_map_table_rows").html("");
+			for(var i=0; i<32; i=i+4 ){
+				var memory_map_table_rows_current = $("#memory_map_table_rows").html();
+
+$("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem_pos_"+i+"_title\"><b>0x"+convert_data(i,16,8,"0")+"</b></td><td id=\"mem_pos_"+(i+3)+"\" contenteditable>00000000</td><td id=\"mem_pos_"+(i+2)+"\" contenteditable>00000000</td><td id=\"mem_pos_"+(i+1)+"\" contenteditable>00000000</td><td id=\"mem_pos_"+i+"\" contenteditable>00000000</td></tr>");
+
+        	}
+
+        	$("#simulation_output_screen").html(">>");
+
+        	program_data = {
+        		"code" : "",
+        		"memory" : "",
+        		"registers": registers,
+				"program_counter": 0,
+				"console_input": "",
+				"console_output": ""
+        	}
+		};
+		initialize_program_data();
+
+
+		var assemble = function(){
+			$("#code").html("")
+		  	$("#errors").html("")
+		  	$("#memory").html("")
+
+		  	//console.log(editor.getValue())
+
+		    $.post("/assemble",{code:editor.getValue()}, function(data, status){
+		        if (status == "success"){
+		        	
+		        	assmblr_response = JSON.parse(data);
+
+		        	code = assmblr_response['code'];
+		        	memory = assmblr_response['memory'];
+		        	errors = assmblr_response['errors'];
+		        	
+		        	if( errors == "" ){
+		        		$("#run_button").removeClass("disabled");
+		        		$("#step_button").removeClass("disabled");
+		        	}else{
+		        		$("#run_button").addClass("disabled");
+		        		$("#step_button").addClass("disabled");
+		        	}
+		        	data_format = $("input[name=format_input_radio]:checked")[0].value
+		        	
+		        	display_data("code", code[data_format], data_format);
+		        	display_data("memory", memory[data_format], data_format);
+		        	display_data("errors", errors,data_format);
+
+
+		        	program_data = {
+		        		"code" : code["bin"],
+		        		"memory" : memory["bin"],
+		        		"registers": register_values_to_json(),
+						"program_counter": 0,
+						"console_input": "",
+						"console_output": ""
+		        	}
+
+		        }	        
+
+				//console.log(program_data['registers']);
+
+	    });
+		}
+
+		var run_simulation = function(step_count){
+			//console.log(JSON.stringify(program_data['code']))
+			//console.log(JSON.stringify(program_data['memory']))
+			
+			program_data['registers'] = register_values_to_json();
+			//console.log(JSON.stringify(program_data['registers']) );
+			//console.log(program_data['registers']);
+			
+			simulation_info = {
+								code: 				JSON.stringify(program_data['code']),
+								memory: 			JSON.stringify(program_data['memory']),
+								registers: 			JSON.stringify(program_data['registers']),
+								program_counter: 	JSON.stringify(program_data['program_counter']),
+								console_input: 		JSON.stringify(program_data['console_input']),
+								step_count: 		step_count							
+							}
+
+			$.post("/run", simulation_info, function(data, status){
 		        if (status == "success"){
 		        	
 		        	simulator_response = JSON.parse(data);
 		        	//$("#simulation_registers").html(simulator_response['registers'])
-		        	
+		        	console.log(simulator_response);
 		        	for( i=0; i<32; i++){
 		        		register_number = i.toString(2)
 		        		if(register_number.length<5){
 		        			pad = 5 - register_number.length;
 		        			register_number = "0".repeat(pad)+register_number;
 		        		}
-		        		$("#reg_x"+i+"_val").html(simulator_response['registers'][register_number]);
+		        		//$("#reg_x"+i+"_val").html("0x"+simulator_response['registers'][register_number]);
+		        		$("#reg_x"+i+"_val").html("0x"+convert_data(parseInt(simulator_response['registers'][register_number], 2), 16,8,"0") );
+		        	
+		        			
 		        	}
 
 
@@ -377,9 +508,17 @@
 $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem_pos_"+i+"_title\"><b>0x"+convert_data(i,16,8,"0")+"</b></td><td id=\"mem_pos_"+(i+3)+"\" contenteditable>"+ simulator_response['memory_map'][i+3] +"</td><td id=\"mem_pos_"+(i+2)+"\" contenteditable>"+ simulator_response['memory_map'][i+2] +"</td><td id=\"mem_pos_"+(i+1)+"\" contenteditable>"+ simulator_response['memory_map'][i+1] +"</td><td id=\"mem_pos_"+i+"\" contenteditable>"+ simulator_response['memory_map'][i] +"</td></tr>");
 
 		        	}
+		        	program_data['program_counter'] = simulator_response['program_counter'];
+		        	console.log(simulator_response['console_output']);
 
+		        	$("#simulation_output_screen").html("");
+		        	for(var i=0; i<simulator_response['console_output'].length; i++ ){
+		        		new_console_line = ">>"+simulator_response['console_output'][i]+"<br>";
+		        		console_current = $("#simulation_output_screen").html();
+		        		$("#simulation_output_screen").html(console_current+new_console_line);
+		        	}
 		        	//console.log(assmblr_response)
-		        	console.log(simulator_response)
+		        	//console.log(simulator_response);
 		        }
 		    });
 
@@ -398,7 +537,9 @@ $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem
 				$("#simulator").css("display","none");
 			});
 
-			$("#run_button").addClass("disabled")
+			$("#run_button").addClass("disabled");
+			$("#step_button").addClass("disabled");
+
 
 			$("#menu_saida").click(function(){
 				$("#entrada").css("display","none");
@@ -418,16 +559,45 @@ $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem
 				$("#entrada").css("display","none");
 				$("#simulator").css("display","block");
 
-				run_simulation()
+				step_count = -1; // runs until the end
+				run_simulation(step_count);
 
 			});
 
+			$("#step_button").click(function(){
+				$("#saida").css("display","none");
+				$("#entrada").css("display","none");
+				$("#simulator").css("display","block");
+
+				step_count = 1; // runs one step
+				run_simulation(step_count);
+			});
+
+
+
+			$("#assemble_button").click(function(){
+				initialize_program_data();
+				assemble();
+			});
 
 			$("#run_simulation").click(function(){
-				run_simulation()
+				step_count = -1; // runs until the end
+				run_simulation(step_count);
 			});
 
+			$("#step_simulation").click(function(){
+				step_count = 1; // runs one step
+				run_simulation(step_count);
+			});
+
+			$("#reset_simulation").click(function(){
+				initialize_program_data();
+				assemble();
+			});
+
+
 		});
+
 
 
 
@@ -480,42 +650,6 @@ $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem
 		}
 
 
-	  $("#assemble_button").click(function(){
-	  	
-	  	$("#code").html("")
-	  	$("#errors").html("")
-	  	$("#memory").html("")
-
-	  	console.log(editor.getValue())
-
-	    $.post("/assemble",{code:editor.getValue()}, function(data, status){
-	        if (status == "success"){
-	        	
-	        	assmblr_response = JSON.parse(data);
-
-	        	code = assmblr_response['code'];
-	        	memory = assmblr_response['memory'];
-	        	errors = assmblr_response['errors'];
-	        	
-	        	if( errors == "" ){
-	        		$("#run_button").removeClass("disabled")
-	        	}else{
-	        		$("#run_button").addClass("disabled")
-	        	}
-	        	data_format = $("input[name=format_input_radio]:checked")[0].value
-	        	
-	        	display_data("code", code[data_format], data_format);
-	        	display_data("memory", memory[data_format], data_format);
-	        	display_data("errors", errors,data_format);
-
-	        	program_data = {
-	        		"code" : code["bin"],
-	        		"memory" : memory["bin"]
-	        	}
-	        }	        
-	    });
-
-	});
 
 
 	$("input[name=format_input_radio]").change(function(){
@@ -524,9 +658,9 @@ $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem
 		  	$("#errors").html("")
 		  	$("#memory").html("")
 			data_format = this.value
-			console.log(data_format)
-			console.log(memory)
-			console.log(code)
+			//console.log(data_format)
+			//console.log(memory)
+			//console.log(code)
 
 			display_data("code", code[data_format], data_format);
 	    	display_data("memory", memory[data_format], data_format);

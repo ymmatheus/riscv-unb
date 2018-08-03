@@ -82,6 +82,8 @@ instruction_table = {
 	"0001111" : 
 	{
 		"type": "i",
+        "000": "fence",
+        "001": "fencei"
 		#### 
 
 	},
@@ -406,56 +408,69 @@ INSTRUCTION_TABLE_REVERSE = {
     "fence" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"0001111",
+        "funct3":"000"
         },
     "fencei" : { 
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"0001111",
+        "funct3":"001"
         },
     "env" : { #ecall ebreak
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"1110011",
+        "funct3":"000"
         },
+    "ecall" : { #ecall ebreak
+        "type":"i",
+        "size":4,
+        "opcode":"1110011",
+        "funct3":"000"
+        },        
+
+    "ebreak" : { #ecall ebreak
+        "type":"i",
+        "size":4,
+        "opcode":"1110011",
+        "funct3":"001"
+        },        
     "csrrw" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"1110011",
+        "funct3":"001"
         },
     "csrrs" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"1110011",
+        "funct3":"010"
         },
     "csrrc" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"1110011",
+        "funct3":"011"
         },
     "csrrwi" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"1110011",
+        "funct3":"101"
         },
     "csrrsi" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"1110011",
+        "funct3":"110"
         },
     "csrrci" : {
         "type":"i",
         "size":4,
-        "opcode":0,
-        "funct3":0
+        "opcode":"1110011",
+        "funct3":"111"
         },
 }
 
@@ -708,10 +723,24 @@ def instr_fencei():
 	pass
 
 def instr_env():
-	if imm_i == "000000000000": # ecall
-		pass
-	elif imm_i == "000000000001": # ebreak
-		pass
+    #print(settings.imm_i)
+    if utilities.bin2s(settings.imm_i) == 0: # ecall
+
+        if utilities.bin2s(settings.registers["01010"]) == 1: # if x5 == 1 then print x10
+            settings.console_output.append( utilities.bin2s(settings.registers["00101"]) )
+
+        elif utilities.bin2s(settings.registers["01010"]) == 10: # if x5 == 10 then terminate program:
+            settings.console_output.append( "Program terminated." )
+            settings.exit_flag = True
+        else:
+            print("no syscall implemented for this value on x10!")
+            
+
+    elif utilities.bin2s(settings.imm_i) == 1: # ebreak
+        print("EBREAK not implemented")
+
+    else:
+        print("error, not immediate not valid")
 
 def instr_csrrw():
 	pass

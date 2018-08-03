@@ -507,7 +507,7 @@ def second_pass(code_text):
 
                                 if( instruction_type == "sb" ): # embaralha alguns bits
                                     instr = immediate[0]+immediate[2:8] + operand2 + operand1 + funct3 + immediate[8:13] + immediate[1]+ opcode
-                                    
+
                         elif ( instruction_type == "u" or instruction_type == "uj" ):
                             #    imm[31:12] rd opcode U-type
 
@@ -516,7 +516,7 @@ def second_pass(code_text):
                             #    print(all_tokens['operands'])
                                 #print( SYMBOL_TABLE[all_tokens['operands'][1]] )
                                 label_addr = SYMBOL_TABLE[all_tokens['operands'][1]][1] - contador_pos
-                                
+
                             immediate = utilities.s2bin(  int(label_addr/2)  , 20) # Divided by 2 = shift arith right by 2                       
                             #immediate = utilities.s2bin(  int(all_tokens['operands'][1])/4  , 20) # Divided by 4 = shift arith right by 2
                             operand0 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
@@ -586,6 +586,8 @@ def assemble(code):
     fp_ret = first_pass(code)
     if fp_ret == 0:
         sp_ret = second_pass(code)
+
+    #print(settings.code_memory)
 
     errors_ret = WARNINGS_ERRORS 
     WARNINGS_ERRORS = list()  

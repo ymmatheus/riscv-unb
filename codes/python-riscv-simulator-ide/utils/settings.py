@@ -129,9 +129,11 @@ REGISTER_NAMES = {
     "t6":"11111" 
 }
 
-
-# Program Counter
-pc = 0				
+pc = 0
 ri = 0
 data_memory		= ['00000000' for i in range(DATA_MEMORY_SIZE)] # each address is a byte
 code_memory		= [XLEN*'0' for i in range(CODE_MEMORY_SIZE)]
+console_input   = []
+console_output  = []
+
+exit_flag = False

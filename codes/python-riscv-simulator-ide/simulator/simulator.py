@@ -90,45 +90,58 @@ def execute(instruction_name):
 	#print()
 	# hard wired zero
 	settings.registers['00000'] = "00000000000000000000000000000000"
-	func_driver()
+	func_driver()	
 
-def step(step_n=1):
-	pass
-	
-
-def run(code,memory):
+def run( code, memory, registers, pc, console_input, step_count=-1):
 
 	# Load text program to code memory
-	i=0
-	
-	
+	i=0	
 	for inst in code:
-		
-		settings.code_memory[i] = inst
-		#print(i)
+		settings.code_memory[i] = inst		
 		i=i+1
+
 	#settings.code_memory[i-1] = 'exit'
 	#print(settings.code_memory)
 
 	# Load program data to data memory
 	i=0
-	for data in memory:
-		
+	for data in memory:		
 		settings.data_memory[i] = data
 		i=i+1
 		
-
-
+	# Load register data
+	for i in range(32):
+		settings.registers[utilities.u2bin(i,5)] = registers[utilities.u2bin(i,5)]
 	#while(settings.code_memory[settings.pc//4]):
-	while(settings.pc//4 < 20):
-		print(settings.pc)
+	it=0
+	settings.pc = pc
+	while(settings.pc//4 < 20 and it<1000000 and step_count != 0 and settings.exit_flag == False):
+	#while(settings.pc//4 < 20):
+		#print(settings.pc)
 		#print(settings.registers['00101'])
 		execute(decode(fetch(settings.pc)))
-
-	#print(settings.registers)
-	settings.pc=0
-	reg_aux = settings.registers.copy()
-	data_mem_aux = settings.data_memory.copy()
-	return {"registers": reg_aux, "memory_map":data_mem_aux}
-
+		it = it + 1 # avoid infinite loop
+		step_count = step_count - 1
 		
+	#print(settings.registers)
+
+	# copy data
+	pc_aux  			= settings.pc
+	console_output_aux 	= settings.console_output.copy()
+	reg_aux  			= settings.registers.copy()
+	data_mem_aux  		= settings.data_memory.copy()
+
+
+	# reset variables
+	settings.exit_flag			= False
+	settings.console_input 		= []
+	settings.console_output 	= []
+	settings.pc 				= 0
+	settings.data_memory        = ['00000000' for i in range(settings.DATA_MEMORY_SIZE)] # each address is a byte
+	settings.code_memory        = [settings.XLEN*'0' for i in range(settings.CODE_MEMORY_SIZE)]
+	for i in range(32):
+		settings.registers[utilities.u2bin(i,5)] = '00000000000000000000000000000000'	
+
+
+	return {"registers": reg_aux, "memory_map":data_mem_aux, "program_counter":pc_aux,"console_output":console_output_aux}
+

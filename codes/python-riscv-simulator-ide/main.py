@@ -43,7 +43,6 @@ def index():
     return render_template("riscv.html")
     #return "aaa"
 
-
 @app.route("/teste", methods=['GET', 'POST'])
 def teste():
     #$.get("http://localhost:8080/teste", function(data,status){alert(data+status)})
@@ -62,28 +61,36 @@ def teste():
 def assemble():
     
     # Assembler will return MEMORY, CODE, and ERRORS data.
-    print(request.form['code'])
-    print(request.form)
-    assmblr_response = assembler.assemble(request.form['code'])    
+    #print(request.form['code'])
+    #print(request.form)
+    data_dump = {}
+    if request.form['code']:
+        input_code = request.form['code']
+        input_code =  input_code + "\naddi x10,zero,10\nenv x0,x0,0"
 
-    data_dump = {
-
-        "code":{
-            "bin":assmblr_response['code'],
-            "hex":utilities.dump_convert(assmblr_response['code'],"hex"),
-            "mif":utilities.dump_convert(assmblr_response['code'],"mif")        
-        },
-
-
-        "memory":{
-            "bin":assmblr_response['memory'],
-            "hex":utilities.dump_convert(assmblr_response['memory'],"hex"),            
-            "mif":utilities.dump_convert(assmblr_response['memory'],"mif")
-        },
-
-        "errors": assmblr_response['errors']
+    
         
-    }
+
+        assmblr_response = assembler.assemble(input_code)    
+
+        data_dump = {
+
+            "code":{
+                "bin":assmblr_response['code'],
+                "hex":utilities.dump_convert(assmblr_response['code'],"hex"),
+                "mif":utilities.dump_convert(assmblr_response['code'],"mif")        
+            },
+
+
+            "memory":{
+                "bin":assmblr_response['memory'],
+                "hex":utilities.dump_convert(assmblr_response['memory'],"hex"),            
+                "mif":utilities.dump_convert(assmblr_response['memory'],"mif")
+            },
+
+            "errors": assmblr_response['errors']
+            
+        }
 
     # retorna o json.dumps do dicionario para ser interpretado no frontend 
     '''
@@ -99,31 +106,26 @@ def assemble():
     #utilities.save_to_file(data_dump['memory']['bin'],"mem")
     #utilities.save_to_file(data_dump['code']['bin'],"cod")
 
-
     settings.data_memory        = ['00000000' for i in range(settings.DATA_MEMORY_SIZE)] # each address is a byte
     settings.code_memory        = [settings.XLEN*'0' for i in range(settings.CODE_MEMORY_SIZE)]
-
 
     return json.dumps(data_dump)
 
 
 @app.route("/run", methods=['POST'])
 def run():
-    
-    #print("RUNNING")
 
     if request.method == "POST":
-        #print(json.loads(request.form['code']))
-        
-        run_results = simulator.run(json.loads(request.form['code']), json.loads(request.form['memory']))
-
-
-    #print(run_results)
-    settings.data_memory        = ['00000000' for i in range(settings.DATA_MEMORY_SIZE)] # each address is a byte
-    settings.code_memory        = [settings.XLEN*'0' for i in range(settings.CODE_MEMORY_SIZE)]
+        run_results = simulator.run(
+                json.loads(request.form['code']), 
+                json.loads(request.form['memory']),
+                json.loads(request.form['registers']),
+                json.loads(request.form['program_counter']),
+                json.loads(request.form['console_input']),
+                int(request.form['step_count'])
+            )
 
     return json.dumps(run_results)
-
 
 
 if __name__ == "__main__":
