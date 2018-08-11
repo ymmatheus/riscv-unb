@@ -89,6 +89,15 @@ h2.section_title{
 	font-size:12px;
 	font-family: monospace;
 	line-height: 0px;
+	height: 320px;
+	width: 50%;
+}
+
+#simulation_assembled_code_table{
+	display:block;
+	
+	height:80%;
+	overflow-y: scroll;
 }
 
 #simulation_registers{
@@ -140,7 +149,6 @@ h2.section_title{
 	margin-top:12px;
 	width: 100%;
 	display: block;
-	
 	float:left;
 }
 
@@ -153,6 +161,7 @@ h2.section_title{
 	clear:both;
 	color: green;
 	padding:6px;
+	overflow: scroll;
 }
 
 #simulation_input{

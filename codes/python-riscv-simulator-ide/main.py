@@ -66,7 +66,7 @@ def assemble():
     data_dump = {}
     if request.form['code']:
         input_code = request.form['code']
-        input_code =  input_code + "\naddi x10,zero,10\nenv x0,x0,0"
+        input_code =  input_code + "\naddi x10,zero,10\necall x0,x0,0"
 
     
         
@@ -88,8 +88,9 @@ def assemble():
                 "mif":utilities.dump_convert(assmblr_response['memory'],"mif")
             },
 
-            "errors": assmblr_response['errors']
+            "errors": assmblr_response['errors'],
             
+            "assembled_info": assmblr_response["assembled_info"]
         }
 
     # retorna o json.dumps do dicionario para ser interpretado no frontend 
@@ -122,6 +123,7 @@ def run():
                 json.loads(request.form['registers']),
                 json.loads(request.form['program_counter']),
                 json.loads(request.form['console_input']),
+                json.loads(request.form['console_output']),
                 int(request.form['step_count'])
             )
 

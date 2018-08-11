@@ -400,6 +400,9 @@ def second_pass(code_text):
                             else:
                                 # s[s.find("(")+1:s.find(")")]
                                 # print("Erro. Simbolo inexistente. linha "+ str(contador_linha))
+                                print(all_tokens['operands'])
+                                print(operand)
+                                print(SYMBOL_TABLE)
                                 WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Erro. Simbolo inexistente. linha "+ str(contador_linha) )
                                 return 1
     #print("\n")
@@ -573,6 +576,64 @@ def second_pass(code_text):
 
 #print(code)
 #print("\n")
+
+def instruction_from_binary(assembled_line):
+
+    settings.opcode = assembled_line[25:32]
+    settings.rd = assembled_line[20:25]
+    settings.funct3 = assembled_line[17:20]
+    settings.rs1 = assembled_line[12:17]
+    settings.rs2 = assembled_line[7:12]
+    settings.funct7 = assembled_line[0:7]
+
+    settings.imm_i = assembled_line[0]*21 + assembled_line[1:7] + assembled_line[7:11] + assembled_line[11] 
+    settings.imm_s = assembled_line[0]*21 + assembled_line[1:7] + assembled_line[20:24] + assembled_line[24]
+    settings.imm_b = assembled_line[0]*20 + assembled_line[24] + assembled_line[1:7] + assembled_line[20:24] + "0"
+    settings.imm_u = assembled_line[0] + assembled_line[1:12] + assembled_line[12:20] + "0"*12 
+    settings.imm_j = assembled_line[0]*12 + assembled_line[12:20] + assembled_line[11] + assembled_line[1:7] + assembled_line[7:11] + "0"
+
+    if settings.opcode in instructions.instruction_table.keys():
+        if (instructions.instruction_table[settings.opcode]["type"] == "r"):
+        
+            instruction_name = instructions.instruction_table[settings.opcode][settings.funct3][settings.funct7]
+            return instruction_name + " " + settings.REVERSE_REGISTER_NAMES[settings.rd] + ", " + settings.REVERSE_REGISTER_NAMES[settings.rs2] + ", " + settings.REVERSE_REGISTER_NAMES[settings.rs1]
+
+        elif (instructions.instruction_table[settings.opcode]["type"] == "i"):
+
+            instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+            return instruction_name + " " + settings.REVERSE_REGISTER_NAMES[settings.rd] + ", " + settings.REVERSE_REGISTER_NAMES[settings.rs1] + ", " + str(utilities.bin2s(settings.imm_i))
+        
+        elif (instructions.instruction_table[settings.opcode]["type"] == "u"):
+        
+            instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
+            return instruction_name + " " + settings.REVERSE_REGISTER_NAMES[settings.rd] + ", "+ str(utilities.bin2s(settings.imm_u))
+        
+        elif (instructions.instruction_table[settings.opcode]["type"] == "uj"):
+        
+            instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
+            return instruction_name + " " + settings.REVERSE_REGISTER_NAMES[settings.rd] + ", " + str(utilities.bin2s(settings.imm_j))
+        elif (instructions.instruction_table[settings.opcode]["type"] == "s"):
+        
+            instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+            return instruction_name + " " + settings.REVERSE_REGISTER_NAMES[settings.rd] + ", " + settings.REVERSE_REGISTER_NAMES[settings.rs1] + ", " + str(utilities.bin2s(settings.imm_s))
+        elif (instructions.instruction_table[settings.opcode]["type"] == "sb"):
+        
+            instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+            return instruction_name + " " + settings.REVERSE_REGISTER_NAMES[settings.rd] + ", " + settings.REVERSE_REGISTER_NAMES[settings.rs1] + ", " + str(utilities.bin2s(settings.imm_b))
+        elif settings.opcode == '0000000':
+
+            instruction_name = "nop"
+
+        else:
+
+            instruction_name = "unknown"
+
+
+    else:
+
+        instruction_name = "unknown"
+    return instruction_name
+
 def assemble(code):
     
     global WARNINGS_ERRORS
@@ -588,6 +649,7 @@ def assemble(code):
         sp_ret = second_pass(code)
 
     #print(settings.code_memory)
+    print(SYMBOL_TABLE)
 
     errors_ret = WARNINGS_ERRORS 
     WARNINGS_ERRORS = list()  
@@ -597,4 +659,10 @@ def assemble(code):
     SYMBOL_TABLE = {}
     VALUE_TABLE = {}
 
-    return {"code":settings.code_memory, "memory":settings.data_memory, "errors":errors_ret}
+    assmebled_info = []
+    pc_val = 0
+    for assembled_line in settings.code_memory:
+        assmebled_info.append({'pc':pc_val, 'hex': "0x"+utilities.bin2hex(assembled_line) , 'instr': instruction_from_binary(assembled_line)})
+        pc_val = pc_val + 4
+
+    return {"code":settings.code_memory, "memory":settings.data_memory, "errors":errors_ret, "assembled_info": assmebled_info}

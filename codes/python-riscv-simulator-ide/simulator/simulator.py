@@ -30,10 +30,6 @@ def decode(instruction):
 	settings.imm_i = instruction[0]*21 + instruction[1:7] + instruction[7:11] + instruction[11] 
 	settings.imm_s = instruction[0]*21 + instruction[1:7] + instruction[20:24] + instruction[24]
 	settings.imm_b = instruction[0]*20 + instruction[24] + instruction[1:7] + instruction[20:24] + "0"
-	#print("!!!!!!")
-	#print( utilities.bin2s( settings.imm_b  ) )
-	#print( utilities.bin2s( instruction ) )
-	#print("!!!!!!!")
 	settings.imm_u = instruction[0] + instruction[1:12] + instruction[12:20] + "0"*12 
 	settings.imm_j = instruction[0]*12 + instruction[12:20] + instruction[11] + instruction[1:7] + instruction[7:11] + "0"
 
@@ -92,7 +88,14 @@ def execute(instruction_name):
 	settings.registers['00000'] = "00000000000000000000000000000000"
 	func_driver()	
 
-def run( code, memory, registers, pc, console_input, step_count=-1):
+def run( code, memory, registers, pc, console_input, console_output, step_count=-1):
+
+	#print(console_output)
+	#print(console_output.split("\n"))
+	for output_line in console_output.strip().split("<br>"):
+		#print(output_line[8:])
+		if output_line[8:]:
+			settings.console_output.append(output_line[8:])
 
 	# Load text program to code memory
 	i=0	
@@ -115,19 +118,25 @@ def run( code, memory, registers, pc, console_input, step_count=-1):
 	#while(settings.code_memory[settings.pc//4]):
 	it=0
 	settings.pc = pc
-	while(settings.pc//4 < 20 and it<1000000 and step_count != 0 and settings.exit_flag == False):
+	while(it<settings.MAX_NUMBER_CYCLES and step_count != 0 and settings.exit_flag == False):
 	#while(settings.pc//4 < 20):
 		#print(settings.pc)
 		#print(settings.registers['00101'])
 		execute(decode(fetch(settings.pc)))
 		it = it + 1 # avoid infinite loop
 		step_count = step_count - 1
-		
+		print(it)
+	
+	if it >= settings.MAX_NUMBER_CYCLES:
+		settings.console_output.append("Warning: infinite loop")	
 	#print(settings.registers)
+
+
 
 	# copy data
 	pc_aux  			= settings.pc
-	console_output_aux 	= settings.console_output.copy()
+	#console_output_aux 	= settings.console_output.copy()
+	console_output_aux 	= settings.console_output.copy() 
 	reg_aux  			= settings.registers.copy()
 	data_mem_aux  		= settings.data_memory.copy()
 

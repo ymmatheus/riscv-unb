@@ -137,39 +137,27 @@
 					
 					<div id="simulation_assembled_code">
 						<h4>assembled code</h4>
-						<table id="code_table" >
+						<table id="simulation_assembled_code_table" >
 					        <thead>
 					            <tr>
-					            	<th>Line</th>
+					            	<th>PC</th>
 					             	<th>Code HEX</th>
 					              	<th>Instruction</th>
 					          	</tr>
 					        </thead>
 
-					        <tbody>
-					        	<tr>
-					        		<td>1</td>
-					            	<td>0x00000000</td>
-					            	<td>nop x0, x0, x0</td>
-					        	</tr>
-					        	<tr>
-					           		<td>2</td>
-					           		<td>0x00000000</td>
-					           		<td>nop x0, x0, x0</td>
-					        	</tr>
-					        	<tr>
-					           		<td>3</td>
-					           		<td>0x00000000</td>
-					           		<td>nop x0, x0, x0</td>
-					        	</tr>					        	
+					        <tbody id="simulation_assembled_info">
 					        </tbody>
 					    </table>
 						
 					</div>
-
 					
 					<div id="simulation_registers">
+						
 				    	<h4>registers</h4>
+
+
+
 				     	<table id="register_table" class="centered striped" >
 				        <thead>
 				            <tr>
@@ -181,6 +169,7 @@
 				        </thead>
 
 				        <tbody>
+
 				        	<tr>
 				            	<td id="reg_x0">x0</td>
 				            	<td id="reg_x0_val" contenteditable>0000000000000000</td>
@@ -302,6 +291,7 @@
 					<div id="simulation_memory_map" >
 						<h4>memory map</h4>
 						<div id="memory_map_table">
+
 							<table id="" class="centered striped" >
 						        <thead>
 						            <tr>
@@ -447,6 +437,16 @@ $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem
 		        	display_data("memory", memory[data_format], data_format);
 		        	display_data("errors", errors,data_format);
 
+		        	console.log(assmblr_response);
+		        	
+		        	$("#simulation_assembled_info").html("")
+		        	table_sim_info = $("#simulation_assembled_info")
+					$.each(assmblr_response['assembled_info'],function(index, value){
+					    table_sim_info.append("<tr class='assembled_info' id='assembled_info_pc_"+value['pc']+"'><td>"+value['pc']+"</td><td>"+value['hex']+"</td><td>"+value['instr']+"</td></tr>") 
+					    //console.log(value['pc']);
+					    //console.log(value['hex']);
+					    //console.log(value['instr']);
+					});
 
 		        	program_data = {
 		        		"code" : code["bin"],
@@ -478,6 +478,7 @@ $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem
 								registers: 			JSON.stringify(program_data['registers']),
 								program_counter: 	JSON.stringify(program_data['program_counter']),
 								console_input: 		JSON.stringify(program_data['console_input']),
+								console_output:		JSON.stringify(program_data['console_output']),
 								step_count: 		step_count							
 							}
 
@@ -512,13 +513,20 @@ $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem
 		        	console.log(simulator_response['console_output']);
 
 		        	$("#simulation_output_screen").html("");
+		        	if(simulator_response['console_output'].length == 0){
+		        		$("#simulation_output_screen").html(">>");
+		        	}
 		        	for(var i=0; i<simulator_response['console_output'].length; i++ ){
-		        		new_console_line = ">>"+simulator_response['console_output'][i]+"<br>";
+		        		new_console_line = ">> "+simulator_response['console_output'][i]+"<br>";
 		        		console_current = $("#simulation_output_screen").html();
 		        		$("#simulation_output_screen").html(console_current+new_console_line);
 		        	}
+		        	program_data['console_output'] = $("#simulation_output_screen").html();
+		        	console.log(program_data['console_output']);
 		        	//console.log(assmblr_response)
 		        	//console.log(simulator_response);
+
+
 		        }
 		    });
 
@@ -569,6 +577,9 @@ $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem
 				$("#entrada").css("display","none");
 				$("#simulator").css("display","block");
 
+				$(".assembled_info").css("background-color","white");
+				$("#assembled_info_pc_"+program_data['program_counter']).css("background-color","#ffff99");
+				
 				step_count = 1; // runs one step
 				run_simulation(step_count);
 			});
@@ -586,7 +597,9 @@ $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem
 			});
 
 			$("#step_simulation").click(function(){
-				step_count = 1; // runs one step
+				step_count = 1; // runs one step				
+				$(".assembled_info").css("background-color","white");
+				$("#assembled_info_pc_"+program_data['program_counter']).css("background-color","#ffff99");
 				run_simulation(step_count);
 			});
 
@@ -604,6 +617,8 @@ $("#memory_map_table_rows").html(memory_map_table_rows_current+"<tr><td id=\"mem
 
 		//var value = "# RISC-V Assembly Code\n\n.data\n    .asciiz \"texto\"\n\n.text\n    sub x9, zero, 10\n    add x10, ra, a0\n\n    ABCDFEabcdef";
 		var value = "# RISC-V Assembly Code\n.data\n\tword_teste: .word 26\n\tstr_teste: .asciiz \"\\Hello, World!\\nTesting\\tEscaping!\"\n\n.text\n\tlw x4, x5, word_teste\n\taddi x9, zero, 10\n\taddi x9, zero, -3\n\tadd x10, x9, x4\n\tsw x10,8(x8)";
+
+		value = "# RISC-V Assembly Code\n\nfib:\n\taddi x3, x0, 8 # counter\n\taddi x4, x0, 1  # fib number\n\taddi x6, x0, 0 # fib aux\n\n\taddi x10,zero,1\nloop:\n\tbeq x3, x0, end\n\n\taddi x5,x4,0  \n\tecall x0,x0,0 # print value\n \n\taddi x7, x4, 0 #aux = fib\n\tadd x4, x4, x6  # fib = fib+fib_aux\n\taddi x6,x7,0 # fib_aux = aux\n    \n\taddi x3,x3, -1 #dec counter\n\tjal x0, loop\n\nend: \n\taddi x10,zero,1\n\taddi x5,x4,0\n\tecall x0,x0,0\n"
 
 		var editor = CodeMirror(document.getElementById("code-editor"), {
 			value: value,
