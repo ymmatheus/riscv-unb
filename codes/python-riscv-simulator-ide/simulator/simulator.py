@@ -4,94 +4,104 @@
 
 '''
 	todo: misaligned memory load store
-	add the decode variables on config file for global
+
 '''
 
 from utils import settings, instructions, utilities
 
 def fetch(pc):
 	#print("FETCHING")
-	ri=settings.code_memory[pc//4];
-	settings.pc = pc + 4;
-	#print(ri)
+	if len(settings.code_memory) > pc//4:
+		ri=settings.code_memory[pc//4];
+		settings.pc = pc + 4;
+	else:
+		return -1
 	return ri
 
 def decode(instruction):
-	#print("DECODING")
-	# decoding type R
-	settings.opcode = instruction[25:32]
-	settings.rd = instruction[20:25]
-	settings.funct3 = instruction[17:20]
-	settings.rs1 = instruction[12:17]
-	settings.rs2 = instruction[7:12]
-	settings.funct7 = instruction[0:7]
 
-	# immediates
-	settings.imm_i = instruction[0]*21 + instruction[1:7] + instruction[7:11] + instruction[11] 
-	settings.imm_s = instruction[0]*21 + instruction[1:7] + instruction[20:24] + instruction[24]
-	settings.imm_b = instruction[0]*20 + instruction[24] + instruction[1:7] + instruction[20:24] + "0"
-	settings.imm_u = instruction[0] + instruction[1:12] + instruction[12:20] + "0"*12 
-	settings.imm_j = instruction[0]*12 + instruction[12:20] + instruction[11] + instruction[1:7] + instruction[7:11] + "0"
 
-	#shift ammount
-	#print(instructions.instruction_table[settings.opcode]["type"])
-	settings.shamnt = settings.rs2
-	if settings.opcode in instructions.instruction_table.keys():
-		if (instructions.instruction_table[settings.opcode]["type"] == "r"):
-		
-			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3][settings.funct7]
-		
-		elif (instructions.instruction_table[settings.opcode]["type"] == "i"):
+	if instruction is not -1:
+		settings.opcode = instruction[25:32]
+		settings.rd = instruction[20:25]
+		settings.funct3 = instruction[17:20]
+		settings.rs1 = instruction[12:17]
+		settings.rs2 = instruction[7:12]
+		settings.funct7 = instruction[0:7]
 
-			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
-		
-		elif (instructions.instruction_table[settings.opcode]["type"] == "u"):
-		
-			instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
-		
-		elif (instructions.instruction_table[settings.opcode]["type"] == "uj"):
-		
-			instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
-		
-		elif (instructions.instruction_table[settings.opcode]["type"] == "s"):
-		
-			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
-		
-		elif (instructions.instruction_table[settings.opcode]["type"] == "sb"):
-		
-			instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+		# immediates
+		settings.imm_i = instruction[0]*21 + instruction[1:7] + instruction[7:11] + instruction[11] 
+		settings.imm_s = instruction[0]*21 + instruction[1:7] + instruction[20:24] + instruction[24]
+		settings.imm_b = instruction[0]*20 + instruction[24] + instruction[1:7] + instruction[20:24] + "0"
+		settings.imm_u = instruction[0] + instruction[1:12] + instruction[12:20] + "0"*12 
+		settings.imm_j = instruction[0]*12 + instruction[12:20] + instruction[11] + instruction[1:7] + instruction[7:11] + "0"
 
-		elif settings.opcode == '0000000':
+		#shift ammount
+		#print(instructions.instruction_table[settings.opcode]["type"])
+		settings.shamnt = settings.rs2
+		if settings.opcode in instructions.instruction_table.keys():
+			if (instructions.instruction_table[settings.opcode]["type"] == "r"):
+			
+				instruction_name = instructions.instruction_table[settings.opcode][settings.funct3][settings.funct7]
+			
+			elif (instructions.instruction_table[settings.opcode]["type"] == "i"):
 
-			instruction_name = "nop"
+				instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+			
+			elif (instructions.instruction_table[settings.opcode]["type"] == "u"):
+			
+				instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
+			
+			elif (instructions.instruction_table[settings.opcode]["type"] == "uj"):
+			
+				instruction_name = instructions.instruction_table[settings.opcode]["inst_name"]
+			
+			elif (instructions.instruction_table[settings.opcode]["type"] == "s"):
+			
+				instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+			
+			elif (instructions.instruction_table[settings.opcode]["type"] == "sb"):
+			
+				instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
+
+			elif settings.opcode == '0000000':
+
+				instruction_name = "nop"
+
+			else:
+
+				instruction_name = "unknown"
+
 
 		else:
 
 			instruction_name = "unknown"
 
+		#print(instruction_name)
+		return instruction_name
 
 	else:
-
-		instruction_name = "unknown"
-
-	#print(instruction_name)
-	return instruction_name
+		# there was fetching error
+		return -1
 
 def execute(instruction_name):
-	#print("EXECUTING")
-	#print(instruction_name)
-	#print(instructions.instruction_execution_table[instruction_name])
-	func_driver = instructions.instruction_execution_table[instruction_name]
-	#print(instruction_name)
-	#print()
+	
+	if instruction_name is not -1:
+		func_driver = instructions.instruction_execution_table[instruction_name]
+		
+		func_driver()	
+
+	else:
+		# error
+		return -1
+
 	# hard wired zero
 	settings.registers['00000'] = "00000000000000000000000000000000"
-	func_driver()	
+	return 0
 
 def run( code, memory, registers, pc, console_input, console_output, step_count=-1):
 
-	#print(console_output)
-	#print(console_output.split("\n"))
+	# get the current console output to append new information later
 	for output_line in console_output.strip().split("<br>"):
 		#print(output_line[8:])
 		if output_line[8:]:
@@ -103,8 +113,6 @@ def run( code, memory, registers, pc, console_input, console_output, step_count=
 		settings.code_memory[i] = inst		
 		i=i+1
 
-	#settings.code_memory[i-1] = 'exit'
-	#print(settings.code_memory)
 
 	# Load program data to data memory
 	i=0
@@ -115,27 +123,31 @@ def run( code, memory, registers, pc, console_input, console_output, step_count=
 	# Load register data
 	for i in range(32):
 		settings.registers[utilities.u2bin(i,5)] = registers[utilities.u2bin(i,5)]
-	#while(settings.code_memory[settings.pc//4]):
+
+
+	# initilize execution flags
 	it=0
 	settings.pc = pc
-	while(it<settings.MAX_NUMBER_CYCLES and step_count != 0 and settings.exit_flag == False):
-	#while(settings.pc//4 < 20):
-		#print(settings.pc)
-		#print(settings.registers['00101'])
-		execute(decode(fetch(settings.pc)))
+	flag_error = 0
+	while(it<settings.MAX_NUMBER_CYCLES and step_count != 0 and settings.exit_flag == False and flag_error == 0):
+		flag_error = execute(decode(fetch(settings.pc)))
 		it = it + 1 # avoid infinite loop
 		step_count = step_count - 1
 		#print(it)
 	
+	# if execution interrupted by any reason, appends an error message
 	if it >= settings.MAX_NUMBER_CYCLES:
 		settings.console_output.append("Warning: infinite loop")	
-	#print(settings.registers)
-
-
+	
+	if flag_error == -1:
+		settings.console_output =[]
+		settings.console_output.append("Error: PC out of index. Reset the values!")	
+		settings.pc = 0
+		reg_aux = []
+		data_mem_aux = []
 
 	# copy data
 	pc_aux  			= settings.pc
-	#console_output_aux 	= settings.console_output.copy()
 	console_output_aux 	= settings.console_output.copy() 
 	reg_aux  			= settings.registers.copy()
 	data_mem_aux  		= settings.data_memory.copy()

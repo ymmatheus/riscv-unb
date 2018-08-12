@@ -6,10 +6,6 @@
         - Implementar imediato em hex e bin        
         - Implementar montagem das instruções com syntaxe label(registrador), num(registrador)
         - Implementar pseudo instrucoes
-        - Verificar se ta certo a montagem das instrucoes tipo S e SB
-        - Melhorar mensagens de erro/warnings
-            - Estabelecer códigos para os erros
-
 
 '''
 
@@ -495,9 +491,8 @@ def second_pass(code_text):
                                     print(immediate)
                                 elif len(all_tokens['operands']) == 2:
 
-                                    print("-------------------------")
-                                    #print(all_tokens)
-                                    # capture register
+                                    # TODO: implement regular expression for flag(xR) syntax 
+                                
                                     print(all_tokens['operands'][1])
                                     register_capture = re.search( "\((.*)\)"  , all_tokens['operands'][1], re.M|re.I)
                                     immediate_capture = re.search( "(.*?)\(\w+"  , all_tokens['operands'][1], re.M|re.I)
@@ -510,12 +505,8 @@ def second_pass(code_text):
                                         print(all_tokens['operands'][1])
                                         
                                     
-                                    
-                                    
-                                    print("-------------------------")
                             else:
-                                #print(SYMBOL_TABLE)
-                                #print(contador_pos)
+
 
                                 if all_tokens['operands'][2] in SYMBOL_TABLE:
                                     #print( SYMBOL_TABLE[all_tokens['operands'][2]][1] )
@@ -597,10 +588,6 @@ def second_pass(code_text):
 
     return 0
 
-
-#print(code)
-#print("\n")
-
 def instruction_from_binary(assembled_line):
 
     settings.opcode = assembled_line[25:32]
@@ -639,7 +626,7 @@ def instruction_from_binary(assembled_line):
         elif (instructions.instruction_table[settings.opcode]["type"] == "s"):
         
             instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
-            return instruction_name + " " + settings.REVERSE_REGISTER_NAMES[settings.rd] + ", " + settings.REVERSE_REGISTER_NAMES[settings.rs1] + ", " + str(utilities.bin2s(settings.imm_s))
+            return instruction_name + " " + settings.REVERSE_REGISTER_NAMES[settings.rs1] + ", " + settings.REVERSE_REGISTER_NAMES[settings.rs2] + ", " + str(utilities.bin2s(settings.imm_s))
         elif (instructions.instruction_table[settings.opcode]["type"] == "sb"):
         
             instruction_name = instructions.instruction_table[settings.opcode][settings.funct3]
