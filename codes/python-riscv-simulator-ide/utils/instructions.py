@@ -275,7 +275,7 @@ INSTRUCTION_TABLE_REVERSE = {
         "type":"s",
         "size":4,
         "opcode":"0100011",
-        "funct3":"000" ########################################### ???
+        "funct3":"010" ########################################### ???
         },
     "addi" : {
         "type":"i",
@@ -550,21 +550,27 @@ def instr_lhu():
 	settings.registers[settings.rd] = ''.zfill(16) + settings.data_memory[addrs+1] + settings.data_memory[addrs]
 
 def instr_sb():
-	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_s, settings.registers[settings.rs1]))
-	settings.data_memory[addrs] = settings.registers[settings.rs2][24:32]
+    mem_address = settings.data_memory[utilities.bin2u(settings.imm_s)+3] + settings.data_memory[utilities.bin2u(settings.imm_s)+2]+ settings.data_memory[utilities.bin2u(settings.imm_s)+1]+ settings.data_memory[utilities.bin2u(settings.imm_s)]
+    addrs = utilities.bin2u(utilities.bin_soma(mem_address, settings.registers[settings.rs2]))
+    settings.data_memory[addrs] = settings.registers[settings.rs1][24:32]
 
 def instr_sh():
-	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_s, settings.registers[settings.rs1]))
-	settings.data_memory[addrs] = settings.registers[settings.rs2][24:32]
-	settings.data_memory[addrs+1] = settings.registers[settings.rs2][16:25]
+    mem_address = settings.data_memory[utilities.bin2u(settings.imm_s)+3] + settings.data_memory[utilities.bin2u(settings.imm_s)+2]+ settings.data_memory[utilities.bin2u(settings.imm_s)+1]+ settings.data_memory[utilities.bin2u(settings.imm_s)]
+    addrs = utilities.bin2u(utilities.bin_soma(mem_address, settings.registers[settings.rs2]))
+    settings.data_memory[addrs] = settings.registers[settings.rs1][24:32]
+    settings.data_memory[addrs+1] = settings.registers[settings.rs1][16:25]
 
 
 def instr_sw():
-	addrs = utilities.bin2u(utilities.bin_soma(settings.imm_s, settings.registers[settings.rs1]))
-	settings.data_memory[addrs] = settings.registers[settings.rs2][24:32]
-	settings.data_memory[addrs+1] = settings.registers[settings.rs2][16:24]
-	settings.data_memory[addrs+2] = settings.registers[settings.rs2][8:16]
-	settings.data_memory[addrs+3] = settings.registers[settings.rs2][0:8]
+
+    
+    mem_address = settings.data_memory[utilities.bin2u(settings.imm_s)+3] + settings.data_memory[utilities.bin2u(settings.imm_s)+2]+ settings.data_memory[utilities.bin2u(settings.imm_s)+1]+ settings.data_memory[utilities.bin2u(settings.imm_s)]
+    addrs = utilities.bin2u(utilities.bin_soma(mem_address, settings.registers[settings.rs2]))
+    settings.data_memory[addrs] = settings.registers[settings.rs1][24:32]
+    settings.data_memory[addrs+1] = settings.registers[settings.rs1][16:24]
+    settings.data_memory[addrs+2] = settings.registers[settings.rs1][8:16]
+    settings.data_memory[addrs+3] = settings.registers[settings.rs1][0:8]
+    
 
 def instr_addi():
     '''ADDI adds the sign-extended 12-bit immediate to register rs1. Arithmetic overflow is ignored and

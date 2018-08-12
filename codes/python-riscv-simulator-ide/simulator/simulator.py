@@ -125,7 +125,7 @@ def run( code, memory, registers, pc, console_input, console_output, step_count=
 		execute(decode(fetch(settings.pc)))
 		it = it + 1 # avoid infinite loop
 		step_count = step_count - 1
-		print(it)
+		#print(it)
 	
 	if it >= settings.MAX_NUMBER_CYCLES:
 		settings.console_output.append("Warning: infinite loop")	

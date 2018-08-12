@@ -130,7 +130,7 @@ def first_pass(code_text):
             if concat_next_line == 1:
                 line = prev_line+line
                 concat_next_line = 0
-                
+                contador_linha = contador_linha + 1
             all_tokens = split_tokens(line, contador_linha)
             #print(all_tokens)
             # Se split_tokens retornar erro, retorna erro para a main
@@ -140,6 +140,7 @@ def first_pass(code_text):
             elif all_tokens == 2:                
                 prev_line = line
                 concat_next_line=1
+
                 
             else:
                 # se operacao e operandos nao for vazio
@@ -349,7 +350,10 @@ def second_pass(code_text):
         else:
 
             all_tokens = split_tokens(line, contador_linha)
-            if all_tokens != 2:
+            
+            if all_tokens == 2:
+                contador_linha = contador_linha + 1
+            else:
                 
 #    2   -   Para cada operando que e simbolo
 #            Procura operando na TS
@@ -358,8 +362,7 @@ def second_pass(code_text):
 
                 # print("\n\n\n\t-"+str(contador_linha)+"--"+line+"\n")
                 for operand in all_tokens['operands']:
-                    #print(operand)
-                    # se for registrador
+  
                     if( operand in settings.REGISTER_NAMES):
                         pass
                         #print("Registrador!")
@@ -370,12 +373,14 @@ def second_pass(code_text):
                         # capture register
                         register_capture = re.search( "\((.*)\)"  , operand, re.M|re.I)
                         register_capture = register_capture.group(1)
-                        
+
 
                         # immediate register
                         immediate_capture = re.search( "(.*?)\(\w+"  , operand, re.M|re.I)
                         immediate_capture = immediate_capture.group(1)
-                        
+
+
+                     
                         # se a captura de registrador for registrador e a captura de imediato for um numero ou um simbolo da tabela ok senao erro
                         if register_capture in settings.REGISTER_NAMES and  (immediate_capture in SYMBOL_TABLE or utilities.is_number(immediate_capture)) :
                             pass
@@ -389,6 +394,7 @@ def second_pass(code_text):
                     else:
                         #print("Simbolo")
                         if operand in SYMBOL_TABLE:
+                            
                             pass
                             #print("Simbolo existente")
                         else:
@@ -398,11 +404,6 @@ def second_pass(code_text):
                                 pass
                                 #print("operando e numero")
                             else:
-                                # s[s.find("(")+1:s.find(")")]
-                                # print("Erro. Simbolo inexistente. linha "+ str(contador_linha))
-                                print(all_tokens['operands'])
-                                print(operand)
-                                print(SYMBOL_TABLE)
                                 WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Erro. Simbolo inexistente. linha "+ str(contador_linha) )
                                 return 1
     #print("\n")
@@ -478,17 +479,40 @@ def second_pass(code_text):
 
                             funct3 = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['funct3']
                             operand1 = settings.REGISTER_NAMES[ all_tokens['operands'][0] ]
-
+                           
                             if ( instruction_type == "s"):
-                                
-                                # capture register
-                                register_capture = re.search( "\((.*)\)"  , all_tokens['operands'][1], re.M|re.I)
-                                operand2 = settings.REGISTER_NAMES[ register_capture.group(1) ]
-                                
-                                # immediate register
-                                immediate_capture = re.search( "(.*?)\(\w+"  , all_tokens['operands'][1], re.M|re.I)
-                                immediate = utilities.s2bin(  int( immediate_capture.group(1) )  , 12)                         
 
+                                if len(all_tokens['operands']) == 3:
+                                    print(all_tokens['operands'])
+                                    operand2 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
+
+                                    if( utilities.is_number(all_tokens['operands'][2]) ):
+                                        immediate = utilities.s2bin(  int(all_tokens['operands'][2])  , 12)
+                                    elif( all_tokens['operands'][2] in SYMBOL_TABLE ):                                                            
+                                        if SYMBOL_TABLE[all_tokens['operands'][2]][0]=="DATA":                                    
+                                            immediate = SYMBOL_TABLE[all_tokens['operands'][2]][1][-12:]
+
+                                    print(immediate)
+                                elif len(all_tokens['operands']) == 2:
+
+                                    print("-------------------------")
+                                    #print(all_tokens)
+                                    # capture register
+                                    print(all_tokens['operands'][1])
+                                    register_capture = re.search( "\((.*)\)"  , all_tokens['operands'][1], re.M|re.I)
+                                    immediate_capture = re.search( "(.*?)\(\w+"  , all_tokens['operands'][1], re.M|re.I)
+                                    if register_capture and immediate_capture:
+                                        operand2 = settings.REGISTER_NAMES[ register_capture.group(1) ]
+                                        immediate = utilities.s2bin(  int( immediate_capture.group(1) )  , 12)                         
+                                        print(immediate)
+                                        print(operand2)
+                                    else:
+                                        print(all_tokens['operands'][1])
+                                        
+                                    
+                                    
+                                    
+                                    print("-------------------------")
                             else:
                                 #print(SYMBOL_TABLE)
                                 #print(contador_pos)
@@ -649,7 +673,7 @@ def assemble(code):
         sp_ret = second_pass(code)
 
     #print(settings.code_memory)
-    print(SYMBOL_TABLE)
+    #print(SYMBOL_TABLE)
 
     errors_ret = WARNINGS_ERRORS 
     WARNINGS_ERRORS = list()  
