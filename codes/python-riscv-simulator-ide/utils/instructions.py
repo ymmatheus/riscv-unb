@@ -563,9 +563,13 @@ def instr_sh():
 
 def instr_sw():
 
-    
-    mem_address = settings.data_memory[utilities.bin2u(settings.imm_s)+3] + settings.data_memory[utilities.bin2u(settings.imm_s)+2]+ settings.data_memory[utilities.bin2u(settings.imm_s)+1]+ settings.data_memory[utilities.bin2u(settings.imm_s)]
+    #mem_address = settings.data_memory[utilities.bin2u(settings.imm_s)+3] + settings.data_memory[utilities.bin2u(settings.imm_s)+2]+ settings.data_memory[utilities.bin2u(settings.imm_s)+1]+ settings.data_memory[utilities.bin2u(settings.imm_s)]
+    mem_address = settings.imm_s
     addrs = utilities.bin2u(utilities.bin_soma(mem_address, settings.registers[settings.rs2]))
+
+    print(mem_address)
+    print(settings.imm_s)
+    print(settings.registers[settings.rs2])
     settings.data_memory[addrs] = settings.registers[settings.rs1][24:32]
     settings.data_memory[addrs+1] = settings.registers[settings.rs1][16:24]
     settings.data_memory[addrs+2] = settings.registers[settings.rs1][8:16]
@@ -690,8 +694,8 @@ def instr_xor():
 	settings.registers[settings.rd] = ''.join(aux)
 
 def instr_srl():
-	shmnt = utilities.bin2u( settings.registers[settings.rs2][-5:] )
-	settings.registers[settings.rd] = ''.zfill( shmnt ) + settings.registers[settings.rs1][0:32-shmnt]
+    shmnt = utilities.bin2u( settings.registers[settings.rs2][-5:] )
+    settings.registers[settings.rd] = ''.zfill( shmnt ) + settings.registers[settings.rs1][0:32-shmnt]
 
 def instr_sra():
 	shmnt = utilities.bin2u( settings.registers[settings.rs2][-5:] )

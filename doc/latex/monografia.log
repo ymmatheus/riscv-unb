@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.8)  8 JUL 2018 23:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.8)  19 AUG 2018 15:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1118,7 +1118,7 @@ LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <20> not available
 LaTeX Font Warning: Font shape `T1/ua1/bx/n' in size <20> not available
 (Font)              size <20.74> substituted on input line 37.
 
-<img/positivo_cor.pdf, id=156, 119.44624pt x 60.225pt>
+<img/positivo_cor.pdf, id=172, 119.44624pt x 60.225pt>
 File: img/positivo_cor.pdf Graphic file (type pdf)
 <use img/positivo_cor.pdf>
 Package pdftex.def Info: img/positivo_cor.pdf  used on input line 37.
@@ -1311,11 +1311,11 @@ text indent by \l@... (toc, 1):  27.02464pt
 number indent by parent (toc, 1):  13.5pt
 text indent calculated (toc, 1): 20.88887pt
 number indent calculated (toc, 1): 13.5pt
-number indent by \l@... (toc, 1):  17.62474pt
-text indent by \l@... (toc, 1):  27.02464pt
-number indent by parent (toc, 1):  13.5pt
-text indent calculated (toc, 1): 20.88887pt
-number indent calculated (toc, 1): 13.5pt
+number indent by \l@... (toc, 2):  44.64938pt
+text indent by \l@... (toc, 2):  37.59943pt
+number indent by parent (toc, 2):  34.38887pt
+text indent calculated (toc, 2): 30.02785pt
+number indent calculated (toc, 2): 34.38887pt
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 35.
 Package babel Info: Redefining portuges shorthand "|
@@ -1323,6 +1323,26 @@ Package babel Info: Redefining portuges shorthand "|
 [7
 
 ]
+number indent by \l@... (toc, 2):  44.64938pt
+text indent by \l@... (toc, 2):  37.59943pt
+number indent by parent (toc, 2):  34.38887pt
+text indent calculated (toc, 2): 30.02785pt
+number indent calculated (toc, 2): 34.38887pt
+number indent by \l@... (toc, 1):  17.62474pt
+text indent by \l@... (toc, 1):  27.02464pt
+number indent by parent (toc, 1):  13.5pt
+text indent calculated (toc, 1): 20.88887pt
+number indent calculated (toc, 1): 13.5pt
+number indent by \l@... (toc, 2):  44.64938pt
+text indent by \l@... (toc, 2):  37.59943pt
+number indent by parent (toc, 2):  34.38887pt
+text indent calculated (toc, 2): 30.02785pt
+number indent calculated (toc, 2): 34.38887pt
+number indent by \l@... (toc, 2):  44.64938pt
+text indent by \l@... (toc, 2):  37.59943pt
+number indent by parent (toc, 2):  34.38887pt
+text indent calculated (toc, 2): 30.02785pt
+number indent calculated (toc, 2): 34.38887pt
 number indent by \l@... (toc, 0):  0.0pt
 text indent by \l@... (toc, 0):  17.62474pt
 number indent by parent (toc, 0):  0.0pt
@@ -1365,82 +1385,117 @@ Package babel Info: Redefining portuges shorthand "|
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 number indent by \l@... (lof, 1):  17.62474pt
 text indent by \l@... (lof, 1):  27.02464pt
 number indent by parent (lof, 1):  17.62474pt
-text indent calculated (lof, 1): 20.88887pt
+text indent calculated (lof, 1): 26.76385pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 26.76385pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 26.76385pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 26.76385pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 26.76385pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 26.76385pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 26.76385pt
+number indent calculated (lof, 1): 17.62474pt
+number indent by \l@... (lof, 1):  17.62474pt
+text indent by \l@... (lof, 1):  27.02464pt
+number indent by parent (lof, 1):  17.62474pt
+text indent calculated (lof, 1): 26.76385pt
 number indent calculated (lof, 1): 17.62474pt
 )
 \tf@lof=\write8
@@ -1458,7 +1513,12 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 37.
 [9
 
-] (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 37.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 37.
+ [10] (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
@@ -1559,12 +1619,12 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 110.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 114.
-<img/instruction_formats.png, id=346, 1058.95625pt x 368.37625pt>
+<img/instruction_formats.png, id=385, 1058.95625pt x 368.37625pt>
 File: img/instruction_formats.png Graphic file (type png)
 <use img/instruction_formats.png>
 Package pdftex.def Info: img/instruction_formats.png  used on input line 121.
 (pdftex.def)             Requested size: 455.24411pt x 158.36496pt.
-<img/immediate_encoding.png, id=350, 1025.8325pt x 322.20375pt>
+<img/immediate_encoding.png, id=389, 1025.8325pt x 322.20375pt>
 File: img/immediate_encoding.png Graphic file (type png)
 <use img/immediate_encoding.png>
 Package pdftex.def Info: img/immediate_encoding.png  used on input line 132.
@@ -1597,7 +1657,7 @@ Package babel Info: Redefining portuges shorthand "|
  [13]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 206.
-<img/client-server-model.png, id=373, 1204.5pt x 722.7pt>
+<img/client-server-model.png, id=411, 1204.5pt x 722.7pt>
 File: img/client-server-model.png Graphic file (type png)
 <use img/client-server-model.png>
 Package pdftex.def Info: img/client-server-model.png  used on input line 211.
@@ -1629,7 +1689,7 @@ Package babel Info: Redefining portuges shorthand "|
 ]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 35.
-<img/code_editor.png, id=394, 1371.1225pt x 770.88pt>
+<img/code_editor.png, id=432, 1371.1225pt x 770.88pt>
 File: img/code_editor.png Graphic file (type png)
 <use img/code_editor.png>
 Package pdftex.def Info: img/code_editor.png  used on input line 44.
@@ -1645,7 +1705,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 59.
 [17]
-<img/assemble_data_bin.png, id=404, 1371.1225pt x 770.88pt>
+<img/assemble_data_bin.png, id=442, 1371.1225pt x 770.88pt>
 File: img/assemble_data_bin.png Graphic file (type png)
 <use img/assemble_data_bin.png>
 Package pdftex.def Info: img/assemble_data_bin.png  used on input line 67.
@@ -1654,7 +1714,7 @@ Package pdftex.def Info: img/assemble_data_bin.png  used on input line 67.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<img/assemble_data_hex.png, id=407, 1371.1225pt x 770.88pt>
+<img/assemble_data_hex.png, id=445, 1371.1225pt x 770.88pt>
 File: img/assemble_data_hex.png Graphic file (type png)
 <use img/assemble_data_hex.png>
 Package pdftex.def Info: img/assemble_data_hex.png  used on input line 75.
@@ -1662,7 +1722,7 @@ Package pdftex.def Info: img/assemble_data_hex.png  used on input line 75.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<img/assemble_data_mif.png, id=408, 1371.1225pt x 770.88pt>
+<img/assemble_data_mif.png, id=446, 1371.1225pt x 770.88pt>
 File: img/assemble_data_mif.png Graphic file (type png)
 <use img/assemble_data_mif.png>
 Package pdftex.def Info: img/assemble_data_mif.png  used on input line 81.
@@ -1677,156 +1737,231 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 91.
 [18 <./img/code_editor.png>]
-<img/simulator_results.png, id=415, 1371.1225pt x 770.88pt>
-File: img/simulator_results.png Graphic file (type png)
-<use img/simulator_results.png>
-Package pdftex.def Info: img/simulator_results.png  used on input line 95.
+<img/simulator_results_1.png, id=454, 1371.1225pt x 770.88pt>
+File: img/simulator_results_1.png Graphic file (type png)
+<use img/simulator_results_1.png>
+Package pdftex.def Info: img/simulator_results_1.png  used on input line 95.
 (pdftex.def)             Requested size: 455.24411pt x 255.94386pt.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<img/simulator_results_2.png, id=456, 1371.1225pt x 770.88pt>
+File: img/simulator_results_2.png Graphic file (type png)
+<use img/simulator_results_2.png>
+Package pdftex.def Info: img/simulator_results_2.png  used on input line 103.
+(pdftex.def)             Requested size: 455.24411pt x 255.94386pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 101.
-)
+(babel)             in language  on input line 111.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 115.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 115.
+[19 <./img/assemble_data_bin.png>])
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 41.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 41.
- [19 <./img/assemble_data_bin.png>]
+ [20 <./img/assemble_data_hex.png>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 41.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 41.
- [20 <./img/assemble_data_hex.png> <./img/assemble_data_mif.png>]
+ [21 <./img/assemble_data_mif.png> <./img/simulator_results_1.png>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 41.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 41.
- [21 <./img/simulator_results.png>]
+ [22 <./img/simulator_results_2.png>]
 Cap\'{\i }tulo 4.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 41.
 (./tex/4_Resultados.tex
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 9.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 20.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 20.
- [22
-
-]
-<img/assemble_error_duplicated_symbol.png, id=449, 549.05125pt x 661.47125pt>
+(babel)             in language  on input line 11.
+<img/assemble_error_duplicated_symbol.png, id=482, 549.05125pt x 661.47125pt>
 File: img/assemble_error_duplicated_symbol.png Graphic file (type png)
 <use img/assemble_error_duplicated_symbol.png>
 Package pdftex.def Info: img/assemble_error_duplicated_symbol.png  used on inpu
-t line 25.
+t line 20.
 (pdftex.def)             Requested size: 227.62204pt x 274.22284pt.
-<img/assemble_error_directives_strings.png, id=450, 697.60625pt x 663.47874pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<img/assemble_error_directives_strings.png, id=484, 697.60625pt x 663.47874pt>
 File: img/assemble_error_directives_strings.png Graphic file (type png)
 <use img/assemble_error_directives_strings.png>
 Package pdftex.def Info: img/assemble_error_directives_strings.png  used on inp
-ut line 33.
+ut line 30.
 (pdftex.def)             Requested size: 227.62204pt x 216.48856pt.
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<img/assemble_error_imediato.png, id=451, 589.20125pt x 669.50125pt>
+<img/assemble_error_imediato.png, id=486, 589.20125pt x 669.50125pt>
 File: img/assemble_error_imediato.png Graphic file (type png)
 <use img/assemble_error_imediato.png>
-Package pdftex.def Info: img/assemble_error_imediato.png  used on input line 41
+Package pdftex.def Info: img/assemble_error_imediato.png  used on input line 40
 .
 (pdftex.def)             Requested size: 227.62204pt x 258.64244pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<img/assemble_error_operando_invalido.png, id=452, 616.3025pt x 674.52pt>
+<img/assemble_error_operando_invalido.png, id=488, 616.3025pt x 674.52pt>
 File: img/assemble_error_operando_invalido.png Graphic file (type png)
 <use img/assemble_error_operando_invalido.png>
 Package pdftex.def Info: img/assemble_error_operando_invalido.png  used on inpu
 t line 48.
 (pdftex.def)             Requested size: 227.62204pt x 249.11563pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<img/assemble_error_operation_not_recognized.png, id=453, 596.2275pt x 669.5012
+<img/assemble_error_operation_not_recognized.png, id=491, 596.2275pt x 669.5012
 5pt>
 File: img/assemble_error_operation_not_recognized.png Graphic file (type png)
 <use img/assemble_error_operation_not_recognized.png>
 Package pdftex.def Info: img/assemble_error_operation_not_recognized.png  used 
-on input line 55.
+on input line 57.
 (pdftex.def)             Requested size: 227.62204pt x 255.59814pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<img/assemble_error_op_not_recog_directives.png, id=454, 564.1075pt x 669.50125
+<img/assemble_error_op_not_recog_directives.png, id=492, 564.1075pt x 669.50125
 pt>
 File: img/assemble_error_op_not_recog_directives.png Graphic file (type png)
 <use img/assemble_error_op_not_recog_directives.png>
 Package pdftex.def Info: img/assemble_error_op_not_recog_directives.png  used o
-n input line 63.
+n input line 64.
 (pdftex.def)             Requested size: 227.62204pt x 270.14537pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<img/assemble_error_simbolo_inexistente.png, id=455, 562.1pt x 668.4975pt>
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `!tbp') on input line 70.
+
+<img/assemble_error_simbolo_inexistente.png, id=494, 562.1pt x 668.4975pt>
 File: img/assemble_error_simbolo_inexistente.png Graphic file (type png)
 <use img/assemble_error_simbolo_inexistente.png>
 Package pdftex.def Info: img/assemble_error_simbolo_inexistente.png  used on in
-put line 70.
+put line 72.
 (pdftex.def)             Requested size: 227.62204pt x 270.7094pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 76.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 76.
+[23
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<img/assemble_error_wrong_arguments.png, id=456, 564.1075pt x 668.4975pt>
+]
+<img/assemble_error_wrong_arguments.png, id=501, 564.1075pt x 668.4975pt>
 File: img/assemble_error_wrong_arguments.png Graphic file (type png)
 <use img/assemble_error_wrong_arguments.png>
 Package pdftex.def Info: img/assemble_error_wrong_arguments.png  used on input 
-line 77.
+line 81.
 (pdftex.def)             Requested size: 227.62204pt x 269.74036pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 89.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 92.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 92.
+[24 <./img/assemble_error_duplicated_symbol.png> <./img/assemble_error_directiv
+es_strings.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 93.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 93.
+ [25 <./img/assemble_error_imediato.png> <./img/assemble_error_operando_invalid
+o.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 93.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 97.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 97.
+ [26 <./img/assemble_error_operation_not_recognized.png> <./img/assemble_error_
+op_not_recog_directives.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 97.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 97.
+ [27 <./img/assemble_error_simbolo_inexistente.png> <./img/assemble_error_wrong
+_arguments.png>]
+<img/aritmetica_codigo.png, id=528, 1371.1225pt x 770.88pt>
+File: img/aritmetica_codigo.png Graphic file (type png)
+<use img/aritmetica_codigo.png>
+Package pdftex.def Info: img/aritmetica_codigo.png  used on input line 100.
+(pdftex.def)             Requested size: 227.62204pt x 127.96605pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 106.
+<img/aritmetica_results.png, id=530, 1371.1225pt x 770.88pt>
+File: img/aritmetica_results.png Graphic file (type png)
+<use img/aritmetica_results.png>
+Package pdftex.def Info: img/aritmetica_results.png  used on input line 112.
+(pdftex.def)             Requested size: 227.62204pt x 127.96605pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 120.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 123.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 123.
+ [28 <./img/aritmetica_codigo.png> <./img/aritmetica_results.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 124.
+<img/fibonacci_codigo_1.png, id=538, 1371.1225pt x 770.88pt>
+File: img/fibonacci_codigo_1.png Graphic file (type png)
+<use img/fibonacci_codigo_1.png>
+Package pdftex.def Info: img/fibonacci_codigo_1.png  used on input line 135.
+(pdftex.def)             Requested size: 398.33858pt x 223.9494pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 142.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 142.
+ [29 <./img/fibonacci_codigo_1.png>]
+<img/fibonacci_codigo_2.png, id=545, 1371.1225pt x 770.88pt>
+File: img/fibonacci_codigo_2.png Graphic file (type png)
+<use img/fibonacci_codigo_2.png>
+Package pdftex.def Info: img/fibonacci_codigo_2.png  used on input line 154.
+(pdftex.def)             Requested size: 398.33858pt x 223.9494pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 163.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 167.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 167.
+ [30 <./img/fibonacci_codigo_2.png>]
+<img/fibonacci_results_1.png, id=552, 1371.1225pt x 770.88pt>
+File: img/fibonacci_results_1.png Graphic file (type png)
+<use img/fibonacci_results_1.png>
+Package pdftex.def Info: img/fibonacci_results_1.png  used on input line 170.
+(pdftex.def)             Requested size: 398.33858pt x 223.9494pt.
+<img/fibonacci_results_2.png, id=554, 1371.1225pt x 770.88pt>
+File: img/fibonacci_results_2.png Graphic file (type png)
+<use img/fibonacci_results_2.png>
+Package pdftex.def Info: img/fibonacci_results_2.png  used on input line 181.
+(pdftex.def)             Requested size: 398.33858pt x 223.9494pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 86.
-
-Underfull \hbox (badness 10000) in paragraph at lines 87--89
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 90.
 )
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 42.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 42.
- [23 <./img/assemble_error_duplicated_symbol.png>]
+ [31 <./img/fibonacci_results_1.png>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 42.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 42.
- [24 <./img/assemble_error_directives_strings.png> <./img/assemble_error_imedia
-to.png>]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
- [25 <./img/assemble_error_operando_invalido.png> <./img/assemble_error_operati
-on_not_recognized.png>]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
- [26 <./img/assemble_error_op_not_recog_directives.png> <./img/assemble_error_s
-imbolo_inexistente.png>]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 42.
- [27 <./img/assemble_error_wrong_arguments.png>]
+ [32 <./img/fibonacci_results_2.png>]
 Cap\'{\i }tulo 5.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 42.
@@ -1839,7 +1974,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 27.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 27.
- [28
+ [33
 
 ]
 Package babel Info: Redefining portuges shorthand "|
@@ -1850,12 +1985,12 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
- [29])
+ [34])
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 49.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 49.
- [30]
+ [35]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 49.
  (./monografia.bbl (./monografia.brf)
@@ -1910,7 +2045,7 @@ Overfull \hbox (47.473pt too wide) in paragraph at lines 101--101
 adaches-[]for-[]the-[]tech-[]business$[]\T1/lmr/m/n/12 .
  []
 
-[31
+[36
 
 
 ])
@@ -1919,15 +2054,15 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 49.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 49.
- [32]
+ [37]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 49.
  (./monografia.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 49.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 49.
 Package rerunfilecheck Info: File `monografia.out' has not changed.
-(rerunfilecheck)             Checksum: 0C5FAA15127A4417AE5809A022BF2903;2468.
+(rerunfilecheck)             Checksum: 35080E18DF0696D250AF932E0F3C226B;2775.
 Package rerunfilecheck Info: File `monografia.brf' has not changed.
-(rerunfilecheck)             Checksum: AE5A933343CA008FCC5296B0F6AC1813;1081.
+(rerunfilecheck)             Checksum: 5EF5F30A8B1131F8D3FE274E77FC89CE;1081.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1940,10 +2075,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 49.
  )
 (\end occurred when \iffalse on line 120 was incomplete) 
 Here is how much of TeX's memory you used:
- 16202 strings out of 494903
- 262866 string characters out of 6179962
- 418882 words of memory out of 5000000
- 19012 multiletter control sequences out of 15000+600000
+ 16265 strings out of 494903
+ 264326 string characters out of 6179962
+ 419551 words of memory out of 5000000
+ 19051 multiletter control sequences out of 15000+600000
  54716 words of font info for 41 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  52i,7n,69p,1992b,607s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1957,10 +2092,10 @@ sr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/p
 ublic/lm/lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/sha
 re/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmtti10.pfb>
-Output written on monografia.pdf (41 pages, 794986 bytes).
+Output written on monografia.pdf (47 pages, 1257995 bytes).
 PDF statistics:
- 651 PDF objects out of 1000 (max. 8388607)
- 528 compressed objects within 6 object streams
- 121 named destinations out of 1000 (max. 500000)
- 390 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 733 PDF objects out of 1000 (max. 8388607)
+ 590 compressed objects within 6 object streams
+ 138 named destinations out of 1000 (max. 500000)
+ 457 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -87,15 +87,25 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 \section{Simulador}
 
-	O simulador implementado neste projeto mostra o mapa de memória e o estado dos registradores após o código montado ter sido executado. Lembrando que foi implementado a arquitetura RV32G, portanto dispõe-se de 32 registradores de 32 bits e endereços de memória a 4GB.
+	O simulador implementado neste projeto mostra o código montado, o código em hexadecimal, e as instruções que esses números em hexadecimal representam. Também pode se ver o mapa de memória e o estado dos registradores após o código montado ter sido executado ou em execução com a utilização do botão STEP.  Lembrando que foi implementado a arquitetura RV32G, portanto dispõe-se de 32 registradores de 32 bits.
 
-	Na figura \ref{fig:simulator_results} é mostrado um exemplo dos resultados gerados pelo simulador implementado no projeto.
+	Na figura \ref{fig:simulator_results_1} é mostrado um exemplo dos resultados gerados pelo simulador implementado no projeto. O botão de RUN é utilizado para rodar o programa do momento em que está até o final da execução. Botão STEP irá executar apenas uma instrução. Pode-se utilizar o botão STEP para rodar algumas instruções e em seguida apertar RUN para executar até o final. A função de breakpoint não foi implementada. E o botão de RESET além de resetar as variáveis do sistema como os registradores, memória, program counter, também faz a montagem do código escrito na aba Code Editor.
 
-	\begin{figure}[h]
-	  \includegraphics[width=\linewidth]{img/simulator_results.png}
-	  \caption{Resultados do simulador.}
-	  \label{fig:simulator_results}
+	\begin{figure}[h!]
+	  \includegraphics[width=\linewidth]{img/simulator_results_1.png}
+	  \caption{Resultados do simulador. Código montado, mapa da memória, registradores. }
+	  \label{fig:simulator_results_1}
 	\end{figure}
+
+	A figura \ref{fig:simulator_results_2} é a continuação da tela de resultados. Esta mostra uma tela de output do sistema. Neste projeto foi implementado apenas duas funções SYSCALL. Uma é a impressão de um inteiro, e a outra o encerramento do programa.  
+
+	\begin{figure}[h!]
+	  \includegraphics[width=\linewidth]{img/simulator_results_2.png}
+	  \caption{Resultados do simulador. Console de saída de informações do sistema.}
+	  \label{fig:simulator_results_2}
+	\end{figure}
+
+	Os valores de registradores e de mapa de memória podem ser visualizados na base decimal e hexadecimal.
 
 
 \section{Extensiblidade}

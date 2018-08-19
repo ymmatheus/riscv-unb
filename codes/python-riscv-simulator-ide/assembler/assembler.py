@@ -438,7 +438,7 @@ def second_pass(code_text):
                             operand1 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
                             operand2 = settings.REGISTER_NAMES[ all_tokens['operands'][2] ]                        
                                             
-                            instr = funct7 + operand1 + operand2 + funct3 + operand0 + opcode
+                            instr = funct7  + operand2 + operand1 + funct3 + operand0 + opcode
 
                         elif ( instruction_type == "i" ):
                             #    imm[11:0] rs1 funct3 rd opcode I-type

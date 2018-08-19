@@ -27,17 +27,21 @@
 \contentsline {section}{\numberline {3.3}Interface web}{17}{section.3.3}
 \contentsline {section}{\numberline {3.4}Montador}{18}{section.3.4}
 \contentsline {section}{\numberline {3.5}Simulador}{19}{section.3.5}
-\contentsline {section}{\numberline {3.6}Extensiblidade}{19}{section.3.6}
-\contentsline {chapter}{\numberline {4}Resultados e Avalia\IeC {\c c}\IeC {\~a}o do Sistema}{22}{chapter.4}
-\contentsline {section}{\numberline {4.1}Poss\IeC {\'\i }veis erros de montagem}{22}{section.4.1}
-\contentsline {section}{\numberline {4.2}C\IeC {\'o}digo exemplo}{23}{section.4.2}
-\contentsline {section}{\numberline {4.3}Saidas}{23}{section.4.3}
-\contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es}{28}{chapter.5}
-\contentsline {section}{\numberline {5.1}Objetivos atingidos}{28}{section.5.1}
-\contentsline {section}{\numberline {5.2}Pontos positivos e negativos}{28}{section.5.2}
-\contentsline {section}{\numberline {5.3}Dificuldades}{29}{section.5.3}
-\contentsline {section}{\numberline {5.4}Melhorias e trabalhos futuros}{29}{section.5.4}
-\contentsline {chapter}{Refer\^encias}{31}{section*.10}
+\contentsline {section}{\numberline {3.6}Extensiblidade}{20}{section.3.6}
+\contentsline {chapter}{\numberline {4}Resultados e Avalia\IeC {\c c}\IeC {\~a}o do Sistema}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}Poss\IeC {\'\i }veis erros de montagem}{23}{section.4.1}
+\contentsline {section}{\numberline {4.2}Aritm\IeC {\'e}tica Simples}{25}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Editor de c\IeC {\'o}digo}{28}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Simula\IeC {\c c}\IeC {\~a}o}{28}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Sequ\IeC {\^e}ncia de Fibonacci}{29}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Editor de c\IeC {\'o}digo}{29}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Simula\IeC {\c c}\IeC {\~a}o}{31}{subsection.4.3.2}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es}{33}{chapter.5}
+\contentsline {section}{\numberline {5.1}Objetivos atingidos}{33}{section.5.1}
+\contentsline {section}{\numberline {5.2}Pontos positivos e negativos}{33}{section.5.2}
+\contentsline {section}{\numberline {5.3}Dificuldades}{34}{section.5.3}
+\contentsline {section}{\numberline {5.4}Melhorias e trabalhos futuros}{34}{section.5.4}
+\contentsline {chapter}{Refer\^encias}{36}{section*.10}
 \babel@toc {american}{}
 \babel@toc {american}{}
 \babel@toc {american}{}
