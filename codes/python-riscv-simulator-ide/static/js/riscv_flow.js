@@ -7,11 +7,17 @@ $(document).ready(function(){
 	$("#entrada").css("display","block");
 	$("#saida").css("display","none");
 	$("#simulator").css("display","none");
+	$("#instructions").css("display","none");
+	$("#about_us").css("display","none");
+
 
 	$("#menu_entrada").click(function(){
 		$("#entrada").css("display","block");
 		$("#saida").css("display","none");
 		$("#simulator").css("display","none");
+		$("#instructions").css("display","none");
+		$("#about_us").css("display","none");
+
 	});
 
 	$("#run_button").addClass("disabled");
@@ -22,14 +28,41 @@ $(document).ready(function(){
 		$("#entrada").css("display","none");
 		$("#saida").css("display","block");
 		$("#simulator").css("display","none");
+		$("#instructions").css("display","none");
+		$("#about_us").css("display","none");
+
 	});
 
 	$("#menu_simulator").click(function(){
 		$("#saida").css("display","none");
 		$("#entrada").css("display","none");
 		$("#simulator").css("display","block");
+		$("#instructions").css("display","none");
+		$("#about_us").css("display","none");
 
 	});
+
+	$("#menu_instructions").click(function(){
+		$("#saida").css("display","none");
+		$("#entrada").css("display","none");
+		$("#simulator").css("display","none");
+		$("#instructions").css("display","block");
+		$("#about_us").css("display","none");
+
+	});
+
+
+	$("#menu_about").click(function(){
+		$("#saida").css("display","none");
+		$("#entrada").css("display","none");
+		$("#simulator").css("display","none");
+		$("#instructions").css("display","none");
+		$("#about_us").css("display","block");
+
+	});
+
+
+
 
 	$("#run_button").click(function(){
 		$("#saida").css("display","none");

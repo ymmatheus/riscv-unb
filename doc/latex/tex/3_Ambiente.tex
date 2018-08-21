@@ -32,6 +32,268 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 	O código \textit{jQuery} faz chamadas HTTP assíncronas ao backend usando os métodos POST e GET ao pressionar algum botão de ação do sistema. 
 
+	Abaixo iremos descrever por módulos cada componente do sistema.
+	
+	\subsection{Front-end}
+	
+		O front-end da aplicação como já explanado anteriormente é a parte visual da aplicação. É a parte do software que lidará diretamente com a usabilidade e experiência do usuário. Nesta seção será abordado como foi implementado com maiores detalhes dentro da solução apresentada neste projeto.
+
+		\subsubsection{Single Page Application}
+		
+			Uma única página com todos os componentes carregados, porém escondidos. Com isso evitamos recarregar a página várias vezes, pois a quantidade de dados que teríamos que  enviar e receber do servidor web seria alta, além de termos que processar esses dados para manter o estado atual do sistema sempre sincronizado.
+
+			Na parte de front-end temos três módulos ou seções. Estes módulos são definidos por uma estrutura em HTML utilizando a tag section com ID's. Desse jeito podemos separar visualmente com CSS e funcionalmente com javascript. As seções existentes são entrada, saída e simulator.
+
+			Cada seção pode ser acessada pelo menu global da aplicação como mostrado na figura \ref{fig:menu_global}.
+
+			\begin{figure}[h!]
+			  \centering
+			  \includegraphics[width=4cm]{img/menu_global.png}
+			  \caption{Menu global do sistema. Principal componente de navegação.}
+			  \label{fig:menu_global}
+			\end{figure}
+
+			Neste menu vemos duas partes separadas por uma linha horizontal, a parte superior contém as seções do sistema, enquanto a parte inferior contém seções de informações.
+
+			Para a lógica do front-end temos dois módulos em jQuery, o riscv\textunderscore flow e riscv\textunderscore functions. Detalharemos estes módulos abaixo.
+
+			\subparagraph{riscv\textunderscore flow}
+
+				Este módulo trata de associar eventos aos botões do sistema para esconder e mostrar seções através de alterações no CSS. E também associa os botões de ações do sistema.
+
+				Por exemplo, para mostrarmos a seção de simulação, escondemos a seção de entrada e a seção de saída e mostramos a seção de simulação, e então para mostrar outra seção mostramos essa seção e escondemos a de simulação.
+
+				A associação dos eventos de comunicação com o back-end também é feito no riscv\textunderscore flow.
+
+				Por exemplo, ao clicarmos no botão de montagem, a função que associa o clique no botão com a funcionalidade de montagem é escrita aqui. Porém a funcionalidade da comunicação em é feita no módulo riscv\textunderscore functions, que iremos detalhar no próximo parágrafo.  
+
+			\subparagraph{riscv\textunderscore functions}
+
+				São implementadas as funcionalidades e eventos de comunicação com o back-end. É responsável por atualizar informações na página como mensagens de resposta da montagem, no caso do montador, ou valores de memória e registradores no caso do simulador. Esta atualização ocorre sem fazer reload da página.
+
+				Neste módulo estão funções de conversão de base, e tratamento de dados. Essas funções são importantes para facilitar a visualização dos dados pelo usuário.
+
+				As duas funcionalidades principais deste módulo são as funções de assemble e run\textunderscore simulation. 
+
+				Estas duas funções são descritas aqui e associadas aos botões no módulo riscv\textunderscore flow. Ambas utilizam o mecanismo conhecido como \textit{AJAX} do inglês \textit{"Asynchronous Javascript And XML"}. Este mecanismo utiliza um objeto nativo de browsers modernos que serve é utilizado para fazer requisições de dados de Web Servers. E é ele que permite trocar informações com o servidor sem precisar recarregar a página inteira.
+
+				No caso das funções assemble e run\textunderscore simulation, eles fazem requisições POSTs para o nosso back-end.
+
+				A função assemble manda o código escrito na seção de edição de código e recebe as informações de montagem, memória de código, memória de dados, e erros. Também insere as informações de programa na seção de simulação.
+
+				A função run\textunderscore simulation envia todas as informações do contexto da execução no momento, a memória de código, e de dados, valores de registradores, contador de programa, entradas e saídas de usuário, e também um inteiro que diz quanta instruções o simulador deve executar. Este recebe praticamente as mesmas informações porém atualizadas uma instrução depois da execução.
+
+
+	\subsection{Back-end}
+
+		Nesta seção iremos abordar as implementações das funcionalidades do sistema, cada componenete do back-end e como se comunicam.
+
+		\subsubsection{main}
+
+			O primeiro componente a ser detalhado é o componente main. Este é o componente que liga o front-end com o back-end, pois recebe as chamadas do front-end e executa os componentes requisitados. 
+
+			Por exemplo, ao clicar no botão ASSEMBLE o usuário está enviando uma requisição POST com o código ASSEMBLY RISC-V ao componente MAIN, e este irá chamar o componente ASSEMBLER. Após a execução do componente ASSEMBLER, este irá devolver ao front-end as informações devidas.
+
+			O componente MAIN responde à três requisições HTTP:
+			\begin{itemize}
+				\item Requisição GET "/". Esta requisição irá devolver a página completa do front-end ao usuário. É a página inicial do sistema. A requisição é feita ao entrar com a URL no navegador.
+				\item Requisição POST "/assemble". Esta requisição é feita quando o usuário clica no botão ASSEMBLE na tela do editor de código, ou no botão RESET na tela de simulação. E retorna o código montado, memória, erros, ou outras informações de montagem.
+				\item Requisição POST "/run". Esta requisição pode ser feita ao clicar no botão RUN ou STEP, estes botões existem tanto na tela do editor de código quanto na tela de simulação. Ao realizar o clique em algum dos botões, o usuário estará enviando todas as informações atuais da simulação, isso inclui, o código montado, valores de memória, registradores, contador de programa, valores de entrada e saída, e também um diferenciador do botão step ou run, para o programa saber se irá rodar até o final ou apenas um passo.
+			\end{itemize}
+
+			Após chamar os componentes adequados à cada requisição feita pelo usuário, o componente MAIN irá retornar as informações em formato JSON para a função javascript que fez a requisição, e então mostrar esses dados no front-end. As informações que cada requisição retorna serão melhor detalhadas nas próximas seções.
+
+		\subsubsection{utils}
+
+			O componente UTILS agrega funções e variáveis auxiliares aos outros componentes, por exemplo, funções de conversão de base, codificação e decodificação de instruções, execução de instruções, e configurações, como tamanho da das memórias de código e dados.
+
+				\subparagraph{settings}
+
+					Neste módulo estão contidos definições como nomes de registradores, suas representações em binário, tamanho das memória de dados e código em bytes, tamanho da palavra, que no caso deste sistema é 32 bits, variáveis de decodificação, opcode, rd, rs1, rs2, imediatos entre outros. Também está definido neste módulo um número máximo de instruções rodados por simulação, para evitar laços infinitos e sobrecarga. 
+
+				\subparagraph{utilities}
+
+					No módulo UTILITIES estão definidas várias funções que dão suporte ao funcionamento do sistema, como funções de conversão de base, de verificação de tipo, e algumas funções para debug, para mostrar registradores, região da memória entre outros.
+
+				\subparagraph{instructions}
+
+					Este módulo contém a definição de todas as instruções implementadas do sistema, contém várias tabelas para codificação e decodificação que são utilizadas para a montagem e para a simulação do sistema. 
+
+					As tabelas principais são as tabelas instruction\textunderscore table e reverse\textunderscore instruction\textunderscore table. A instruction\textunderscore table é feita no formato,
+
+					\begin{verbatim}
+						# Instruction Table
+						opcode:
+						{
+						    "type": tipo,
+
+						    funct3:
+						    {
+						         funct7 : nome_da_instrucao
+						    }
+						}
+						
+						# Exemplo
+
+						# JALR
+						"1100111" : 
+						{
+						    "type": "i",
+						    "000" : "jalr"
+						},
+
+						# ADDI, SLTI, SLTIU XORI ORI ANDI SLLI SRLI SRAI
+						"0010011" : 
+						{
+						    "type": "i",
+						    "000": "addi",
+						    "010": "slti",
+						    "011": "sltiu",
+						    "100": "xori",
+						    "110": "ori",
+						    "111": "andi",
+						    "001": "slli",
+						    "101": "sri"
+						},
+					\end{verbatim}
+
+					E a reverse\textunderscore instruction\textunderscore table é feita no formato, 
+
+					\begin{verbatim}
+						# Reverse Instruction Table
+						nome_da_instrucao:
+						{
+						    "type": tipo,
+						    "size": tamanho_em_bytes,
+						    "opcode": opcode,
+						    "funct3": valor_funct3,						 
+						    "funct7" : valor_funct7						    
+						}
+						
+						# Exemplo
+
+					    "lui" : {
+					        "type":"u",
+					        "size":4,
+					        "opcode":"0110111"
+					        },
+					    "auipc" : {
+					        "type":"u",
+					        "size":4,
+					        "opcode":"0010111"
+					        },
+					    "jal" : {
+					        "type":"uj",
+					        "size":4,
+					        "opcode":"1101111"
+					        },
+					\end{verbatim}
+
+					Também neste módulo estão escritas as implementações das instruções, constituídas de funções que simulam seus comportamentos e uma tabela de execução de instrução, no formato abaixo
+
+
+					\begin{verbatim}
+						# Instruction Execution Table
+						instruction_execution_table = { 
+						    nome_da_instrucao1: nome_da_funcao1,
+						    nome_da_instrucao2: nome_da_funcao2,
+						    nome_da_instrucao3: nome_da_funcao3,						    
+						    ....
+						    nome_da_instrucaox: nome_da_funcaox
+						}						  		    
+						
+						# Exemplo
+						instruction_execution_table = {
+						    "lui" : instr_lui,
+						    "auipc" : instr_auipc,
+						    "jal" : instr_jal,
+						    ...
+						    "csrrwi" : instr_csrrwi,
+						    "csrrsi" : instr_csrrsi,
+						    "csrrci" : instr_csrrci,
+						    "nop": instr_nop
+						}
+
+
+					\end{verbatim}
+
+		\subsubsection{assembler}			
+			
+			Detalharemos agora o componente do montador, o ASSEMBLER. Este componente recebe do componente MAIN o código fonte do programa escrito na tela de editor de código. A partir deste código fonte, é gerado o código máquina da aplicação, ou então retornado os erros que foram inseridos no código que impossibilitou a montagem do programa. Caso o montador tenha sido executado com sucesso, o componente irá retornar o código montado em binário, e os dados de memória declarados no código fonte.
+
+			Como mencionado anteriormente no capítulo 2, neste projeto utilizamos o algoritmo de duas passagens. Explicaremos cada parte da implementação do montador mais abaixo.
+
+			Abaixo descreveremos as funções implementadas para realizar esta tarefa.
+
+			\subparagraph{assemble}
+				A função assemble inicializa as variáveis que serão utilizadas, chama as funções first\textunderscore pass, se tudo ocorreu bem, chama a função second\textunderscore pass. 
+
+				Após o término da montagem a função irá verificar se houve erros, caso tenha, a função irá gerar lista de erros e warnings.
+
+				Antes de retornar as informações para a função chamante, esta função irá resetar as variáveis globais, formatar as informações para retorno e só então retorna.
+
+			\subparagraph{first pass}						
+				
+
+
+			\subparagraph{second pass}
+			
+			\subparagraph{check operands}
+			
+			\subparagraph{split tokens}
+
+		\subsubsection{simulator}
+
+			O componente SIMULATOR é o que lida com as requisições /run, tanto para rodar o programa completo ou apenas um passo de cada vez. É o componente principal para a simulação do código montado pelo ASSEMBLER.
+
+				\subparagraph{run}
+
+					Este módulo recebe vários parâmetros, que basicamente consistem o estado atual da execução, na maioria dos casos são estados iniciais rodando até o final, porém para os runs que executam apenas uma instrução é necessário saber o estado dos registradores e memória na instrução anterior.
+
+					Os parâmetros que ele recebe são, 
+					\begin{itemize} 
+						\item code. É o código máquina gerado pelo ASSEMBLER.
+						\item memory. Memória de dados.
+						\item registers. Todos os valores dos registradores.
+						\item pc. Contador de programa.
+						\item console\textunderscore input. Se houvesse um syscall com entrada de dados pelo usuário utilizando o teclado, este argumento seria passado através desta variável. 
+						\item console\textunderscore  output. Para a saída de dados, no nosso sistema podemos ver o resultado da impressão de inteiros por exemplo, ou então ao encerrar o programa. É enviado para manter uma consistência com as próximas mensagens.
+						\item step\textunderscore count. Número de instruções que se deseja executar. Utilizando a interface web não se pode executar mais de uma instrução por requisição, apenas se executá-lo por completo.
+					\end{itemize}
+
+					A primeira coisa que a função RUN faz é inicializar e formatar as variáveis recebidas, incluindo em listas na maioria das vezes. Com todas as variáveis setadas e o estado atual da execução está atualizada o programa entra em um laço e só sairá caso uma das quatro condições se satisfazer,
+
+					\begin{itemize} 
+						\item Número máximo de ciclos. Caso se atinja essa condição, significa que o programa é muito grande ou talvez esteja em laço infinito.
+						\item Contador de steps zerado. Caso seja apenas uma instrução, o programa irá sair com essa condição para que não execute até o final.
+						\item SYCALL de encerramento de programa. Caso tenha a instrução seja um SYSCALL com os argumentos de saída de programa
+						\item Erro. Algum erro de execução ocorreu.
+						
+					\end{itemize}
+
+					Dentro do laço irão ser executadas três funções, que serão detalhadas mais abaixo. A função fetch, para buscar na memória de código a instrução. A função decode, para saber qual a instrução e qual o contexto dela. E finalmente a execute que irá rodar a função adequada para a instrução dada.
+
+					Ao final, o resultado da execução é formatada e as variáveis globais resetadas.
+
+				\subparagraph{fetch}
+				
+					Esta função verifica se o contador de programa pode ser índice de uma posição da memória de código, caso possa, busca a instrução e incrementa o contador de programa e retorna a instrução. Caso o contador não possa ser índice, retorna -1 para que seja interpretado como erro.
+
+				\subparagraph{decode}
+					
+					Recebida a instrução, separa-se as informações de opcode, registradores, funções, e imediatos. Estes valores ficam em variáveis globais que serão utilizadas posteriormente na função de execução.
+
+					Após feito isso, a função busca na tabela de instruções qual o nome da instrução sendo executada e retorna este valor.
+
+
+				\subparagraph{execute}
+			
+					Tendo o nome da instrução, a função busca a entrada contida na tabela de execução de instruções e executa. Os valores necessários para a execução já estão todas contidas em variáveis globais decodificadas na função anterior.
+
+					Após a execução da instrução, se faz a atribuição do valor do registrador x0 para 0, pois como o valor de x0 é hard-wired, caso alguma instrução tenha alterado seu valor, neste momento o valor é alterado de volta para 0.
+
+
+
 \section{Interface web}
 
 	A interface web foi feita com as tecnologias padrões da web, HTML, CSS e Javascript. E faz parte do frontend da aplicação, onde o usuário irá interagir com a ferramenta. 

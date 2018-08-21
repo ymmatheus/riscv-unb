@@ -24,24 +24,45 @@
 \contentsline {chapter}{\numberline {3}Ambiente Proposto}{16}{chapter.3}
 \contentsline {section}{\numberline {3.1}Ambiente proposto}{16}{section.3.1}
 \contentsline {section}{\numberline {3.2}Arquitetura de software}{16}{section.3.2}
-\contentsline {section}{\numberline {3.3}Interface web}{17}{section.3.3}
-\contentsline {section}{\numberline {3.4}Montador}{18}{section.3.4}
-\contentsline {section}{\numberline {3.5}Simulador}{19}{section.3.5}
-\contentsline {section}{\numberline {3.6}Extensiblidade}{20}{section.3.6}
-\contentsline {chapter}{\numberline {4}Resultados e Avalia\IeC {\c c}\IeC {\~a}o do Sistema}{23}{chapter.4}
-\contentsline {section}{\numberline {4.1}Poss\IeC {\'\i }veis erros de montagem}{23}{section.4.1}
-\contentsline {section}{\numberline {4.2}Aritm\IeC {\'e}tica Simples}{25}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Editor de c\IeC {\'o}digo}{28}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Simula\IeC {\c c}\IeC {\~a}o}{28}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Sequ\IeC {\^e}ncia de Fibonacci}{29}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Editor de c\IeC {\'o}digo}{29}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Simula\IeC {\c c}\IeC {\~a}o}{31}{subsection.4.3.2}
-\contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es}{33}{chapter.5}
-\contentsline {section}{\numberline {5.1}Objetivos atingidos}{33}{section.5.1}
-\contentsline {section}{\numberline {5.2}Pontos positivos e negativos}{33}{section.5.2}
-\contentsline {section}{\numberline {5.3}Dificuldades}{34}{section.5.3}
-\contentsline {section}{\numberline {5.4}Melhorias e trabalhos futuros}{34}{section.5.4}
-\contentsline {chapter}{Refer\^encias}{36}{section*.10}
+\contentsline {subsection}{\numberline {3.2.1}Front-end}{17}{subsection.3.2.1}
+\contentsline {subsubsection}{Single Page Application}{17}{section*.10}
+\contentsline {subparagraph}{riscv\textunderscore flow}{18}{section*.11}
+\contentsline {subparagraph}{riscv\textunderscore functions}{18}{section*.12}
+\contentsline {subsection}{\numberline {3.2.2}Back-end}{19}{subsection.3.2.2}
+\contentsline {subsubsection}{main}{19}{section*.13}
+\contentsline {subsubsection}{utils}{20}{section*.14}
+\contentsline {subparagraph}{settings}{20}{section*.15}
+\contentsline {subparagraph}{utilities}{20}{section*.16}
+\contentsline {subparagraph}{instructions}{20}{section*.17}
+\contentsline {subsubsection}{assembler}{23}{section*.18}
+\contentsline {subparagraph}{assemble}{23}{section*.19}
+\contentsline {subparagraph}{first pass}{23}{section*.20}
+\contentsline {subparagraph}{second pass}{23}{section*.21}
+\contentsline {subparagraph}{check operands}{23}{section*.22}
+\contentsline {subparagraph}{split tokens}{24}{section*.23}
+\contentsline {subsubsection}{simulator}{24}{section*.24}
+\contentsline {subparagraph}{run}{24}{section*.25}
+\contentsline {subparagraph}{fetch}{25}{section*.26}
+\contentsline {subparagraph}{decode}{25}{section*.27}
+\contentsline {subparagraph}{execute}{25}{section*.28}
+\contentsline {section}{\numberline {3.3}Interface web}{25}{section.3.3}
+\contentsline {section}{\numberline {3.4}Montador}{26}{section.3.4}
+\contentsline {section}{\numberline {3.5}Simulador}{27}{section.3.5}
+\contentsline {section}{\numberline {3.6}Extensiblidade}{28}{section.3.6}
+\contentsline {chapter}{\numberline {4}Resultados e Avalia\IeC {\c c}\IeC {\~a}o do Sistema}{31}{chapter.4}
+\contentsline {section}{\numberline {4.1}Poss\IeC {\'\i }veis erros de montagem}{31}{section.4.1}
+\contentsline {section}{\numberline {4.2}Aritm\IeC {\'e}tica Simples}{33}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Editor de c\IeC {\'o}digo}{36}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Simula\IeC {\c c}\IeC {\~a}o}{36}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Sequ\IeC {\^e}ncia de Fibonacci}{37}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Editor de c\IeC {\'o}digo}{37}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Simula\IeC {\c c}\IeC {\~a}o}{39}{subsection.4.3.2}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es}{41}{chapter.5}
+\contentsline {section}{\numberline {5.1}Objetivos atingidos}{41}{section.5.1}
+\contentsline {section}{\numberline {5.2}Pontos positivos e negativos}{41}{section.5.2}
+\contentsline {section}{\numberline {5.3}Dificuldades}{42}{section.5.3}
+\contentsline {section}{\numberline {5.4}Melhorias e trabalhos futuros}{42}{section.5.4}
+\contentsline {chapter}{Refer\^encias}{44}{section*.29}
 \babel@toc {american}{}
 \babel@toc {american}{}
 \babel@toc {american}{}

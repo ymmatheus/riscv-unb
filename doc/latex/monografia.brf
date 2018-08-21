@@ -16,5 +16,5 @@
 \backcite {riscv_spec}{{10}{2.1}{figure.2.1}}
 \backcite {riscv_spec}{{11}{2.2}{figure.2.2}}
 \backcite {mikowski2013single}{{17}{3.2}{section.3.2}}
-\backcite {codemirror}{{17}{3.3}{figure.3.1}}
-\backcite {cython_home}{{20}{3.6}{section.3.6}}
+\backcite {codemirror}{{26}{3.3}{figure.3.2}}
+\backcite {cython_home}{{28}{3.6}{section.3.6}}

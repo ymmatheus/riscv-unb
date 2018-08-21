@@ -21,9 +21,9 @@
     function r(e, t) {
         return new RegExp("^(?:" + e.join("|") + ")$", t)
     }
-    var n = r(["add", "addi", "and", "andi", "auipc", "beq", "bge", "bgeu", "blt", "bltu", "bne", "div", "divu", "ecall", "jal", "jalr", "lb", "lbu", "lh", "lhu", "lui", "lw", "mul", "mulh", "mulhsu", "mulhu", "or", "ori", "rem", "remu", "sb", "sh", "sll", "slli", "slt", "slti", "sltiu", "sltu", "srai", "srl", "srli", "sub", "sw", "xor", "xori", "beqz", "bgez", "bgt", "bgtu", "bgtz", "ble", "bleu", "blez", "bltz", "bnez", "call", "jal", "jalr", "j", "jr", "la", "lb", "lbu", "lh", "lhu", "li", "lw", "mv", "neg", "nop", "ret", "not", "ret", "sb", "seqz", "sgtz", "sh", "sltz", "snez", "sw", "tail", "seq", "sge", "sgeu", "sgt", "sgtu", "sle", "sleu", "sne"], "i"),
+    var n = r(["add", "addi", "and", "andi", "auipc", "beq", "bge", "bgeu", "blt", "bltu", "bne", "div", "divu", "ecall", "env", "jal", "jalr", "lb", "lbu", "lh", "lhu", "lui", "lw", "mul", "mulh", "mulhsu", "mulhu", "or", "ori", "rem", "remu", "sb", "sh", "sll", "slli", "slt", "slti", "sltiu", "sltu", "srai", "srl", "srli", "sub", "sw", "xor", "xori", "beqz", "bgez", "bgt", "bgtu", "bgtz", "ble", "bleu", "blez", "bltz", "bnez", "call", "jal", "jalr", "j", "jr", "la", "lb", "lbu", "lh", "lhu", "li", "lw", "mv", "neg", "nop", "ret", "not", "ret", "sb", "seqz", "sgtz", "sh", "sltz", "snez", "sw", "tail", "seq", "sge", "sgeu", "sgt", "sgtu", "sle", "sleu", "sne"], "i"),
         i = r(["x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15", "x16", "x17", "x18", "x19", "x20", "x21", "x22", "x23", "x24", "x25", "x26", "x27", "x28", "x29", "x30", "x31", "zero", "ra", "sp", "gp", "tp", "t0", "t1", "t2", "s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"], ""),
-        o = r([".data", ".text", ".globl", ".float", ".double", ".asciiz", ".word", ".byte"], "i");
+        o = r([".data", ".text", ".string", ".globl", ".float", ".double", ".asciiz", ".word", ".byte"], "i");
 
     function l(e, t) {
         var r = e.next();
