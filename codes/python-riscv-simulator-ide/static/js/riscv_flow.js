@@ -10,6 +10,7 @@ $(document).ready(function(){
 	$("#instructions").css("display","none");
 	$("#about_us").css("display","none");
 
+	$("#pause_simulation").css("display", "none");
 
 	$("#menu_entrada").click(function(){
 		$("#entrada").css("display","block");
@@ -22,7 +23,7 @@ $(document).ready(function(){
 
 	$("#run_button").addClass("disabled");
 	$("#step_button").addClass("disabled");
-
+	$("#auto_run_button").addClass("disabled");
 
 	$("#menu_saida").click(function(){
 		$("#entrada").css("display","none");
@@ -62,8 +63,6 @@ $(document).ready(function(){
 	});
 
 
-
-
 	$("#run_button").click(function(){
 		$("#saida").css("display","none");
 		$("#entrada").css("display","none");
@@ -84,6 +83,25 @@ $(document).ready(function(){
 		
 		step_count = 1; // runs one step
 		run_simulation(step_count);
+	});
+
+	var interval_auto_run_id;
+	$("#auto_run_button").click(function(){
+
+		$("#saida").css("display","none");
+		$("#entrada").css("display","none");
+		$("#simulator").css("display","block");
+		step_count = 1; // runs one step				
+		
+		interval_auto_run_id = setInterval(function(){ 
+				$(".assembled_info").css("background-color","white");
+				$("#assembled_info_pc_"+program_data['program_counter']).css("background-color","#ffff99");
+				console.log(step_count);
+				run_simulation(step_count);
+			}, 500);
+
+		$("#auto_run_simulation").css("display", "none");
+		$("#pause_simulation").css("display", "inline");
 	});
 
 
@@ -108,6 +126,29 @@ $(document).ready(function(){
 	$("#reset_simulation").click(function(){
 		initialize_program_data();
 		assemble();
+	});
+
+
+	
+	$("#auto_run_simulation").click(function(){
+		step_count = 1; // runs one step				
+		
+		interval_auto_run_id = setInterval(function(){ 
+				$(".assembled_info").css("background-color","white");
+				$("#assembled_info_pc_"+program_data['program_counter']).css("background-color","#ffff99");
+				console.log(step_count);
+				run_simulation(step_count);
+			}, 500);
+
+		$("#auto_run_simulation").css("display", "none");
+		$("#pause_simulation").css("display", "inline");
+	});
+
+	$("#pause_simulation").click(function(){
+		clearInterval(interval_auto_run_id);
+	
+		$("#auto_run_simulation").css("display", "inline");
+		$("#pause_simulation").css("display", "none");
 	});
 
 	$("input[name='simulation_memmap_format']").change(function(){

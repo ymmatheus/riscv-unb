@@ -146,9 +146,11 @@ var assemble = function(){
         	if( errors == "" ){
         		$("#run_button").removeClass("disabled");
         		$("#step_button").removeClass("disabled");
+        		$("#auto_run_button").removeClass("disabled");
         	}else{
         		$("#run_button").addClass("disabled");
         		$("#step_button").addClass("disabled");
+        		$("#auto_run_button").addClass("disabled");
         	}
         	data_format = $("input[name=format_input_radio]:checked")[0].value
         	

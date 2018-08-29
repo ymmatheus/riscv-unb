@@ -232,16 +232,55 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 				Antes de retornar as informações para a função chamante, esta função irá resetar as variáveis globais, formatar as informações para retorno e só então retorna.
 
+			\subparagraph{split tokens}
+				Esta é uma função auxiliar do algoritmo de montagem, ela é chamada para fazer uma análise léxica, retirando espaços e comentários. 
+
+				Esta função também faz uma parte da análise sintática. Verifica se a linha contém labels e se é uma linha valida sintaticamente.
+
+				Mas o principal propósito desta função é fazer a separação da linha de código em tokens, no formato
+
+				\begin{verbatim}
+					{"label":label, "operation":operation, "operands":operands }
+				\end{verbatim}
+
+				Caso haja algum erro, a função irá retornar -1. E caso a linha seja apenas uma label, retorna 2 para que o algoritmo saiba o que fazer.
+
 			\subparagraph{first pass}						
 				
+				A primeira coisa que a primeira passagem do algoritmo faz é inicializar variáveis, contadores e flags. Após isso transforma todas as letras do código para minúsculas, exceto strings, padronizando as palavras com as informações de tabelas contidas no sistema para codificação e decodificação.
 
+				Para cada linha do código se realiza uma série de processamentos. Se a linha for vazia ou comentário simplesmente ignora, se verifica se a linha atual é continuação da linha anterior, se for mesmo continuação, realiza-se uma concatenação.
+
+				Utiliza-se a função split\textunderscore tokens descrito no parágrafo acima, se a função retornar um número, quer dizer que houve erro ou é apenas uma label, então realiza as operações necessárias. Caso retorne um dicionário com os tokens o algoritmo vai continuar.
+
+				Se for uma label, o algoritmo vai procurar o símbolo na tabela de símbolos, se já existir irá retornar um erro. Senão, adiciona a informação na tabela e continua.
+
+				Se a operação estiver na tabela de instruções, incrementa-se o contador de posições com o tamanho da instrução, no caso do nosso sistema sempre será 4 bytes.
+
+				Se não estiver na tabela de instruções, verifica se é uma diretiva e processa a diretiva de acordo.
+
+				Se não for nem instrução nem diretiva, retorna um erro. Caso tenha tudo funcionado incrementa o contador de linha e passa para a próxima linha do programa até acabar o código.
+
+			\subparagraph{check operands}
+
+				Esta função também auxilia o processo de montagem. Pode ser considerada parte da análise semântica do algoritmo. A partir da operação sendo montada, esta função analisa a quantidade de operandos e os tipos de operandos. 
+
+				Por exemplo, caso a instrução sendo montada seja do tipo R, o restante da linha necessariamente deve consistir de três operandos, sendo os três registradores. 
 
 			\subparagraph{second pass}
 			
-			\subparagraph{check operands}
-			
-			\subparagraph{split tokens}
+				A segunda passagem começa parecido com a primeira, porém para cada operando da linha de código, quando houver uma label, ele procura na tabela de símbolos, se não achar, retorna um erro de símbolo indefinido. Se encontrou procura a operação da linha na tabela de instruções.
 
+				Se encontrar a operação na tabela de instruções incrementa o contador de posição. Após isso verifica se não há erros de semântica chamando a função check\textunderscore operands.
+
+				Se não tiver ocorrido erros, nesta etapa, o algoritmo irá gerar o código objeto para a linha atual do código fonte. Se houver erros, apenas retorna o erro.
+
+				Caso não tenha sido encontrada a operação na tabela de instruções, o programa irá procurar na tabela de diretivas. Na ocasião da operação ser uma diretiva, será feito o processamento da diretiva e incrementado o contador. Caso contrário retorna-se o erro de operação não identificada.
+
+				Após isso incrementa o contador de linhas e volta a fazer o mesmo processo para a próxima linha do código fonte.
+
+				Ao final deste processo teremos o código objeto completo.
+			
 		\subsubsection{simulator}
 
 			O componente SIMULATOR é o que lida com as requisições /run, tanto para rodar o programa completo ou apenas um passo de cada vez. É o componente principal para a simulação do código montado pelo ASSEMBLER.
