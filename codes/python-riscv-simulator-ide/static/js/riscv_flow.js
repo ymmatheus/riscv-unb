@@ -12,6 +12,11 @@ $(document).ready(function(){
 
 	$("#pause_simulation").css("display", "none");
 
+	$("#bitmap_simulation").css("display", "none");
+
+	// temporary
+	$("#bitmap_panel").css("display", "none");
+
 	$("#menu_entrada").click(function(){
 		$("#entrada").css("display","block");
 		$("#saida").css("display","none");
@@ -62,6 +67,22 @@ $(document).ready(function(){
 
 	});
 
+	$("#main_panel").click(function(){
+		$("#simulation_assembled_code").css("display","block");
+		$("#bitmap_simulation").css("display","none");
+		$("#simulation_registers").css("display","block");		
+		$("#simulation_memory_map").css("display","block");
+		$("#simulation_console").css("display","block");
+	});
+
+	$("#bitmap_panel").click(function(){
+		$("#simulation_assembled_code").css("display","block");
+		$("#bitmap_simulation").css("display","block");
+		$("#simulation_registers").css("display","none");		
+		$("#simulation_memory_map").css("display","block");
+		$("#simulation_console").css("display","none");
+
+	});
 
 	$("#run_button").click(function(){
 		$("#saida").css("display","none");
