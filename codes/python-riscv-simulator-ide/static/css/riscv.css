@@ -101,11 +101,25 @@ h2.section_title{
 }
 
 #bitmap_simulation{
-	background-color: red;
+	
 	width: 45%;
 	float:right;
 	
 }
+
+.block_row{
+	width:auto;
+	height:30px;
+}
+
+.block{
+	background-color: rgb(0,0,0);    
+	width:28px; 
+	height:28px; 
+	margin-right:2px; 
+	float:left;
+}
+
 
 #simulation_assembled_code_table{
 	display:block;

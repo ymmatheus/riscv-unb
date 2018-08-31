@@ -113,6 +113,17 @@ var initialize_program_data = function(){
 
 	}
 
+	// Inicializa bitmap blocks
+	$("#blocks_container").html("");
+	for(var i=0; i<16; i++){
+		$("#blocks_container").append("<div id='linha"+i+"' class='block_row'></div>");
+		for(var j=0; j<16; j++){
+			block_mem_addr = (256+((16*i+j)*4));
+			$("#linha"+i).append("<div id='block_mem_addr_"+block_mem_addr.toString(16)+"'' class='block'></div>");
+		}
+		
+	}
+
 	$("#simulation_output_screen").html(">>");
 
 	program_data = {
@@ -233,6 +244,7 @@ var run_simulation = function(step_count){
         	
         	// popula dados da memoria
 			$("#memory_map_table_rows").html("");
+
 			for(var i = 0; i < simulator_response['memory_map'].length; i = i + 16 ){
 				memory_map_table_rows_current = $("#memory_map_table_rows").html()
 
@@ -246,8 +258,8 @@ var run_simulation = function(step_count){
 										simulator_response['memory_map'][j];
 
 					k = k + 1;
+					
 				}
-
 				if( $("input[name=simulation_memmap_format]:checked").attr("id") == "simulation_memmap_format_dec"  ){
 
 					$("#memory_map_table_rows").html(memory_map_table_rows_current
@@ -273,6 +285,15 @@ var run_simulation = function(step_count){
 
         	}
         	
+        	console.log(simulator_response['memory_map']);
+			for( var mem_addr_index = 256; mem_addr_index < 1280; mem_addr_index=mem_addr_index+4 ){
+				console.log(simulator_response['memory_map'][mem_addr_index+3]);
+				console.log(simulator_response['memory_map'][mem_addr_index+2]);
+				console.log(simulator_response['memory_map'][mem_addr_index+1]);
+				console.log(simulator_response['memory_map'][mem_addr_index+0]);
+				$("#block_mem_addr_"+mem_addr_index.toString(16)).css("background-color","rgb("+simulator_response['memory_map'][mem_addr_index+3]+","+simulator_response['memory_map'][mem_addr_index+2]+","+simulator_response['memory_map'][mem_addr_index+1]+")")
+			}
+
         	
         	// popula dados do console de output
         	$("#simulation_output_screen").html("");

@@ -15,7 +15,7 @@ $(document).ready(function(){
 	$("#bitmap_simulation").css("display", "none");
 
 	// temporary
-	$("#bitmap_panel").css("display", "none");
+	//$("#bitmap_panel").css("display", "none");
 
 	$("#menu_entrada").click(function(){
 		$("#entrada").css("display","block");

@@ -278,13 +278,13 @@ def check_operands(all_tokens, SYMBOL_TABLE):
 
     if all_tokens['operation'] == 'lw' or all_tokens['operation'] == 'sw' and len(all_tokens['operands']) == 2:
         immediate_register_get = re.match("([a-zA-Z0-9\_]+)\(([^)]+)\)", all_tokens['operands'][1], re.M|re.I)
-        print(immediate_register_get.group(1))
-        print(immediate_register_get.group(2))
+        #print(immediate_register_get.group(1))
+        #print(immediate_register_get.group(2))
         rd = all_tokens['operands'][0]
         all_tokens['operands'] = [rd, immediate_register_get.group(2),immediate_register_get.group(1)]
     instruction_type = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type'] 
 
-    print(all_tokens['operands'])
+    #print(all_tokens['operands'])
     # tipo R: 3 argumentos, 3 registradores
     #print(all_tokens)
     #print(len(all_tokens['operands']))
@@ -385,11 +385,11 @@ def second_pass(code_text):
 
                         # immediate register
                         immediate_capture = immediate_register_get.group(1)
-                        print(immediate_capture)
+                        #print(immediate_capture)
 
                         # capture register                
                         register_capture = immediate_register_get.group(2)
-                        print(register_capture)
+                        #print(register_capture)
 
 
                      
@@ -439,8 +439,8 @@ def second_pass(code_text):
                         #print("Gerando codigo objeto....")
                         # gera codigo objeto
                         # checa tipo
-                        print("segunda vez")
-                        print(all_tokens['operands'])
+                        #print("segunda vez")
+                        #print(all_tokens['operands'])
                         instruction_type = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['type']
                         
                         opcode = instructions.INSTRUCTION_TABLE_REVERSE[ all_tokens['operation'] ]['opcode']
@@ -478,6 +478,9 @@ def second_pass(code_text):
                                 operand1 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
 
                                 # checar se imediato ultrapassa o 12 bits                        
+                                print("!!!")
+                                print(immediate)
+                                print("!!!")
                                 if( len(immediate) > 12  ):
                                     # print("Error: Imediato não pode ser representado .linha "+str(contador_linha))
                                     WARNINGS_ERRORS.insert(len(WARNINGS_ERRORS), "Error: Imediato não pode ser representado .linha "+str(contador_linha) )
@@ -502,7 +505,7 @@ def second_pass(code_text):
                             if ( instruction_type == "s"):
 
                                 if len(all_tokens['operands']) == 3:
-                                    print(all_tokens['operands'])
+                                    #print(all_tokens['operands'])
                                     operand2 = settings.REGISTER_NAMES[ all_tokens['operands'][1] ]
 
                                     if( utilities.is_number(all_tokens['operands'][2]) ):
@@ -511,21 +514,22 @@ def second_pass(code_text):
                                         if SYMBOL_TABLE[all_tokens['operands'][2]][0]=="DATA":                                    
                                             immediate = SYMBOL_TABLE[all_tokens['operands'][2]][1][-12:]
 
-                                    print(immediate)
+                                    #print(immediate)
                                 elif len(all_tokens['operands']) == 2:
 
                                     # TODO: implement regular expression for flag(xR) syntax 
                                 
-                                    print(all_tokens['operands'][1])
+                                    #print(all_tokens['operands'][1])
                                     register_capture = re.search( "\((.*)\)"  , all_tokens['operands'][1], re.M|re.I)
                                     immediate_capture = re.search( "(.*?)\(\w+"  , all_tokens['operands'][1], re.M|re.I)
                                     if register_capture and immediate_capture:
                                         operand2 = settings.REGISTER_NAMES[ register_capture.group(1) ]
                                         immediate = utilities.s2bin(  int( immediate_capture.group(1) )  , 12)                         
-                                        print(immediate)
-                                        print(operand2)
+                                        #print(immediate)
+                                        #print(operand2)
                                     else:
-                                        print(all_tokens['operands'][1])
+                                        pass
+                                        #print(all_tokens['operands'][1])
                                         
                                     
                             else:
