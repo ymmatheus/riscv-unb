@@ -5,13 +5,13 @@ Para vermos melhores resultados, criamos os seguintes códigos,
 \begin{itemize}
 	\item Aritmética simples
 	\item Sequência de fibonacci
+	\item Preenchimento Bitmap 
 \end{itemize}
 
 
 \section{Possíveis erros de montagem}
 
-	Como explicado na seção anterior, sendo a montagem, a parte que lida diretamente com a entrada do usuário, é necessário que o sistema saiba lidar com possíveis erros inseridos no código e devolver uma resposta adequada. Foram implementados as seguintes menasgens de erros,
-
+	Como explicado na seção anterior, sendo a montagem, a parte que lida diretamente com a entrada do usuário, é necessário que o sistema saiba lidar com possíveis erros inseridos no código e devolver uma resposta adequada. Foram implementados as seguintes mensagens de erro:
 	
 	 Na figura \ref{fig:assemble_error_duplicated_symbol}, temos um exemplo de erro de declaração múltipla de símbolo, ou seja, se o programador declarar o mesmo símbolo em dois momentos diferentes no código.
 	
@@ -119,7 +119,7 @@ Para vermos melhores resultados, criamos os seguintes códigos,
 
 \section{Sequência de Fibonacci}
 	
-	A sequência de fibonacci é um dos primeiros algoritmos que aprendemos quando iniciamos nos estudos de programação. Cada termo desta sucessão de números é gerada pela soma dos dois números antescedentes.
+	A sequência de fibonacci é um dos primeiros algoritmos que aprendemos quando iniciamos nos estudos de programação. Cada termo desta sucessão de números é gerada pela soma dos dois números antecedentes.
 
 \subsection{Editor de código}
 
@@ -139,15 +139,15 @@ Para vermos melhores resultados, criamos os seguintes códigos,
 
 	Na continuação da função loop, mostrado na figura \ref{fig:fib-codigo-2}, somamos o valor em x7, valor do termo anterior, com 0 e adicionamos em x6, variável auxiliar de fibonacci.
 
-	Após encontrar os termos terem sido atualizados para o pŕoximo laço se faz um decremento do valor do registrador x3, que contém a quantidade de termos que o usuário deseja, que foi obtido a partir da label n\textunderscore fibs.
+	Após encontrar os termos terem sido atualizados para o próximo laço se faz um decremento do valor do registrador x3, que contém a quantidade de termos que o usuário deseja, que foi obtido a partir da label n\textunderscore fibs.
 
-	Depois de decrementado o valor, se faz um salto para o início do loop, onde vai ser verificado se já foram encontrados todos os valores desejados e se pode pular para a label end e encerrar o programa. 
+	Depois de decrementado o valor, se faz um salto para o início do loop, onde vai ser verificado se já foram encontrados todos os valores desejados e se pode pular para a \textit{label end} e encerrar o programa. 
 
-	Em seguida, nas linhas 25 e 30, estão as labels para as chamadas das rotinas de impressão chamadas dentro da função loop, print\textunderscore to\textunderscore console, e print\textunderscore to\textunderscore mem. Estas rotinas não utilizam a pilha para variáveis e retornos, como se utilizassem apenas variáveis gloabais.
+	Em seguida, nas linhas 25 e 30, estão as labels para as chamadas das rotinas de impressão chamadas dentro da função \textit{loop}, \textit{print\textunderscore to\textunderscore console}, e \textit{print\textunderscore to\textunderscore mem}. Estas rotinas não utilizam a pilha para variáveis e retornos, como se utilizassem apenas variáveis gloabais.
 
-	A função print\textunderscore to\textunderscore console simplesmente mvoe o valor de x4, termo de fibonacci, para o registrador x5, que é utilizado dentro da instrução ECALL (environment call). E então retornamos ao loop com a instrução JALR.
+	A função \textit{print\textunderscore to\textunderscore console} simplesmente move o valor de x4, termo de fibonacci, para o registrador x5, que é utilizado dentro da instrução ECALL (\textit{environment call}). E então retornamos ao loop com a instrução JALR.
 
-	A outra função, print\textunderscore to\textunderscore mem, faz um SW (store word) do valor contido no registrador x4 no endereço dado pela soma do valor de x30 adicionado do endereço da variável de fib\textunderscore base\textunderscore mem\textunderscore addr. Depois adicionamos 4 em x30 para que no próximo laço seja impresso o próximo inteiro no endereço de store word correto. E então retornamos ao loop.
+	A outra função, \textit{print\textunderscore to\textunderscore mem}, faz um SW (\textit{store word}) do valor contido no registrador x4 no endereço dado pela soma do valor de x30 adicionado do endereço da variável de fib\textunderscore base\textunderscore mem\textunderscore addr. Depois adicionamos 4 em x30 para que no próximo laço seja impresso o próximo inteiro no endereço de \textit{store word} correto. E então retornamos ao \textit{loop}.
 
 	\begin{figure}[h]
 	  \centering
@@ -163,7 +163,7 @@ Para vermos melhores resultados, criamos os seguintes códigos,
 \subsection{Simulação}
 
 	
-	Na primeira parte dos resultados demonstrados na figura \ref{fig:fib-results-1} vemos parcialemnte o código montado gerado pelo montador, valores residuais dos registradores utilizados e os valores da memória.
+	Na primeira parte dos resultados demonstrados na figura \ref{fig:fib-results-1} vemos parcialmente o código montado gerado pelo montador, valores residuais dos registradores utilizados e os valores da memória.
 
 	\begin{figure}[h]
 	  \centering
@@ -172,7 +172,7 @@ Para vermos melhores resultados, criamos os seguintes códigos,
 	  \label{fig:fib-results-1}
 	\end{figure}
 
-	Na primeira instrução vemos que o programa executa um Load Word no endereço 0 da memória, este endereço contém o valor fornecido pelo programador com o número de termos de fibonacci gue gostaria de obter. A partir do segundo endereço, o 0x00000004, temos a sequência de valores de fibonacci impressos na memória a cada iteração do loop.
+	Na primeira instrução vemos que o programa executa um Load Word no endereço 0 da memória, este endereço contém o valor fornecido pelo programador com o número de termos de fibonacci que gostaria de obter. A partir do segundo endereço, o 0x00000004, temos a sequência de valores de fibonacci impressos na memória a cada iteração do loop.
 
 	Na figura \ref{fig:fib-results-2} podemos ver a console de saída. Esta parte nos mostra a funcionalidade da chamada de ambiente, ou SYSCALL, que imprime um número inteiro na tela. 
 
@@ -185,3 +185,43 @@ Para vermos melhores resultados, criamos os seguintes códigos,
 
 	Os termos foram impressos um em cada linha, cada linha representa uma chamada da instrução ECALL com o valor 1 no registrador x10, e o termo a ser impresso contido no registrador x5. E ao final do código temos a outra chamada de ambiente implementada que é a de saída do programa, chamando ECALL com o valor 10 no registrador x10.
 
+
+\section{Preenchimento Bitmap}
+
+	Este código simplesmente adiciona o valor 65280(0x0000ff) nas áreas de memória de endereço 256(0x100) até o endereço 1276(0x4fc) para visualizarmos melhor e criar programas como o jogo da vida de John Conway.
+
+\subsection{Editor de código}
+
+	No código da figura \ref{fig:codigo-bitmap}, temos três variáveis inseridos préviamente, um com o valor em decimal da cor azul, o endereço inicial da região de memória que é representada pelo painel, e a quantidade de endereços que serão inseridos. No bloco main apenas é buscado os valores da memória para registradores.
+	
+	\begin{figure}[h!]
+	  \centering
+	  \includegraphics[width=14cm]{img/codigo_bitmap.png}
+	  \caption{Código de exemplo de utilização do painel de Bitmap para representação de região da memória.}
+	  \label{fig:codigo-bitmap}
+	\end{figure}
+
+	Em seguida, ao entrar no loop, testa se o valor de n\textunderscore pos que foi inserido em x3 é zero, se for pula para a label end e que encerra o programa. Caso o valor de x3 não seja zero continua a execução do loop. Na continuação do loop se insere o valor de blue no endereço base\textunderscore mem\textunderscore addr, depois adiciona-se 4 para na próxima iteração pegar o endereço relativo à próxima word. Por final decrementa-se o valor do contador e volta ao início do loop.
+
+
+\subsection{Simulação}
+	
+	Na figura \ref{fig:simulation-bitmap-bitmap-panel}, vemos o painel Bitmap e a execução está acontecendo no modo AUTO RUN, para que possamos ver a dinâmica do programa. Neste painel, não podemos ver os registradores e a console de saída, porém ao clicar no botão MAIN PANEL pode-se ver esses valores atualizados.
+
+	\begin{figure}[h!]
+	  \centering
+	  \includegraphics[width=14cm]{img/simulation_bitmap_bitmap_panel.png}
+	  \caption{Resultado parcial do código de exemplo de utilização do painel de Bitmap para representação de região da memória.}
+	  \label{fig:simulation-bitmap-bitmap-panel}
+	\end{figure}
+
+	Na figura \ref{fig:simulation-bitmap-main-panel}, podemos ver o valores dos registradores, sendo que o x1 contém o valor do endereço que será colorido, e no x3 quantos blocos faltam ser coloridos para terminar o preenchimento.
+
+	\begin{figure}[h!]
+	  \centering
+	  \includegraphics[width=14cm]{img/simulation_bitmap_main_panel.png}
+	  \caption{Resultado parcial do código de exemplo de utilização do painel principal que mostra os registradores e console de saída.}
+	  \label{fig:simulation-bitmap-main-panel}
+	\end{figure}
+
+	Podemos ver também no mapa de memória os endereços que estão em azul com o valor 65280 e os que estão em preto com o valor 0.

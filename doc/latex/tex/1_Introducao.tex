@@ -18,13 +18,13 @@ Estudar arquitetura de computadores é uma tarefa difícil, quanto mais fáceis 
 
 	\section{Os Processadores: MIPS, ARM e outros antes do RISC-V}
 
-		As ISAs MIPS e ARM tiveram grande influência na arquitetura RISC-V, porém existem alguns detalhes técnicos que desfavorecem o uso destas arquiteturas ao invés de criar a nova RISC-V, no ponto de vista dos autores do RISC-V ~\cite{Waterman:EECS-2016-1},
+		As ISAs MIPS e ARM tiveram grande influência na arquitetura RISC-V, porém existem alguns detalhes técnicos que desfavorecem o uso destas arquiteturas, no ponto de vista dos autores do RISC-V ~\cite{Waterman:EECS-2016-1},
 
-		O MIPS é uma ISA criada no começo dos anos 80, em Stanford, seu design utiliza a filosofia RISC, e facilita implementação de pipelines. MIPS foi implementado comercialmente pela primeira vez no processador R2000, em 1986.
+		O MIPS é uma ISA criada no começo dos anos 80, em Stanford, sua concepção utiliza a filosofia RISC, e facilita implementação de \textit{pipelines}. MIPS foi implementado comercialmente pela primeira vez no processador R2000, em 1986.
 
 		Algumas desvantagens que desencorajam o uso do MIPS principalmente para implementações de alta performace:
 		\begin{itemize}
-			\item A ISA é exageradamente otimizada para o padrão de pipeline de cinco estágios em ordem, como jumps e branches são atrasados, isso complica implementações super-escalares e super-pipelines. Sendo que o recurso de branch delay slot, não pode ser retirada por questões de compatibilidade.
+			\item A ISA é exageradamente otimizada para o padrão de pipeline de cinco estágios em ordem. Como jumps e branches são atrasados, isso complica implementações super-escalares e super-pipelines. Sendo que o recurso de \textit{branch delay slot}, não pode ser retirada por questões de compatibilidade.
 
 			\item A ISA provê um pobre suporte para código de posições independentes. A revisão de 2014 melhorou endereçamento relativo ao contador de programa, porém as chamadas ainda necessitam geralmente de mais de uma instrução.
 
@@ -60,7 +60,7 @@ Estudar arquitetura de computadores é uma tarefa difícil, quanto mais fáceis 
 
 		Com grandes empresas colaboradoras como Google, Nvidia, Western Digital, Oracle, e também as companhias de chip IBM, AMD, e Qualcomm, a ISA tem ganhado espaço nas áreas comerciais também.
 
-		A Western Digital, por exemplo, anunciou em um Workshop que irá liderar a industria na troca por mais ISAs RISC-V utilizando um bilhão de núcleos RISC-V em seus dispositivos~\cite{riscv_commercial}. Em outro workshop, NVIDIA apresentou por que e como irá implementar novos núcleos para seus micro-controladores utilizando o RISC-V.~\cite{riscv_nvidia}
+		A Western Digital, por exemplo, anunciou em um Workshop que irá liderar a indústria na troca por mais ISAs RISC-V utilizando um bilhão de núcleos RISC-V em seus dispositivos~\cite{riscv_commercial}. Em outro workshop, NVIDIA apresentou por que e como irá implementar novos núcleos para seus micro-controladores utilizando o RISC-V.~\cite{riscv_nvidia}
 
 		Os criadores do RISC-V fundaram uma empresa chamada SiFive, na qual eles vendem kits de desenvolvimento estilo arduino com processadores RISC-V, ou então kits mais avançados capazes de rodar linux, como rasperry pi, entre outras coisas.
 

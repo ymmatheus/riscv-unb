@@ -4,7 +4,7 @@
 
 	O sistema permite exportar as saídas do montador para que o usuário possa simular seu código em outras ferramentas de simulação, ou uma implementação própria em uma \textit{FPGA}.
 
-	Os módulos de montagem e simulação foram implementados como biblitoecas separadas, por isso podem ser utilizadas em outros contextos. Por exemplo, em linha de comando.
+	Os módulos de montagem e simulação foram implementados como bibliotecas separadas, por isso podem ser utilizadas em outros contextos. Por exemplo, em linha de comando.
 
 \section{Pontos positivos e negativos}
 
@@ -35,7 +35,7 @@
 
 	O simulador foi bem simplificado, por isso não houveram grandes dificuldades. O desenvolvimento do simulador tinham algumas dificuldades de saber como as instruções por exemplo de "branch" funcionavam à nível de hardware, pelo tipo de codificação utilizada, pois algumas informações sobre estas não ficam explicitas nas documentações.
 
-	Grande parte do esforço também foi direcionado à integração do frontend com o backend, pois pode-se considerar dois sistemas diferentes. O que era um dos objetivos, para que a ferramenta seja flexível, e possa ser extendida e evoluida mais a frente. Por isso foi decidido utilizar uma API para que seja flexível utilizar novas interfaces ou novos montadores, simuladores customizados.
+	Grande parte do esforço também foi direcionado à integração do \textit{front-end} com o \textit{back-end}, pois pode-se considerar dois sistemas diferentes. O que era um dos objetivos, para que a ferramenta seja flexível, e possa ser extendida e evoluida mais a frente. Por isso foi decidido utilizar uma API para que seja flexível utilizar novas interfaces ou novos montadores, simuladores customizados.
 
 \section{Melhorias e trabalhos futuros}
 
@@ -45,7 +45,7 @@
 		\item Expandir arquitetura para 64-bits
 		\item Sistema de login/logout, com um sistema de usuários, poderiamos montar um sistema para salvar e compartilhar códigos com outros usuários. Também inserir módulos personalizados.
 		\item Contador de instruções.
-		\item Bitmap mapping, para termos uma representação visual da memória do sistema.
+		\item Bitmap mapping customizada, para termos diferentes formas de representação visual da memória.
 		\item Adição de instruções e pseudo-instruções customizadas.
 		\item Utilização de bibliotecas ou frameworks mais modernos para frontend como ReactJS, AngularJS, VueJS.
 		\item Melhorar interface para dispositivos móveis.		

@@ -24,17 +24,17 @@
 \contentsline {chapter}{\numberline {3}Ambiente Proposto}{16}{chapter.3}
 \contentsline {section}{\numberline {3.1}Ambiente proposto}{16}{section.3.1}
 \contentsline {section}{\numberline {3.2}Arquitetura de software}{16}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Front-end}{17}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.1}\textit {front-end}}{17}{subsection.3.2.1}
 \contentsline {subsubsection}{Single Page Application}{17}{section*.10}
 \contentsline {subparagraph}{riscv\textunderscore flow}{18}{section*.11}
 \contentsline {subparagraph}{riscv\textunderscore functions}{18}{section*.12}
-\contentsline {subsection}{\numberline {3.2.2}Back-end}{19}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.2}\textit {back-end}}{19}{subsection.3.2.2}
 \contentsline {subsubsection}{main}{19}{section*.13}
 \contentsline {subsubsection}{utils}{20}{section*.14}
 \contentsline {subparagraph}{settings}{20}{section*.15}
 \contentsline {subparagraph}{utilities}{20}{section*.16}
 \contentsline {subparagraph}{instructions}{20}{section*.17}
-\contentsline {subsubsection}{assembler}{23}{section*.18}
+\contentsline {subsubsection}{Assembler}{23}{section*.18}
 \contentsline {subparagraph}{assemble}{23}{section*.19}
 \contentsline {subparagraph}{split tokens}{23}{section*.20}
 \contentsline {subparagraph}{first pass}{24}{section*.21}
@@ -48,7 +48,7 @@
 \contentsline {section}{\numberline {3.3}Interface web}{27}{section.3.3}
 \contentsline {section}{\numberline {3.4}Montador}{28}{section.3.4}
 \contentsline {section}{\numberline {3.5}Simulador}{29}{section.3.5}
-\contentsline {section}{\numberline {3.6}Extensiblidade}{30}{section.3.6}
+\contentsline {section}{\numberline {3.6}Extensiblidade}{31}{section.3.6}
 \contentsline {chapter}{\numberline {4}Resultados e Avalia\IeC {\c c}\IeC {\~a}o do Sistema}{32}{chapter.4}
 \contentsline {section}{\numberline {4.1}Poss\IeC {\'\i }veis erros de montagem}{32}{section.4.1}
 \contentsline {section}{\numberline {4.2}Aritm\IeC {\'e}tica Simples}{34}{section.4.2}
@@ -57,12 +57,15 @@
 \contentsline {section}{\numberline {4.3}Sequ\IeC {\^e}ncia de Fibonacci}{38}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Editor de c\IeC {\'o}digo}{38}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Simula\IeC {\c c}\IeC {\~a}o}{40}{subsection.4.3.2}
-\contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es}{42}{chapter.5}
-\contentsline {section}{\numberline {5.1}Objetivos atingidos}{42}{section.5.1}
-\contentsline {section}{\numberline {5.2}Pontos positivos e negativos}{42}{section.5.2}
-\contentsline {section}{\numberline {5.3}Dificuldades}{43}{section.5.3}
-\contentsline {section}{\numberline {5.4}Melhorias e trabalhos futuros}{43}{section.5.4}
-\contentsline {chapter}{Refer\^encias}{45}{section*.29}
+\contentsline {section}{\numberline {4.4}Preenchimento Bitmap}{40}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Editor de c\IeC {\'o}digo}{41}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Simula\IeC {\c c}\IeC {\~a}o}{42}{subsection.4.4.2}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es}{44}{chapter.5}
+\contentsline {section}{\numberline {5.1}Objetivos atingidos}{44}{section.5.1}
+\contentsline {section}{\numberline {5.2}Pontos positivos e negativos}{44}{section.5.2}
+\contentsline {section}{\numberline {5.3}Dificuldades}{45}{section.5.3}
+\contentsline {section}{\numberline {5.4}Melhorias e trabalhos futuros}{45}{section.5.4}
+\contentsline {chapter}{Refer\^encias}{47}{section*.29}
 \babel@toc {american}{}
 \babel@toc {american}{}
 \babel@toc {american}{}

@@ -117,7 +117,7 @@ $(document).ready(function(){
 		interval_auto_run_id = setInterval(function(){ 
 				$(".assembled_info").css("background-color","white");
 				$("#assembled_info_pc_"+program_data['program_counter']).css("background-color","#ffff99");
-				console.log(step_count);
+				//console.log(step_count);
 				run_simulation(step_count);
 			}, 500);
 
@@ -157,7 +157,7 @@ $(document).ready(function(){
 		interval_auto_run_id = setInterval(function(){ 
 				$(".assembled_info").css("background-color","white");
 				$("#assembled_info_pc_"+program_data['program_counter']).css("background-color","#ffff99");
-				console.log(step_count);
+				//console.log(step_count);
 				run_simulation(step_count);
 			}, 500);
 
