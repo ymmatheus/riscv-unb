@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 '''
 
     TODO:
         
         - na tabela de instrucoes inversa olhar os Shifts faltando
         - Completar tabelas de instruções com os opcodes e functs
-        - Implementar pseudo instruções
+        - Implementar pseudo instrucoes
 
 '''
 

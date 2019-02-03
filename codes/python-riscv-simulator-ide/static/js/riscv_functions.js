@@ -196,6 +196,35 @@ var assemble = function(){
 });
 }
 
+
+
+var auto_scroll = function(){
+
+	assmb_ht = $("#simulation_assembled_info").height()
+	assmb_pos = $("#simulation_assembled_info").offset().top
+	info_pc_curr_pos = $("#assembled_info_pc_"+program_data['program_counter']).offset().top
+
+	//console.log(assmb_ht)
+	//console.log(assmb_pos)
+	//console.log(info_pc_curr_pos)
+	//console.log(program_data['program_counter'])
+	//console.log(program_data['program_counter']/4)
+
+	//console.log("---------------")
+	if (info_pc_curr_pos <= assmb_pos+20){
+		//console.log("111111");
+		$("#simulation_assembled_info")[0].scrollTo(0, 30*((program_data['program_counter']/4)-1));
+		//$("#simulation_assembled_info")[0].scrollTo(0, assmb_pos);
+	}  
+
+	if(info_pc_curr_pos > assmb_ht+assmb_pos-20){
+		//console.log("222222");
+		$("#simulation_assembled_info")[0].scrollTo(0, 30*(program_data['program_counter']/4));
+		//$("#simulation_assembled_info")[0].scrollTo(0, assmb_ht+assmb_pos);
+	}	
+}
+
+
 var run_simulation = function(step_count){
 	//console.log(JSON.stringify(program_data['code']))
 	//console.log(JSON.stringify(program_data['memory']))

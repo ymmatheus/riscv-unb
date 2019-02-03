@@ -125,7 +125,15 @@ h2.section_title{
 	display:block;
 	
 	height:80%;
+
+}
+
+#simulation_assembled_info{
+	display:block;
+	
+	height:80%;
 	overflow-y: scroll;
+
 }
 
 #simulation_registers{
@@ -200,3 +208,4 @@ h2.section_title{
 	color:green;
 	padding:6px;
 }
+

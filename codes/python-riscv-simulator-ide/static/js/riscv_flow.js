@@ -102,6 +102,9 @@ $(document).ready(function(){
 		$(".assembled_info").css("background-color","white");
 		$("#assembled_info_pc_"+program_data['program_counter']).css("background-color","#ffff99");
 		
+		$("#assembled_info_pc_"+program_data['program_counter']).focus();
+		auto_scroll();
+
 		step_count = 1; // runs one step
 		run_simulation(step_count);
 	});
@@ -118,6 +121,10 @@ $(document).ready(function(){
 				$(".assembled_info").css("background-color","white");
 				$("#assembled_info_pc_"+program_data['program_counter']).css("background-color","#ffff99");
 				//console.log(step_count);
+				auto_scroll();
+
+				//scroll_to_current_pc();
+
 				run_simulation(step_count);
 			}, 500);
 
@@ -142,6 +149,11 @@ $(document).ready(function(){
 		$(".assembled_info").css("background-color","white");
 		$("#assembled_info_pc_"+program_data['program_counter']).css("background-color","#ffff99");
 		run_simulation(step_count);
+
+		$("#assembled_info_pc_"+program_data['program_counter']).focus();
+
+		auto_scroll();
+
 	});
 
 	$("#reset_simulation").click(function(){
@@ -158,6 +170,7 @@ $(document).ready(function(){
 				$(".assembled_info").css("background-color","white");
 				$("#assembled_info_pc_"+program_data['program_counter']).css("background-color","#ffff99");
 				//console.log(step_count);
+				auto_scroll();
 				run_simulation(step_count);
 			}, 500);
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 	This module implements the simulation of a RISC-V ISA code
 '''
