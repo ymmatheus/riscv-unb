@@ -3,35 +3,35 @@
 \babel@toc {brazil}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Formatos de instru\IeC {\c c}\IeC {\~o}es da ISA b\IeC {\'a}sica}}{11}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Encoding dos imediatos de cada tipo de instru\IeC {\c c}\IeC {\~a}o}}{11}{figure.2.2}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Ilustra\IeC {\c c}\IeC {\~a}o da arquitetura Cliente-Servidor}}{14}{figure.2.3}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Formatos de instru\IeC {\c c}\IeC {\~o}es da ISA b\IeC {\'a}sica}}{11}{figure.2.1}% 
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Encoding dos imediatos de cada tipo de instru\IeC {\c c}\IeC {\~a}o}}{11}{figure.2.2}% 
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Ilustra\IeC {\c c}\IeC {\~a}o da arquitetura Cliente-Servidor}}{14}{figure.2.3}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Menu global do sistema. Principal componente de navega\IeC {\c c}\IeC {\~a}o.}}{18}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces P\IeC {\'a}gina inicial, mostra o editor de texto com um c\IeC {\'o}digo exemplo.}}{27}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Resultados da montagem em bin\IeC {\'a}rio.}}{28}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Resultados da montagem em hexadecimal.}}{29}{figure.3.4}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Resultados da montagem em formato MIF para FPGA.}}{30}{figure.3.5}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Resultados do simulador. C\IeC {\'o}digo montado, mapa da mem\IeC {\'o}ria, registradores. }}{30}{figure.3.6}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Resultados do simulador. Console de sa\IeC {\'\i }da de informa\IeC {\c c}\IeC {\~o}es do sistema.}}{31}{figure.3.7}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Menu global do sistema. Principal componente de navega\IeC {\c c}\IeC {\~a}o.}}{18}{figure.3.1}% 
+\contentsline {figure}{\numberline {3.2}{\ignorespaces P\IeC {\'a}gina inicial, mostra o editor de texto com um c\IeC {\'o}digo exemplo.}}{27}{figure.3.2}% 
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Resultados da montagem em bin\IeC {\'a}rio.}}{28}{figure.3.3}% 
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Resultados da montagem em hexadecimal.}}{29}{figure.3.4}% 
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Resultados da montagem em formato MIF para FPGA.}}{30}{figure.3.5}% 
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Resultados do simulador. C\IeC {\'o}digo montado, mapa da mem\IeC {\'o}ria, registradores. }}{30}{figure.3.6}% 
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Resultados do simulador. Console de sa\IeC {\'\i }da de informa\IeC {\c c}\IeC {\~o}es do sistema.}}{31}{figure.3.7}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Erro de declara\IeC {\c c}\IeC {\~a}o m\IeC {\'u}ltipla de s\IeC {\'\i }mbolo.}}{33}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Erro de declara\IeC {\c c}\IeC {\~a}o de diretiva string.}}{33}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Erro de imediato para o tamanho 32 de palavra 32 bits.}}{34}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Erro de operando inv\IeC {\'a}lida, operando de tipo diferente do esperado.}}{34}{figure.4.4}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Erro de opera\IeC {\c c}\IeC {\~a}o inv\IeC {\'a}lida, instru\IeC {\c c}\IeC {\~a}o n\IeC {\~a}o existente na arquitetura implementada.}}{35}{figure.4.5}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Erro de opera\IeC {\c c}\IeC {\~a}o inv\IeC {\'a}lida, diretiva n\IeC {\~a}o existente na arquitetura implementada.}}{35}{figure.4.6}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Erro de s\IeC {\'\i }mbolo inv\IeC {\'a}lido, s\IeC {\'\i }mbolo n\IeC {\~a}o foi declarado.}}{36}{figure.4.7}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Erro de argumentos de diretiva inv\IeC {\'a}lido, o tipo ou n\IeC {\'u}mero de argumentos est\IeC {\'a} incorreto.}}{36}{figure.4.8}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Demonstra\IeC {\c c}\IeC {\~a}o de opera\IeC {\c c}\IeC {\~o}es matem\IeC {\'a}ticas b\IeC {\'a}sicas.}}{37}{figure.4.9}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Demonstra\IeC {\c c}\IeC {\~a}o de opera\IeC {\c c}\IeC {\~o}es matem\IeC {\'a}ticas b\IeC {\'a}sicas.}}{37}{figure.4.10}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Primeira parte do c\IeC {\'o}digo que gera sequ\IeC {\^e}ncia de fibonacci.}}{38}{figure.4.11}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Segunda parte do c\IeC {\'o}digo que gera sequ\IeC {\^e}ncia de fibonacci.}}{39}{figure.4.12}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Primeira parte dos resultados gerados da sequ\IeC {\^e}ncia de fibonacci.}}{40}{figure.4.13}
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Segunda parte dos resultados gerados da sequ\IeC {\^e}ncia de fibonacci.}}{41}{figure.4.14}
-\contentsline {figure}{\numberline {4.15}{\ignorespaces C\IeC {\'o}digo de exemplo de utiliza\IeC {\c c}\IeC {\~a}o do painel de Bitmap para representa\IeC {\c c}\IeC {\~a}o de regi\IeC {\~a}o da mem\IeC {\'o}ria.}}{41}{figure.4.15}
-\contentsline {figure}{\numberline {4.16}{\ignorespaces Resultado parcial do c\IeC {\'o}digo de exemplo de utiliza\IeC {\c c}\IeC {\~a}o do painel de Bitmap para representa\IeC {\c c}\IeC {\~a}o de regi\IeC {\~a}o da mem\IeC {\'o}ria.}}{42}{figure.4.16}
-\contentsline {figure}{\numberline {4.17}{\ignorespaces Resultado parcial do c\IeC {\'o}digo de exemplo de utiliza\IeC {\c c}\IeC {\~a}o do painel principal que mostra os registradores e console de sa\IeC {\'\i }da.}}{43}{figure.4.17}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Erro de declara\IeC {\c c}\IeC {\~a}o m\IeC {\'u}ltipla de s\IeC {\'\i }mbolo.}}{33}{figure.4.1}% 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Erro de declara\IeC {\c c}\IeC {\~a}o de diretiva string.}}{33}{figure.4.2}% 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Erro de imediato para o tamanho 32 de palavra 32 bits.}}{34}{figure.4.3}% 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Erro de operando inv\IeC {\'a}lida, operando de tipo diferente do esperado.}}{34}{figure.4.4}% 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Erro de opera\IeC {\c c}\IeC {\~a}o inv\IeC {\'a}lida, instru\IeC {\c c}\IeC {\~a}o n\IeC {\~a}o existente na arquitetura implementada.}}{35}{figure.4.5}% 
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Erro de opera\IeC {\c c}\IeC {\~a}o inv\IeC {\'a}lida, diretiva n\IeC {\~a}o existente na arquitetura implementada.}}{35}{figure.4.6}% 
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Erro de s\IeC {\'\i }mbolo inv\IeC {\'a}lido, s\IeC {\'\i }mbolo n\IeC {\~a}o foi declarado.}}{36}{figure.4.7}% 
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Erro de argumentos de diretiva inv\IeC {\'a}lido, o tipo ou n\IeC {\'u}mero de argumentos est\IeC {\'a} incorreto.}}{36}{figure.4.8}% 
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Demonstra\IeC {\c c}\IeC {\~a}o de opera\IeC {\c c}\IeC {\~o}es matem\IeC {\'a}ticas b\IeC {\'a}sicas.}}{37}{figure.4.9}% 
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Demonstra\IeC {\c c}\IeC {\~a}o de opera\IeC {\c c}\IeC {\~o}es matem\IeC {\'a}ticas b\IeC {\'a}sicas.}}{37}{figure.4.10}% 
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Primeira parte do c\IeC {\'o}digo que gera sequ\IeC {\^e}ncia de fibonacci.}}{38}{figure.4.11}% 
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Segunda parte do c\IeC {\'o}digo que gera sequ\IeC {\^e}ncia de fibonacci.}}{39}{figure.4.12}% 
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Primeira parte dos resultados gerados da sequ\IeC {\^e}ncia de fibonacci.}}{40}{figure.4.13}% 
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Segunda parte dos resultados gerados da sequ\IeC {\^e}ncia de fibonacci.}}{41}{figure.4.14}% 
+\contentsline {figure}{\numberline {4.15}{\ignorespaces C\IeC {\'o}digo de exemplo de utiliza\IeC {\c c}\IeC {\~a}o do painel de Bitmap para representa\IeC {\c c}\IeC {\~a}o de regi\IeC {\~a}o da mem\IeC {\'o}ria.}}{41}{figure.4.15}% 
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Resultado parcial do c\IeC {\'o}digo de exemplo de utiliza\IeC {\c c}\IeC {\~a}o do painel de Bitmap para representa\IeC {\c c}\IeC {\~a}o de regi\IeC {\~a}o da mem\IeC {\'o}ria.}}{42}{figure.4.16}% 
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Resultado parcial do c\IeC {\'o}digo de exemplo de utiliza\IeC {\c c}\IeC {\~a}o do painel principal que mostra os registradores e console de sa\IeC {\'\i }da.}}{43}{figure.4.17}% 
 \addvspace {10\p@ }
 \babel@toc {american}{}
 \babel@toc {american}{}

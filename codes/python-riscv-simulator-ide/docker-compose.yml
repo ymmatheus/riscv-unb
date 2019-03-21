@@ -1,0 +1,11 @@
+version: '2'
+services:
+  web:
+    build: 
+      context: ./webapp
+      dockerfile: Dockerfile.dev
+
+    volumes:
+      - ./webapp:/app
+    
+    command: python main.py
