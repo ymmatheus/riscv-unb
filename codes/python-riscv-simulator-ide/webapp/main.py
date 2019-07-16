@@ -68,11 +68,8 @@ def assemble():
         input_code = request.form['code']
         input_code =  input_code + "\naddi x10,zero,10\necall x0,x0,0"
 
-    
-        
-
         assmblr_response = assembler.assemble(input_code)    
-
+        #print(assmblr_response)
         data_dump = {
 
             "code":{
@@ -109,6 +106,9 @@ def assemble():
 
     settings.data_memory        = ['00000000' for i in range(settings.DATA_MEMORY_SIZE)] # each address is a byte
     settings.code_memory        = [settings.XLEN*'0' for i in range(settings.CODE_MEMORY_SIZE)]
+
+    #settings.data_memory = {}
+    #settings.code_memory = {}
 
     return json.dumps(data_dump)
 

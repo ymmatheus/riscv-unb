@@ -30,7 +30,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 	Para a implementação da metodologia foi utilizado a biblioteca \textit{jQuery}. Existem tecnologias mais modernas mais apropriadas para a implementação de uma SPA, porém foi decido não utilizá-las por questões de tempo para a aprendizagem destas.
 
-	O código \textit{jQuery} faz chamadas HTTP assíncronas ao backend usando os métodos POST e GET ao pressionar algum botão de ação do sistema. 
+	O código \textit{jQuery} faz chamadas HTTP assíncronas ao \textit{back-end} usando os métodos POST e GET ao pressionar algum botão de ação do sistema. 
 
 	Abaixo iremos descrever por módulos cada componente do sistema.
 	
@@ -40,9 +40,9 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 		\subsubsection{Single Page Application}
 		
-			Uma única página com todos os componentes carregados, porém escondidos. Com isso evitamos recarregar a página várias vezes, pois a quantidade de dados que teríamos que  enviar e receber do servidor web seria alta, além de termos que processar esses dados para manter o estado atual do sistema sempre sincronizado.
+			Single Page Application é uma única página com todos os componentes carregados, porém escondidos. Com isso evitamos recarregar a página várias vezes, pois a quantidade de dados que teríamos que  enviar e receber do servidor web seria alta, além de termos que processar esses dados para manter o estado atual do sistema sempre sincronizado.
 
-			Na parte de \textit{front-end} temos três módulos ou seções. Estes módulos são definidos por uma estrutura em HTML utilizando a \textit{tag section} com ID's. Desse jeito podemos separar visualmente com CSS e funcionalmente com javascript. As seções existentes são entrada, saída e simulator.
+			Na parte de \textit{front-end} temos três módulos ou seções. Estes módulos são definidos por uma estrutura em HTML utilizando a \textit{tag section} com ID's. Desse jeito podemos separar visualmente com CSS e funcionalmente com \textit{javascript}. As seções existentes são entrada, saída e simulator.
 
 			Cada seção pode ser acessada pelo menu global da aplicação como mostrado na figura \ref{fig:menu_global}.
 
@@ -55,7 +55,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 			Neste menu vemos duas partes separadas por uma linha horizontal, a parte superior contém as seções do sistema, enquanto a parte inferior contém seções de informações.
 
-			Para a lógica do \textit{front-end} temos dois módulos em jQuery, o riscv\textunderscore flow e riscv\textunderscore functions. Detalharemos estes módulos abaixo.
+			Para a lógica do \textit{front-end} temos dois módulos em \textit{jQuery}, o \textit{riscv\textunderscore flow} e \textit{riscv\textunderscore functions}. Detalharemos estes módulos abaixo.
 
 			\subparagraph{riscv\textunderscore flow}
 
@@ -63,9 +63,9 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 				Por exemplo, para mostrarmos a seção de simulação, escondemos a seção de entrada e a seção de saída e mostramos a seção de simulação, e então para mostrar outra seção mostramos essa seção e escondemos a de simulação.
 
-				A associação dos eventos de comunicação com o \textit{back-end} também é feito no riscv\textunderscore flow.
+				A associação dos eventos de comunicação com o \textit{back-end} também é feito no \textit{riscv\textunderscore flow}.
 
-				Por exemplo, ao clicarmos no botão de montagem, a função que associa o clique no botão com a funcionalidade de montagem é escrita aqui. Porém a funcionalidade da comunicação em é feita no módulo riscv\textunderscore functions, que iremos detalhar no próximo parágrafo.  
+				Por exemplo, ao clicarmos no botão de montagem, a função que associa o clique no botão com a funcionalidade de montagem é escrita aqui. Porém a funcionalidade da comunicação em é feita no módulo \textit{riscv\textunderscore functions}, que iremos detalhar no próximo parágrafo.  
 
 			\subparagraph{riscv\textunderscore functions}
 
@@ -79,7 +79,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 				No caso das funções \textit{assemble} e \textit{run\textunderscore simulation}, eles fazem requisições POSTs para o nosso \textit{back-end}.
 
-				A função assemble manda o código escrito na seção de edição de código e recebe as informações de montagem, memória de código, memória de dados, e erros. Também insere as informações de programa na seção de simulação.
+				A função \textit{assemble} manda o código escrito na seção de edição de código e recebe as informações de montagem, memória de código, memória de dados, e erros. Também insere as informações de programa na seção de simulação.
 
 				A função \textit{run\textunderscore simulation} envia todas as informações do contexto da execução no momento, a memória de código, e de dados, valores de registradores, contador de programa, entradas e saídas de usuário, e também um inteiro que diz quanta instruções o simulador deve executar. Este recebe praticamente as mesmas informações porém atualizadas uma instrução depois da execução.
 
@@ -90,7 +90,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 		\subsubsection{main}
 
-			O primeiro componente a ser detalhado é o componente main. Este é o componente que liga o \textit{front-end} com o \textit{back-end}, pois recebe as chamadas do \textit{front-end} e executa os componentes requisitados. 
+			O primeiro componente a ser detalhado é o componente \textit{main}. Este é o componente que liga o \textit{front-end} com o \textit{back-end}, pois recebe as chamadas do \textit{front-end} e executa os componentes requisitados. 
 
 			Por exemplo, ao clicar no botão ASSEMBLE o usuário está enviando uma requisição POST com o código ASSEMBLY RISC-V ao componente MAIN, e este irá chamar o componente ASSEMBLER. Após a execução do componente ASSEMBLER, este irá devolver ao \textit{front-end} as informações devidas.
 
@@ -98,14 +98,14 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 			\begin{itemize}
 				\item Requisição GET "/". Esta requisição irá devolver a página completa do \textit{front-end} ao usuário. É a página inicial do sistema. A requisição é feita ao entrar com a URL no navegador.
 				\item Requisição POST "/assemble". Esta requisição é feita quando o usuário clica no botão ASSEMBLE na tela do editor de código, ou no botão RESET na tela de simulação. E retorna o código montado, memória, erros, ou outras informações de montagem.
-				\item Requisição POST "/run". Esta requisição pode ser feita ao clicar no botão RUN ou STEP, estes botões existem tanto na tela do editor de código quanto na tela de simulação. Ao realizar o clique em algum dos botões, o usuário estará enviando todas as informações atuais da simulação, isso inclui, o código montado, valores de memória, registradores, contador de programa, valores de entrada e saída, e também um diferenciador do botão step ou run, para o programa saber se irá rodar até o final ou apenas um passo.
+				\item Requisição POST "/run". Esta requisição pode ser feita ao clicar no botão RUN ou STEP, estes botões existem tanto na tela do editor de código quanto na tela de simulação. Ao realizar o clique em algum dos botões, o usuário estará enviando todas as informações atuais da simulação, isso inclui, o código montado, valores de memória, registradores, contador de programa, valores de entrada e saída, e também um diferenciador do botão \textit{step} ou \textit{run}, para o programa saber se irá rodar até o final ou apenas um passo.
 			\end{itemize}
 
 			Após chamar os componentes adequados à cada requisição feita pelo usuário, o componente MAIN irá retornar as informações em formato JSON para a função javascript que fez a requisição, e então mostrar esses dados no \textit{front-end}. As informações que cada requisição retorna serão melhor detalhadas nas próximas seções.
 
 		\subsubsection{utils}
 
-			O componente UTILS agrega funções e variáveis auxiliares aos outros componentes, por exemplo, funções de conversão de base, codificação e decodificação de instruções, execução de instruções, e configurações, como tamanho da das memórias de código e dados.
+			O componente UTILS agrega funções e variáveis auxiliares aos outros componentes, por exemplo, funções de conversão de base, codificação e decodificação de instruções, execução de instruções, e configurações, como tamanho da das memórias de código e dados. Os módulos utilizados em \textit{utils} são: \textit{settings}, \textit{utilities} e \textit{instructions}, explicados abaixo. 
 
 				\subparagraph{settings}
 
@@ -219,14 +219,14 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 		\subsubsection{Assembler}			
 			
-			Detalharemos agora o componente do montador, o ASSEMBLER. Este componente recebe do componente MAIN o código fonte do programa escrito na tela de editor de código. A partir deste código fonte, é gerado o código máquina da aplicação, ou então retornado os erros que foram inseridos no código que impossibilitou a montagem do programa. Caso o montador tenha sido executado com sucesso, o componente irá retornar o código montado em binário, e os dados de memória declarados no código fonte.
+			Detalharemos agora o componente do montador, o \textit{Assembler}. Este componente recebe do componente \textit{main} o código fonte do programa escrito na tela de editor de código. A partir deste código fonte, é gerado o código máquina da aplicação, ou então retornado os erros que foram inseridos no código que impossibilitou a montagem do programa. Caso o montador tenha sido executado com sucesso, o componente irá retornar o código montado em binário, e os dados de memória declarados no código fonte.
 
 			Como mencionado anteriormente no capítulo 2, neste projeto utilizamos o algoritmo de duas passagens. Explicaremos cada parte da implementação do montador mais abaixo.
 
 			Abaixo descreveremos as funções implementadas para realizar esta tarefa.
 
 			\subparagraph{assemble}
-				A função \textit{assemble} inicializa as variáveis que serão utilizadas, chama as funções \textit{first\textunderscore pass}, se tudo ocorreu bem, chama a função \textit{second\textunderscore pass}. 
+				A função \textit{assemble} inicializa as variáveis que serão utilizadas, chama as funções \textit{first\textunderscore pass}, e se tudo ocorreu bem, chama a função \textit{second\textunderscore pass}. 
 
 				Após o término da montagem a função irá verificar se houve erros, caso tenha, a função irá gerar lista de erros e alertas.
 
@@ -249,9 +249,9 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 				
 				A primeira coisa que a primeira passagem do algoritmo faz é inicializar variáveis, contadores e flags. Após isso transforma todas as letras do código para minúsculas, exceto \textit{strings}, padronizando as palavras com as informações de tabelas contidas no sistema para codificação e decodificação.
 
-				Para cada linha do código se realiza uma série de processamentos. Se a linha for vazia ou comentário simplesmente ignora, se verifica se a linha atual é continuação da linha anterior, se for mesmo continuação, realiza-se uma concatenação.
+				Para cada linha do código se realiza uma série de processamentos. Se a linha for vazia ou comentário simplesmente ignora, se verifica que a linha atual é continuação da linha anterior, realiza-se uma concatenação.
 
-				Utiliza-se a função \textit{split\textunderscore tokens} descrito no parágrafo acima, se a função retornar um número, quer dizer que houve erro ou é apenas uma \textit{label}, então realiza as operações necessárias. Caso retorne um dicionário com os \textit{tokens} o algoritmo vai continuar.
+				Utiliza-se a função \textit{split\textunderscore tokens} descrita anteriormente. Se a função retornar um número, este número é um código de erro ou o endereço de uma \textit{label} já utilizada anteriormente. Identificado qual o caso do número, realiza-se as operações necessárias. Caso retorne um dicionário com os \textit{tokens} o algoritmo vai continuar.
 
 				Se for uma \textit{label}, o algoritmo vai procurar o símbolo na tabela de símbolos, se já existir irá retornar um erro. Senão, adiciona a informação na tabela e continua.
 
@@ -269,7 +269,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 			\subparagraph{second pass}
 			
-				A segunda passagem começa parecido com a primeira, porém para cada operando da linha de código, quando houver uma \textit{label}, ele procura na tabela de símbolos, se não achar, retorna um erro de símbolo indefinido. Se encontrou procura a operação da linha na tabela de instruções.
+				A segunda passagem fará a tradução das \textit{labels} para endereços efetivos. Para cada operando da linha de código, se encontrado uma \textit{label}, o algoritmo procura na tabela de símbolos, se não achar, retorna um erro de símbolo indefinido. Se encontrou, procura a operação da linha na tabela de instruções.
 
 				Se encontrar a operação na tabela de instruções incrementa o contador de posição. Após isso verifica se não há erros de semântica chamando a função \textit{check\textunderscore operands}.
 
@@ -287,7 +287,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 				\subparagraph{run}
 
-					Este módulo recebe vários parâmetros, que basicamente consistem o estado atual da execução, na maioria dos casos são estados iniciais rodando até o final, porém para os runs que executam apenas uma instrução é necessário saber o estado dos registradores e memória na instrução anterior.
+					Este módulo recebe vários parâmetros, que basicamente consistem no estado atual da execução, ou seja, qual o valor dos registradores, memória e contador de programa. Na maioria dos casos são estados iniciais rodando até o final, portanto retornando apenas o estado final do programa, porém para as execuções que utilizam apenas uma instrução é necessário saber o estado dos registradores e memória na instrução anterior.
 
 					Os parâmetros que ele recebe são, 
 					\begin{itemize} 
@@ -295,17 +295,17 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 						\item memory: Memória de dados.
 						\item registers: Todos os valores dos registradores.
 						\item pc: Contador de programa.
-						\item console\textunderscore input: Se houvesse um \textit{syscall} com entrada de dados pelo usuário utilizando o teclado, este argumento seria passado através desta variável. 
-						\item console\textunderscore  output: Para a saída de dados, no nosso sistema podemos ver o resultado da impressão de inteiros por exemplo, ou então ao encerrar o programa. É enviado para manter uma consistência com as próximas mensagens.
+						\item console\textunderscore input: Se houvesse um \textit{ecall} com entrada de dados pelo usuário utilizando o teclado, este argumento seria passado através desta variável. 
+						\item console\textunderscore  output: Para a saída de dados, no nosso sistema podemos ver o resultado da impressão de inteiros por exemplo, ou então ao encerrar o programa.
 						\item step\textunderscore count: Número de instruções que se deseja executar. Utilizando a interface \textit{web} não se pode executar mais de uma instrução por requisição, apenas se executá-lo por completo.
 					\end{itemize}
 
-					A primeira coisa que a função RUN faz é inicializar e formatar as variáveis recebidas, incluindo em listas na maioria das vezes. Com todas as variáveis setadas e o estado atual da execução atualizado, o programa entra em um laço e só sairá caso uma das quatro condições ocorrer,
+					A funcionalidade principal do botão RUN é inicializar e formatar as variáveis recebidas, incluindo em listas na maioria das vezes. Com todas as variáveis setadas e o estado atual da execução atualizado, o programa entra em um laço e só sairá caso uma das quatro condições ocorrer,
 
 					\begin{itemize} 
 						\item Número máximo de ciclos: Caso se atinja essa condição, significa que o programa é muito grande ou talvez esteja em laço infinito.
-						\item Contador de \textit{steps} zerado: Este número é definido pelo botão de ação RUN ou STEP, sendo que para a execução através do botão RUN, o valor de do contador será -1 e nunca irá sair por essa condição. Caso o botão clicado seja STEP, este valor será 1, e apenas uma instrução será executada.
-						\item SYSCALL de encerramento de programa: Caso tenha a instrução seja um SYSCALL com os argumentos de saída de programa
+						\item Contador de \textit{steps} zerado: Este número é definido pelo botão de ação RUN ou STEP, sendo que para a execução através do botão RUN, o valor do contador será -1 e nunca irá sair por essa condição. Caso o botão clicado seja STEP, este valor será 1, e apenas uma instrução será executada.
+						\item ECALL de encerramento de programa: Caso tenha a instrução seja um ECALL com os argumentos de saída de programa
 						\item Erro: Algum erro de execução ocorreu.
 						
 					\end{itemize}
@@ -316,7 +316,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 				\subparagraph{fetch}
 				
-					Esta função verifica se o contador de programa está acessando uma posição da memória de código que existe, se sim, busca a instrução e incrementa o contador de programa e retorna a instrução. Caso o contador não possa ser índice, ou seja, seu valor é maior que o da memória, retorna -1 para que seja interpretado como erro.
+					Esta função verifica se o contador de programa está acessando uma posição da memória de código que existe, se sim, busca a instrução e incrementa o contador de programa e retorna a instrução. Caso o contador ultrapasse o valor do tamanho da memória, retorna -1 para que seja interpretado como erro.
 
 				\subparagraph{decode}
 					
@@ -337,9 +337,9 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 	A interface web foi feita com as tecnologias padrões da web, HTML, CSS e Javascript. E faz parte do \textit{front-end} da aplicação, onde o usuário irá interagir com a ferramenta. 
 
-	Para a parte dinâmica do site foi utilizada a biblioteca jQuery, facilitando o desenvolvimento de funcionaliades no \textit{front-end} principalmente na manipulação de elementos da tela. 
+	Para a parte dinâmica do site foi utilizada a biblioteca \textit{jQuery}, facilitando o desenvolvimento de funcionaliades no \textit{front-end} principalmente na manipulação de elementos da tela. 
 
-	Para o layout foi utilizado o framework Materialize CSS, com sua utilização perdemos menos tempo em detalhes de layout, e podemos focar mais nas funcionalidades.
+	Para o \textit{layout} foi utilizado o \textit{framework Materialize CSS}, com sua utilização perdemos menos tempo em detalhes de \textit{layout}, e podemos focar mais nas funcionalidades.
 
 	\begin{figure}[h]
 	  \includegraphics[width=\linewidth]{img/code_editor.png}
@@ -349,7 +349,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 	Na figura ~\ref{fig:editor_texto}, vemos a tela inicial do sistema, a parte do editor de texto. No lado esquerdo da tela está o menu global, que está presente em todas as telas e serve para a navegação principal do sistema.
 
-	Ao lado direito está o conteúdo da tela que consiste no editor de texto e um console de saída. O editor de texto utiliza a biblioteca open-source CodeMirror~\cite{codemirror}, escrita em javascript para criar editores de texto baseados em HTML.
+	Ao lado direito está o conteúdo da tela que consiste no editor de texto e um console de saída. O editor de texto utiliza a biblioteca \textit{open-source} CodeMirror~\cite{codemirror}, escrita em javascript para criar editores de texto baseados em HTML.
 
 	Após escrever o seu código, o usuário clica no botão \textit{ASSEMBLE}, se o montador não retornar nenhum erro não haverá mensagens no console e o botão \textit{RUN} será habilitado. Ao apertar o botão \textit{RUN} a tela irá ser trocada para a tela de simulação, que mostraremos nas próximas seções.
 
@@ -362,7 +362,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 	Alguns erros tratados no sistema como, símbolo inexistente, símbolo duplicado, erro de sintaxe, erro de tipo de argumento de instruções, número de argumentos da instrução, e alguns outros serão mostrados no próximo capítulo.
 
-	Uma vez que o código foi montado com sucesso pode-se rodar através do botão \textit{RUN}, como dito anteriormente. Caso o usuário gostaria de utilizar o resultado da montagem em outro simulador, ou então exporar para uma \textit{FPGA}, se pode clicar no botão \textit{Assemble Results}, no menu global, do lado esquerdo da tela. e obter estes resultados. Exemplo pode ser visto na figura \ref{fig:assemble_data_bin}
+	Uma vez que o código foi montado com sucesso pode-se rodar através do botão \textit{RUN}, como dito anteriormente. Caso o usuário necessite utilizar o resultado da montagem em outro simulador, ou então exportar para uma \textit{FPGA}, se pode clicar no botão \textit{Assemble Results}, no menu global, do lado esquerdo da tela. e obter estes resultados. Exemplo pode ser visto na figura \ref{fig:assemble_data_bin}
 
 	\begin{figure}[h]
 	  \includegraphics[width=\linewidth]{img/assemble_data_bin.png}
@@ -370,7 +370,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 	  \label{fig:assemble_data_bin}
 	\end{figure}
 
-	Os resultados da montagem também podem ser visualizados em hexadecimal, ou formato MIF, como nas imagens \ref{fig:assemble_data_hex} e \ref{fig:assemble_data_mif}
+	Os resultados da montagem também podem ser visualizados em hexadecimal, ou formato MIF, como nas figuras \ref{fig:assemble_data_hex} e \ref{fig:assemble_data_mif}
 
 	\begin{figure}[h]
 	  \includegraphics[width=\linewidth]{img/assemble_data_hex.png}
@@ -388,9 +388,9 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 \section{Simulador}
 
-	O simulador implementado neste projeto mostra o código montado, o código em hexadecimal, e as instruções que esses números em hexadecimal representam. Também pode se ver o mapa de memória e o estado dos registradores após o código montado ter sido executado ou em execução com a utilização do botão STEP.  Lembrando que foi implementado a arquitetura RV32G, portanto dispõe-se de 32 registradores de 32 bits.
+	O simulador implementado neste projeto mostra o código montado, o código em hexadecimal, e as instruções que esses números em hexadecimal representam. Também pode se ver o mapa de memória e o estado dos registradores após o código montado ter sido executado ou em execução com a utilização do botão STEP.  Lembrando que foi implementado a arquitetura RV32I, portanto dispõe-se de 32 registradores de 32 bits.
 
-	Na figura \ref{fig:simulator_results_1} é mostrado um exemplo dos resultados gerados pelo simulador implementado no projeto. O botão de RUN é utilizado para rodar o programa do momento em que está até o final da execução. Botão STEP irá executar apenas uma instrução. Pode-se utilizar o botão STEP para rodar algumas instruções e em seguida apertar RUN para executar até o final. A função de breakpoint não foi implementada. E o botão de RESET além de resetar as variáveis do sistema como os registradores, memória, program counter, também faz a montagem do código escrito na aba Code Editor. O botão AUTO RUN executa uma linha de código como o botão STEP, porém continuamente até o usuário clicar no botão PAUSE.
+	Na figura \ref{fig:simulator_results_1} é mostrado um exemplo dos resultados gerados pelo simulador implementado no projeto. O botão de RUN é utilizado para executar o programa do momento em que está até o final da execução. Botão STEP irá executar apenas uma instrução. Pode-se utilizar o botão STEP para executar algumas instruções e em seguida pressionar RUN para executar até o final. A função de \textit{breakpoint} não foi implementada. O botão de RESET além de resetar as variáveis do sistema como os registradores, memória, \textit{program counter}, também faz a montagem do código escrito na aba Code Editor. O botão AUTO RUN executa uma linha de código como o botão STEP, porém continuamente até o usuário clicar no botão PAUSE. O AUTO RUN executa de segundo em segundo, porém sem considerar o tempo de resposta do servidor.
 
 	\begin{figure}[h!]
 	  \includegraphics[width=\linewidth]{img/simulator_results_1.png}
@@ -398,7 +398,7 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 	  \label{fig:simulator_results_1}
 	\end{figure}
 
-	A figura \ref{fig:simulator_results_2} é a continuação da tela de resultados. Esta mostra uma tela de output do sistema. Neste projeto foi implementado apenas duas funções SYSCALL. Uma é a impressão de um inteiro, e a outra o encerramento do programa.  
+	A figura \ref{fig:simulator_results_2} representa a continuação da tela de resultados. Esta mostra uma tela de \textit{output} do sistema. Neste projeto foi implementado apenas duas funções ECALL. Uma é a impressão de um inteiro e a outra o encerramento do programa.  
 
 	\begin{figure}[h!]
 	  \includegraphics[width=\linewidth]{img/simulator_results_2.png}
@@ -408,10 +408,23 @@ Este capítulo descreve com detalhes o ambiente de desenvolvimento que foi reali
 
 	Os valores de registradores e de mapa de memória podem ser visualizados na base decimal e hexadecimal.
 
-	Outro detalhe é o segundo painel de saída da simulação. Clicando no botão BITMAP PANEL, que pode ser visto na figura \ref{fig:simulator_results_1}, poderá visualizar uma seção da memória na forma de matriz de blocos que podem ser coloridos no formato RGB, uma word no endereço 256 com o valor 65280 que é o valor decimal do valor 0x0000FF em hexadecimal, irá colorir o primeiro bloco da matriz em azul. No capítulo de resultados, um exemplo será mostrado.
+	Outro detalhe é o segundo painel de saída da simulação. Clicando no botão BITMAP PANEL, que pode ser visto na figura \ref{fig:simulator_results_1}, poderá visualizar uma seção da memória na forma de matriz de blocos que podem ser coloridos no formato RGB, uma word no endereço 256 com o valor 255 que é o valor decimal do valor 0x0000FF em hexadecimal, irá colorir o primeiro bloco da matriz em azul. No capítulo de resultados, um exemplo será mostrado.
+
+	\subsection{Detalhes de implementação}
+		Na versão atual simulador contém dois componentes de memória, são duas listas chamadas DATA\textunderscore MEMORY e CODE\textunderscore MEMORY.
+
+		A lista DATA\textunderscore MEMORY tem o tamanho de 2048 bytes e a CODE\textunderscore MEMORY 512 bytes.
+
+		Os registradores podem ser chamados pelos nomes ou por suas numerações, por exemplo, pode-se escrever "zero" ou "x0", "s10" ou "x26".
+
+		Existe um número máximo de ciclos por simulação, por padrão, MAX\textunderscore NUMBER\textunderscore CYCLES é 10000.
+
+		As instruções de controle de estado dos registradores e instruções de sincronização da memória estão implementados como NOP.
+
+		Apenas duas SYSCALLs foram implementadas, colocando 1 no registrador "a0" ou "x10" se escreve o conteúdo de "x5" ou "t0" na console. colocando 10 em "a0" e chamando a SYSCALL, se encerra o programa.
 
 \section{Extensiblidade}
 
-	Este projeto tem como objetivo poder ser extendido por outros interessados no estudo da arquitetura. 
+	Este projeto tem como objetivo poder ser estendido por outros interessados no estudo da arquitetura. 
 
 	Por exemplo, para casos onde se deseja performance, podem ser conectados modulos através de extensões para python como cython~\cite{cython_home}, a instalação automática desses módulos não pode ser feita nessa versão.

@@ -17,6 +17,8 @@ def fetch(pc):
 		settings.pc = pc + 4;
 	else:
 		return -1
+	#print("ri-------")
+	#print(ri)
 	return ri
 
 def decode(instruction):
@@ -110,14 +112,18 @@ def run( code, memory, registers, pc, console_input, console_output, step_count=
 
 	# Load text program to code memory
 	i=0	
+
 	for inst in code:
-		settings.code_memory[i] = inst		
+		#print(inst)
+		#settings.code_memory[i] = code[inst]
+		settings.code_memory[i] = inst
 		i=i+1
 
 
 	# Load program data to data memory
 	i=0
 	for data in memory:		
+		#settings.data_memory[i] = memory[data]
 		settings.data_memory[i] = data
 		i=i+1
 		
@@ -130,7 +136,7 @@ def run( code, memory, registers, pc, console_input, console_output, step_count=
 	it=0
 	settings.pc = pc
 	flag_error = 0
-	while(it<settings.MAX_NUMBER_CYCLES and step_count != 0 and settings.exit_flag == False and flag_error == 0):
+	while(it<settings.MAX_NUMBER_CYCLES and step_count != 0 and settings.exit_flag == False and flag_error == 0):		
 		flag_error = execute(decode(fetch(settings.pc)))
 		it = it + 1 # avoid infinite loop
 		step_count = step_count - 1
@@ -160,7 +166,10 @@ def run( code, memory, registers, pc, console_input, console_output, step_count=
 	settings.console_output 	= []
 	settings.pc 				= 0
 	settings.data_memory        = ['00000000' for i in range(settings.DATA_MEMORY_SIZE)] # each address is a byte
+	#settings.data_memory 		= {}
 	settings.code_memory        = [settings.XLEN*'0' for i in range(settings.CODE_MEMORY_SIZE)]
+	#settings.code_memory 		= {}
+
 	for i in range(32):
 		settings.registers[utilities.u2bin(i,5)] = '00000000000000000000000000000000'	
 

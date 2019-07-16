@@ -4,8 +4,11 @@ services:
     build: 
       context: ./webapp
       dockerfile: Dockerfile.dev
-
+    ports:
+      - "8080:8080"
+    
     volumes:
       - ./webapp:/app
     
     command: python main.py
+    

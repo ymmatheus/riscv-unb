@@ -1,45 +1,101 @@
-code = '''ADDI x1, zero, 56
-    ADDI t1, t0, 44
-    label1:ADDI t1, t0, 441
-    ADDI  t1 , t0, 442
-    #comentaario
-    label2:ADDI t1, t0,  443
+# ERRO - declaracao multipla label
+.data
+    word_teste: .word 26
+    str_teste: .asciiz "hello, world!"
+.text
+lbl1:
+    addi x4, zero, 10
 
-    label3:ADD t2, t1, t0
+lbl1:
+    addi x4, zero, 10
 
-    ADDI t1, t0, 44 # comments
-    ADDI  t1 , t0, 444  
 
-    ADDI t1, t0, 445
-    ADDI t1, t0, 446 
-    ADDI t1, t0, 44'''
 
-    code2 = '''ADDI x1, zero, 56
-    ADDI t1, t0, 44
-    label1:ADDI t1, t0, 441
-    ADDI  t1 , t0, 442
-    #comentaario
-    label2:ADDI t1, t0,  443
 
-    label3:ADD t2, t1, t0
 
-    ADDI t1, t0, 44 # comments
-    ADDI  t1 , t0, 444  
+# ERRO - declaracao diretiva string
+.data
+    word_teste: .word 26
+    str_teste: .asciiz "hello, world!" "outra string"
 
-    ADDI t1, t0, 445
-    ADDI t1, t0, 446 
-    ADDI t1, t0, 44'''
+.text
+    addi x4, zero, 10
 
-    code3 = '''ADDI x1, zero, 56
-    ADD t1, t0, zero
-    label1:ADDI t1, t0, 16
-    ADDI  t1 , t0, -3  # comentando
-    # comentando
-    ADDI  t1 , x6, 32
 
-    LuI  a1,0
-    addi    a1,a1,8 # 8
-    auipc   a1,0
-    jalr x9,x11,label1
-    jal x8, label2
-    label2:ADDI t1, t0, -766'''
+
+
+
+
+
+# ERRO - imediato com tamanho muito grande
+.data
+    word_teste: .word 26
+    str_teste: .asciiz "hello, world!"
+
+.text
+    addi x4, zero, 99999999999999999999999999999999999
+
+
+
+
+# ERRO - operacao invalida (instrucao)
+.data
+    word_teste: .word 26
+    str_teste: .asciiz "hello, world!"
+
+.text
+    addisd x4, zero, 123
+
+
+
+# ERRO - operacao invalida (diretiva)
+.data
+    word_teste: .word 26
+    str_teste: .asciiz "hello, world!"
+
+.text
+    addisd x4, zero, 123
+
+
+
+# ERRO - tipo ou valor errado de argumento
+.data
+    word_teste: .word label
+    str_teste: .asciiz "hello, world!"
+
+.text
+    addisd x4, zero, 123
+
+
+
+
+
+
+
+
+
+
+
+# BITMAP DEMO
+
+.data 
+    blue: .word 65289
+    base_mem_addr: .word 256
+    n_pos: .word 256
+
+.text
+
+main:
+    lw x1, base_mem_addr(x0)
+    lw x2, blue(x0)
+    lw x3, n_pos(x0)
+
+loop:
+    beq x0, x3, end
+    sw x2, 0(x1)
+    addi x1, x1, 4
+    addi x3, x3, -1
+    jal x0, loop
+
+end:
+

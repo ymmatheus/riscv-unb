@@ -323,7 +323,7 @@ var run_simulation = function(step_count){
         	
 
 			for( var mem_addr_index = 256; mem_addr_index < 1280; mem_addr_index=mem_addr_index+4 ){
-				$("#block_mem_addr_"+mem_addr_index.toString(16)).css("background-color","rgb("+simulator_response['memory_map'][mem_addr_index+3]+","+simulator_response['memory_map'][mem_addr_index+2]+","+simulator_response['memory_map'][mem_addr_index+1]+")")
+				$("#block_mem_addr_"+mem_addr_index.toString(16)).css("background-color","rgb("+simulator_response['memory_map'][mem_addr_index+2]+","+simulator_response['memory_map'][mem_addr_index+1]+","+simulator_response['memory_map'][mem_addr_index]+")")
 			}
 
         	

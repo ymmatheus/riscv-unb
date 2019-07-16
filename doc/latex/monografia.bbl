@@ -31,6 +31,19 @@
 \newblock {\latintext
   \btxurlfont{http://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-1.html}}.
 
+\bibitem {computerorganizationanddesign}
+\btxnamefont {\btxlastnamefont {David A.~Patterson}, John\btxfnamespacelong
+  L.\btxfnamespacelong Hennessy}\btxauthorcolon\ \btxtitlefont {Computer
+  Organization and Design RISC-V Edition: The Hardware Software Interface},
+  \btxvolumelong {}\ \btxvolumefont {2017}.
+\newblock \btxpublisherfont {Morgan Kaufmann}.
+
+\bibitem {patterson2017risc}
+\btxnamefont {\btxlastnamefont {Patterson}, David} \btxandlong {}\ \btxnamefont
+  {Andrew \btxlastnamefont {Waterman}}\btxauthorcolon\ \btxtitlefont {The
+  RISC-V Reader: An Open Architecture Atlas}.
+\newblock \btxpublisherfont {Strawberry Canyon}, 2017.
+
 \bibitem {riscv_commercial}
 \btxnamefont {\btxlastnamefont {Armasu}, Lucian}\btxauthorcolon\ \btxtitlefont
   {\btxifchangecase {Big tech players start to adopt the risc-v chip
@@ -45,6 +58,13 @@
 \newblock
   \url{https://riscv.org/wp-content/uploads/2016/07/Tue1100_Nvidia_RISCV_Story_V2.pdf},
   \btxprintmonthyear{.}{July}{2016}{long}.
+
+\bibitem {raspberrypi}
+\btxnamefont {\btxlastnamefont {pi}~raspberry}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {Raspberry pi official website}{Raspberry Pi official
+  website}}.
+\newblock \url{https://www.raspberrypi.org/}, 2019.
+\newblock Accessed: 2019-07-05.
 
 \bibitem {riscv_manual_v1}
 \btxnamefont {\btxlastnamefont {{Andrew Waterman}{Yunsup Lee}{David
@@ -125,5 +145,10 @@
   C-Extensions for Python}}.
 \newblock \url{http://cython.org/}.
 \newblock Accessed: 2018-06-20.
+
+\bibitem {conway1970game}
+\btxnamefont {\btxlastnamefont {Conway}, John}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {The game of life}{The game of life}}.
+\newblock \btxjournalfont {Scientific American}, 223(4):4, 1970.
 
 \end{thebibliography}

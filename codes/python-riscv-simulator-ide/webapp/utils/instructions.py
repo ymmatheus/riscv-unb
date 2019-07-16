@@ -476,6 +476,43 @@ INSTRUCTION_TABLE_REVERSE = {
 }
 
 
+PSEUDO_INSTRUCTION_TABLE_REVERSE = {
+    
+    "li" : {
+        # li xt, C
+        # - addi xt,x0 , C
+        
+        "instructions":["addi"],
+        "addi":{
+            "arguments_quantity":3,
+            "arguments_type": [ "operand", "extra", "operand"],
+            "arguments_values": [ 0, "x0", 1],
+        }
+    },
+
+    "call" : {
+        # call rot
+        # - jal a0, rot
+        "instructions":["jal"],
+        "jal":{
+            "arguments_quantity": 2,
+            "arguments_type": ["extra", "operand"],
+            "arguments_values": ["a0", 0]
+        }
+    },
+
+    "ret" : {
+        # ret
+        # - jr a0
+        "instructions":["jr"],
+        "jr":{
+            "arguments_quantity": 1,
+            "arguments_type": ["extra"],
+            "arguments_values": ["a0"]
+        }
+    }
+}
+
 
 def instr_lui():
 	settings.registers[settings.rd] = settings.imm_u

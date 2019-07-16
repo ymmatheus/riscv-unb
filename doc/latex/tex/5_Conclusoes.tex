@@ -1,6 +1,6 @@
 \section{Objetivos atingidos}
 
-	Neste projeto conseguimos realizar um primeiro estudo da arquitetura RISC-V, e implementar uma interface de fácil utilização, multiplataforma, onde um usuário pode escrever códigos na linguagem assembly RISC-V, realizar a montagem do código, e rodar uma simulação deste código.
+	Neste projeto conseguimos realizar um primeiro estudo da arquitetura RISC-V e implementar uma interface de fácil utilização, multiplataforma, onde um usuário pode escrever códigos na linguagem assembly RISC-V, realizar a montagem do código, e rodar uma simulação deste código.
 
 	O sistema permite exportar as saídas do montador para que o usuário possa simular seu código em outras ferramentas de simulação, ou uma implementação própria em uma \textit{FPGA}.
 
@@ -24,7 +24,7 @@
 
 	Porém, apesar dessas desvantagens citadas acima, o fato da solução ser aberta diminui o peso dessas desvantagens, pois o código pode ser baixado e rodado localmente. 
 
-	Assim, mesmo que haja algum problema de hospedagem, pode-se obter facilmente o código fonte, e tendo um interpretador instalado em seu computador, se pode fazer sua própria hospedagem local, pois o interpretador já fornece um servidor web imbutido nativamente para desenvolvimento.
+	Assim, mesmo que haja algum problema de hospedagem, pode-se obter facilmente o código fonte, e tendo um interpretador \textit{python} instalado em seu computador, se pode fazer sua própria hospedagem local, pois o interpretador já fornece um servidor web embutido nativamente para desenvolvimento.
 
 
 \section{Dificuldades}
@@ -33,9 +33,7 @@
 
 	Na parte do montador foi onde houve o maior esforço. A parte documentada que diz respeito a linguagem de programação ainda é escassa, porém para a solução limitada que foi feita neste projeto foi o suficiente. Por ser o módulo que interage diretamente com a entrada do usuário, este se mostrou ser o ponto crítico da solução.
 
-	O simulador foi bem simplificado, por isso não houveram grandes dificuldades. O desenvolvimento do simulador tinham algumas dificuldades de saber como as instruções por exemplo de "branch" funcionavam à nível de hardware, pelo tipo de codificação utilizada, pois algumas informações sobre estas não ficam explicitas nas documentações.
-
-	Grande parte do esforço também foi direcionado à integração do \textit{front-end} com o \textit{back-end}, pois pode-se considerar dois sistemas diferentes. O que era um dos objetivos, para que a ferramenta seja flexível, e possa ser extendida e evoluida mais a frente. Por isso foi decidido utilizar uma API para que seja flexível utilizar novas interfaces ou novos montadores, simuladores customizados.
+	Grande parte do esforço também foi direcionado à integração do \textit{front-end} com o \textit{back-end}, pois pode-se considerar dois sistemas diferentes. Um dos objetivos da ferramenta era que seja flexível e possa ser estendida e evoluída mais a frente. Por isso foi decidido utilizar uma API para que seja flexível utilizar novas interfaces ou novos montadores, simuladores customizados.
 
 \section{Melhorias e trabalhos futuros}
 
@@ -45,13 +43,11 @@
 		\item Expandir arquitetura para 64-bits
 		\item Sistema de login/logout, com um sistema de usuários, poderiamos montar um sistema para salvar e compartilhar códigos com outros usuários. Também inserir módulos personalizados.
 		\item Contador de instruções.
-		\item Bitmap mapping customizada, para termos diferentes formas de representação visual da memória.
 		\item Adição de instruções e pseudo-instruções customizadas.
-		\item Utilização de bibliotecas ou frameworks mais modernos para frontend como ReactJS, AngularJS, VueJS.
+		\item Utilização de bibliotecas ou frameworks mais modernos para \textit{front-end} como ReactJS, AngularJS, VueJS.
 		\item Melhorar interface para dispositivos móveis.		
 	\end{itemize}
 
 	A parte de extensões da solução não foi realizada, porém teria muitas aplicações e diferenciaria bastante de outras ferramentas. Para isso precisaríamos ter uma documentação bem especificada, para que haja compatibilidade da interface entre os módulos de extensão.
 
-	Uma das funcionalidades que seria muito interessante ter realizado no projeto seria a possível extensão de códigos em C, para podermos utilizar modelos descritos em mais baixo nível feitos por exemplo com a biblioteca \textit{SystemC}. Com isso poderíamos testar com maior facilidade implementações baseados em performace.
-
+	Uma das funcionalidades que seria muito interessante ter realizado no projeto seria a possível extensão de códigos em C, para podermos utilizar modelos descritos em mais baixo nível feitos por exemplo com a biblioteca \textit{SystemC}.

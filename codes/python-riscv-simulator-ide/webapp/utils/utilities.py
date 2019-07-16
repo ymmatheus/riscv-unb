@@ -216,9 +216,10 @@ def display_codeobj(objcode, display_format="hex"):
 # Receives a list of binary data and convert to specified format
 def dump_convert(data, dump_format="hex"):
 	data_dump_list = []
-
+	#print(data)
 	if dump_format == "hex":
 		for i in data:
+			#data_dump_list.append(bin2hex(data[i]))
 			data_dump_list.append(bin2hex(i))
 	
 	elif dump_format == "mif":
